@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE configuration 
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+    	
+<configuration>
+	<properties>
+		<property name="dialect" value="mysql"/>
+	</properties>
+	<!-- 	二级缓存开启 -->
+    <settings>  
+        <setting name="cacheEnabled" value="false"/>   
+    </settings>  
+	<typeAliases>
+<!-- 		<typeAlias type="com.qianying.bean.BusinessUserBean" alias="businessUserBean"/> -->
+	</typeAliases>
+
+	<mappers>
+	    <mapper resource="com/qianying/dao/xml/SqlExec.xml"></mapper>
+	    <mapper resource="com/qianying/dao/xml/productDao.xml"></mapper>
+	    <mapper resource="com/qianying/dao/xml/customerDao.xml"></mapper>
+	    <mapper resource="com/qianying/dao/xml/operatorsDao.xml"></mapper>
+	    <mapper resource="com/qianying/dao/xml/managerDao.xml"></mapper>
+	    <mapper resource="com/qianying/dao/xml/employeeDao.xml"></mapper>
+	    <mapper resource="com/qianying/dao/xml/userDao.xml"></mapper>
+	    <mapper resource="com/qianying/dao/xml/statisticalRreportDao.xml"></mapper>
+	    <mapper resource="com/qianying/dao/xml/productionManagementDao.xml"></mapper>
+	    <mapper resource="com/qianying/dao/xml/saiYuDao.xml"></mapper>
+	    <mapper resource="com/qianying/dao/xml/supplierDao.xml"></mapper>
+	    <mapper resource="com/qianying/dao/xml/orderTrackingDao.xml"></mapper>
+	    <mapper resource="com/qianying/dao/xml/tailorMadeDao.xml"></mapper>
+	    <mapper resource="com/qianying/dao/xml/productionPlanDao.xml"></mapper>
+	    <mapper resource="com/qianying/dao/xml/preTradingDao.xml"></mapper>
+	    <mapper resource="com/qianying/dao/xml/systemParamsDao.xml"></mapper>
+	    <mapper resource="com/qianying/dao/xml/clientDao.xml"></mapper>
+	    <mapper resource="com/qianying/dao/xml/chartDao.xml"></mapper>
+	</mappers>
+
+</configuration>
+

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<REQUEST>  
+<itembegin index="3" sheetName="产品类别-勿改此页名"/>
+<item mainfiledName="sort_name"             index="0"  excelChineseName="物品类别名" />
+<item mainfiledName="sort_id"               index="1"  excelChineseName="物品类别内码"/>
+<item mainfiledName="self_id"               index="2"  excelChineseName="物品类别外码"/>
+<item mainfiledName="easy_id"               index="3"  excelChineseName="记忆码"/>
+<item mainfiledName="upper_sort_id"         index="4"  excelChineseName="上级物品类别编码"/>
+<!-- 上级物品类别名称 -->
+<item mainfiledName="if_statistic"          index="6"  excelChineseName="是否统计"/>
+<item mainfiledName="mainten_clerk_id"      index="7"  excelChineseName="维护人员编码"/>
+<!-- 维护人员名称 -->
+<item mainfiledName="maintenance_datetime"  index="9"  excelChineseName="维护时间"/>
+</REQUEST>

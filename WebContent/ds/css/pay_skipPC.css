@@ -1,0 +1,15 @@
+.contant{border: 1px solid #dddddd}
+.contant_word{background-color: #F2F2F2}
+.a_box{margin: 30px auto}
+.a_box a{color: #000000;}
+.contant_title{font-size: 30px;padding: 30px;}
+.contant_word li{padding: 10px 30px;}
+.contant_word ul{padding: 25px 0}
+.contant_pay{padding: 30px;display:-moz-box;display:-webkit-box;display:box;-moz-box-align:center;-webkit-box-align:center;-o-box-align:center;box-align:center;-moz-box-pack:justify;-webkit-box-pack:justify;-o-box-pack:justify;box-pack:justify;}
+.contant_pay .left{display:-moz-box;display:-webkit-box;display:box;-moz-box-align:center;-webkit-box-align:center;-o-box-align:center;box-align:center;-moz-box-pack:justify;-webkit-box-pack:justify;-o-box-pack:justify;box-pack:justify;}
+.pic img{width: 40px;margin-right: 10px}
+.code{width: 200px;height: 200px;background-color: #000000}
+.code_box{margin: 20px auto}
+.code_bottom{margin-top:10px;width: 200px;background-color: #5A7294;padding: 10px;display:-moz-box;display:-webkit-box;display:box;-moz-box-align:center;-webkit-box-align:center;-o-box-align:center;box-align:center;-moz-box-pack:justify;-webkit-box-pack:justify;-o-box-pack:justify;box-pack:justify;}
+.code_bottom_word{color: #ffffff;font-size: 14px}
+.code_bottom_pic img{width: 40px}

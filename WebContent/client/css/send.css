@@ -1,0 +1,33 @@
+
+/*----secition----*/
+.li-left {background-color: #009899;color: #ffffff;text-align: center;width: 10%;height: 37px;float: left;font-size: 15px;line-height: 37px;  }
+.btn-style {border-radius: 0;margin-bottom: 1px;border-left: none;height: 29px;padding: 0 10px !important;}
+.btn-style>img {width: 14px;margin-bottom: 2px;}
+.copyright{color: #ffffff !important;text-align: center}
+.margin-a{margin-bottom: 20px;width: 100px;background-color: #009899}
+.margin-a:hover{background-color: #009899 !important;}
+.check>ul>li{margin-bottom: 20px}
+.li-center{max-height: 100px;overflow-y: auto}
+.member{background-color: #dddddd;padding: 3px;border-radius: 3px;font-size: 14px;margin: 5px;float: left;width: 12%}
+.member i{color: #666;cursor: pointer}
+.box-title img{position: absolute;top: 10px;right: 7px;display: none;cursor: pointer;}
+.box-title span {
+    font-size: 15px;
+    color: #FFFFFF;
+}
+
+.history-list-box img{position: absolute;top: 10px;right: 7px;display: none;cursor: pointer}
+.history-title{margin-top: 20px}
+.box-img{height: 150px;margin: 10px 0;margin-top: 33px;}
+.box-img img{width: 100%;height: 100%}
+.word-list{margin-top: 20px}
+.time{	display:-moz-box;display:-webkit-box;display:box;-moz-box-pack:justify;-webkit-box-pack:justify;-o-box-pack:justify;box-pack:justify;-moz-box-align:center;-webkit-box-align:center;-o-box-align:center;box-align:center;}
+.time>div{font-size: 16px}
+.people{display:-moz-box;display:-webkit-box;display:box;-moz-box-pack:justify;-webkit-box-pack:justify;-o-box-pack:justify;box-pack:justify;-moz-box-align:center;-webkit-box-align:center;-o-box-align:center;box-align:center;}
+.people>div{font-size: 16px}
+.result>div{font-size: 16px}
+.result{display:-moz-box;display:-webkit-box;display:box;-moz-box-pack:justify;-webkit-box-pack:justify;-o-box-pack:justify;box-pack:justify;-moz-box-align:center;-webkit-box-align:center;-o-box-align:center;box-align:center;}
+.box-title{font-size: 16px;position: absolute;left: 0;top: 0;right: 0;text-indent: 5px;padding: 5px 0;}
+.word{font-size: 16px;color: #878787;overflow: hidden;width: 100%}
+@media (max-width: 759px){.container{width: 100%} .secition{border-radius: 5px;padding:10px;background-color: #ffffff;box-shadow: 0 5px 5px rgba(0,0,0,0.3);margin-top: 20px} .li-center>input {height: 29px;  width: 150px;  text-align: center} .word-left{font-size: 15px} .word-right{margin-top: 10px} .word-list .word-list-box:not(:nth-child(5n)){margin-right: 0;} .word-list-box{float:left;border: 1px solid #dddddd;border-radius: 5px;padding: 5px;width: 100%;position: relative;margin-top: 10px} .history-list .contant:not(:nth-child(5n)){margin-right: 0;} .contant{width: 100%;float: left;margin-top: 20px;position: relative} .history-list-box{border: 1px solid #dddddd;border-radius: 5px;padding: 5px;width: 100%;margin-bottom: 5px;position: relative} .li-center {width: 150px;float: left;border:1px solid #dddddd;min-height: 29px} .word-left span{color: #dddddd;font-size: 15px} .word-left a{color: #009899;cursor: pointer;font-size: 15px} .member{background-color: #dddddd;padding: 3px;border-radius: 3px;font-size: 14px;margin: 5px;float: left;width: 42%} .member span{font-size: 14px;} .li-left {background-color: #009899;color: #ffffff;text-align: center;width: 100px !important;height: 29px;float: left;font-size: 15px;line-height: 29px;  }}
+@media (min-width: 760px){.container{width: 80%} .secition{border-radius: 5px;padding:20px;background-color: #ffffff;box-shadow: 0 5px 5px rgba(0,0,0,0.3);margin-top: 20px} .li-center{width: 100%;text-align: center;border: 1px solid #ddd;min-height: 37px} .word-left{float: left} .word-right{float: right} .word-list .word-list-box:not(:nth-child(5n)){margin-right: 25px;} .word-list-box{float:left;border: 1px solid #dddddd;border-radius: 5px;padding: 5px;width: 18%;position: relative;margin-top: 10px} .word-list-boxT{border: 1px solid #dddddd;border-radius: 5px;padding: 5px;width: 100%;position: relative;margin-top: 10px} .history-list .contant:not(:nth-child(5n)){margin-right: 25px;} .contant{width: 18%;float: left;margin-top: 20px} .history-list-box{border: 1px solid #dddddd;border-radius: 5px;padding: 5px;width: 200px;margin-bottom: 5px;position: relative} .li-center {width: 80%;float: left;} .word-left span{color: #dddddd} .word-left a{color: #009899;text-decoration: underline;cursor: pointer} }

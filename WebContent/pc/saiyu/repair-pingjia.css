@@ -1,0 +1,83 @@
+
+/*------------------------media-----------------*/
+@media(max-width: 770px) {
+    .section-container-tj{
+        width: 100%;
+        height: 60px;
+        background-color: #357BB1;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        color: #FFFFFF;
+        text-align: center;
+        line-height: 60px;
+        cursor: pointer;
+    }
+    .container-btn{
+        display: block;
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .section-container-pingjia>ul>li{
+        padding-left: 0;
+    }
+}
+@media(min-width: 770px) {
+    .fl{
+        margin: auto;
+        margin-top: 80px;
+        width: 80%;
+    }
+    .section-container-tj{
+        width: 80%;
+        text-align: center;
+/*         height: 60px; */
+/*         background-color: #357BB1; */
+/*         position: fixed; */
+/*         bottom: 0; */
+/*         right: 0; */
+/*         color: #FFFFFF; */
+/*         line-height: 60px; */
+/*         cursor: pointer; */
+    }
+    .container-btn{
+        display: block;
+        position: relative;
+        width: 100px;
+        height: 40px;
+    }
+    .section-container-pingjia{
+        width: 80%;
+        margin-top: 20px;
+    }
+    .section-container-pingjia>ul>li{
+        padding-left: 0;
+    }
+}
+
+/*--------------------------container tbd---------------------*/
+
+.container-btn>input{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: none;
+}
+
+    .star>img{
+    width:30px;
+    height:30px;
+    }
+    .startranslate{
+    }
+    .endranslate{
+    }
+    .star{
+    overflow:hidden;
+    }
+#showpingjia img{
+    width: 40px;
+    height: 40px;
+}
+

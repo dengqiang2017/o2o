@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<REQUEST>  
+<itembegin index="3" sheetName="采购验收入库-勿改此页名"/>
+<item  mainfiledName="st_auto_no"       index="0"  filedName="st_auto_no" excelChineseName="进货单号"/>
+<item  mainfiledName="rcv_hw_no"       index="1"  filedName="rcv_hw_no" excelChineseName="入库单号外码"/>
+<item  filedName="item_name"          index="2"   excelChineseName="产品名称"/>
+<item  filedName="item_id"     index="3" excelChineseName="产品编码"/>
+<item  mainfiledName="tax_rate"     index="7"  filedName="tax_rate"  excelChineseName="税率"/>
+<item  mainfiledName="vendor_name"     index="8"   excelChineseName="供应商"/>
+<item  mainfiledName="vendor_id"   index="9" excelChineseName="供应商编码"/>
+<item  mainfiledName="stock_type"     index="10"   excelChineseName="库存类型"/>
+<!-- <item  filedName="store_struct_name"          index="11"   excelChineseName="入货仓库"/> -->
+<item  mainfiledName="store_struct_id"   filedName="store_struct_id" index="12" excelChineseName="仓库编码"/>
+<item  filedName="rep_qty"          index="13"   excelChineseName="入库数量"/>
+<!-- <item  mainfiledName="payable_sum"          index="14"   excelChineseName="本单总数量"/> -->
+<!-- <item  mainfiledName="all_weight"          index="15"   excelChineseName="总重量"/> -->
+<item  mainfiledName="store_date"          index="14"   excelChineseName="入库日期"/>
+<item  mainfiledName="rej_flag"          index="15"   excelChineseName="是否现款现货"/>
+<!-- <item  mainfiledName="pay_sum"            excelChineseName="付款金额"/> -->
+<item  mainfiledName="cgt_day"          index="16"   excelChineseName="付款日期"/>
+<item  mainfiledName="arrearage"          index="17"   excelChineseName="未付余额"/>
+<item  mainfiledName="st_sum"          index="18"   excelChineseName="入库金额"/>
+<!-- <item  mainfiledName="convey_charge"            excelChineseName="总搬运费"/> -->
+<!-- <item  mainfiledName="clerk_name"          index="19"   excelChineseName="经办人"/> -->
+<item  mainfiledName="clerk_id"    index="20"  excelChineseName="员工编码"/>
+<!-- <item  mainfiledName="dept_name"          index="21"   excelChineseName="经办部门"/> -->
+<item  mainfiledName="dept_id"     index="22" excelChineseName="部门编码"/>
+<item  mainfiledName="c_memo"          index="23"  filedName="c_memo" excelChineseName="备注"/>
+</REQUEST>

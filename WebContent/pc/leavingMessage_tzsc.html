@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="U-XA-Compatible" content="IE-edge">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <title>斯特佳水产-在线留言</title> 
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="../css/popUpBox.css">
+	<link rel="stylesheet" href="css/words.css?ver=001">
+    <script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+    <script type="text/javascript" src="../js_lib/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../js/common.js"></script>
+    <script type="text/javascript" src="../js/popUpBox.js"></script>
+    <script type="text/javascript" src="../js/ajaxfileupload.js"></script>
+    <script type="text/javascript" src="../pc/js/weixin/fileupload.js"></script>
+    <script></script>
+</head>
+<body>
+<div class="lybox">
+    <h2>在线留言</h2>
+    <p>留下你的联系方式，我们会在第一时间与您联系</p>
+    <div class="form-group mar20">
+        <input type="text" placeholder="姓名" class="form-control">
+    </div>
+    <div class="form-group mar20">
+        <input type="tel" placeholder="手机号" class="form-control" data-num="num" maxlength=11>
+    </div>
+    <div class="form-group mar20">
+        <textarea class="form-control" placeholder="事项说明" rows="3"></textarea>
+    </div>
+    <div class="body_03 mar20">
+        <p>拍照上传照片</p>
+        <div class="filek">
+            <div class="file_box">
+                <a class="head_portrait_amend" style="display: none;" id="scxq"></a>
+                <a class="head_portrait_amend" id="upload-btn">
+                    <input type="hidden" name="typeImg" id="filePath">
+                    <input type="file" class="ct input-upload" name="imgFile" id="imgFile" onchange="imgUpload(this);">
+                </a>
+            </div>
+            <div id="imglist">
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <button type="button" class="btn center-block btn-style">提交留言</button>
+</div>
+<script type="text/javascript">
+<!--
+var com_id="001";
+//-->
+</script>
+<script type="text/javascript" src="js/sendmail.js"></script>
+</body>
+</html>

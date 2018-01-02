@@ -1,0 +1,662 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- xml文件 -->
+<mapper namespace="com.qianying.dao.interfaces.IProductionPlanDao">
+	<!-- <cache/> -->
+
+	<select id="getProductionProcessInfo" parameterType="hashMap"
+		resultType="hashMap">
+		select
+		ltrim(rtrim(isnull(sort_id,''))) as sort_id,
+		ltrim(rtrim(isnull(work_name,''))) as work_name,
+		ltrim(rtrim(isnull(working_procedure_section,''))) as working_procedure_section,
+		isnull(work_price,0) as work_price,
+		isnull(No_serial,0) as No_serial
+		from B_001
+		where ltrim(rtrim(isnull(com_id,''))) = #{com_id}
+			and ltrim(rtrim(isnull(working_procedure_section,''))) = #{working_procedure_section}
+		order by No_serial
+	</select>
+<select id="getProductionProcessCount" parameterType="hashMap" resultType="Integer">
+	select count(*) from B_001
+		where ltrim(rtrim(isnull(com_id,''))) = #{com_id}
+			and ltrim(rtrim(isnull(working_procedure_section,''))) = #{working_procedure_section}
+</select>
+<sql id="psorderWhere">
+where 
+ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id}
+and ltrim(rtrim(isnull(t1.st_hw_no,'')))=''
+and ltrim(rtrim(isnull(t1.Status_OutStore,'待支付')))=#{processName}
+ and ltrim(rtrim(isnull(t1.ivt_oper_listing,''))) not in (
+ 		select distinct t4.ivt_oper_listing from ARd02051 t3 
+ 		left join View_sdd02020_ctl03001 t4 on ltrim(rtrim(isnull(t3.com_id,'')))=ltrim(rtrim(isnull(t4.com_id,''))) 
+ 		and(
+ 		ltrim(rtrim(isnull(t3.rejg_hw_no,''))) like '%'+ltrim(rtrim(isnull(t4.ivt_oper_listing,'')))+'%' or
+ 		ltrim(rtrim(isnull(t3.c_memo,''))) like '%'+ltrim(rtrim(isnull(t4.ivt_oper_listing,'')))+'%' 
+ 		) 
+ 		where 
+ 		not ltrim(rtrim(isnull(t4.ivt_oper_listing,'')))='' 
+ 		and ltrim(rtrim(isnull(t3.com_id,'')))=#{com_id}  
+ 		and ltrim(rtrim(isnull(t3.comfirm_flag,'N')))='N'
+ 	)
+ <if test="searchKey!=null">
+and (
+ltrim(rtrim(isnull(t1.corp_name,''))) like #{searchKey} or
+ltrim(rtrim(isnull(t1.corp_sim_name,''))) like #{searchKey} or
+ltrim(rtrim(isnull(t1.item_name,''))) like #{searchKey} or
+ltrim(rtrim(isnull(t1.item_sim_name,''))) like #{searchKey} or
+ltrim(rtrim(isnull(t1.customer_id,''))) like #{searchKey} or
+ltrim(rtrim(isnull(t1.item_id,''))) like #{searchKey} or
+ltrim(rtrim(isnull(t1.item_code like or
+ltrim(rtrim(isnull(t1.ivt_oper_listing,''))) like #{searchKey} or
+ltrim(rtrim(isnull(t1.item_code,''))) like #{searchKey} or
+ltrim(rtrim(isnull(t1.item_color,''))) like #{searchKey} or
+ltrim(rtrim(isnull(t1.item_cost,''))) like #{searchKey} or
+ltrim(rtrim(isnull(t1.item_pic,''))) like #{searchKey} or
+ltrim(rtrim(isnull(t1.item_Sellprice,''))) like #{searchKey} or 
+ltrim(rtrim(isnull(t1.item_style,''))) like #{searchKey} or
+ltrim(rtrim(isnull(t1.item_type,''))) like #{searchKey}
+)
+</if>
+</sql>
+
+<select id="getPlanSourceOrderCount" parameterType="hashMap" resultType="Integer">
+	select count(*) from View_sdd02020_ctl03001 t1
+	 <include refid="psorderWhere"/>
+</select>	
+<select id="getPlanSourceOrderList" parameterType="hashMap" resultType="hashMap">
+		declare @maxId int,@maxId2 int;
+	set @maxid=(
+	select max(idh) from (
+	select top ${page}
+	ROW_NUMBER() OVER (
+		ORDER BY
+		ltrim(rtrim(isnull(t1.ivt_oper_listing,'')))
+		) as idh 
+  	from View_sdd02020_ctl03001 t1
+ <include refid="psorderWhere"/>
+  	) as t);
+       set @maxId2=@maxId;
+  	 <if test="page==1">
+			set @maxId=@maxId-1;
+		</if>
+	select top ${rows} t.* from (
+	select ROW_NUMBER() OVER (
+		ORDER BY
+		ltrim(rtrim(isnull(t1.ivt_oper_listing,'')))
+		) as idh,
+  	  t1.*,
+  	  ltrim(rtrim(isnull(t1.ivt_oper_listing,''))) as orderNo 
+  	  
+  	from View_sdd02020_ctl03001 t1
+ <include refid="psorderWhere"/>
+  	) as t where  t.idh>@maxid
+</select>	
+
+<sql id="ptrackPageSql">
+ where ltrim(rtrim(isnull(t1.com_id,''))) = #{com_id}
+ and ltrim(rtrim(isnull(t3.item_status,'使用')))='使用'
+ and ltrim(rtrim(isnull(t1.working_procedure_section,'${working_procedure_section}')))=#{working_procedure_section}
+ and not ltrim(rtrim(isnull(t1.PH,'')))=''
+ <if test="status!=null">
+ and isnull(t1.status,0)=#{status}
+ </if>
+ <if test="send_date!=null">
+	<![CDATA[
+	and convert(varchar(10),t1.send_date,121)>=#{send_date}
+	]]>
+</if>
+<if test="plan_end_date!=null">
+	<![CDATA[
+	and convert(varchar(10),t1.send_date,121)<=#{plan_end_date}
+	]]>
+</if>
+ <if test="searchKey!=null">
+ and (
+	ltrim(rtrim(isnull(t1.PH,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t1.item_id,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t2.corp_name,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t3.item_name,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t3.item_sim_name,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t3.peijian_id,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t3.item_id,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t3.easy_id,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t3.item_type,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t3.class_card,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t3.item_color,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t3.item_spec,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t3.item_style,''))) like #{searchKey}
+ )
+ </if>
+</sql>
+<select id="getProductionTrackingPageCount" parameterType="hashMap" resultType="Integer">
+<!-- 	计算表格左边主表部分 -->
+ select count(*) from VIEW_Yiem02010Item t1
+  left join Sdf00504 t2 on t1.com_id=t2.com_id and t1.customer_id=t2.customer_id
+   left join ctl03001 t3 on t1.com_id=t3.com_id and t1.item_id=t3.item_id
+ <include refid="ptrackPageSql"/>
+</select>
+
+<select id="getProductionTrackingPage" parameterType="hashMap" resultType="hashMap">
+		declare @maxId int,@maxId2 int;
+	set @maxid=(
+	select max(idh) from (
+	select top ${page}
+	ROW_NUMBER() OVER (
+		ORDER BY
+		ltrim(rtrim(isnull(t1.ivt_oper_listing,''))),
+		ltrim(rtrim(isnull(t1.PH,'')))
+		) as idh 
+  	from VIEW_Yiem02010Item t1
+  left join Sdf00504 t2 on t1.com_id=t2.com_id and t1.customer_id=t2.customer_id
+  left join ctl03001 t3 on t1.com_id=t3.com_id and t1.item_id=t3.item_id
+ <include refid="ptrackPageSql"/>
+  	) as t);
+       set @maxId2=@maxId;
+  	 <if test="page==1">
+			set @maxId=@maxId-1;
+		</if>
+	select top ${rows} t.* from (
+	select ROW_NUMBER() OVER (
+		ORDER BY
+		ltrim(rtrim(isnull(t1.ivt_oper_listing,''))),
+		ltrim(rtrim(isnull(t1.PH,'')))
+		) as idh,
+  	  t1.* ,
+  	  ltrim(rtrim(isnull(t2.corp_name,''))) as corp_name,
+  	  ltrim(rtrim(isnull(t3.item_sim_name,''))) as item_sim_name,
+  	  ltrim(rtrim(isnull(t3.item_type,''))) as item_type,
+ltrim(rtrim(isnull(t3.class_card,''))) as class_card,
+ltrim(rtrim(isnull(t3.item_color,''))) as item_color,
+ltrim(rtrim(isnull(t3.item_spec,'')))  as item_spec,
+ltrim(rtrim(isnull(t3.item_style,''))) as item_style	  
+  	from VIEW_Yiem02010Item t1
+  left join Sdf00504 t2 on t1.com_id=t2.com_id and t1.customer_id=t2.customer_id
+  left join ctl03001 t3 on t1.com_id=t3.com_id and t1.item_id=t3.item_id
+ <include refid="ptrackPageSql"/>
+  	) as t where  t.idh>@maxid
+</select>
+<select id="getProductionTrackingYieM02030" parameterType="hashMap" resultType="hashMap">
+<!-- 	计算表格右边动态工序列部分 -->
+ select t2.PH,t2.JJSL,t2.JSGR,t2.JSGXID,t4.clerk_id,t4.clerk_name,t2.status,t2.PGSL,isnull(t2.JJSL,0) as WGSL,t2.JJSJ as WGSJ,
+ t3.sort_id,t3.work_name ,t2.ivt_oper_listing as pgdh,t2.plan_end_date,ltrim(rtrim(isnull(t2.Item_ID,''))) as item_id,t2.seeds_id
+ from VIEW_YieM02030 t2  
+  left join ctl00801 t4 on t2.com_id=t4.com_id and t2.JSGR=t4.clerk_id 
+<!--   关联工序表 -->
+  left join B_001 t3 on t2.com_id=t3.com_id and t2.JSGXID=t3.sort_id
+  where ltrim(rtrim(isnull(t2.com_id,''))) = #{com_id}
+   and ltrim(rtrim(isnull(t3.working_procedure_section,''))) = #{working_procedure_section}
+   and t2.PH in 
+<!--   根据主表的排产编号进行关联 查询条件与左边主表保持一致 -->
+   <foreach collection="phs" item="item" open="(" separator="," close=")">
+	'${item}'
+	</foreach> 
+</select>
+
+<select id="getPaigongEmployee" parameterType="hashMap" resultType="hashMap">
+	select ltrim(rtrim(isnull(t2.clerk_name,''))) as clerk_name,
+	ltrim(rtrim(isnull(t2.weixinID,''))) as weixinID,
+	ltrim(rtrim(isnull(t2.movtel,''))) as movtel 
+	from  VIEW_YieM02030 t1 
+	left join Ctl00801 t2 on 
+	ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t2.com_id,''))) 
+	and ltrim(rtrim(isnull(t1.JSGR,'')))=ltrim(rtrim(isnull(t2.clerk_id,'')))
+	left join B_001 t3 on 
+	ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t3.com_id,''))) 
+	and ltrim(rtrim(isnull(t1.JSGXID,'')))=ltrim(rtrim(isnull(t3.work_id,'')))
+	where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id} and isnull(t1.status,-1)=-1
+	and isnull(t3.work_type,0)=#{work_type}
+	<if test="work_id!=null">
+	and ltrim(rtrim(isnull(t1.JSGXID,'')))=#{work_id}
+	</if>
+	group by t2.clerk_name,t2.weixinID,t2.movtel;
+	
+	update YieM02031 set status=0 
+	where ltrim(rtrim(isnull(com_id,'')))=#{com_id} 
+	and isnull(status,-1)=-1
+	<if test="work_id!=null">
+	and ltrim(rtrim(isnull(JSGXID,'')))=#{work_id}
+	</if>
+	
+</select>
+
+<sql id="worklistsql">
+VIEW_YieM02030 t1  
+left join B_001 t2 on t1.com_id=t2.com_id and t1.JSGXID=t2.sort_id
+left join ctl03001 t3 on t1.com_id=t3.com_id and t1.item_id=t3.item_id
+left join ctl00801 t4 on t1.com_id=t4.com_id and t1.JSGR=t4.clerk_id 
+left join VIEW_Yiem02010Item t5 on t1.com_id=t5.com_id and t1.PH=t5.PH 
+and t1.Item_ID=t5.item_id
+where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id} 
+<if test="clerk_id!=null and work_id==null">
+and ltrim(rtrim(isnull(t1.JSGR,'')))=#{clerk_id}
+</if>
+ <if test="work_id!=null">
+and '${work_id}' like '%'+ltrim(rtrim(isnull(t1.JSGXID,'')))+'%'
+ </if>
+ <if test="status==null">
+<![CDATA[
+and isnull(t1.status,-1)>-1
+]]>
+</if>
+<if test="status!=null">
+and isnull(t1.status,-1)=#{status}
+</if>
+<if test="searchKey!=null">
+and (
+t1.PH like #{searchKey} or 
+t1.ivt_oper_listing like #{searchKey} or 
+t1.JSGXID like #{searchKey} or 
+t1.JSGR like #{searchKey} or 
+t3.item_name like #{searchKey} or 
+t4.clerk_name like #{searchKey} or 
+t2.work_name like #{searchKey} or 
+t2.working_procedure_section like #{searchKey}
+)
+</if>
+<if test="beginTime!=null">
+	<![CDATA[
+	and convert(varchar(23),t1.PGSJ,121)>=#{beginTime}
+	]]>
+</if>
+<if test="endTime!=null">
+	<![CDATA[
+	and convert(varchar(23),t1.PGSJ,121)<=#{endTime}
+	]]>
+</if>
+</sql>
+<select id="getWorkerProductionCount" parameterType="hashMap" resultType="Integer">
+	select count(*) from <include refid="worklistsql"/>
+</select>
+<select id="getWorkerProductionList" parameterType="hashMap" resultType="hashMap">
+		declare @maxId int,@maxId2 int;
+	set @maxid=(
+	select max(idh) from (
+	select top ${page}
+	ROW_NUMBER() OVER (
+		ORDER BY
+		isnull(t1.status,-1),
+		ltrim(rtrim(isnull(t1.PH,''))) ,
+		ltrim(rtrim(isnull(t1.work_id,'')))
+		) as idh 
+  	from <include refid="worklistsql"/>
+  	) as t);
+       set @maxId2=@maxId;
+  	 <if test="page==1">
+			set @maxId=@maxId-1;
+		</if>
+	select top ${rows} t.* from (
+	select ROW_NUMBER() OVER (
+		ORDER BY
+		isnull(t1.status,-1),
+		ltrim(rtrim(isnull(t1.PH,''))) ,
+		ltrim(rtrim(isnull(t1.work_id,'')))
+		) as idh,
+  	  t1.PGSL,t1.pgsj,t1.plan_end_date,t3.item_name,t4.clerk_name,
+t2.work_name,t1.ivt_oper_listing,isnull(t1.JJSL,0) as WGSL,t1.JJSJ,
+ltrim(rtrim(isnull(t1.PH,''))) as PH,
+ltrim(rtrim(isnull(t1.JSGXID,''))) as JSGXID,
+ltrim(rtrim(isnull(t1.JSGXID,''))) as work_id,
+ltrim(rtrim(isnull(t1.JSGR,''))) as clerk_id,
+ltrim(rtrim(isnull(t1.item_id,''))) as item_id,
+ltrim(rtrim(isnull(t5.memo_color,''))) as memo_color,
+ltrim(rtrim(isnull(t5.memo_other,''))) as memo_other,
+ltrim(rtrim(isnull(t5.c_memo,''))) as c_memo,
+ltrim(rtrim(isnull(t5.detailc_memo,''))) as detailc_memo,
+ltrim(rtrim(isnull(t2.working_procedure_section,''))) as working_procedure_section
+,isnull(t1.status,-1) as status	  
+  	from  
+ <include refid="worklistsql"/>
+  	) as t where  t.idh>@maxid
+</select>
+<select id="getQualityWork_id" parameterType="hashMap" resultType="hashMap">
+select top 1 ltrim(rtrim(isnull(t1.work_id,''))) as work_id,
+ltrim(rtrim(isnull(t1.clerk_id,''))) as clerk_id from ctl00801 t1 where 
+ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id}
+and ltrim(rtrim(isnull(t1.clerk_id,'')))=#{clerk_id}
+and ltrim(rtrim(isnull(t1.headship,''))) like #{headship}
+</select>
+
+<sql id="qualityCheckWhere">
+where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id} 
+ <if test="work_id!=null">
+and '${work_id}' like '%'+ltrim(rtrim(isnull(t1.JSGXID,'')))+'%'
+ </if>
+ <if test="status!=null">
+and isnull(t1.status,-1)=#{status}
+</if>
+ <if test="status==null">
+<![CDATA[
+and isnull(t1.status,-1)<3
+]]>
+</if>
+<if test="beginTime!=null">
+	<![CDATA[
+	and convert(varchar(23),t1.JJSJ,121)>=#{beginTime}
+	]]>
+</if>
+<if test="endTime!=null">
+	<![CDATA[
+	and convert(varchar(23),t1.JJSJ,121)<=#{endTime}
+	]]>
+</if>
+<if test="searchKey!=null">
+and (
+t1.PH like #{searchKey} or 
+t1.ivt_oper_listing like #{searchKey} or 
+t1.JSGXID like #{searchKey} or 
+t1.JSGR like #{searchKey} or 
+t3.item_name like #{searchKey} or 
+t4.clerk_name like #{searchKey} or 
+t2.work_name like #{searchKey} or 
+t2.working_procedure_section like #{searchKey}
+)
+</if>
+</sql>
+
+<select id="getQualityCheckList" parameterType="hashMap" resultType="hashMap">
+select t1.PGSL,t1.pgsj,t1.plan_end_date,t3.item_name,t4.clerk_name,
+t2.work_name,t1.ivt_oper_listing,isnull(t1.JJSL,0) as WGSL,
+ltrim(rtrim(isnull(t1.PH,''))) as PH,
+ltrim(rtrim(isnull(t1.JSGXID,''))) as JSGXID,
+ltrim(rtrim(isnull(t1.JSGXID,''))) as work_id,
+ltrim(rtrim(isnull(t1.JSGR,''))) as clerk_id,
+ltrim(rtrim(isnull(t1.item_id,''))) as item_id,
+ltrim(rtrim(isnull(t5.memo_color,''))) as memo_color,
+ltrim(rtrim(isnull(t5.memo_other,''))) as memo_other,
+ltrim(rtrim(isnull(t5.c_memo,''))) as c_memo,
+ltrim(rtrim(isnull(t5.detailc_memo,''))) as detailc_memo,
+ltrim(rtrim(isnull(t2.working_procedure_section,''))) as working_procedure_section
+,isnull(t1.status,-1) as status
+ from  VIEW_YieM02030 t1  
+left join B_001 t2 on t1.com_id=t2.com_id and t1.JSGXID=t2.sort_id
+left join ctl03001 t3 on t1.com_id=t3.com_id and t1.item_id=t3.item_id
+left join ctl00801 t4 on t1.com_id=t4.com_id and t1.JSGR=t4.clerk_id 
+left join VIEW_Yiem02010Item t5 on t1.com_id=t5.com_id and t1.PH=t5.PH and t1.Item_ID=t5.item_id
+<include refid="qualityCheckWhere"/>
+</select>
+<update id="noticeProduction" parameterType="hashMap">
+update YieM02031 set status=#{status}
+where 
+ltrim(rtrim(isnull(com_id,'')))=#{com_id} 
+and ltrim(rtrim(isnull(JSGR,'')))=#{clerk_id}
+and ltrim(rtrim(isnull(PH,'')))=#{PH}
+and ltrim(rtrim(isnull(item_id,'')))=#{item_id}
+and ltrim(rtrim(isnull(JSGXID,'')))=#{work_id}
+and ltrim(rtrim(isnull(status,'-1')))='-1';
+</update>
+<update id="beginProduction" parameterType="hashMap">
+update YieM02031 set status=#{status} 
+<if test="num!=null">
+,JJSL=isnull(JJSL,0)+#{num},JJSJ=#{JJSJ}
+</if>
+where 
+ltrim(rtrim(isnull(com_id,'')))=#{com_id} 
+and ltrim(rtrim(isnull(JSGR,'')))=#{clerk_id}
+and ltrim(rtrim(isnull(PH,'')))=#{PH}
+and ltrim(rtrim(isnull(item_id,'')))=#{item_id}
+and ltrim(rtrim(isnull(JSGXID,'')))=#{work_id};
+<!-- and ltrim(rtrim(isnull(ivt_oper_listing,'')))=#{ivt_oper_listing} -->
+<if test="status==1">
+update YieM02011 set status=#{status} 
+where 
+ltrim(rtrim(isnull(com_id,'')))=#{com_id} 
+and ltrim(rtrim(isnull(PH,'')))=#{PH};
+</if>
+</update>
+<update id="productionEnd" parameterType="hashMap">
+update YieM02011 set status=2
+where 
+ltrim(rtrim(isnull(com_id,'')))=#{com_id}
+and ltrim(rtrim(isnull(PH,'')))=#{PH};
+</update>
+<select id="getNextWorkEmployee" parameterType="hashMap" resultType="hashMap">
+ select ltrim(rtrim(isnull(clerk_name,''))) as clerk_name, ltrim(rtrim(isnull(clerk_id,''))) as clerk_id,
+ ltrim(rtrim(isnull(t3.work_id,''))) as work_id, ltrim(rtrim(isnull(t1.weixinID,''))) as weixinID, 
+ ltrim(rtrim(isnull(t1.movtel,''))) as movtel
+ from YieM02031 t
+left join B_001 t3 on t3.com_id=t.com_id and t.JSGXID like '%'+t3.work_id+'%'
+left join  Ctl00801 t1 on t1.com_id=t.com_id and t.JSGR=t1.clerk_id
+ where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id} 
+ and t3.work_id=#{work_id}
+and t3.working_procedure_section=#{working_procedure_section}
+and  ltrim(rtrim(isnull(t1.headship,''))) not like '%质检%'
+and  ltrim(rtrim(isnull(t.PH,'')))=#{PH}
+</select>
+
+<select id="getNextWorkInfo" parameterType="hashMap" resultType="hashMap">
+select  top 1 t1.work_id,
+Convert(decimal(18,0),t1.No_serial) as No_serial
+from B_001 t1 where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id} and t1.No_serial=(
+select top 1  t1.No_serial+1 from B_001 t1 
+where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id} and t1.work_id=#{work_id} 
+and t1.working_procedure_section=#{working_procedure_section})
+ and t1.working_procedure_section=#{working_procedure_section}
+</select>
+
+<select id="getQualityEmployee" parameterType="hashMap" resultType="hashMap">
+	select 	ltrim(rtrim(isnull(t1.clerk_name,''))) as clerk_name,
+	ltrim(rtrim(isnull(t1.weixinID,''))) as weixinID,
+	ltrim(rtrim(isnull(t1.movtel,''))) as movtel 
+	 from Ctl00801 t1 where 
+	  ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id} 
+	  and ltrim(rtrim(isnull( t1.work_id,''))) like #{work_id} 
+	  and ltrim(rtrim(isnull(t1.headship,''))) like #{headship}
+</select>
+<sql id="workPriceLeft">
+left join B_001 t2 on t1.JSGXID=t2.sort_id and t1.com_id=t2.com_id
+left join Ctl03001 t4 on t1.com_id=t4.com_id and t1.Item_ID=t4.item_id
+left join Sdf00504 t5 on t1.com_id=t5.com_id and t1.customer_id=t5.customer_id
+<include refid="workPriceWhere"/>
+</sql>
+<sql id="workPriceWhere">
+where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id} and isnull(t1.JJSL,0)>0
+<if test="searchKey!=null">
+and(
+t1.PH like #{searchKey} or
+t1.ivt_oper_listing like #{searchKey} or
+t2.work_name like #{searchKey} or
+t4.item_name like #{searchKey} or
+t5.corp_name like #{searchKey} or
+t1.JSGXID like #{searchKey} or
+t1.customer_id like #{searchKey} or
+t1.Item_ID like #{searchKey}
+)
+</if> 
+<if test="beginTime!=null">
+	<![CDATA[
+	and convert(varchar(23),t1.plan_end_date,121)>=#{beginTime}
+	]]>
+</if>
+<if test="endTime!=null">
+	<![CDATA[
+	and convert(varchar(23),t1.plan_end_date,121)<=#{endTime}
+	]]>
+</if>
+<if test="customer_id!=null">
+and t1.customer_id=#{customer_id}
+</if>
+<if test="PH!=null">
+and t1.PH=#{PH}
+</if>
+<if test="item_id!=null">
+and t1.item_id=#{item_id}
+</if>
+</sql>
+<select id="getProductionEmpoyee" parameterType="hashMap" resultType="hashMap">
+select 
+ltrim(rtrim(isnull(t1.JSGR,''))) as clerk_id,
+ltrim(rtrim(isnull(t3.clerk_name,''))) as clerk_name
+from YieM02031 t1
+  left join Ctl00801 t3 on  t1.JSGR=t3.clerk_id
+ <include refid="workPriceLeft"/>
+ group by t1.JSGR,t3.clerk_name
+</select>
+<select id="getWorkPriceLeftList" parameterType="hashMap" resultType="hashMap">
+  select
+   ltrim(rtrim(isnull(t1.JSGXID,''))) as JSGXID,t2.No_serial,
+   ltrim(rtrim(isnull(t1.ivt_oper_listing,''))) as pgdh,
+   ltrim(rtrim(isnull(t2.work_name,''))) as work_name,
+   ltrim(rtrim(isnull(t4.item_name,''))) as item_name,
+   ltrim(rtrim(isnull(t4.item_sim_name,''))) as item_sim_name,
+   ltrim(rtrim(isnull(t1.Item_ID,''))) as Item_ID,
+   ltrim(rtrim(isnull(t5.corp_name,''))) as corp_name,
+   ltrim(rtrim(isnull(t1.PH,''))) as PH,
+   ltrim(rtrim(isnull(t1.customer_id,''))) as customer_id
+  from View_YieM02030 t1
+  <include refid="workPriceLeft"/>
+  group by t1.PH,t1.JSGXID,t2.No_serial,t2.work_name,t1.customer_id,t5.corp_name,t1.ivt_oper_listing,t1.Item_ID,t4.item_sim_name,t4.item_name
+  order by t1.PH,t1.ivt_oper_listing,t2.No_serial;
+</select>
+<select id="getWorkPriceList" parameterType="hashMap" resultType="hashMap">
+   select 
+   ltrim(rtrim(isnull(t1.JSGXID,''))) as JSGXID,t2.No_serial,
+   ltrim(rtrim(isnull(t1.ivt_oper_listing,''))) as pgdh,
+   ltrim(rtrim(isnull(t1.JSGR,''))) as clerk_id,
+  (isnull(t2.work_price,0)*isnull(t1.JJSL,0)) as price  from View_YieM02030 t1
+  <include refid="workPriceLeft"/>
+  order by t1.PH,t1.ivt_oper_listing,t2.No_serial;
+</select>
+
+<sql id="workSumPriceWhere">
+left join B_001 t2 on t1.com_id=t2.com_id and t1.JSGXID=t2.sort_id
+  left join VIEW_Yiem02010Item t3 on t1.PH=t3.PH and t1.com_id=t3.com_id 
+  left join Ctl03001 t4 on t1.com_id=t4.com_id and t1.Item_ID=t4.item_id
+  left join Sdf00504 t5 on t1.com_id=t5.com_id and t1.customer_id=t5.customer_id
+   <include refid="workPriceWhere"/>
+</sql>
+<select id="getWorkSumPriceLeftList" parameterType="hashMap" resultType="hashMap">
+   select
+   ltrim(rtrim(isnull(t4.item_name,''))) as item_name,
+   ltrim(rtrim(isnull(t4.item_sim_name,''))) as item_sim_name,
+   ltrim(rtrim(isnull(t1.Item_ID,''))) as Item_ID,
+   ltrim(rtrim(isnull(t5.corp_name,''))) as corp_name,
+   ltrim(rtrim(isnull(t1.PH,''))) as PH,
+   ltrim(rtrim(isnull(t1.customer_id,''))) as customer_id,t3.JHSL
+  from View_YieM02030 t1
+<include refid="workSumPriceWhere"/>
+  group by t1.PH,t3.JHSL,t1.customer_id,t5.corp_name,
+  t1.Item_ID,t4.item_sim_name,t4.item_name 
+  order by t1.PH,t1.customer_id,t1.item_id
+</select>
+<select id="getWorkSumPriceList" parameterType="hashMap" resultType="hashMap">
+	  select t1.PH,
+	  t1.Item_ID,t1.customer_id, t1.JSGXID, sum(t1.JJSL*t2.work_price) as price from View_YieM02030 t1
+	  <include refid="workSumPriceWhere"/>
+    group by t1.PH,t1.Item_ID,t1.customer_id, t1.JSGXID
+    order by t1.PH,t1.customer_id,t1.item_id
+</select>
+<!-- //////////////////////////// -->
+<sql id="productionPlanInfoWhere">
+where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id}
+<if test="beginTime!=null">
+	<![CDATA[
+	and convert(varchar(23),t1.plan_end_date,121)>=#{beginTime}
+	]]>
+</if>
+<if test="endTime!=null">
+	<![CDATA[
+	and convert(varchar(23),t1.plan_end_date,121)<=#{endTime}
+	]]>
+</if>
+<if test="searchKey!=null">
+and(
+t1.PH like #{searchKey} or
+t1.ivt_oper_listing like #{searchKey} or
+t3.item_name like #{searchKey} or
+t1.CusName like #{searchKey} or
+t1.customer_id like #{searchKey} or
+t1.detailauto_mps_id like #{searchKey} or
+t1.memo_color like #{searchKey} or
+t1.memo_other like #{searchKey} or
+t1.c_memo like #{searchKey} or
+t1.item_id like #{searchKey}
+)
+</if> 
+</sql>
+<select id="getProductionPlanInfoCount" parameterType="hashMap" resultType="Integer">
+  select count(*) from VIEW_Yiem02010Item t1  
+left outer join Ctl03001 t3 on t1.com_id = t3.com_id and (t1.item_id = t3.item_id or t1.item_id = t3.peijian_id) 
+<include refid="productionPlanInfoWhere"/>
+</select>
+
+<select id="getProductionPlanInfoList" parameterType="hashMap" resultType="hashMap">
+		declare @maxId int,@maxId2 int;
+	set @maxid=(
+	select max(idh) from (
+	select top ${page}
+	ROW_NUMBER() OVER (
+		ORDER BY
+		ltrim(rtrim(isnull(t1.ivt_oper_listing,'')))
+		) as idh 
+  	from  VIEW_Yiem02010Item t1  
+left outer join Ctl03001 t3 on t1.com_id = t3.com_id and t1.item_id = t3.item_id
+<include refid="productionPlanInfoWhere"/>
+  	) as t);
+       set @maxId2=@maxId;
+  	 <if test="page==1">
+			set @maxId=@maxId-1;
+		</if>
+	select top ${rows} t.* from (
+	select ROW_NUMBER() OVER (
+		ORDER BY
+		ltrim(rtrim(isnull(t1.ivt_oper_listing,'')))
+		) as idh,
+  	  ltrim(rtrim(isnull(t1.com_id,''))) as com_id,
+  	  ltrim(rtrim(isnull(t1.ivt_oper_listing,''))) as ivt_oper_listing,
+  	  ltrim(rtrim(isnull(t1.item_id,''))) as item_id,
+  	  ltrim(rtrim(isnull(t1.customer_id,''))) as customer_id,
+  	  ltrim(rtrim(isnull(t1.item_name,''))) as item_name,
+  	  ltrim(rtrim(isnull(t1.item_code,''))) as item_code,
+  	  ltrim(rtrim(isnull(t1.CusName,''))) as corp_sim_name,
+  	  ltrim(rtrim(isnull(t1.c_memo,''))) as c_memo,
+  	  ltrim(rtrim(isnull(t1.detailc_memo,''))) as detailc_memo,
+  	  ltrim(rtrim(isnull(t1.memo_color,''))) as memo_color,
+  	  ltrim(rtrim(isnull(t1.memo_other,''))) as memo_other,
+  	  ltrim(rtrim(isnull(t1.dept_id,''))) as dept_id,
+  	  ltrim(rtrim(isnull(t3.item_unit,''))) as item_unit,
+  	  isnull(t3.pack_unit,1) as pack_unit,
+  	  ltrim(rtrim(isnull(t3.item_type,''))) as item_type,
+  	  ltrim(rtrim(isnull(t3.casing_unit,''))) as casing_unit,
+  	  ltrim(rtrim(isnull(t3.item_color,''))) as item_color,
+  	  ltrim(rtrim(isnull(t3.class_card,''))) as class_card,
+  	  ltrim(rtrim(isnull(t3.quality_class,''))) as quality_class,
+  	  ltrim(rtrim(isnull(t3.item_spec,''))) as item_spec,
+  	  t1.JHSL,t1.detailauto_mps_id,t1.detailmps_id,
+ t1.send_date,t1.plan_end_date,t1.PH,t1.c_edition,t1.comfirm_flag,t1.status,t1.seeds_id,t1.if_anomaly
+from VIEW_Yiem02010Item t1  
+left outer join Ctl03001 t3 on ltrim(rtrim(isnull(t1.com_id,''))) = ltrim(rtrim(isnull(t3.com_id,''))) 
+and ltrim(rtrim(isnull(t1.item_id,''))) = ltrim(rtrim(isnull(t3.item_id,'')))
+<include refid="productionPlanInfoWhere"/>
+  	) as t where  t.idh>@maxid
+
+</select>
+
+<select id="getProductionPlanInfo" parameterType="hashMap" resultType="hashMap">
+  select top 1
+  ltrim(rtrim(isnull(t1.detailauto_mps_id,''))) as orderNo,
+  ltrim(rtrim(isnull(t1.item_id,''))) as item_id,
+  ltrim(rtrim(isnull(t1.com_id,''))) as com_id,
+  ltrim(rtrim(isnull(t1.customer_id,''))) as customer_id
+   from VIEW_Yiem02010Item t1 where ltrim(rtrim(isnull(t1.PH,'')))=#{PH} and ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id} 
+</select>
+<select id="getOrderProcessName" parameterType="hashMap" resultType="hashMap">
+	select ltrim(rtrim(isnull(Status_OutStore,''))) as Status_OutStore,seeds_id
+	from sdd02021 
+	where ltrim(rtrim(isnull(com_id,'')))=#{com_id} 
+and ltrim(rtrim(isnull(ivt_oper_listing,'')))=#{orderNo} 
+and ltrim(rtrim(isnull(item_id,'')))=#{item_id}
+</select>
+<update id="updateOrderProductionBegin" parameterType="hashMap">
+update sdd02021 set Status_OutStore=#{processName}
+<if test="st_auto_no!=null">
+ ,st_hw_no=#{st_auto_no}
+</if>
+where ltrim(rtrim(isnull(com_id,'')))=#{com_id} 
+and ltrim(rtrim(isnull(ivt_oper_listing,'')))=#{orderNo} 
+and ltrim(rtrim(isnull(item_id,'')))=#{item_id}
+</update>
+
+</mapper>

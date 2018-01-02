@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<REQUEST>  
+<!-- 设置从多少行开始  默认从0开始-->
+<itembegin index="3" sheetName="员工信息-勿改此页名"/>
+<!-- 存储字段名:filedName 计算字段名称:compute -->
+<item mainfiledName="clerk_name"            index="0"   excelChineseName="员工姓名"/>
+<item mainfiledName="clerk_id"              index="1"   excelChineseName="员工内码"/>
+<item mainfiledName="self_id"               index="2"   excelChineseName="员工外码"/>
+<item mainfiledName="movtel"                index="3"   excelChineseName="账号"/>
+<item mainfiledName="dept_id"               index="4"   excelChineseName="部门编号"/>
+<item mainfiledName="headship"              index="6"   excelChineseName="职务"/>
+<item mainfiledName="myself_info"           index="7"   excelChineseName="只看自己？"/>
+<item mainfiledName="easy_id"               index="8"   excelChineseName="记忆码"/>
+<item mainfiledName="clerk_name_en"         index="9"   excelChineseName="英文名称"/>
+<item mainfiledName="comdate"               index="10"  excelChineseName="到职日期"/>
+<item mainfiledName="levdate"               index="11"  excelChineseName="离职日期"/>
+<item mainfiledName="type_id"               index="12"  excelChineseName="产品类别"/>
+<item mainfiledName="customer_id"           index="13"  excelChineseName="客户集合"/>
+<item mainfiledName="dept_idInfo"           index="14"  excelChineseName="部门来源"/>
+<item mainfiledName="store_struct_id_Info"  index="15"  excelChineseName="库房来源"/>
+<item mainfiledName="regionalism_id"        index="16"  excelChineseName="行政区划编码"/>
+<!-- 行政区划名称 -->
+<item mainfiledName="working_status"        index="18"  excelChineseName="工作状态"/>
+<item mainfiledName="movtel" 			    index="19"  excelChineseName="手机号"/>
+<item mainfiledName="user_password"         index="20"  excelChineseName="密码"/>
+<item mainfiledName="id_card"               index="21"  excelChineseName="身份证号"/>
+<item mainfiledName="navaddr"               index="22"  excelChineseName="籍贯"/>
+<item mainfiledName="bank_id"               index="23"  excelChineseName="开户银行"/>
+<item mainfiledName="acc_no"                index="24"  excelChineseName="银行账号"/>
+<item mainfiledName="tel"                   index="25"  excelChineseName="电话"/>
+<item mainfiledName="fax"                   index="26"  excelChineseName="传真"/>
+<item mainfiledName="hight"                 index="27"  excelChineseName="身高"/>
+<item mainfiledName="weight"                index="28"  excelChineseName="体重"/>
+<item mainfiledName="health"                index="29"  excelChineseName="健康状况"/>
+<item mainfiledName="addr1"                 index="30"  excelChineseName="地址1"/>
+<item mainfiledName="addr2"                 index="31"  excelChineseName="地址2"/>
+<item mainfiledName="weixin"                index="32"  excelChineseName="微信号"/>
+<item mainfiledName="weixinID"              index="33"  excelChineseName="微信账号"/>
+<item mainfiledName="work_id"               index="34"  excelChineseName="所属工序编码"/>
+<item mainfiledName="describe"              index="35"  excelChineseName="员工描述/设计师描述"/>
+<!-- 所属工序名称 -->
+</REQUEST>

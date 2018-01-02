@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=3.0,user-scalable=yes">  
+<meta http-equiv="expires" content="0">
+<title>图片详情</title>
+<link href="../lightSlider/css/base.css" rel="stylesheet">
+<link rel="stylesheet" href="../lightSlider/css/lightSlider.css" />
+<link rel="stylesheet" href="../lightSlider/css/prettify.css" />
+<style type="text/css">
+#cop{
+display: none;
+}
+.csSlideOuter{margin-top: 100px}
+.csSlideOuter .csPager.cSpg > li.active a {background-color: #ffffff !important;}
+#fade li.active img {display: block;width: 100%;height: 280px}
+.bg{position: fixed;left: 0;top:0;width: 100%;height: 100%;background-color: rgba(0,0,0,0.7);}
+.csSlideOuter .csPager.cSGallery img {display: block;max-width: 100%;width: 50px;height: 50px;}
+@media (max-width: 759px){}
+@media (min-width: 760px){.csSlideOuter img{margin: auto} .cSGallery{margin: auto !important;}}
+</style>
+</head>
+<body>
+<div class="bg">
+<div class="">
+    <ul id="imageGallery" class="gallery list-unstyled">
+    </ul>
+</div>
+<div class="">
+    <ul id="fade" class="gallery list-unstyled clearfix">
+    </ul>
+</div>
+</div>
+<script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+<script type="text/javascript" src="../js_lib/jquery.cookie.js"></script>
+<script type="text/javascript" src="../js_lib/jquery.lightSlider.min.js"></script>
+<script type="text/javascript" src="../js/common.js?ver=0310"></script>
+<script type="text/javascript" src="../js/weixinAutoLogin.js?ver=0310"></script>
+<script type="text/javascript" src="js/loaderweimaimg.js?ver=0310"></script>
+<script type="text/javascript">
+<!--
+var item_id=getQueryString("url");
+var cps=getQueryString("cp");
+$.get("../product/getImgUrl.do",{"item_id":item_id,"com_id":com_id},function(data){
+	if (cps=="cp") {
+		$.each(data.cps,function(i,name){
+			if (/\.(gif|jpg|jpeg|png|GIF|JPG|PNG)$/.test(name)) {
+				if (IsPC()) {
+					$("#imageGallery").append("<li data-thumb='"+name+"'><img src='"+name+"' /></li>");
+				}else{
+					$("#fade").append("<li><img src='"+name+"' /></li>");
+				}
+			}
+		});
+	}else{
+		$.each(data.xjs,function(i,name){
+			if (/\.(gif|jpg|jpeg|png|GIF|JPG|PNG)$/.test(name)) {
+				if (IsPC()) {
+					$("#imageGallery").append("<li data-thumb='"+name+"'><img src='"+name+"' /></li>");
+				}else{
+					$("#fade").append("<li><img src='"+name+"' /></li>");
+				}
+			}
+		});
+	} 
+	window.prettyPrint && prettyPrint();
+	if (IsPC()) {
+		 var slider =$('#imageGallery').lightSlider({
+			gallery:true,
+			minSlide:1,
+			maxSlide:1,
+			currentPagerPosition:'left'  
+		}); 
+		$('#fade').parent().hide();
+	}else{
+		$('#imageGallery').parent().hide();
+	 var slider =$('#fade').lightSlider({
+			minSlide:1,
+			maxSlide:1,
+			mode:'fade'
+		});
+		slider.goToPrevSlide(); //跳到上一张图片
+		slider.goToNextSlide(); //跳到下一张图片
+	}
+});
+
+//-->
+</script>
+</body>
+</html>

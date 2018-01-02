@@ -1,0 +1,38 @@
+/* 小屏幕（平板，大于等于 768px） */
+@media (max-width: 768px) {
+.cimg img{
+width: 100%;
+height: 150px;
+}
+.container{
+	margin-top: 50px;
+}
+.container img{
+width: 100%;
+}
+.cimg{
+margin-top: 50px;
+}
+.txt{
+line-height: 30px;
+font-size: 16px;
+}
+.cimg img{height: 200px;}
+}
+/* 中等屏幕（桌面显示器，大于等于 992px） */
+@media (min-width: 992px) {
+}
+/* 大屏幕（大桌面显示器，大于等于 1200px） */
+@media (min-width: 1200px) {
+	.container{
+	margin-top: 120px;
+}
+.cimg{
+margin-top: 100px;
+}
+.txt{
+line-height: 30px;
+width: 90%;
+}
+.cimg img{height: 400px;}
+}

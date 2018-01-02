@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="U-XA-Compatible" content="IE-edge">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <title>个人信息</title>
+    <link rel="stylesheet" href="css/personal_details.css">
+    <link rel="stylesheet" href="../pcxy/css/bootstrap.css">
+    <link rel="stylesheet" href="../css/popUpBox.css">
+    <script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+    <script type="text/javascript" src="../js_lib/jquery.cookie.js"></script>
+    <script src="../pcxy/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/common.js"></script>
+    <script type="text/javascript" src="../js/popUpBox.js"></script>
+    <script type="text/javascript" src="../js/o2od.js"></script>
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="../js/ajaxfileupload.js"></script>
+<!--     <script type="text/javascript" src="../pc/js/weixin/fileupload.js"></script> -->
+    <script src="cms/js/head.js"></script>
+     <script type="text/javascript">
+        <!--
+        var math=Math.random();
+        var url=window.location.href;
+        if(url.indexOf("?")<0){
+        	window.location.href=url+"?ver="+math;
+        }
+        document.write("<script src='trghjs/personal_center.js?ver="+math+"'><\/script>");
+        document.write("<script src='../pc/js/weixin/fileupload.js?ver="+math+"'><\/script>");
+        //-->
+    </script>
+</head>
+<body>
+<!---------------公用部分--------------------->
+<!-- 头部-->
+<div class="header" style="font-size: 18px;display:none;">个人信息编辑<a class="glyphicon glyphicon-menu-left a_position"  href="personal_center.html"></a></div>
+
+<!-- 定位跳转-->
+<div class="orient">
+    <div class="orient_01"><a  href="personal_center.html">个人中心</a></div> <span style="color: #999999;font-size: 16px;">>></span> <div class="orient_02">个人信息编辑</div>
+</div>
+<!---------------公用部分--------------------->
+
+<div class="body" style="padding-bottom: 70px">
+    <ul>
+        <li>
+            <div class="col-xs-3 body_left" style="margin-top: 5px">姓名</div>
+            <div class="col-xs-9 body_right">
+                <input class="form-control" id="corp_sim_name" type="text" placeholder="客户名称" maxlength="30">
+            </div>
+            <div class="clear"></div>
+        </li>
+        <li>
+            <div class="col-xs-3 body_left" style="margin-top: 5px">电话</div>
+            <div class="col-xs-9 body_right">
+                <input class="form-control" id="tel_no" placeholder="18688688858" type="tel" data-num="num" maxlength="11">
+            </div>
+            <div class="clear"></div>
+        </li> 
+        <li>
+            <div class="col-xs-3 body_left" style="margin-top: 5px">微信号</div>
+            <div class="col-xs-9 body_right">
+                <input class="form-control" type="text" id="weixin" placeholder="123456" maxlength="30">
+            </div>
+            <div class="clear"></div>
+        </li>
+        <li style="display: none;">
+            <div class="col-xs-3 body_left" style="margin-top: 5px">送货方式</div>
+            <div class="col-xs-9 body_right">
+                <input class="form-control" type="text" id="sjsh" placeholder="司机送货">
+                <select>
+                
+                </select>
+            </div>
+            <div class="clear"></div>
+        </li>
+        <li style="padding: 23px 15px;position: relative;">
+            <div class="pull-left body_left" style="margin-top: 16px">上传头像</div>
+            <div class="pull-right">
+                <img src="" id="user_logo" style="width:60px">
+                <a class="glyphicon glyphicon-menu-right" style="color: #A4A4A4;text-decoration: none;font-size: 18px"></a>
+		           <div class="head_portrait" >
+		              <div class="a_position">
+		              <a class="head_portrait_amend" style="display: none;width: 100%;height: 100%;position: absolute;left: 0;top: 0;" id="sctx"><img src="images/camera.png"></a>
+		              <a class="head_portrait_amend"  id="upload-btn" style="position: absolute;left: 0;top: 0;right: 0;bottom: 0;">
+		                  <input type="hidden" name="typeImg" id="filePath">
+		                  <input type="file" class="ct input-upload" name="Pic_You" id="Pic_You" onchange="imgCLientUpload(this);" style="width: 100%;height: 100%;">
+		                  <img src="images/camera.png">
+		              </a>
+		              </div>
+		          </div>
+            </div>
+            <div class="clear"></div>
+        </li>
+        <li>
+            <div class="col-xs-3 body_left" style="margin-top: 5px">性别</div>
+            <div class="col-xs-9 body_right"> 
+                <select id="sex" class="form-control">
+               		 <option value="男">男</option>
+                     <option value="女">女</option>
+                </select>
+            </div>
+            <div class="clear"></div>
+        </li>
+        <li style="padding: 20px 15px;border-bottom: none">
+            <div class="pull-right body_left">
+                <a style="color: #A4A4A4" id=editinfo>编辑</a>
+            </div>
+            <div class="clear"></div>
+        </li>
+    </ul>
+</div>
+<div class="logo_container"></div>
+</body>
+</html>

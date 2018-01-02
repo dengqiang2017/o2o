@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="U-XA-Compatible" content="IE-edge">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <title>我的协同</title>
+    <link rel="stylesheet" href="cms/css/bootstrap.css">
+   <style type="text/css">
+       *{padding: 0;margin: 0;font-family: "Helvetica Neue","Arial","PingFang SC","Hiragino Sans GB","STHeiti","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;font-size: 18px}
+       input{outline: none}
+       textarea{outline: none}
+       body{background-color: #F8F6F9}
+       .header{padding: 10px;text-align: center;background-color: #278EED;color: #ffffff;position: relative}
+       .header>a{position: absolute;left: 10px;top: 10px;color: #ffffff}
+       .secition{padding: 10px}
+       .classify>input{width: 100%;padding: 5px;border-radius: 3px;border: 1px solid #dddddd;height: 50px}
+       .classify>textarea{width: 100%;padding: 5px;border-radius: 3px;border: 1px solid #dddddd;height: 150px}
+       .classify{margin-bottom: 10px}
+       .box{display: box;display: -webkit-box;display: -moz-box;border-bottom: 1px solid #dddddd;padding-bottom: 10px}
+       .part{text-align: center;margin: auto 15px;}
+       .imgbox01{width: 60px;height: 60px;background-color: #1DC4AA;margin:auto;margin-bottom: 5px}
+       .imgbox02{width: 60px;height: 60px;background-color: #DBDBDB;margin:auto;margin-bottom: 5px}
+       .part>span{font-size: 15px;font-weight: bold}
+       .classify_bottom{background-color: #ffffff;padding: 10px;border:1px solid #ddd;display: box;display: -webkit-box;display: -moz-box;box-align:center;-webkit-box-align:center;-moz-box-align:center;}
+       .classify_bottomT{margin: auto 10px;text-align: center}
+       .yuan{width: 50px;height: 50px;border-radius: 100%;background-color: #1DC4AA;margin-bottom: 10px}
+       .btn-box{display: box;display: -webkit-box;display: -moz-box;box-pack:justify;-webkit-box-pack:justify;-moz-box-pack:justify;}
+       .btn-box>button{display: block;margin-right: 0;width: 48%;border-radius: 0;color: #ffffff;padding: 10px 0;font-size: 16px}
+   </style>
+</head>
+<body>
+    <div class="header">
+        <a class="glyphicon glyphicon-menu-left" href="javascript:history.back();" style="margin-top: 3px;"></a>我的协同
+    </div>
+    <div class="secition">
+        <div class="classify">
+            <p>标题</p>
+            <input type="text" placeholder="关于明天不想上班的理由">
+        </div>
+        <div class="classify">
+            <p>描述</p>
+            <textarea placeholder="不知道为什么，就是想请个假"></textarea>
+        </div>
+        <div class="classify">
+            <p>附件:</p>
+            <div class="box">
+                <div class="part">
+                    <div class="imgbox01"></div>
+                    <span>一个文档</span>
+                </div>
+                <div class="part">
+                    <div class="imgbox02"></div>
+                    <span>一张图片</span>
+                </div>
+            </div>
+        </div>
+        <div class="classify">
+            <p style="color: #278EED">我的意见:</p>
+            <textarea placeholder="这个可以搞"></textarea>
+        </div>
+        <div class="classify">
+            <p>审批人员:<span style="color: #278EED">（点击头像可以查看详情哦）</span></p>
+            <div class="classify_bottom">
+                <div class="classify_bottomT">
+                    <div class="yuan"></div>
+                    <span>张益达</span>
+                </div>
+                <div class="classify_bottomT">
+                    <div class="yuan"></div>
+                    <span>张益达</span>
+                </div>
+            </div>
+        </div>
+        <div class="btn-box">
+            <button type="button" class="btn" style="background-color: #999999">不批准</button>
+            <button type="button" class="btn" style="background-color: #278EED">批准</button>
+        </div>
+    </div>
+</body>
+</html>

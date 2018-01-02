@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>cms可视化拖动演示-jQuery UI</title>
+  <link rel="stylesheet" href="../css/jquery-ui.min.css">
+  <link rel="stylesheet" href="../pcxy/css/bootstrap.css">
+  <script src="../js_lib/jquery.11.js"></script>
+  <script src="../js_lib/jquery-ui.js"></script>
+  <link rel="stylesheet" href="jqueryui/style.css">
+  <style>
+  h1 { padding: .2em; margin: 0; }
+  #products { float:left; width: 500px; margin-right: 2em; }
+  #cart { width: 400px; height:500px; float: left; margin-top: 1em; }
+  /* 定义列表样式，以便最大化 droppable */
+  #cart .ol {height:100%; margin: 0; padding: 0.5em 0 0.5em 0.5em;border: 1px solid #ccc;width: 50%; }
+  </style>
+  <script>
+  $(function() {
+    $("#catalog").accordion();
+    $("#catalog li").draggable({
+      appendTo: "body",
+      helper: "clone"
+    });
+    $("#cart .ol").droppable({
+      activeClass: "ui-state-default",
+      hoverClass: "ui-state-hover",
+      accept: ":not(.ui-sortable-helper)",
+      drop: function(event,ui) {
+        $(this).find(".placeholder").remove();
+        var uiitem=$(ui.draggable.html());
+//         var item=$($("<li></li>").html(uiitem));
+        $(this).append(uiitem);
+        uiitem.resizable();
+      }
+    }).sortable({
+      items:"div:not(.placeholder)",
+      sort:function(){
+        // 获取由 droppable 与 sortable 交互而加入的条目
+        // 使用 connectWithSortable 可以解决这个问题，但不允许您自定义 active/hoverClass 选项
+        $(this).removeClass("ui-state-default");
+      }
+    });
+    $(function(){
+    	var jqdx;
+        $("#cart").click(function (e) {
+                 // 设置背景色
+            jqdx=$(e.target);
+            var type=$(e.target).attr('data-tagname');
+	        $(".tagset").hide();
+            if(type=="button"){
+            	$("#btnset").show();
+            	$("#btncolor").val(colorHex($(e.target).css("background-color")));
+            	$("#btnwzcolor").val(colorHex($(e.target).css("color")));
+            	$("#btnwenzi").val(colorHex($(e.target).html()));
+            }else{
+            	$("#imgset").show();
+//             	 $("#imgwidth").val($(e.target).css("width").replace("px", ""));
+//             	 $("#imgheight").val($(e.target).css("height").replace("px", ""));
+            }
+        });
+        $(".tagset").hide();
+        $("#setbtn").click(function(){
+        	jqdx.css("color",$("#btncolor").val());
+        });
+        $("#btncolor").change(function(){
+        	jqdx.css("background-color",$(this).val());
+        });
+        $("#btnwzcolor").change(function(){
+        	jqdx.css("color",$(this).val());
+        });
+        $("#btnwenzi").change(function(){
+        	jqdx.html($(this).val());
+        });
+//         $("#imgwidth").change(function(){
+//         	jqdx.css("width",$(this).val());
+//         });
+//         $("#imgheight").change(function(){
+//         	jqdx.css("height",$(this).val());
+//         });
+        function colorHex(that){
+        	var reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/; 
+            if(/^(rgb|RGB)/.test(that)){
+                var aColor = that.replace(/(?:||rgb|RGB)*/g,"").split(",");  
+                var strHex = "#"; 
+                for(var i=0; i<aColor.length; i++){
+                    var hex = Number(aColor[i].replace("(","").replace(")","")).toString(16); 
+                    if(hex === "0"){  
+                        hex += hex;   
+                    }  
+                    strHex += hex;  
+                }  
+                if(strHex.length !== 7){  
+                    strHex = that;    
+                }  
+                return strHex;  
+            }else if(reg.test(that)){  
+                var aNum = that.replace(/#/,"").split("");  
+                if(aNum.length === 6){  
+                    return that;      
+                }else if(aNum.length === 3){  
+                    var numHex = "#";  
+                    for(var i=0; i<aNum.length; i+=1){  
+                        numHex += (aNum[i]+aNum[i]);  
+                    }  
+                    return numHex;  
+                }  
+            }else{
+                return that;      
+            }  
+        }
+    });
+     
+  });
+  </script>
+</head>
+<body>
+ 
+<div id="products">
+  <h1 class="ui-widget-header">组件</h1>
+  <div id="catalog">
+    <h2><a href="#">T-Shirts</a></h2>
+    <div>
+      <ul>
+        <li><div data-tagname="div"><button type="button" data-tagname="button" class="btn btn-success">Lolcat Shirt</button><div>这是整块拖动复制</div></div></li>
+        <li><div data-tagname="div"><button type="button" data-tagname="button" class="btn btn-success">Cheezeburger Shirt</button></div></li>
+        <li><div data-tagname="div"><button type="button" data-tagname="button" class="btn btn-success">Buckit Shirt</button></div></li>
+        <li><img alt="" src="../pc/image/logo.png" data-tagname="img"></li>
+      </ul>
+    </div>
+    <h2><a href="#">Bags</a></h2>
+    <div>
+      <ul>
+        <li>Zebra Striped</li>
+        <li>Black Leather</li>
+        <li>Alligator Leather</li>
+      </ul>
+    </div>
+    <h2><a href="#">Gadgets</a></h2>
+    <div>
+      <ul>
+        <li>iPhone</li>
+        <li>iPod</li>
+        <li>iPad</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div id="cart">
+  <h1 class="ui-widget-header">手机界面</h1>
+  <div class="ui-widget-content" style="height: 100%">
+    <div class="ol" style="float: left;">
+      <span class="placeholder">拖动左边组件到这里</span>
+    </div>
+    <div class="ol" style="float: right;">
+      <span class="placeholder">拖动左边组件到这里</span>
+    </div>
+  </div>
+</div>
+<div style="float: left;">
+<h1>参数设置</h1>
+<div id="btnset" class="tagset"> 
+<div>
+<label>按钮文字</label>
+<input type="text" maxlength="20" id="btnwenzi">
+</div>
+<div>
+<label>文字颜色</label>
+<input type="color" id="btnwzcolor">
+</div>
+<div>
+<label>按钮颜色</label>
+<input type="color" id="btncolor">
+</div>
+<button type="button" class="btn btn-success" id="setbtn">设置</button>
+</div>
+<div id="imgset" class="tagset">
+<div>
+<label>图片路径</label>
+<input type="url">
+</div> 
+<!-- <div> -->
+<!-- <label>宽度</label> -->
+<!-- <input type="number" id="imgwidth"> -->
+<!-- </div> -->
+<!-- <div> -->
+<!-- <label>高度</label> -->
+<!-- <input type="number" id="imgheight"> -->
+<!-- </div> -->
+<button type="button" class="btn btn-success">设置</button>
+</div>
+
+</div>
+</body>
+</html>

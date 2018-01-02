@@ -1,0 +1,729 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="U-XA-Compatible" content="IE-edge">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <title>德阳通威小猪动车-撮合平台</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/platform.css">
+</head>
+<body>
+<div class="header">
+    <a onclick="javascript:history.back();" class="pull-left">返回</a>撮合平台
+    <a onclick="javascript:history.back();" class="pull-right">刷新</a>
+</div>
+<div class="body01">
+    <div class="box">
+        <ul>
+            <li>
+                <div class="left">
+                    起始日期
+                    <input type="date" id="d4311"
+                           class="form-control input-sm Wdate"
+                           onfocus="WdatePicker({dateFmt:'yyyy-MM-dd',maxDate:'#F{$dp.$D(\'d4312\')||\'2020-10-01\'}'})" name="beginDate">
+                </div>
+            </li>
+            <li>
+                <div class="center">
+                    ——
+                </div>
+            </li>
+            <li>
+                <div class="right">
+                    结束日期
+                    <input type="date" id="d4312" class="form-control input-sm Wdate"
+                           onfocus="WdatePicker({dateFmt:'yyyy-MM-dd',minDate:'#F{$dp.$D(\'d4311\')}',maxDate:'2020-10-01'})" name="endDate">
+                </div>
+            </li>
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<div class="body02">
+    <div class="body01_top">
+        <ul>
+            <li class="active">内杂猪</li>
+            <li>外杂猪</li>
+            <li>土猪</li>
+            <div class="clearfix"></div>
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+    <div class="body01_bottom">
+        <div class="box2">
+            <ul>
+                <li class="active2">崽猪</li>
+                <li>商品猪</li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<div class="qh">
+    <ul>
+        <!--------------- 0------------------>
+        <li>
+            <div class="body03">
+                <div class="box2top"><span>10~20kg</span>
+                    <div class="a2"></div>
+                </div>
+                <div class="hides">
+                    <div class="box033">
+                        <ul>
+                            <li>
+                                <div class="top">收购:<span>50</span><span>头</span></div>
+                                <div class="bottom">收购:<span>50</span>元/<span>头</span></div>
+                            </li>
+                            <li style="border-right:0">
+                                <div class="top" style="margin-left: 13px">预售:<span>70</span><span>头</span></div>
+                                <div class="bottom" style="margin-left: 13px">均价:<span>55</span>元/<span>头</span></div>
+                            </li>
+                            <div class="clearfix"></div>
+                        </ul>
+                    </div>
+                    <div class="box04">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <a href="fangou.html" class="btn btn-default btn-block">查所有贩购方</a>
+                            </div>
+                            <div class="col-xs-6">
+                                <a href="fanshou.html" class="btn btn-default btn-block">查所有售卖方</a>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 20px">
+                            <div class="col-xs-6">
+                                <div class="fix">
+                                    <h4>张三</h4>
+                                    <p>收购：<span>50</span><span>头</span></p>
+                                    <p style="margin-bottom: 0">挂价：<span>80</span>/<span>头</span></p>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="fix">
+                                    <h4>张三</h4>
+                                    <p class="margin">挂价：<span>82</span>元/<span>头</span></p>
+                                    <p style="margin-bottom: 0">本次交易：<input type="tel" data-num="num" maxlength="3"><span style="position: absolute;right: 10px;">头</span></p>
+                                    <div class="pos">可供应：<span>50</span><span>头</span></div>
+                                    <div class="pos2">X</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 20px">
+                            <div class="col-xs-6"></div>
+                            <div class="col-xs-6">
+                                <div class="fix">
+                                    <h4>张三</h4>
+                                    <p class="margin">挂价：<span>82</span>元/<span>头</span></p>
+                                    <p>本次交易：<input type="tel" data-num="num" maxlength="3"><span style="position: absolute;right: 10px;">头</span></p>
+                                    <div class="pos">可供应：<span>50</span><span>头</span></div>
+                                    <div class="pos2">X</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin: 30px auto">
+                            <button type="button" class="btn center-block btnst btn-success">立即撮合</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="body03">
+                <div class="box2top"><span>20~30kg</span>
+                    <div class="a2"></div>
+                </div>
+                <div class="hides">
+                    <div class="box033">
+                        <ul>
+                            <li>
+                                <div class="top">收购:<span>50</span><span>头</span></div>
+                                <div class="bottom">收购:<span>50</span>元/<span>头</span></div>
+                            </li>
+                            <li style="border-right:0">
+                                <div class="top" style="margin-left: 13px">预售:<span>70</span><span>头</span></div>
+                                <div class="bottom" style="margin-left: 13px">均价:<span>55</span>元/<span>头</span></div>
+                            </li>
+                            <div class="clearfix"></div>
+                        </ul>
+                    </div>
+                    <div class="box04">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <a href="fangou.html" class="btn btn-default btn-block">查所有贩购方</a>
+                            </div>
+                            <div class="col-xs-6">
+                                <a href="fanshou.html" class="btn btn-default btn-block">查所有售卖方</a>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 20px">
+                            <div class="col-xs-6">
+                                <div class="fix">
+                                    <h4>张三</h4>
+                                    <p>收购：<span>50</span><span>头</span></p>
+                                    <p style="margin-bottom: 0">挂价：<span>80</span>元/<span>头</span></p>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="fix">
+                                    <h4>张三</h4>
+                                    <p class="margin">挂价：<span>82</span>元/<span>头</span></p>
+                                    <p style="margin-bottom: 0">本次交易：<input type="tel" data-num="num" maxlength="3"><span style="position: absolute;right: 10px;">头</span></p>
+                                    <div class="pos">可供应：<span>50</span><span>头</span></div>
+                                    <div class="pos2">X</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 20px">
+                            <div class="col-xs-6"></div>
+                            <div class="col-xs-6">
+                                <div class="fix">
+                                    <h4>张三</h4>
+                                    <p class="margin">挂价：<span>82</span>元/<span>头</span></p>
+                                    <p>本次交易：<input type="tel" data-num="num" maxlength="3"><span style="position: absolute;right: 10px;">头</span></p>
+                                    <div class="pos">可供应：<span>50</span><span>头</span></div>
+                                    <div class="pos2">X</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin: 30px auto">
+                            <button type="button" class="btn center-block btnst btn-success">立即撮合</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="body03">
+                <div class="box2top"><span>30~40kg</span>
+                    <div class="a2"></div>
+                </div>
+                <div class="hides">
+                    <div class="box033">
+                        <ul>
+                            <li>
+                                <div class="top">收购:<span>50</span><span>头</span></div>
+                                <div class="bottom">收购:<span>50</span>元/<span>头</span></div>
+                            </li>
+                            <li style="border-right:0">
+                                <div class="top" style="margin-left: 13px">预售:<span>70</span><span>头</span></div>
+                                <div class="bottom" style="margin-left: 13px">均价:<span>55</span>元/<span>头</span></div>
+                            </li>
+                            <div class="clearfix"></div>
+                        </ul>
+                    </div>
+                    <div class="box04">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <a href="fangou.html" class="btn btn-default btn-block">查所有贩购方</a>
+                            </div>
+                            <div class="col-xs-6">
+                                <a href="fanshou.html" class="btn btn-default btn-block">查所有售卖方</a>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 20px">
+                            <div class="col-xs-6">
+                                <div class="fix">
+                                    <h4>张三</h4>
+                                    <p>收购：<span>50</span><span>头</span></p>
+                                    <p style="margin-bottom: 0">挂价：<span>80</span>元/<span>头</span></p>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="fix">
+                                    <h4>张三</h4>
+                                    <p class="margin">挂价：<span>82</span>元/<span>头</span></p>
+                                    <p style="margin-bottom: 0">本次交易：<input type="tel" data-num="num" maxlength="3"><span style="position: absolute;right: 10px;">头</span></p>
+                                    <div class="pos">可供应：<span>50</span><span>头</span></div>
+                                    <div class="pos2">X</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 20px">
+                            <div class="col-xs-6"></div>
+                            <div class="col-xs-6">
+                                <div class="fix">
+                                    <h4>张三</h4>
+                                    <p class="margin">挂价：<span>82</span>元/<span>头</span></p>
+                                    <p>本次交易：<input type="tel" data-num="num" maxlength="3"><span style="position: absolute;right: 10px;">头</span></p>
+                                    <div class="pos">可供应：<span>50</span><span>头</span></div>
+                                    <div class="pos2">X</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin: 30px auto">
+                            <button type="button" class="btn center-block btnst btn-success">立即撮合</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+
+
+        <!--------------- 1------------------>
+        <li>
+            <div class="body03">
+                <div class="box2top"><span>100~120kg</span>
+                    <div class="a2"></div>
+                </div>
+                <div class="hides">
+                    <div class="box033">
+                        <ul>
+                            <li>
+                                <div class="top">收购:<span>50</span><span>头</span></div>
+                                <div class="bottom">收购:<span>50</span>元/<span>头</span></div>
+                            </li>
+                            <li style="border-right:0">
+                                <div class="top" style="margin-left: 13px">预售:<span>70</span><span>头</span></div>
+                                <div class="bottom" style="margin-left: 13px">均价:<span>55</span>元/<span>头</span></div>
+                            </li>
+                            <div class="clearfix"></div>
+                        </ul>
+                    </div>
+                    <div class="box04">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <a href="fangou.html" class="btn btn-default btn-block">查所有贩购方</a>
+                            </div>
+                            <div class="col-xs-6">
+                                <a href="fanshou.html" class="btn btn-default btn-block">查所有售卖方</a>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 20px">
+                            <div class="col-xs-6">
+                                <div class="fix">
+                                    <h4>张三</h4>
+                                    <p>收购：<span>50</span><span>头</span></p>
+                                    <p style="margin-bottom: 0">挂价：<span>80</span>元/<span>头</span></p>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="fix">
+                                    <h4>张三</h4>
+                                    <p class="margin">挂价：<span>82</span>元/<span>头</span></p>
+                                    <p style="margin-bottom: 0">本次交易：<input type="tel" data-num="num" maxlength="3"><span style="position: absolute;right: 10px;">头</span></p>
+                                    <div class="pos">可供应：<span>50</span><span>头</span></div>
+                                    <div class="pos2">X</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 20px">
+                            <div class="col-xs-6"></div>
+                            <div class="col-xs-6">
+                                <div class="fix">
+                                    <h4>张三</h4>
+                                    <p class="margin">挂价：<span>82</span>元/<span>头</span></p>
+                                    <p>本次交易：<input type="tel" data-num="num" maxlength="3"><span style="position: absolute;right: 10px;">头</span></p>
+                                    <div class="pos">可供应：<span>50</span><span>头</span></div>
+                                    <div class="pos2">X</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin: 30px auto">
+                            <button type="button" class="btn center-block btnst btn-success">立即撮合</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="body03">
+                <div class="box2top"><span>120~130kg</span>
+                    <div class="a2"></div>
+                </div>
+                <div class="hides">
+                    <div class="box033">
+                        <ul>
+                            <li>
+                                <div class="top">收购:<span>50</span><span>头</span></div>
+                                <div class="bottom">收购:<span>50</span>元/<span>头</span></div>
+                            </li>
+                            <li style="border-right:0">
+                                <div class="top" style="margin-left: 13px">预售:<span>70</span><span>头</span></div>
+                                <div class="bottom" style="margin-left: 13px">均价:<span>55</span>元/<span>头</span></div>
+                            </li>
+                            <div class="clearfix"></div>
+                        </ul>
+                    </div>
+                    <div class="box04">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <a href="fangou.html" class="btn btn-default btn-block">查所有贩购方</a>
+                            </div>
+                            <div class="col-xs-6">
+                                <a href="fanshou.html" class="btn btn-default btn-block">查所有售卖方</a>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 20px">
+                            <div class="col-xs-6">
+                                <div class="fix">
+                                    <h4>张三</h4>
+                                    <p>收购：<span>50</span><span>头</span></p>
+                                    <p style="margin-bottom: 0">挂价：<span>80</span>元/<span>头</span></p>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="fix">
+                                    <h4>张三</h4>
+                                    <p class="margin">挂价：<span>82</span>元/<span>头</span></p>
+                                    <p style="margin-bottom: 0">本次交易：<input type="tel" data-num="num" maxlength="3"><span style="position: absolute;right: 10px;">头</span></p>
+                                    <div class="pos">可供应：<span>50</span><span>头</span></div>
+                                    <div class="pos2">X</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 20px">
+                            <div class="col-xs-6"></div>
+                            <div class="col-xs-6">
+                                <div class="fix">
+                                    <h4>张三</h4>
+                                    <p class="margin">挂价：<span>82</span>元/<span>头</span></p>
+                                    <p>本次交易：<input type="tel" data-num="num" maxlength="3"><span style="position: absolute;right: 10px;">头</span></p>
+                                    <div class="pos">可供应：<span>50</span><span>头</span></div>
+                                    <div class="pos2">X</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin: 30px auto">
+                            <button type="button" class="btn center-block btnst btn-success">立即撮合</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+
+
+        <!--------------- 2------------------>
+        <li>
+            <div class="body03">
+                <div class="box2top"><span>20~30kg</span>
+                    <div class="a2"></div>
+                </div>
+                <div class="hides">
+                    <div class="box033">
+                        <ul>
+                            <li>
+                                <div class="top">收购:<span>50</span><span>头</span></div>
+                                <div class="bottom">收购:<span>50</span>元/<span>头</span></div>
+                            </li>
+                            <li style="border-right:0">
+                                <div class="top" style="margin-left: 13px">预售:<span>70</span><span>头</span></div>
+                                <div class="bottom" style="margin-left: 13px">均价:<span>55</span>元/<span>头</span></div>
+                            </li>
+                            <div class="clearfix"></div>
+                        </ul>
+                    </div>
+                    <div class="box04">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <a href="fangou.html" class="btn btn-default btn-block">查所有贩购方</a>
+                            </div>
+                            <div class="col-xs-6">
+                                <a href="fanshou.html" class="btn btn-default btn-block">查所有售卖方</a>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 20px">
+                            <div class="col-xs-6">
+                                <div class="fix">
+                                    <h4>张三</h4>
+                                    <p>收购：<span>50</span><span>头</span></p>
+                                    <p style="margin-bottom: 0">挂价：<span>80</span>元/<span>头</span></p>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="fix">
+                                    <h4>张三</h4>
+                                    <p class="margin">挂价：<span>82</span>元/<span>头</span></p>
+                                    <p style="margin-bottom: 0">本次交易：<input type="tel" data-num="num" maxlength="3"><span style="position: absolute;right: 10px;">头</span></p>
+                                    <div class="pos">可供应：<span>50</span><span>头</span></div>
+                                    <div class="pos2">X</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 20px">
+                            <div class="col-xs-6"></div>
+                            <div class="col-xs-6">
+                                <div class="fix">
+                                    <h4>张三</h4>
+                                    <p class="margin">挂价：<span>82</span>元/<span>头</span></p>
+                                    <p>本次交易：<input type="tel" data-num="num" maxlength="3"><span style="position: absolute;right: 10px;">头</span></p>
+                                    <div class="pos">可供应：<span>50</span><span>头</span></div>
+                                    <div class="pos2">X</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin: 30px auto">
+                            <button type="button" class="btn center-block btnst btn-success">立即撮合</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+
+
+        <!--------------- 3------------------>
+        <li>
+            <div class="body03">
+                <div class="box2top"><span>130~140kg</span>
+                    <div class="a2"></div>
+                </div>
+                <div class="hides">
+                    <div class="box033">
+                        <ul>
+                            <li>
+                                <div class="top">收购:<span>50</span><span>头</span></div>
+                                <div class="bottom">收购:<span>50</span>元/<span>头</span></div>
+                            </li>
+                            <li style="border-right:0">
+                                <div class="top" style="margin-left: 13px">预售:<span>70</span><span>头</span></div>
+                                <div class="bottom" style="margin-left: 13px">均价:<span>55</span>元/<span>头</span></div>
+                            </li>
+                            <div class="clearfix"></div>
+                        </ul>
+                    </div>
+                    <div class="box04">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <a href="fangou.html" class="btn btn-default btn-block">查所有贩购方</a>
+                            </div>
+                            <div class="col-xs-6">
+                                <a href="fanshou.html" class="btn btn-default btn-block">查所有售卖方</a>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 20px">
+                            <div class="col-xs-6">
+                                <div class="fix">
+                                    <h4>张三</h4>
+                                    <p>收购：<span>50</span><span>头</span></p>
+                                    <p style="margin-bottom: 0">挂价：<span>80</span>元/<span>头</span></p>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="fix">
+                                    <h4>张三</h4>
+                                    <p class="margin">挂价：<span>82</span>元/<span>头</span></p>
+                                    <p style="margin-bottom: 0">本次交易：<input type="tel" data-num="num" maxlength="3"><span style="position: absolute;right: 10px;">头</span></p>
+                                    <div class="pos">可供应：<span>50</span><span>头</span></div>
+                                    <div class="pos2">X</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 20px">
+                            <div class="col-xs-6"></div>
+                            <div class="col-xs-6">
+                                <div class="fix">
+                                    <h4>张三</h4>
+                                    <p class="margin">挂价：<span>82</span>元/<span>头</span></p>
+                                    <p>本次交易：<input type="tel" data-num="num" maxlength="3"><span style="position: absolute;right: 10px;">头</span></p>
+                                    <div class="pos">可供应：<span>50</span><span>头</span></div>
+                                    <div class="pos2">X</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin: 30px auto">
+                            <button type="button" class="btn center-block btnst btn-success">立即撮合</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+
+
+        <!----------------- 4------------------->
+        <li>
+            <div class="body03">
+                <div class="box2top"><span>10~20kg</span>
+                    <div class="a2"></div>
+                </div>
+                <div class="hides">
+                    <div class="box033">
+                        <ul>
+                            <li>
+                                <div class="top">收购:<span>50</span><span>头</span></div>
+                                <div class="bottom">收购:<span>50</span>元/<span>头</span></div>
+                            </li>
+                            <li style="border-right:0">
+                                <div class="top" style="margin-left: 13px">预售:<span>70</span><span>头</span></div>
+                                <div class="bottom" style="margin-left: 13px">均价:<span>55</span>元/<span>头</span></div>
+                            </li>
+                            <div class="clearfix"></div>
+                        </ul>
+                    </div>
+                    <div class="box04">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <a href="fangou.html" class="btn btn-default btn-block">查所有贩购方</a>
+                            </div>
+                            <div class="col-xs-6">
+                                <a href="fanshou.html" class="btn btn-default btn-block">查所有售卖方</a>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 20px">
+                            <div class="col-xs-6">
+                                <div class="fix">
+                                    <h4>张三</h4>
+                                    <p>收购：<span>50</span><span>头</span></p>
+                                    <p style="margin-bottom: 0">挂价：<span>80</span>元/<span>头</span></p>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="fix">
+                                    <h4>张三</h4>
+                                    <p class="margin">挂价：<span>82</span>元/<span>头</span></p>
+                                    <p style="margin-bottom: 0">本次交易：<input type="tel" data-num="num" maxlength="3"><span style="position: absolute;right: 10px;">头</span></p>
+                                    <div class="pos">可供应：<span>50</span><span>头</span></div>
+                                    <div class="pos2">X</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 20px">
+                            <div class="col-xs-6"></div>
+                            <div class="col-xs-6">
+                                <div class="fix">
+                                    <h4>张三</h4>
+                                    <p class="margin">挂价：<span>82</span>元/<span>头</span></p>
+                                    <p>本次交易：<input type="tel" data-num="num" maxlength="3"><span style="position: absolute;right: 10px;">头</span></p>
+                                    <div class="pos">可供应：<span>50</span><span>头</span></div>
+                                    <div class="pos2">X</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin: 30px auto">
+                            <button type="button" class="btn center-block btnst btn-success">立即撮合</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+
+
+        <!----------------- 5------------------->
+        <li>
+            <div class="body03">
+                <div class="box2top"><span>100~120kg</span>
+                    <div class="a2"></div>
+                </div>
+                <div class="hides">
+                    <div class="box033">
+                        <ul>
+                            <li>
+                                <div class="top">收购:<span>50</span><span>头</span></div>
+                                <div class="bottom">收购:<span>50</span>元/<span>头</span></div>
+                            </li>
+                            <li style="border-right:0">
+                                <div class="top" style="margin-left: 13px">预售:<span>70</span><span>头</span></div>
+                                <div class="bottom" style="margin-left: 13px">均价:<span>55</span>元/<span>头</span></div>
+                            </li>
+                            <div class="clearfix"></div>
+                        </ul>
+                    </div>
+                    <div class="box04">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <a href="fangou.html" class="btn btn-default btn-block">查所有贩购方</a>
+                            </div>
+                            <div class="col-xs-6">
+                                <a href="fanshou.html" class="btn btn-default btn-block">查所有售卖方</a>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 20px">
+                            <div class="col-xs-6">
+                                <div class="fix">
+                                    <h4>张三</h4>
+                                    <p>收购：<span>50</span><span>头</span></p>
+                                    <p style="margin-bottom: 0">挂价：<span>80</span>元/<span>头</span></p>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="fix">
+                                    <h4>张三</h4>
+                                    <p class="margin">挂价：<span>82</span>元/<span>头</span></p>
+                                    <p style="margin-bottom: 0">本次交易：<input type="tel" data-num="num" maxlength="3"><span style="position: absolute;right: 10px;">头</span></p>
+                                    <div class="pos">可供应：<span>50</span><span>头</span></div>
+                                    <div class="pos2">X</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 20px">
+                            <div class="col-xs-6"></div>
+                            <div class="col-xs-6">
+                                <div class="fix">
+                                    <h4>张三</h4>
+                                    <p class="margin">挂价：<span>82</span>元/<span>头</span></p>
+                                    <p>本次交易：<input type="tel" data-num="num" maxlength="3"><span style="position: absolute;right: 10px;">头</span></p>
+                                    <div class="pos">可供应：<span>50</span><span>头</span></div>
+                                    <div class="pos2">X</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin: 30px auto">
+                            <button type="button" class="btn center-block btnst btn-success">立即撮合</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<script src="js/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="../datepicker/WdatePicker.js"></script>
+<script>
+    $('.left').click(function(){
+        $('.left input').css({'opacity':'1'})
+    });
+    $('.right').click(function(){
+        $('.right input').css({'opacity':'1'})
+    });
+    $('.body01_top>ul>li').click(function(){
+        $('.body01_top>ul>li').removeClass('active');
+        $(this).addClass('active');
+    });
+    $('.box2>ul>li').click(function(){
+        $('.box2>ul>li').removeClass('active2');
+        $(this).addClass('active2');
+    });
+    $('.body03>.box2top').click(function(){
+           var i = $('.body03>.box2top').index(this);
+           $('.body03>.hides').eq(i).toggle();
+           if($('.box2top>.a2').eq(i).hasClass('a22')){
+               $('.box2top>.a2').eq(i).removeClass('a22');
+           }
+        else{
+               $('.box2top>.a2').eq(i).addClass('a22');
+           }
+    });
+    $('.body01_top>ul>li').click(function(){
+        $('.body01_top>ul>li').removeClass('active');
+        $(this).addClass('active');
+        showTab();
+    });
+    $('.box2>ul>li').click(function(){
+        $('.box2>ul>li').removeClass('active2');
+        $(this).addClass('active2');
+        showTab();
+    });
+    showTab();
+    function showTab(){
+        var topindex=$('.body01_top>ul>li').index($(".body01_top .active"));
+        var box2index=$('.box2>ul>li').index($(".box2 .active2"));
+        $(".qh>ul>li").hide();
+        if(topindex==0){
+            if(box2index==0){
+                $(".qh>ul>li").eq(0).show();
+            }else{
+                $(".qh>ul>li").eq(1).show();
+            }
+        }else if(topindex==1){
+            if(box2index==0){
+                $(".qh>ul>li").eq(2).show();
+            }else{
+                $(".qh>ul>li").eq(3).show();
+            }
+        }else{
+            if(box2index==0){
+                $(".qh>ul>li").eq(4).show();
+            }else{
+                $(".qh>ul>li").eq(5).show();
+            }
+        }
+    }
+
+</script>
+</body>
+</html>

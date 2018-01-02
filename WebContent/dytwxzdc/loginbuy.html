@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="U-XA-Compatible" content="IE-edge">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <title>德阳通威小猪动车-贩卖方登录</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/loginbuy.css">
+    <link rel="stylesheet" href="../css/popUpBox.css">
+</head>
+<body>
+<div style="width: 1px;height: 1px;">
+    <img class="img-responsive center" src="images/logo.jpg?ver=001">
+</div>
+<div class="logo center-block">
+    <img class="img-responsive center-block" src="images/3.png">
+</div>
+       <div class="center">
+           <div class="dl_box">
+               <div class="input-group" style="border-bottom: 1px solid #ffffff">
+                   <label>账号：</label>
+                   <input type="tel" class="form-control" name="user_id" id="username" placeholder="请输入用户名" maxlength="11" data-number="num">
+               </div>
+               <div class="input-group">
+                   <label>密码：</label>
+                   <input type="password" class="form-control" placeholder="输入密码" name="user_password" id="pwd" maxlength="20">
+               </div>
+           </div>
+           <a  id="loginKefu" type="button" class="btn btn-default btn-block btn01">登录</a>
+       </div>
+<div class="footer">
+     <a href="../login/forgetpsw.do?type=buy" class="left">忘记密码？</a>
+     <div><div class="center-block box">|</div></div>
+     <a href="../login/register.do?type=buy" class="right">注册新用户</a>
+</div>
+<script src="../js_lib/jquery.11.js"></script>
+ <script src="../pcxy/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js_lib/jquery.md5.js"></script>
+<script type="text/javascript" src="../js_lib/jquery.cookie.js"></script>
+<script type="text/javascript" src="../js/popUpBox.js"></script>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="../pc/js/weixin/zepto.min.js"></script>
+<script type="text/javascript" src="../pc/js/weixin/weixinShare.js"></script>
+<script type="text/javascript" src="../js/weixinAutoLogin.js"></script>
+<script type="text/javascript">
+<!--
+var math=Math.random();
+document.write("<script src='../js/common.js?ver="+math+"'><\/script>");
+document.write("<script src='../pc/js/login.js?ver="+math+"'><\/script>");
+document.write("<script src='../pc/twysjs/login.js?ver="+math+"'><\/script>");
+xzdxlogin.init("CS1C002","贩卖方登录"); 
+//-->
+</script>
+</body>
+</html>

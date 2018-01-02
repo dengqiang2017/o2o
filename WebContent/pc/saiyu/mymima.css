@@ -1,0 +1,16 @@
+.form-prop{
+    width: 52%;
+    margin: auto;
+}
+.btn-margintop{
+    margin-top: 200px;
+}
+@media(max-width: 770px){
+    .form-prop{
+        width: 90%;
+        margin: auto;
+    }
+    .btn-margintop{
+        margin-top: 70px;
+    }
+}

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no"> 
+<meta http-equiv="expires" content="0">
+<title>发送多图文消息</title>
+<link rel="stylesheet" href="../css/jquery-ui.min.css">
+<link rel="stylesheet" href="../css/popUpBox.css">
+<link rel="stylesheet" href="../pcxy/css/bootstrap.css">
+<link rel="stylesheet" href="../pcxy/css/global.css">
+<script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+<script type="text/javascript" src="../js_lib/jquery-ui.js"></script>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="../pc/js/weixin/zepto.min.js"></script>
+<script type="text/javascript" src="../pc/js/weixin/weixinShare.js"></script>
+<script type="text/javascript" src="../js/popUpBox.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../js/o2otree.js"></script>
+<script type="text/javascript" src="sendMessage.js"></script>
+<style type="text/css">
+.ui_ipt{
+width: 100px;
+height: 30px;
+  border: 1px solid gray;    
+}
+.ui_ipt_item{
+width: 100px;
+height: 30px;
+border: 1px solid gray; 
+float: left;  
+text-align: center;
+}
+.ui_item{
+border: 1px solid gray; 
+padding-bottom:10px;
+padding-left:3px;
+width: 400px;
+}
+.ui_kuai{
+  border: 2px solid blue;  
+}
+.ui_title{
+
+}
+.ui_content{
+}
+.ui_url{
+display: none;
+}
+</style>
+</head>
+<body>
+<div>
+<img alt="" src="../pc/image/logo.png">
+<h3>发送多图文消息</h3>
+</div>
+<div id="tabs">
+<label>
+选择发送对象:
+</label>
+  <ul>
+    <li><a href="#tabs-1">员工</a></li>
+    <li><a href="#tabs-2">客户</a></li>
+    <li><a href="#tabs-3">供应商</a></li>
+  </ul>
+  <div id="item" style="display: none;">
+  	<div class="ui_ipt_item" onclick="$(this).remove();" title="点击删除">
+	<span  class="ui_ipt"></span>
+	<span style="display: none;" class="ui_id"></span>
+	<span style="display: none;" class="ui_weixinid"></span>
+	</div>
+  </div>
+  <div id="tabs-1">
+  <button type="button" class="btn btn-success">选择员工</button>
+	<div class="ui_receiver">
+ 
+	</div>
+  </div>
+  <div id="tabs-2">
+<button type="button" class="btn btn-success">选择客户(客户关系管理)</button>
+<div class="ui_receiver">
+ 
+	</div>
+  </div>
+  <div id="tabs-3">
+<button type="button" class="btn btn-success">选择供应商</button>
+	<div class="ui_receiver">
+ 
+	</div>  
+  </div>
+</div>
+
+<div id="tabs2">
+<label>
+选择发送对象:
+</label>
+  <ul>
+    <li><a href="#tabs-4">待发送列表</a></li>
+    <li><a href="#tabs-5">历史发送</a></li>
+  </ul>
+  <div id="tabs-4">
+  <a class="btn btn-primary" href="articleHistory.html">文章选择页面</a>
+<button type="button" class="btn btn-primary" id="send">发送</button>
+<div style="float: left;">
+<h3>已选文章列表<span style="color: red;">(每次发送文章在1到8条之间组合发送,多出的部分系统自动舍弃)</span></h3>
+<div class="ui_list">
+<div class="ui_item">
+<button type="button" style="float: right;" onclick="$(this).parents('.ui_item').remove();">删除</button>
+<img alt="" src="../pc/images/logo.png" >
+<div class="ui_title">牵引互联电商平台</div>
+<div class="ui_desc">牵引互联电商平台是一款专为家具行业排忧解难的应用</div>
+<span class="ui_url">/employee.do</span>
+</div>
+<div class="ui_item">
+<button type="button" style="float: right;" onclick="$(this).parents('.ui_item').remove();">删除</button>
+<img alt="" src="../pc/images/logo.png" >
+<div class="ui_title">牵引互联电商平台</div>
+<div class="ui_desc">牵引互联电商平台是一款专为家具行业排忧解难的应用</div>
+<span class="ui_url">/employee.do</span>
+</div>
+<div class="ui_item">
+<button type="button" style="float: right;" onclick="$(this).parents('.ui_item').remove();">删除</button>
+<img alt="" src="../pc/images/logo.png" >
+<div class="ui_title">牵引互联电商平台</div>
+<div class="ui_desc">牵引互联电商平台是一款专为家具行业排忧解难的应用</div>
+<span class="ui_url">/employee.do</span>
+</div>
+</div>
+</div>
+  </div>
+  <div id="tabs-5">
+  <div>
+<div class="ui_item">
+<div>
+<span>发送时间:2016-10-20</span>
+<span>接收人员:梁彬,李通丹</span>
+<span>发送结果:成功</span>
+</div>
+<div style="border: 1px solid gray; ">
+<img alt="" src="../pc/images/logo.png" >
+<div class="ui_title">牵引互联电商平台</div>
+</div>
+<div style="border: 1px solid gray; ">
+<img alt="" src="../pc/images/logo.png" >
+<div class="ui_title">牵引互联电商平台</div>
+</div>
+<div style="border: 1px solid gray; ">
+<img alt="" src="../pc/images/logo.png" >
+<div class="ui_title">牵引互联电商平台</div>
+</div>
+</div>
+<div class="ui_item">
+<div>
+<span>发送时间:2016-10-20</span>
+<span>接收人员:梁彬,李通丹</span>
+<span>发送结果:成功</span>
+</div>
+<img alt="" src="../pc/images/logo.png" >
+<div class="ui_title">牵引互联电商平台</div>
+</div>
+<div class="ui_item">
+<div>
+<span>发送时间:2016-10-20</span>
+<span>接收人员:梁彬,李通丹</span>
+<span>发送结果:成功</span>
+</div>
+<img alt="" src="../pc/images/logo.png" >
+<div class="ui_title">牵引互联电商平台</div>
+</div>
+</div>
+  </div>
+</div>
+</body>
+</html>

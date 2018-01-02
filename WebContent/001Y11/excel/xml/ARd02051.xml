@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<REQUEST>  
+<!-- 设置从多少行开始  默认从0开始-->
+<itembegin index="4" sheetName="收款-勿改此页名"/>
+<!-- 存储字段名:filedName 计算字段名称:compute -->
+<item mainfiledName="finacial_d" index="0" excelChineseName="日期"/>
+<item mainfiledName="customer_id" compute="customer_id" tableName="Sdf00504" queryName="self_id"
+ datatype="txt" isnullval="CS1_ERROR"  or="customer_id" index="2" excelChineseName="客户编码"/>
+<!-- 收款单号 -->
+<item mainfiledName="recieved_id" index="5"/>
+<!-- 自动生成单号 -->
+<item mainfiledName="recieved_auto_id" auto="no"/>
+<item mainfiledName="sum_si" index="22" excelChineseName="金额"/>
+<!-- “账上款”对应的结算方式内码 -->
+<!-- <item mainfiledName="settlement_type_id" compute="sort_id" tableName="ctl02107" queryName="settlement_sim_name" like="like" index="23"/> -->
+<item mainfiledName="settlement_sim_name" index="23" excelChineseName="结算方式"/>
+ <item mainfiledName="clerk_id" filedName="clerk_id_sid"  index="24"
+compute="clerk_id" tableName="Ctl00801" queryName="self_id" or="clerk_id" excelChineseName="员工编码"/>
+
+<item mainfiledName="recieved_direct" value="收款"/>
+<item mainfiledName="recieve_type" value="预收款"/>
+<item mainfiledName="comfirm_flag" value="Y"/>
+
+</REQUEST>

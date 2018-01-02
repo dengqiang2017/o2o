@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">  
+<meta http-equiv="expires" content="0">
+<title>加入我们</title>
+<link rel="stylesheet" href="../pcxy/css/bootstrap.css">
+<link rel="stylesheet" href="css/manage.css?ver=001">
+<script src="../js_lib/jquery.11.js" type="text/javascript"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<style type="text/css">
+.nav{
+cursor: pointer;
+}
+body{
+background:rgba(0, 0, 0, 0) url("../p9/images/beijing.jpg") no-repeat scroll 0 0 / cover 
+}
+.nav li{
+font-size: 22px;
+background-color: #eee;
+}
+.addDaiyu{
+display: none;
+}
+</style>
+</head>
+<body>
+<div class="container center-block"> 
+<div class="page-header">
+  <h1 class="text-center" style="color: white;">加入我们</h1>
+</div>
+<div id="list">
+
+</div>
+</div>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="../pc/js/weixin/zepto.min.js"></script>
+<script type="text/javascript" src="../pc/js/weixin/weixinShare.js"></script>
+<script type="text/javascript" src="../cmsjs/url.js"></script>
+<script type="text/javascript">
+<!--
+var projectName=getQueryString("projectName");
+$.get("../temp/getFile.do",{
+	"path":projectName+"/zhaopin"
+},function(data){
+	$("#list").html(data.msg);
+	$('.secition_box_bottom_x02>div').click(function() {
+		$('.secition_box_bottom_x02>div').removeClass('x-active');
+		$(this).addClass('x-active');
+		$(".secition_box_bottomtop_y4").hide();
+		$(".secition_box_bottomtop_y4").eq($('.secition_box_bottom_x02>div').index(this)).show();
+	});
+		$('.secition_box_bottom_x02>div').removeClass('x-active');
+		$('.secition_box_bottom_x02>div:eq(0)').addClass('x-active');
+		$(".secition_box_bottomtop_y4").eq(0).show();
+		var desc="";
+		for (var i = 0; i < $(".x-1").length; i++) {
+			if(desc==""){
+				desc=$($(".x-1")[0]).html();
+			}else{
+				desc=desc+","+$($(".x-1")[0]).html();
+			}
+		}
+		var imgsrc=domainName+"/pc/images/zhaopin.jpg";
+		weixinShare.init("加入我们","招聘职位:"+desc,imgsrc); 
+});
+//-->
+</script>
+</body>
+</html>

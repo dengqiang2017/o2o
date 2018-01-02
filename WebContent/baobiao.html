@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">  
+<meta http-equiv="expires" content="0">
+<meta name="description" content="分组报表汇总+表头固定">
+<meta name="keywords" content="分组报表汇总+表头固定">
+<title>分组报表汇总+表头固定</title>
+<link rel="stylesheet" href="../pcxy/css/bootstrap.css">
+<style type="text/css">
+th,td{border: 1px solid aqua;text-align: center;}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="panel panel-default">
+  <div class="panel-heading">分组报表汇总+表头固定</div>
+  <table class="table">
+  <thead>
+  <tr style="position: fixed;background-color: #f5f5f5">
+  <th>编号1</th>
+  <th>编号2</th>
+  <th>编号3</th>
+  <th>编号4</th>
+  <th>编号5</th>
+  <th>编号6</th>
+  <th>编号7</th>
+  </tr>
+  </thead>
+  <tbody></tbody>
+  </table>
+</div>
+</div>
+<script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript">
+<!--
+$(function(){
+	$("tbody").html("");
+	 $.get("bb.json",function(data){
+		 var n1="";
+		 var n1sum=0;
+		 var n3="";
+		 var n3sum=0;
+		 ///////////
+		var tr=getTr(7);
+		$("tbody").append(tr);
+		tr.find("td:eq(0)").html("表格开始");
+		/////////////
+		 $.each(data,function(i,n){
+			if(n1==""||n1==n.n1){
+				n1sum=n1sum+parseFloat(n.n2);
+			}else{
+				n1sum=tdsum(n1sum,n.n2,"n1分组小计",0,1);
+			}
+			n1=n.n1;
+			if(n3==""||n3==n.n3){
+				n3sum=n3sum+parseFloat(n.n4);
+			}else{
+				n3sum=tdsum(n3sum,n.n4,"n3分组小计",2,3);
+			}
+			n3=n.n3;
+			
+			var tr=getTr(7);
+			$("tbody").append(tr);
+			tr.find("td:eq(0)").html(n.n1);
+			tr.find("td").eq(1).html(n.n2);
+			tr.find("td").eq(2).html(n.n3);
+			tr.find("td").eq(3).html(n.n4);
+			tr.find("td").eq(4).html(n.n5);
+			tr.find("td").eq(5).html(n.n6);
+			tr.find("td").eq(6).html(n.n7);
+			if(i==data.length-1){
+				tdsum(n1sum,n.n2,"n1分组小计",0,1);
+				tdsum(n3sum,n.n4,"n3分组小计",2,3);
+			}
+		 });
+		function tdsum(sum,val,name,t1,t2){
+			var tr=getTr(7);
+			$("tbody").append(tr);
+			tr.find("td").eq(t1).html(name);
+			tr.find("td").eq(t2).html(sum);
+			sum=parseFloat(val);
+			return sum;
+		}
+		/////////计算汇总//////////
+		var n2sum=0;
+		var n4sum=0;
+		for (var i = 0; i < data.length; i++) {
+		   n2sum=n2sum+parseFloat(data[i].n2);
+		   n4sum=n4sum+parseFloat(data[i].n4);
+		}
+		var tr=getTr(7);
+		$("tbody").append(tr);
+		tr.find("td:eq(0)").html("总计");
+		tr.find("td").eq(1).html(n2sum);
+		tr.find("td").eq(3).html(n4sum);
+		////设置表格头宽度和表格内部宽度一样
+	 var tds=$("tbody tr:eq(0) td");
+	 for (var i = 0; i < tds.length; i++) {
+		 if(i!=0){
+			$("thead tr:eq(0) th").eq(i).css("width",tds[i].clientWidth+1);
+		 }else{
+			$("thead tr:eq(0) th").eq(i).css("width",tds[i].clientWidth);
+		 }
+	  }
+	  $("thead tr:eq(0)").css("width",$("table").clientWidth);
+	 });
+		$(window).scroll( function() {
+		var scrollValue=$(window).scrollTop();
+ 		if(scrollValue>0){
+ 			$("thead tr:eq(0)").css("top",0);
+ 		}else{
+ 			$("thead tr:eq(0)").css("top","");
+ 		}
+		});
+});
+//-->
+</script>
+</body>
+</html>

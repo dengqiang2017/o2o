@@ -1,0 +1,110 @@
+@charset "utf-8";
+/* CSS Document */
+*{ font-family:'微软雅黑';}
+img{ display:block; border:none; outline:none;}
+button{ outline:none; border:none; background:none;}
+.modal_cover{ position:fixed; top:0; left:0;right:0;bottom: 0; width:100%; height:100%;  background-color:#999;  filter:alpha(opacity=30); z-index:1;}
+.modal_subcover{ display:none; position:fixed; top:0; left:0; width:100%; height:100%; min-height:900px; background-color:rgb(0,0,0); opacity:0; filter:alpha(opacity=0); z-index:3;}
+.modal_dialog{ font-size:14px; background-color:#fff; }
+ul,li{ list-style:none; padding:0; margin:0;}
+
+.modal_logo{ width:400px; left:50%; margin-left:-200px; z-index:2;}
+.modal_head{ height:36px; line-height:36px; text-align:center; position:relative; background-color:#f60; color:#fff; font-weight:bold;}
+.modal_head i{ display:block; width:20px; height:20px; position:absolute; top:10px; right:10px; cursor:pointer;}
+.modal_head i:hover{ color:#ff0;}
+.modal_body{ overflow:hidden;padding:15px;height: 80%;margin-top: 40px}
+
+.form_group{ padding:5px; position:relative; overflow:hidden;}
+.form_label{ display:inline-block; width:80px; text-align:right;margin-top: 7px}
+.form_input{ width:220px; margin-left:10px; padding:2px 10px;}
+.form_upload{ display:block; width:240px; height:24px; position:absolute; top:6px; left:100px; background-color:red; opacity:0; filter:alpha(opacity=0); cursor:pointer;}
+.logo_image{ width:60px; height:60px; margin-left:25px; margin-top:10px;}
+.logo_image img{ width:100%; max-height:60px;}
+.form_group .form_input_lg{ width:400px;margin-left:10px; padding:2px 10px;}
+.form_group .form_input_float{width:200px; margin-left:10px; padding:2px 0 2px 10px;}
+.img_style{
+	width: 80px;height: 80px;border: 1px solid #ddd;margin-left: 25px;position: relative; background-image: url('../../images/sxt.png');background-repeat: no-repeat;background-position: center center;background-size: 35px;
+}
+.modal_btn_group{ text-align:center; margin-top:10px; clear:both;}
+.modal_btn_group button{ background-color:#f60; color:#fff; padding:3px 10px; cursor:pointer; border:1px solid #fff;}
+.modal_btn_group button:hover{ background-color:#fff; color:#f60; padding:3px 10px; border:1px solid #f60;}
+
+.modal_br{ background-color:#f60; color:#fff; padding:3px 10px; cursor:pointer; border:1px solid #fff; margin:5px 10px 5px 95px; clear:both;}
+.modal_space{ background-color:#f60; color:#fff; padding:3px 10px; cursor:pointer; border:1px solid #fff; margin:5px 10px 5px 10px; clear:both;}
+.modal_br:hover{ background-color:#fff; color:#f60; padding:3px 10px; border:1px solid #f60;}
+.modal_space:hover{ background-color:#fff; color:#f60; padding:3px 10px; border:1px solid #f60;}
+.form_tips_gray{ display:block; font-size:12px; color:#858585; line-height:20px; margin-left:10px;margin-top: 10px}
+.modal_img{  width:400px;  left:50%; margin-left:-200px; z-index:2;}
+
+.modal_text{ width:600px; left:50%; margin-left:-300px; z-index:2;}
+.textarea_label{ display:block; float:left;}
+textarea{ display:block;font-size:14px; width:438px; float:left; margin-left:15px; overflow-y:scroll; height:400px;}
+
+
+
+.modal_banner{ width:700px; left:50%; margin-left:-350px; z-index:2;}
+
+.modal_thumbnail{ width:160px; float:left; overflow:hidden; border:1px solid #ccc; margin-left:10px; margin-top:10px;}
+.modal_thumbnail_group{ width:120px; height:40px; overflow:hidden; margin:10px 20px; border:2px solid #ccc; position:relative; cursor:pointer;}
+.modal_thumbnail_group img{ width:100%; max-height:60px;}
+.modal_thumbnail_group i{ display:block; position:absolute; top:50%; left:50%; margin-top:-15px; margin-left:-15px;}
+.modal_thumbnail_checked,.modal_thumbnail_group:hover i{ color:#0ff;}
+.modal_banner_form{ float:left;margin-top:10px; margin-left:10px;}
+.modal_linkform{ width:700px;left:50%; margin-left:-350px; z-index:2; }
+.mb_btn{ text-align:right; padding:10px 20px;}
+.mb_btn button{ background-color:#f60; color:#fff; padding:3px 10px; cursor:pointer; border:1px solid #fff;}
+.mb_btn button:hover{ background-color:#fff; color:#f60; padding:3px 10px; border:1px solid #f60;}
+.list_border{ width:660px; margin:10px auto; border-left:1px solid #B5C8EB; border-right:1px solid #B5C8EB; border-bottom:1px solid #B5C8EB;}
+.list_head{ width:100%; height:24px; line-height:24px; border-top:1px solid #B5C8EB; border-bottom:1px solid #B5C8EB;}
+.list_head ul{ overflow:hidden;}
+.list_head li{ float:left; text-align:center; background-color:#f5f5f5;}
+.lh_01{ width:170px;}
+.lh_02{ width:285px;}
+.lh_03{ width:205px;}.list_body{ max-height:300px; overflow-y:scroll;}
+.list_body ul{ overflow:hidden; padding:5px 10px; padding:6px 0;}
+.list_body li{ float:left; display:block; line-height:20px; height:20px;}
+.lb_01{ width:170px; text-align:center; overflow:hidden;}
+.lb_02{ width:285px; text-align:center; overflow:hidden;}
+.lb_03{ width:185px; text-align:center;}
+.lb_03 button:hover{ color:blue; cursor:pointer;}
+
+.modal_linksub{ width:400px; left:50%; margin-left:-200px; z-index:4; top:20%; display:none;}
+.list_headb ul{ overflow:hidden;}
+.list_headb li{ float:left; text-align:center; background-color:#f5f5f5;}
+.list_bodyb ul{ overflow:hidden; padding:5px 10px; padding:6px 0;}
+.list_bodyb li{ float:left; display:block; line-height:40px; height:40px;}
+.lhb_01{ width:170px;}
+.lhb_02{width:285px;}
+.lhb_03{width:205px;}
+.lbb_01{ width:158px; margin:0 5px; border:1px solid #742829; overflow:hidden; height:38px;}
+.lbb_02{ width:284px; height:40px; text-align:center; overflow:hidden; line-height:40px;}
+.lbb_03{ width:204px; height:40px; line-height:40px; text-align:center;}
+.lbb_01 img{ width:100%;}
+.lbb_03 button:hover{ color:blue; cursor:pointer;}
+
+.modal_bannersub{ width:400px; left:50%; margin-left:-200px; z-index:4; top:20%;}
+.modal_imgtext{ width:600px; left:50%; margin-left:-300px; z-index:2;}
+.col-10-1{ width:10%; float:left; overflow:hidden;}
+.col-10-2{ width:20%; float:left; overflow:hidden;}
+.col-10-3{ width:30%; float:left; overflow:hidden;}
+.col-10-4{ width:40%; float:left; overflow:hidden;}
+.col-10-5{ width:50%; float:left; overflow:hidden;}
+.col-10-6{ width:60%; float:left; overflow:hidden;}
+.col-10-7{ width:70%; float:left; overflow:hidden;}
+.col-10-8{ width:80%; float:left; overflow:hidden;}
+.col-10-9{ width:90%; float:left; overflow:hidden;}
+.col-10-10{ width:100%; float:left; overflow:hidden;}
+.row{ overflow:hidden; width:100%;}
+
+.radio-gp{
+	display: inline-block;
+	width: 200px;
+	overflow: hidden;
+	line-height: 12px;
+}
+
+.radio{
+	display: inline-block;
+	margin-right: 10px;
+}
+

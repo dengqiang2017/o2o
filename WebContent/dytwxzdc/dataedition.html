@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="U-XA-Compatible" content="IE-edge">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <title>德阳通威小猪动车-资料编辑</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/dataedition.css">
+    <link rel="stylesheet" href="../css/popUpBox.css">
+</head>
+<body>
+<div class="header">
+    <a class="pull-left" id="fanhui">返回</a>
+    资料编辑
+    <a class="pull-right">保存</a>
+</div>
+<div class="body">
+    <ul>
+        <li>
+            <label>姓名</label>
+            <div class="imgk">
+                <input type="text" placeholder="请输入姓名" class="form-control" maxlength="20">
+            </div>
+            <div class="clearfix"></div>
+        </li>
+        <li>
+            <label>联系电话</label>
+            <div class="imgk">
+                <input type="tel" placeholder="请输入联系电话" data-num="num" maxlength="11" class="form-control">
+            </div>
+            <div class="clearfix"></div>
+        </li>
+        <li>
+            <label>联系地址</label>
+            <div class="imgk">
+                <input type="text" placeholder="请输入详细联系地址" class="form-control" maxlength="100">
+            </div>
+            <div class="clearfix"></div>
+        </li>
+        <li>
+            <label>二维码</label>
+            <div class="imgk">
+                <a href="code.html?ver=002" class="ewm">
+                <img src="images/ewm.png" style="width: 30px;margin-right: 5px;float: right">
+                </a>
+            </div>
+            <div class="clearfix"></div>
+        </li>
+    </ul>
+</div>
+<script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+<script type="text/javascript" src="../js/popUpBox.js"></script>
+<script type="text/javascript">
+<!--
+var math=Math.random();
+document.write("<script src='../js/common.js?ver="+math+"'><\/script>");
+    document.getElementsByTagName('body')[0].addEventListener('touchmove',function(){
+        $('input').blur();
+        //$('.home_footer').css('position','static');
+    });
+    $(".ewm").parents("li").click(function(){
+    	window.location.href="code.html?ver=002";
+    });
+    $.get("../user/getUserInfo.do",function(data){
+    	var name="";
+    	if(data&&data.corp_name){
+    		name=data.corp_name;
+    		$("#fanhui").click(function(){
+    			window.location.href="../pre/operate.do?ver="+math;
+    		});
+    	}else if(data&&data.clerk_name){
+    		name=data.clerk_name;
+    		$("#fanhui").click(function(){
+    			window.location.href="operatemanage.html?ver="+math;
+    		});
+    	}else if(!data){
+    		window.location.href="index.html?ver="+math;
+    	}
+    	
+    	$("ul input:eq(0)").val(name);
+    	$("ul input:eq(1)").val(data.movtel);
+    	$("ul input:eq(2)").val(data.addr1);
+    });
+    $(".pull-right").click(function(){
+    	var name=$.trim($("ul input:eq(0)").val());
+    	var movtel=$.trim($("ul input:eq(1)").val());
+    	var addr1=$.trim($("ul input:eq(2)").val());
+    	if(!name){
+    		pop_up_box.showMsg("请输入姓名", function(){
+    			$("ul input:eq(0)").foucs();
+    		});
+    	}else if(!movtel){
+    		pop_up_box.showMsg("请输入联系电话", function(){
+    			$("ul input:eq(0)").foucs();
+    		});
+    	}else{
+    		pop_up_box.postWait();
+    		$.get("../user/saveUserInfo.do",{
+    			"name":name,
+    			"movtel":movtel,
+    			"addr1":addr1
+    		},function(data){
+    			pop_up_box.loadWaitClose();
+    			if (data.success) {
+					pop_up_box.showMsg("提交成功!",function(){
+						history.go(-1);
+					});
+				} else {
+					if (data.msg) {
+						pop_up_box.showMsg("保存错误!" + data.msg);
+					} else {
+						pop_up_box.showMsg("保存错误!");
+					}
+				}
+    		});
+    	}
+    });
+    //-->
+</script>
+</body>
+</html>

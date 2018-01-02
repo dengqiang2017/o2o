@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>订单状态</title>
+    <meta http-equiv="U-XA-Compatible" content="IE-edge">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" href="css/order_status.css?ver=001">
+    <link rel="stylesheet" href="../pcxy/css/bootstrap.css">
+    <link rel="stylesheet" href="../css/popUpBox.css">
+    <link rel="stylesheet" href="css/swiper-3.3.1.min.css">
+    <link rel="stylesheet" href="../pc/css/uploadPingz.css">
+    <script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+    <script type="text/javascript" src="trghjs/swiper-3.3.1.min.js"></script>
+    <script type="text/javascript" src="../js_lib/jquery.cookie.js"></script>
+    <script src="../pcxy/js/bootstrap.min.js"></script> 
+    <script type="text/javascript" src="../js/popUpBox.js"></script>
+    <script src="../js/o2od.js"></script>
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="../js/ajaxfileupload.js"></script>
+    <script type="text/javascript" src="../pc/js/weixin/fileupload.js"></script>
+</head>
+<style>
+    .swiper-container {
+        width: 100%;
+        height: 100px;
+    }
+    .swiper-slide>img{
+        width: 100px;
+        height: 100px;
+        padding: 10px;
+    }
+</style>
+<body>
+<div id=listpage>
+<!-- 头部--><div class="header navbar-fixed-top" style="font-size: 18px">全部订单<a class="glyphicon glyphicon-menu-left a_position" href="personal_center.html" style=""></a>
+    <a id="query" style="position: absolute;right: 12px;top: 6px;">
+        <img src="images/Search.png" style="width: 20px">
+    </a>
+</div><!-- 定位跳转--><div class="orient" style="margin-top: 40px">
+    <div class="orient_01"><a href="personal_center.html" style="text-decoration: none;">个人中心</a></div>
+     <span style="color: #999999;font-size: 16px;">>></span> <div class="orient_02">全部订单</div>
+</div><!-- 订单列表显示 --><div class="orderlist">
+</div><div id="item" style="display: none;">
+ <div class="item">
+ <div class="orderbox01">
+        <div class="order_01">
+            <div style="color: #666666;">
+                订单编号：<span id="orderNo">NO20160420NPK</span><span id="com_id" style="display: none;"></span>
+            </div>
+            <div style="margin-top: 10px">
+                <span style="font-size: 16px;color: #666666" id="so_consign_date">2016/04/20 10:15</span>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="order_02" id="demandInfo">
+            普玻4毫米<br>388*1913*2.865*505*1
+        </div>
+     <div class="order_03" id="imgs">
+         <img src="images/06支付订单_03.jpg">
+     </div>
+     <!--<div class="swiper-container">-->
+         <!--<div class="swiper-wrapper">-->
+             <!--<div class="swiper-slide">-->
+                 <!--<img class="center-block" src="images/03产品首页_03.jpg">-->
+             <!--</div>-->
+             <!--<div class="swiper-slide">-->
+                 <!--<img class="center-block" src="images/03产品首页_06.jpg">-->
+             <!--</div>-->
+             <!--<div class="swiper-slide">-->
+                 <!--<img class="center-block" src="images/03产品首页_09.jpg">-->
+             <!--</div>-->
+         <!--</div>-->
+     <!--</div>-->
+        <div class="order_04">
+            <div style="margin-top: 7px;color: #888888;">
+                要求交货时间：<span id="deliveryDate" style="color: #595959;">2016-05-01</span>
+            </div>
+            <div style="margin-top: 10px;font-size: 20px;color: #E33230;">
+                总金额 ：<span style="font-size: 15px">¥</span><span id="sum_si">8500.00</span>
+        	<button type="button" class="btn btn-danger" style="display: none;">确认收货</button>
+            </div>
+        </div>
+            <div class="clear"></div>
+        </div>
+    <div class="details" style="display: none">
+        <ul>
+        </ul>
+    </div>
+    <div class="look">
+        <div class="center-block" style="width: 180px">
+            <div class="arrows"></div>
+            <div style="float:left;">点击查看订单状态</div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    </div>
+</div><div id="historyitem" style="display:none;">
+ <li>
+            <div class="col-xs-2">
+                <img class="center-block" src="images/椭圆%2011%20拷贝2.png">
+            </div>
+            <div class="col-xs-10">
+                <ul>
+                    <li>款项已到账</li>
+                    <li><span id="dzsj">2016-04-20 12:10</span></li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </li>
+</div><!-- 底部导航--><div class="verify" style="display: none">
+    <div class="verify_01">应付尾款：<span>1500.00</span>元</div>
+    <div class="verify_02">
+        <ul>
+<!--             <li>微信支付</li> -->
+            <li>线下支付</li>
+<!--             <li>打欠条</li> -->
+        </ul>
+    </div>
+    <a class="reap_05 btn" style="width:100%;border-radius: 0;font-size: 16px;color: #FFFFFF;background-color: #E03430;padding: 15px;display: none;">确认支付</a>
+</div>
+<div id="copy_bottom" style="margin-bottom: 80px"></div>
+<!--<div class="closed" style="width: 100%;height: 100%;position: fixed;left: 0;top: 0;display: none"></div>-->
+<div class="logo_container"></div>
+</div>
+</body>
+<script type="text/javascript">
+  <!--
+  var math=Math.random();
+  var url=window.location.href;
+  if(url.indexOf("?")<0){
+  	window.location.href=url+"?ver="+math;
+  }else if(url.indexOf("ver")<0){
+  	window.location.href=url+"&ver="+math;
+  }
+  document.write("<script src='../js/common.js?ver="+math+"'><\/script>");
+  document.write("<script src='cms/js/head.js?ver="+math+"'><\/script>");
+  document.write("<script src='../pc/js/customer/uploadPingz.js?ver="+math+"'><\/script>");
+  document.write("<script src='trghjs/orderStatus.js?ver="+math+"'><\/script>");
+  $('.body_04').click(function(){
+      $('.verify').slideToggle();
+      $('.closed').show();
+  });
+  //-->
+</script>
+</html>

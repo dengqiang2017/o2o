@@ -1,0 +1,127 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: Microsoft YaHei;
+    color: #000000;
+}
+ul>li{
+    list-style: none;
+}
+ul{
+    margin-bottom: 0;
+}
+body{
+    background-color: #D16A6B;
+}
+html{
+    margin-top: -21px;
+}
+.center{
+    width: 70%;
+    margin: auto;
+    margin-top: 30px;
+}
+.logo{
+    width: 80%;
+    margin-top: 10px;
+}
+.dl_box{
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgba(0,0,0,0.4);
+}
+.dl_box>.input-group{
+    width: 100%;
+    padding: 10px 0;
+}
+.input-group>label{
+    margin-top: 7px;
+    width: 20%;
+    float: left;
+    color: #ffffff;
+    text-align: center;
+}
+.input-group>input{
+    width: 80% !important;
+    float: left;
+    background-color: rgba(0,0,0,0);
+    box-shadow: none !important;
+    border: none !important;
+    color: #ffffff;
+}
+.btn01{
+    margin-top: 20px;
+    color: #D16A6B;
+    padding: 10px 0;
+    font-size: 20px;
+}
+.btn01:hover{
+    color: #D16A6B;
+}
+.footer {
+    position: relative;
+    padding: 10px 0;
+    color: #ffffff;
+    height: 50px;
+    margin: auto;
+    margin-top: 10px;
+    width: 70%;
+}
+.left {
+    position: absolute;
+    top: 6px;
+    color: #fff;
+    font-size: 18px;
+    line-height: 50px;
+}
+.left:hover{
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+}
+.right {
+    position: absolute;
+    right: 0;
+    top: 5px;
+    color: #fff;
+    font-size: 18px;
+    line-height: 50px;
+}
+.right:hover{
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+}
+.box {
+    text-align: center;
+    width: 50px;
+    color: #fff;
+    height: 50px;
+    font-size: 25px;
+}
+.copyright{
+    text-align: center;
+    color: #000;
+    margin-top: 10px;
+}
+@media (min-width: 300px)and (max-width: 400px){
+    .logo{
+        width: 60%;
+        margin-top: 10px;
+    }
+    .input-group>label{
+        margin-top: 7px;
+        width: 30%;
+        float: left;
+        color: #ffffff;
+        text-align: center;
+    }
+    .input-group>input{
+        width: 70% !important;
+        float: left;
+        background-color: rgba(0,0,0,0);
+        box-shadow: none !important;
+        border: none !important;
+        color: #ffffff;
+    }
+}

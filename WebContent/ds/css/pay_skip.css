@@ -1,0 +1,10 @@
+.header{text-align: left !important;}
+.header a{position: inherit}
+.contant{margin-top: 20px}
+.order{text-align: center;font-size: 20px;}
+.money{text-align: center;font-size: 50px;}
+.contant ul{border-top: 1px solid #dddddd;}
+.contant li{border-bottom: 1px solid #dddddd;padding: 10px;font-size: 14px}
+.contant .pull-left{font-size: 16px;color: #B8B8B8}
+.contant .pull-right{font-size: 16px}
+.iphone-bg {height: 557px;background-color: #ffffff !important;width: 306px;margin: auto;max-height: 563px;position: relative;}

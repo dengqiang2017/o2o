@@ -1,0 +1,38 @@
+.modal img{
+    display: none;
+}
+.image-zhezhao{
+    background-color: #000000;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+}
+.zhezhao_left{
+    width: 52px;
+    height: 134px;
+    position: absolute;
+    top: 250px;
+    z-index: 99;
+    cursor: pointer;
+    background: url(../images/bt_arr.png) no-repeat;
+    left: 10px;
+}
+.zhezhao_right{
+    display: block;
+    width: 52px;
+    height: 134px;
+    position: absolute;
+    top: 250px;
+    z-index: 99;
+    cursor: pointer;
+    background: url(../images/bt_arr.png) no-repeat;
+    right: 10px;
+    background-position: -68px 0px;
+}
+.gb{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}

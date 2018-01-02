@@ -1,0 +1,154 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: Microsoft YaHei;
+    color: #000000;
+}
+ul>li{
+    list-style: none;
+}
+ul{
+    margin-bottom: 0;
+}
+.header{
+    background-color: #6BD0B0;
+    padding: 10px;
+    color: #ffffff;
+    font-size: 18px;
+    text-align: center;
+    position: relative;
+}
+.header>a{
+    color: #ffffff;
+}
+.header>a:hover{
+    cursor: pointer;
+    text-decoration: none;
+}
+body{
+    background-color: #EAEAEA;
+}
+.body{
+    border: 1px solid #3BC299;
+    padding: 20px 10px;
+    background-color: #ffffff;
+}
+.body-top{
+    width: 90%;
+    margin: auto;
+}
+.pull-left-top{
+    margin-bottom: 10px;
+}
+.pull-left-top>span{
+    color: #6BD0B0;
+    font-size: 20px
+}
+.pull-left-top>a>span{
+    color: #6BD0B0;
+    font-size: 20px
+}
+.pull-left-bottom{
+    font-size: 18px
+}
+.pull-left-bottom>span{
+    font-size: 18px
+}
+.pull-right-top{
+    margin-bottom: 10px;
+}
+.pull-right-top>span{
+    color: #6BD0B0;
+    font-size: 20px
+}
+.pull-right-bottom{
+    font-size: 18px
+}
+.pull-right-bottom>span{
+    font-size: 18px
+}
+.pull-right-bottom>a{
+    color: #EE4242;
+    text-decoration: none;
+    cursor: pointer;
+}
+.body-center-btn{
+    margin: 20px auto;
+    color: #A1A1A1;
+    width: 130px;
+}
+.body-bottom>ul>li{
+    border: 1px solid #6BD0B0;
+    padding: 15px 30px;
+    margin-bottom: 20px;
+    position: relative;
+}
+.pos{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+.pos>img{
+    width: 16px;
+}
+.box-k01{
+    float: left;
+    margin-right: 20px;
+}
+.box-k02{
+    float: left;
+}
+.box-f{
+    margin-bottom: 10px;
+}
+.box-f>span{
+    color: #6BD0B0;
+    font-size: 16px
+}
+.box-g{
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+.box-g>span{
+    font-size: 14px
+}
+.box-k{
+    margin-bottom: 10px;
+    font-size: 15px
+}
+.box-k>span{
+    font-size: 18px
+}
+.pull-right>input{
+    width: 60px;
+    text-align: center;
+    color: #6BD0B0;
+    border: none;
+    box-shadow: none !important;
+    border-bottom: 1px solid #6BD0B0;
+}
+.box{
+    position: relative;
+}
+.time-box{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.time-box>span{
+    color: #8C8C8C;
+    font-size: 16px;
+}
+.btn-style{
+    background-color: #3BC299;
+    border-radius: 0;
+    width: 100%;
+    color: #ffffff;
+    height: 64px;
+    font-family: Microsoft YaHei;
+    font-size: 20px;
+    line-height: 47px;
+}
+#cop{
+    margin-bottom: 70px !important;
+}

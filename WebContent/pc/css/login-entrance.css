@@ -1,0 +1,28 @@
+@charset "utf-8";
+/* CSS Document */
+.box{ width:100%;
+	height:280px;
+	text-align:center;
+	color:#fff;
+	overflow:hidden;
+}
+.box i{ display:block;
+	margin-top:100px;
+	width:100%;
+}
+.box .text-lg{ font-size:24px;
+	margin-top:20px;
+}
+.entrance-box .box-sm{ width:100%;
+	display:block;
+	height:135px;
+	text-align:center;
+	color:#fff;
+	overflow:hidden;
+	margin-bottom:10px;
+}
+
+.box-sm .text-md{ font-size:24px;
+	line-height:135px;
+}
+

@@ -1,0 +1,42 @@
+@charset "utf-8";
+/* CSS Document */
+.list-ctn{ width:94%;
+	margin:10px auto;
+	font-size:14px;
+	color:#323232;
+	box-shadow: 0 0 10px rgba(0,0,0,0.3);
+	border-radius: 10px;
+}
+.list-head{ background-color:#fff;
+	margin-bottom:1px;
+	height:46px;
+	position:relative;
+	line-height:46px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+.list-body{ background-color:#fff;
+	line-height:30px;
+	padding:10px 0;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+.btn-list{ height:34px;
+	line-height:30px;
+	padding:0 10px;
+	border-radius:3px;
+	background-color:#fb6c6c;
+	color:#fff;
+	position:absolute;
+	right:5px;
+	top:6px;
+	font-size:12px;
+}
+.list-green .list-head,.list-green .list-body{ background:#23c943;
+}
+.list-red .list-head,.list-red .list-body{ background:#eb4d33;
+}
+
+.list-green .btn-list,.list-red .btn-list{ background-color:#fff;
+	color:#323232;
+}

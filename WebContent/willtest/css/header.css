@@ -1,0 +1,120 @@
+/* 小屏幕（平板，大于等于 768px） */
+@media ( max-width : 999px) {
+	.header .col-md-8 {
+		display: none;
+	}
+	.header .col-md-8 a {
+		text-align: center;
+		font-size: 16px;
+	}
+	.phone {
+		padding-top: 5px;
+		margin-top: 5px;
+		float: right;
+		margin-right: 10px;
+	}
+	.header img {
+		max-height: 80px;
+		max-width: 150px;
+		margin-top: 5px;
+	}
+	.headerA{
+	text-align: center;
+	}
+	.headerA a:hover, .hactive {
+		border-radius: 10px;
+		background-color: rgb(255, 192, 1);
+		color: white !important;
+	}
+	.header .list-group {
+		padding-top: 10px;
+	}
+	.header .glyphicon-th-list {
+		font-size: 24px;
+	    margin-left: 25px;
+	}
+	.cover {
+		background-color: rgba(0, 0, 0, 0.6);
+		height: 100%;
+		left: 0;
+		position: fixed !important;
+		top: 0;
+		width: 100%;
+		z-index: 9994;
+	}	
+	.header .ms {
+		margin-top: 10px;
+	}
+}
+@media ( min-width : 1000px) and (max-width : 1200px){
+		.header div {
+		padding: 20px 0px 22px;
+	}
+}
+@media ( min-width : 1201px) and (max-width : 1300px) {
+		.header div {
+		padding: 20px 10px 22px;
+	}
+}
+@media  ( min-width : 1301px) and ( max-width : 1400px) {
+		.header div {
+		padding: 20px 15px 22px;
+	}
+}
+@media  ( min-width : 1401px){
+		.header div {
+		padding: 20px 20px 22px;
+	}
+}
+/* 中等屏幕（桌面显示器，大于等于 992px） */
+@media ( min-width : 1000px) {
+	.phone {
+		display: none;
+	}
+	.header img {
+		max-height: 80px;
+		max-width: 150px;
+	}
+	.header {
+		height: 100px;
+	}
+	.header div {
+		float: left;
+		text-align: center;
+		height: 100%;
+	}
+	.header .ms {
+		margin-top: -4px;
+	}
+	.header .col-md-8 a:hover, .hactive {
+		border-radius: 10px;
+		background-color: rgb(255, 192, 1);
+		color: white !important;
+	}
+	.header .col-md-8 a {
+		padding-top: 10px;
+		padding: 10px;
+		text-align: center;
+		min-width: 60px;
+		width: 120px;
+		word-break: keep-all;
+		white-space: nowrap;
+		text-decoration: none;
+		color: black;
+	font-size: 18px;
+	font-weight: bold;
+	}
+}
+/* 大屏幕（大桌面显示器，大于等于 1200px） */
+/* @media ( min-width : 1200px) { */
+#copyright{text-align: center;padding: 20px;}
+
+@media (max-width: 768px) {
+.container{margin-top: 50px;}
+.willname{display: none;}
+}
+.willname{color: #7EC5BD;font-size: 18px;}
+@media (min-width: 992px) {
+.container{
+margin-top: 90px;
+}

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<REQUEST>  
+<itembegin index="4" sheetName="行政区划-勿改此页名"/>
+<item mainfiledName="sort_id"              index="0"  excelChineseName="行政区划内码" />
+<item mainfiledName="regionalism_id"       index="1"  excelChineseName="行政区划外码" />
+<item mainfiledName="regionalism_name_cn"  index="2"  excelChineseName="行政区划"/>
+<item mainfiledName="upper_regionalism_id" index="3"  excelChineseName="上级行政区划编码"/>
+<item mainfiledName="dept_id"              index="5"  excelChineseName="所属部门"/>
+<item mainfiledName="market_type"          index="7"  excelChineseName="市场类别"/>
+<item mainfiledName="if_statistic"         index="8"  excelChineseName="是否用于统计"/>
+<item mainfiledName="easy_id"              index="9"  excelChineseName="记忆码"/>
+</REQUEST>

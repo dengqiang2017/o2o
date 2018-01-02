@@ -1,0 +1,168 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>购物车</title>
+<meta http-equiv="U-XA-Compatible" content="IE-edge">
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" href="../pcxy/css/bootstrap.css">
+<link rel="stylesheet" href="cms/css/global.css">
+<link rel="stylesheet" href="cms/css/font-awesome.min.css">
+<link rel="stylesheet" href="cms/css/product.css">
+<link rel="stylesheet" href="../css/popUpBox.css">
+<script src="../js_lib/jquery.11.js"></script>
+<script src="../js_lib/jquery.cookie.js"></script>
+<script src="cms/js/pulledup.js"></script>
+<script src="/cms/pc/js/edit.js"></script>
+<script type="text/javascript" src="../js/popUpBox.js"></script>
+<style type="text/css">
+.pro-check{
+	width: 30px;
+	height: 30px;
+	background: url(../pcxy/image/checkbox.png);
+	position: relative;
+}
+
+.pro-checked{
+	width: 30px;
+	height: 30px;
+	background: url(../pcxy/image/checkedbox.png);
+	position: relative;
+}
+@media (max-width: 770px)  {
+    .center-block>a>img{
+        width: 30px;
+        height: 30px;
+        float: left;
+    }
+    .margin01{
+        margin-top: 10px;
+    }
+    .xixi{
+        width: 100px;
+    }
+    .center-block>a>span{
+        background-color: transparent; color: rgb(255, 129, 255); font-size: 13px;padding-right: 0
+    }
+    .center-block>a:hover{
+        text-decoration: none;
+    }
+}
+@media (min-width: 770px)  {
+    .xixi{
+        width: 110px;
+    }
+    .center-block>a>img{
+        float: left;
+        width: 32px;
+        height: 32px;
+        margin-top: -5px;
+    }
+    .center-block>a>span{
+        background-color: transparent; color: rgb(255, 129, 255); font-size: 14px;padding-right: 0
+    }
+    .center-block>a:hover{
+        text-decoration: none;
+    }
+}
+</style>
+<script type="text/javascript">
+<!--
+var math=Math.random();
+document.write("<script src='../js/common.js?ver="+math+"'><\/script>");
+document.write("<script src='cms/js/head.js?ver="+math+"'><\/script>");
+document.write("<script src='js/shopping.js?ver="+math+"'><\/script>");
+//-->
+</script>
+</head>
+<body style="font-family: Microsoft YaHei;">
+ 
+<div class="login-fix"><i class="fa fa-navicon"></i></div>
+<div class="login">
+    <div class="close"></div>
+    <ul>
+        <li>
+            <a href="login.html">登录</a>
+            <span></span>
+        </li> 
+    </ul>
+</div>
+
+<div class="main_title_container">
+	<div class="main_title_ctn">
+    	<div class="main_title textonly">购物车</div>
+    </div>
+</div>  
+
+<div class="divider"></div>
+    <!--产品介绍-->
+<div class="main_content_container">
+    <div class="main_content_ctn"> 
+    	<div class="pdubtn_group">
+          <a class="btn_03" id="orderpay" style="border: 1px solid #3F9E42;background-color: #3F9E42;color: #ffeded;">去结算</a>
+<!--           <a class="btn_02">在线咨询</a> -->
+          <a href="product.html" class="btn_03" style="border: 1px solid #3F9E42;background-color: #3F9E42;color: #ffeded;margin-right: 0">返回</a>
+      </div>
+        <div class="rowitem"></div>
+    </div>
+</div>
+   <div id="item" style="display: none;">
+     <div class="product" style="position: relative">
+       <a class="pro-img"><img src="" alt=""></a>
+       <div class="pro-msg">
+         <span id="orderNo" style="display: none;"></span>
+         <span id="seeds_id" style="display: none;"></span>
+         <span id="pack_unit" style="display: none;"></span>
+        <div class="pro-check" style="position:absolute;left:0;top:0"></div>
+         <div class="row-01">
+           <span class="price" id="sd_unit_price"><span>￥</span><strong></strong></span>
+         </div>
+         <div class="row-02">
+           <a id="item_name"></a>
+           <a id="item_spec"></a>
+           <a id="item_type"></a>
+           <a id="com_id"></a>
+         </div>
+         <div class="row-03">
+           <div class="num-input">
+             <div class="num-label">数量</div>
+             <div class="input">
+               <span class="add">+</span>
+               <span class="sub">-</span>
+               <input type="text" data-num="n" class="zsum">
+             </div>
+             <div class="num-unit" id="item_unit"></div>
+           </div>
+           <div class="reduce">
+           </div>
+         </div>
+         <div class="row-03">
+           <div class="num-input">
+             <div class="num-label">数量</div>
+             <div class="input">
+               <!--<span class="add">+</span>-->
+               <!--<span class="sub">-</span>-->
+               <input type="text" id="pronum" data-num="n" class="num">
+             </div>
+             <div class="num-unit" id="casing_unit"></div>
+           </div>
+           <div class="reduce">
+           </div>
+         </div>
+         <div  class="row-03">
+         <span id="sumsi"></span>
+           <button type="button" class="btn btn-danger" id="delshopping">删除</button>
+           <input type="hidden" id="item_id">
+         </div>
+           <div style="clear: both"></div>
+       </div>
+         <div style="clear: both"></div>
+     </div>
+   </div>
+<footer class="footer" style="position: fixed;bottom: 0;left: 0;right: 0"></footer>
+<div id="back-to-top"></div>
+<div class="side_tools logo_container"></div>
+<div id="copy_bottom" style="display: none"></div>
+</body>
+</html>

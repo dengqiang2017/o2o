@@ -1,0 +1,1 @@
+ and ( ltrim(rtrim(isnull(store_struct_id_Info,''))) like 'WH000016%')

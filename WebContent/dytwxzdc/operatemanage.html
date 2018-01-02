@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="U-XA-Compatible" content="IE-edge">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <title>德阳通威小猪动车-管理</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/operatemanage.css">
+    <link rel="stylesheet" href="../css/popUpBox.css">
+</head>
+<body>
+<div class="header" style="padding:10px;background-color: #D1A26C;">
+    <a onclick="javascript:history.back();" class="pull-left" style="color:#999;opacity:0">返回</a>
+    <a class="pull-right"  onclick="WeixinJSBridge.call('closeWindow');">
+        <img src="../pc/images/quit.png" style="width:20px">
+    </a>
+    <div class="clearfix"></div>
+</div>
+    <div class="logo center-block">
+        <img class="img-responsive center-block" src="images/3.png">
+    </div>
+    <div class="center">
+        <div class="fg">
+            <a href="platformG.html?ver=002">
+                <div class="box">
+                    <img src="../pc/images/bring.png" class="center-block">
+                撮合平台
+                    </div>
+            </a>
+        </div>
+        <div class="fg">
+            <a href="platformHistory.html?ver=001">
+                <div class="box">
+                    <img src="../pc/images/record.png" class="center-block">
+                撮合记录
+                    </div>
+            </a>
+        </div>
+        <div class="fg">
+            <a href="../employee.do">
+                <div class="box">
+                    <img src="../pc/images/back.png" class="center-block">
+                后台管理
+                    </div>
+            </a>
+        </div>
+        <div class="fg">
+            <a href="dataedition.html?ver=002">
+                <div class="box">
+                    <img src="../pc/images/person.png" class="center-block">
+                个人信息
+                    </div>
+            </a>
+        </div>
+        <div class="col-xs-6"></div>
+        <div class="clearfix"></div>
+    </div>
+    <a class="btn btn-danger center-block btn01" style="display: none">退出</a>
+    <script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="../pc/js/weixin/zepto.min.js"></script>
+<script type="text/javascript" src="../pc/js/weixin/weixinShare.js"></script>
+    <script type="text/javascript">
+    <!--
+	var math=Math.random();
+	var url=window.location.href;
+	if(url.indexOf("?")<0){
+	window.location.href=url+"?ver="+math;
+}
+    $(".btn01").click(function(){
+    $.get("../login/exitLogin.do");
+    window.location.href="../pc/login-yuangong.html";
+    });
+	weixinShare.init(sharePrex+'撮合平台',sharePrex+'撮合平台');
+	$(".pull-right").click(function(){
+		window.location.href="../login/exitLogin.do";
+	});
+	//-->
+</script>
+</body>
+</html>

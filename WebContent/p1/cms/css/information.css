@@ -1,0 +1,132 @@
+
+@media screen and (min-width: 1200px){
+	.information{ 
+		width:346px; 
+		height:220px; 
+		float:left; 
+		margin:10px; 
+		background-image:url(../images/information_bg.png); 
+		overflow:hidden; 
+		padding:0 20px;
+		border: 1px solid #ececec;
+	}
+	.information_date{
+		display:block; 
+		font-family:'DaunPenh'; 
+		color:#ac890e; 
+		font-size:30px;
+		margin-top: 5px;
+	}
+	.information_title{ 
+		display:block; 
+		font-size:18px; 
+		margin:5px 0; 
+		line-height:24px; 
+		height:72px; 
+		overflow:hidden;
+	}
+	.information_content{ 
+		font-size:14px; 
+		color:#858585; 
+		line-height:20px; 
+		height:40px; 
+		overflow:hidden; 
+		width:280px;
+		margin-top: 10px;
+	}
+
+	.information-author{
+		font-size: 14px;
+		margin-top: 10px;
+		color: #555;
+	}
+	.information:hover .information_title{ 
+		color:#007cc2;
+	}
+	.information:hover .information_content{ 
+		color:#323232;
+	}
+}
+
+@media screen and (max-width: 1199px) and (min-width: 768px){
+	.information{ 
+		width:31%; 
+		height:220px; 
+		float:left; 
+		margin: 10px 1.166667% 0; 
+		background-image:url(../images/information_bg.png); 
+		overflow:hidden; 
+		padding:0 20px;
+		border: 1px solid #ececec;
+	}
+	.information_date{
+		display:block; 
+		font-family:'DaunPenh'; 
+		color:#ac890e; 
+		font-size:30px;
+	}
+	.information_title{ 
+		display:block; 
+		font-size:18px; 
+		margin:10px 0; 
+		line-height:24px; 
+		height:72px; 
+		overflow:hidden;
+	}
+	.information-author{
+		font-size: 14px;
+		margin-top: 10px;
+		color: #555;
+	}
+	.information_content{ 
+		font-size:14px; 
+		color:#858585; 
+		line-height:20px; 
+		height:40px; 
+		overflow:hidden; 
+		width:100%;
+	}
+	.information:hover .information_title{ 
+		color:#007cc2;
+	}
+	.information:hover .information_content{ 
+		color:#323232;
+	}
+}
+
+@media screen and (max-width: 767px){
+	.information{ 
+		width:96%; 
+		margin: 10px auto 0; 
+		background-image:url(../images/information_bg.png); 
+		overflow:hidden; 
+		padding:0 20px 10px;
+		border: 1px solid #ececec;
+	}
+	.information_date{
+		display:block;
+		font-family:'arial'; 
+		color:#ac890e; 
+		font-size:18px;
+		overflow: hidden;
+		padding-top: 10px;
+	}
+	.information_title{ 
+		display:block; 
+		font-size:14px; 
+		margin:10px 0; 
+		line-height:20px; 
+		max-height:64px; 
+		overflow:hidden;
+	}
+	.information_content{ 
+		display: none;
+	}
+
+	.information-author{
+		font-size: 14px;
+		margin-top: 10px;
+		color: #555;
+	}
+	
+}

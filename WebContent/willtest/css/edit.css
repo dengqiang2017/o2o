@@ -1,0 +1,32 @@
+@charset "utf-8";
+/* CSS Document */
+
+button {border: none; outline: none; padding: 0; margin: 0; background-color: #2998df; color: #fff; border: 1px solid blue; padding: 0 5px;
+}
+.logo,.textonly,.imgonly,.banner_ctn,.articleedit,.articledetail,.link_form,.imgvideo,
+.img_form,.articalList,.caseedit,.productedit,.productMingxi,.productDetailedit{ position:relative;}
+
+.edit_default,.edit_article{ position:absolute; display:none; z-index:99999;}
+.e_border_top{ width:100%; border-bottom-style: dashed;  border-bottom-width: 1px; height:0; left:0; top:1px;}
+.e_border_bottom{ width:100%; border-bottom-style: dashed;  border-bottom-width: 1px; height:0; left:0; bottom:1px;}
+.e_border_left{ height:100%; border-left-style: dashed;  border-left-width: 1px; width:0; left:1px; top:0;}
+.e_border_right{ height:100%; border-left-style: dashed;  border-left-width: 1px; width:0; right:1px; top:0;}
+.edit_btn{ position:absolute; right:1px; top:0px;}
+.edit_btnS{ position:abusolut; right:0; bottom:100%}
+
+.logo:hover .edit_default{ display:block;}
+.textonly:hover .edit_default{ display:block;}
+.imgonly:hover .edit_default{ display:block;}
+.imgvideo:hover .edit_default{ display:block;}
+.banner_ctn:hover .edit_default{ display:block;}
+.link_form:hover .edit_default{ display:block;}
+.articalList:hover .edit_article{ display:block;}
+.articleedit:hover .edit_article{ display:block;}
+.caseedit:hover .edit_article{ display:block;}
+.articledetail:hover .edit_default{ display:block;}
+.productedit:hover .edit_article{ display:block;}
+.productDetailedit:hover .edit_default{ display:block;}
+.productMingxi:hover .edit_default{ display:block;}
+.img_form:hover .edit_default{ display:block;}
+.edit_btn button ,.edit_btnS button{display: block; float: left; line-height: 24px;}
+button:hover {background-color: #fff; color: blue;}

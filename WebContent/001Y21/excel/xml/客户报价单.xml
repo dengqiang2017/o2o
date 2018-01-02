@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<REQUEST>  
+<itembegin index="3" sheetName="客户报价单-勿改此页名"/>
+<item mainfiledName="ivt_oper_listing"      index="0"    filedName="ivt_oper_listing"  excelChineseName="报价单号"/>
+<item mainfiledName="sd_order_id"           filedName="sd_order_id"   tableName="SDd02010" 
+	compute="sd_order_id"  queryName="ivt_oper_listing"   excelChineseName="报价单号"/>
+<item mainfiledName="customer_id"           index="1"       filedName="customer_id"    excelChineseName="客户编码" />
+<item filedName="peijian_id"    index="3"       excelChineseName="产品编码"/>
+<item filedName="item_id"  tableName="ctl03001"  compute="item_id"   queryName="peijian_id"   or="item_id"  
+	excelChineseName="产品内码"/>
+<!-- <item filedName="item_spec"                 index="7"       excelChineseName="产品规格"/> -->
+<!-- <item filedName="class_card"                index="8"       excelChineseName="品牌"/> -->
+<!-- <item filedName="item_type"                 index="9"       excelChineseName="型号"/> -->
+<item filedName="sd_unit_price_DOWN"        index="13"       excelChineseName="零售标价下限"/>
+<item filedName="sd_unit_price_UP"          index="14"       excelChineseName="零售标价上限"/>
+<item filedName="price_display"             index="15"       excelChineseName="对外标价"/>
+<item filedName="price_prefer"              index="16"      excelChineseName="现金折扣"/>
+<item filedName="price_otherDiscount"       index="17"      excelChineseName="其他折扣"/>
+<item filedName="sd_unit_price"             index="18"      excelChineseName="结算价"/>
+</REQUEST>

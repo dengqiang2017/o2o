@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">  
+<meta http-equiv="expires" content="0">
+<meta name="description" content="自主拍摄视频通过第三方来源自定义进行播放">
+<meta name="keywords" content="第三方来源视频自定义播放">
+<title>第三方来源视频自定义播放-样例</title>
+<style type="text/css">
+
+/* 小屏幕（平板，大于等于 768px） */
+@media screen and (max-width: 768px) {
+video{width:100%;height:300px}
+}
+/* 中等屏幕（桌面显示器，大于等于 992px） */
+@media screen and (min-width:  992px) {
+video{width:600px;;height:500px;}
+}
+/* 大屏幕（大桌面显示器，大于等于 1200px） */
+@media screen and (min-width: 1200px) {
+video{width:600px;;height:500px;}
+}
+</style>
+</head>
+<body>
+<h3>第三方来源视频自定义播放-样例</h3>
+<div>自主拍摄视频通过第三方来源自定义进行播放-样例demo</div>
+<!-- <video style="background-color:#000;" preload="auto" controls="controls" src=""></video> -->
+<h3>大致操作步骤:</h3>
+<ul>
+<li>打开360浏览器</li>
+<li>进入腾讯视频官网</li>
+<li>选择一种固定的登录方式进行登录</li>
+<li>选择一种固定的登录方式进行登录</li>
+<li>上传已经剪辑好的视频</li>
+<li>等待审核通过</li>
+<li>在360浏览器中打开审核通过的视频</li>
+<li>在浏览器中按F12,选择手机模式,刷新</li>
+<li>右边video标签中的src就是视频播放地址</li>
+<li>登录牵引web1.0后台管理</li>
+<li>进入视频发布模块</li>
+<li>新建视频发布</li>
+</ul>
+<div></div>
+<iframe id="iframe1" src="http://m.v.qq.com/play.html?vid=l0396nxia4w&ptag=v.qq.com%23v.play.adaptor%232"></iframe>
+<script type="text/javascript" src="/js_lib/jquery.11.js"></script>
+<!-- <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script> -->
+<!-- <script type="text/javascript" src="/pc/js/weixin/zepto.min.js"></script> -->
+<!-- <script type="text/javascript" src="/pc/js/weixin/weixinShare.js"></script> -->
+<script type="text/javascript">
+<!--
+// weixinShare.init("第三方来源视频自定义播放-样例","自主拍摄视频通过第三方来源自定义进行播放-样例demo","http://www.pulledup.cn/ds/images/banner2.jpg");
+$("iframe").load(function(){
+	console.log($($("iframe")[0]).contents());
+	alert($("iframe")[0].Document);
+	alert($("iframe")[0].document);
+	var path=$("iframe").contents().find("video").attr("src");
+	alert(path);
+});
+// https://m.v.qq.com/play.html?&vid=l0396nxia4w&ptag=v_qq_com%23v.play.adaptor%233
+// $.get("/temp/getVideoUrl.do",{
+// 	"url":"https://m.v.qq.com/play.html?vid=l0396nxia4w&ptag=v.qq.com%23v.play.adaptor%232"
+// },function(data){
+// 	if(data.success){
+// 		$("video").attr("src",data.msg);
+// 	}
+// });
+// $.ajax({
+//     url:"https://m.v.qq.com/play.html?vid=l0396nxia4w&ptag=v.qq.com%23v.play.adaptor%232",
+//     success:function(data){
+//         $("div").text(data)
+//     }
+// })
+//-->
+</script>
+</body>
+</html>

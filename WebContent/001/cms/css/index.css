@@ -1,0 +1,65 @@
+/* 小屏幕（平板，大于等于 768px） */
+@media (max-width: 768px) {
+.csSlideOuter{
+margin-top: 50px;
+}
+.csSlideOuter img{
+height: 200px !important;
+}
+.c3 img{
+width: 100%;
+}
+.c4 img{
+width: 100%;
+max-height: 318px;
+}
+.c6 img{
+width: 100%;
+max-height: 318px;
+}
+.lxwm{
+margin-top: 10px;
+}
+.lxwm .row{
+margin-left: 20px;
+}
+.txt{
+line-height: 30px;
+font-size: 16px;
+}
+.c2 .col-xs-12{
+	margin-top: 10px;
+}
+}
+.imgone{
+	vertical-align:top;width: 100%;height: 400px;
+}
+/* 大屏幕（大桌面显示器，大于等于 1200px） */
+/* 中等屏幕（桌面显示器，大于等于 992px） */
+@media (min-width: 992px) {
+.c3,.c4{
+margin-top: 50px;
+}
+.c6{
+margin-top: 100px;padding-right: 20px;
+}
+.lxwm{line-height: 50px;padding-left: 100px;font-size: 16px;}
+.txt{
+line-height: 30px;
+}
+.c4 img{
+max-width: 390px;
+max-height: 318px;
+}
+.csSlideOuter{margin-top: 100px;}
+#fade img{max-height: 500px;width: 100%;}
+}
+.c2 img{
+max-width: 60px;
+max-height: 60px;
+}
+.c5 img{
+margin-top: 20px;
+max-width: 95px;
+max-height: 110px;
+}

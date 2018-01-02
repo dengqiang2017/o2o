@@ -1,0 +1,232 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>产品-牵引软件</title>
+<meta http-equiv="U-XA-Compatible" content="IE-edge">
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+<link rel="stylesheet" href="cms/css/global.css">
+<link rel="stylesheet" href="../pcxy/css/bootstrap.css">
+<link rel="stylesheet" href="cms/css/product.css">
+<link rel="stylesheet" href="../pcxy/css/autowhole.css?ver=001">
+<!-- <link rel="stylesheet" href="cms/css/flattingshow.css"> -->
+<link rel="stylesheet" href="../css/popUpBox.css">
+</head>
+
+<body>
+
+<div class="side-cover" style="display: none;"></div>
+<div class="product-check" style="display: none;">
+
+  <div class="p-c-header">
+     <span class="title">筛选</span>
+     <span class="left-btn">取消</span>
+     <span class="right-btn">确定</span>
+  </div>
+
+  <div class="p-c-body">
+        <div class="p-c-group p-c-content ui_shaixuan">
+          <div class="p-c-title">
+          <input type="hidden" id="customer_id" value="CS1_ZEROM">
+            <span class="title">品牌</span>
+            <span class="filedId" style="display: none;"></span>
+            <i class="fa fa-angle-right fa-fw"></i>
+            <span class="checked"></span>
+          </div>
+          <ul>
+          </ul>
+        </div>
+        <div class="p-c-group p-c-content ui_shaixuan">
+          <div class="p-c-title">
+            <span class="title">用途</span>
+            <span class="filedId" style="display: none;"></span>
+            <i class="fa fa-angle-right fa-fw"></i>
+            <span class="checked"></span>
+          </div>
+          
+          <ul>
+          </ul>
+        </div>
+        
+        <div class="p-c-group p-c-content ui_shaixuan">
+          <div class="p-c-title">
+            <span class="title">类别</span>
+            <span class="filedId" style="display: none;"></span>
+            <i class="fa fa-angle-right fa-fw"></i>
+            <span class="checked"></span>
+          </div>
+          <ul>
+          </ul>
+        </div>
+
+        <div class="p-c-group p-c-content ui_shaixuan">
+          <div class="p-c-title">
+            <span class="title">店铺</span>
+            <span class="filedId" style="display: none;"></span>
+            <i class="fa fa-angle-right fa-fw"></i>
+            <span class="checked"></span>
+          </div>
+          <ul>
+          </ul>  
+        </div>
+
+        <div class="p-c-group p-c-content ui_shaixuan">
+          <div class="p-c-title">
+            <span class="title">价格区间</span>
+            <span class="filedId" style="display: none;">sd_unit_price</span>
+            <i class="fa fa-angle-right fa-fw"></i>
+            <span class="checked"></span>
+          </div>
+          <ul>
+            <li>
+              <span>全部价格</span>
+              <i class="fa fa-check fa-fw"></i>
+            </li>
+            <li>
+              <span>0-1000</span>
+              <i class="fa fa-check fa-fw"></i>
+            </li>
+            <li>
+              <span>1000-2000</span>
+              <i class="fa fa-check fa-fw"></i>
+            </li>
+            <li>
+              <span>2000-2500</span>
+              <i class="fa fa-check fa-fw"></i>
+            </li>
+            <li>
+              <span>2500-3000</span>
+              <i class="fa fa-check fa-fw"></i>
+            </li>
+            <li>
+              <span>3000-3500</span>
+              <i class="fa fa-check fa-fw"></i>
+            </li>
+            <li>
+              <span>4000-4500</span>
+              <i class="fa fa-check fa-fw"></i>
+            </li>
+            <li>
+              <span>5000-7000</span>
+              <i class="fa fa-check fa-fw"></i>
+            </li>
+            <li>
+              <span>7000-900</span>
+              <i class="fa fa-check fa-fw"></i>
+            </li>
+            <li>
+              <span>9000-10000</span>
+              <i class="fa fa-check fa-fw"></i>
+            </li>
+            <li>
+              <span>100000-15000</span>
+              <i class="fa fa-check fa-fw"></i>
+            </li>
+            <li>
+              <span>150000-25000</span>
+              <i class="fa fa-check fa-fw"></i>
+            </li>
+            <li>
+              <span>250000-45000</span>
+              <i class="fa fa-check fa-fw"></i>
+            </li>
+            <li>
+              <span>450000-65000</span>
+              <i class="fa fa-check fa-fw"></i>
+            </li>
+            <li>
+              <span>650000-95000</span>
+              <i class="fa fa-check fa-fw"></i>
+            </li>
+            <li>
+              <span>950000-115000</span>
+              <i class="fa fa-check fa-fw"></i>
+            </li>
+          </ul>
+        </div>
+  </div>
+
+  <div class="clear-ctn">
+    <div class="clear-btn">清除选项</div>
+  </div>
+</div>
+<div class="main_title_container">
+	<div class="main_title_ctn">
+    	<div class="main_title textonly">产品</div>
+    </div>
+</div>  
+
+<div class="divider"></div>
+    <!--产品介绍-->
+<div class="main_content_container">
+    <div class="main_content_ctn">
+        <div class="search-ctn">
+            <div class="search-gp">
+                <input type="text" maxlength="20" placeholder="请输入搜索关键词" id="searchKey">
+                <span class="find">搜索</span>
+            </div>
+            <button type="button" id="product-check">产品筛选</button>
+        </div>
+    	<div class="pdubtn_group">
+<!--           <a href="#" class="btn_01">立即购买</a> -->
+          <a href="#" class="btn_02">在线咨询</a>
+      </div>
+      <div id="item01">
+      </div>
+      <div style="display: none;" id="item">
+        <div class="product">
+          <a class="pro-img"><img src="" alt=""></a>
+          <div class="pro-msg">
+            <div class="row-01">
+              <span class="price" id="sd_unit_price_UP"><span>￥</span><strong></strong></span>
+              <div class="num-unit" id="casing_unit">个</div>
+            </div>
+            <div class="row-02">
+              <a href="" id="item_name" class="name"></a>
+            </div>
+            <div class="row-03" style="display: none;">
+              <div class="num-input">
+                <div class="num-label">数量</div>
+                <div class="input">
+                  <span class="add">+</span>
+                  <span class="sub">-</span>
+                  <input type="text" class="num" id="pronum" value="1" data-num="n">
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+	</div>
+    </div>
+</div>
+<!--核心价值-->
+<div class="paging_ctn" style="display: none;">
+	<div class="paging">
+    	<button disabled="disabled" class="disabled">首页</button>
+        <button>上页</button>
+        <button>下页</button>
+        <button>末页</button>
+    </div>
+</div>
+<footer class="footer"></footer>
+<div id="back-to-top"></div>
+<div class="side_tools logo_container"></div>
+<script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+<script type="text/javascript" src="../js_lib/jquery.cookie.js"></script>
+<script type="text/javascript" src="../pcxy/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/popUpBox.js?ver=0013"></script>
+<script type="text/javascript" src="../js/public.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../js/o2od.js"></script>
+<script type="text/javascript" src="../datepicker/WdatePicker.js"></script>
+<script type="text/javascript" src="../pc/js/autoComplete.js"></script>
+<script type="text/javascript" src="../pc/js/employee/findparms.js"></script>
+<script type="text/javascript" src="../pc/js/employee/productpage.js"></script>
+<script type="text/javascript" src="../pc/js/employee/ordercompro.js"></script>
+<script type="text/javascript" src="../pc/js/employee/selClient.js"></script>
+<script type="text/javascript" src="../pc/js/employee/order.js"></script>
+<script type="text/javascript" src="js/head.js"></script>
+</body>
+</html>

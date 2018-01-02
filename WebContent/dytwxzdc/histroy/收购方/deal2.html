@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="U-XA-Compatible" content="IE-edge">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <title></title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/deal2.css">
+</head>
+<body>
+<div class="header">
+    <a onclick="javascript:history.back();" class="pull-left">返回</a>我的交易
+    <a href="operate.html" class="pull-right">确定</a>
+</div>
+<div class="body01">
+    <ul>
+        <li>
+            <div class="col-xs-4" style="text-indent: 20px; margin-top: 6px">起始日期</div>
+            <div class="col-xs-8">
+                <input type="date" id="d4311" class="form-control Wdate" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd',maxDate:'#F{$dp.$D(\'d4312\')||\'2020-10-01\'}'})" name="beginDate">
+            </div>
+            <div class="clearfix"></div>
+        </li>
+        <li>
+            <div class="col-xs-4" style="text-indent: 20px; margin-top: 6px">结束日期</div>
+            <div class="col-xs-8">
+                <input type="date" id="d4312" class="form-control Wdate" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd',minDate:'#F{$dp.$D(\'d4311\')}',maxDate:'2020-10-01'})" name="endDate">
+            </div>
+            <div class="clearfix"></div>
+        </li>
+        <li>
+            <div class="col-xs-4" style="text-indent: 20px; margin-top: 6px">猪种</div>
+            <div class="col-xs-8">
+                <input type="text" id="searchKey" maxlength="20" class="form-control" placeholder="如:内杂猪">
+            </div>
+            <div class="clearfix"></div>
+        </li>
+        <li>
+            <div class="col-xs-4" style="text-indent: 20px; margin-top: 6px">类别</div>
+            <div class="col-xs-8">
+                <input type="text" id="searchKey" maxlength="20" class="form-control" placeholder="如:仔猪">
+            </div>
+            <div class="clearfix"></div>
+        </li>
+        <li>
+            <div class="col-xs-4" style="text-indent: 20px; margin-top: 6px">重量</div>
+            <div class="col-xs-8">
+                <input type="text" id="searchKey" maxlength="20" class="form-control" placeholder="如:20~30kg">
+            </div>
+            <div class="clearfix"></div>
+        </li>
+    </ul>
+</div>
+<div class="body02">
+    <span>2016-07-15</span>
+</div>
+<div class="body03">
+    <ul>
+        <li>
+            <div class="pull-left">
+                <div class="js">
+                    <p>10~20</p>
+                    <p>KG</p>
+                </div>
+            </div>
+            <div class="pull-right">
+                <div class="right">
+                    <div class="right01" style="margin-bottom: 23px;">
+                        <div class="aa">销售:</div>
+                        <div class="aa">
+                            <input type="text">
+                        </div>
+                        <div class="aa">头</div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="right01">
+                        <div class="aa">收入:</div>
+                        <div class="aa">
+                            <input type="text">
+                        </div>
+                        <div class="aa">元</div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </li>
+        <li>
+            <div class="pull-left">
+                <div class="js">
+                    <p>20~30</p>
+                    <p>KG</p>
+                </div>
+            </div>
+            <div class="pull-right">
+                <div class="right">
+                    <div class="right01" style="margin-bottom: 23px;">
+                        <div class="aa">销售:</div>
+                        <div class="aa">
+                            <input type="text">
+                        </div>
+                        <div class="aa">头</div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="right01">
+                        <div class="aa">收入:</div>
+                        <div class="aa">
+                            <input type="text">
+                        </div>
+                        <div class="aa">元</div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </li>
+        <li>
+            <div class="pull-left">
+                <div class="js">
+                    <p>30~40</p>
+                    <p>KG</p>
+                </div>
+            </div>
+            <div class="pull-right">
+                <div class="right">
+                    <div class="right01" style="margin-bottom: 23px;">
+                        <div class="aa">销售:</div>
+                        <div class="aa">
+                            <input type="text">
+                        </div>
+                        <div class="aa">头</div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="right01">
+                        <div class="aa">收入:</div>
+                        <div class="aa">
+                            <input type="text">
+                        </div>
+                        <div class="aa">元</div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </li>
+    </ul>
+</div>
+<div class="footer">
+    <div class="pull-left">
+        总计:<span>83</span>头
+    </div>
+    <div class="pull-right">
+        收入:<span>1145600.00</span>元
+    </div>
+</div>
+</body>
+</html>

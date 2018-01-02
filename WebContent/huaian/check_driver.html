@@ -1,0 +1,87 @@
+<link rel="stylesheet" href="css/check_driver.css">
+<div class="container" id="show_check_driver" style="padding-right: 0;padding-left: 0">
+    <!---------------header-------------->
+    <div class="header">
+        <a class="glyphicon glyphicon-chevron-left header_a" onclick="javascript:$('#orderList').show();$('#show_check_driver').hide();"></a>
+        选择司机
+    </div>
+    <!--------------- mylocation------------>
+    <div class="mylocationk">
+        <div class="mylocation">
+            <div class="mylocation_left">
+                <span>我的司机</span>
+            </div>
+            <div class="myorder_up"></div>
+            <div class="clear"></div>
+        </div>
+        <div class="mylocation_list">
+            <ul id="drivelist">
+            </ul>
+        </div>
+        <div id="driveitem" style="display: none;">
+            <li style="border-top: 1px solid #ddd;border-bottom: 1px solid #ddd;padding: 20px 30px;position: relative">
+                <div class="list01">
+                    <span style="float: left" id="corp_sim_name"></span>
+                    <span style="float: right" id="movtel"></span>
+                    <div class="clear"></div>
+                </div>
+                <span style="display: none" id="driveId"></span>
+                <span style="display: none" id="weixinID"></span>
+                <div class="list02"><span id="memo"></span></div>
+                <div class="list04">
+                    <div class="list04_left">
+                        <div class="list04_left_img"></div>
+                    </div>
+                    <div class="list03_right">
+                        <a class="btn btn-default" id="tel">联系司机</a>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </li>
+        </div>
+    </div>
+
+<!--------------货物清单---------------->
+<div class="cargo_listk">
+    <div class="cargo_list">
+        <div class="cargo_list_left">
+            <span>货物清单</span>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div id="driveorderlist">
+    
+    </div>
+    <div id="driveorderitem" style="display: none;">
+    <div class="cargo_list01">
+        <div class="list_a">
+            <div class="col-xs-6">
+                <div class="list_a_img" style="float: left">
+                    <img src="images/jpg.jpg">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="list_a_details" style="float: left">
+                    <ul>
+                        <li id="item_name"><span></span></li>
+                        <li id="sum_si">金额：￥<span></span>元</li>
+                        <li id="sd_oq">数量：<span></span></li>
+                        <li id="c_memo">提货信息：<span></span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="list_b">
+            <div style="float: left">订单编号：</div><div style="float: left"><span id="orderNo"></span></div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    </div>
+</div>
+<div style="height: 80px"></div>
+<!-----------footer--------------->
+<a>
+    <button type="button" class="driver_footer">确认拉货司机</button>
+</a> 
+</div>

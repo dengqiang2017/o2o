@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="U-XA-Compatible" content="IE-edge">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <title>德阳通威小猪动车-养殖户登录</title>
+    <link rel="stylesheet" href="../pcxy/css/bootstrap.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="../css/popUpBox.css">
+</head>
+<body>
+<div class="logo center-block">
+    <img class="img-responsive" src="images/3.png">
+</div>
+       <div class="center">
+           <div class="dl_box">
+               <div class="input-group" style="border-bottom: 1px solid #ffffff">
+                   <label>账号：</label>
+                   <input type="text" class="form-control" name="user_id" id="username" placeholder="请输入用户名" maxlength="11" data-number="num">
+               </div>
+               <div class="input-group">
+                   <label>密码：</label>
+                   <input type="password" class="form-control" placeholder="输入密码" name="user_password" id="pwd" maxlength="20">
+               </div>
+           </div>
+           <a id="loginKefu" class="btn btn-default btn-block btn01">登录</a>
+       </div>
+<div class="footer">
+     <a href="../login/forgetpsw.do" class="left">忘记密码？</a>
+     <div><div class="center-block box">|</div></div>
+     <a href="../login/register.do" class="right">注册新用户</a>
+</div>
+<script src="../js_lib/jquery.11.js"></script>
+ <script src="../pcxy/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js_lib/jquery.md5.js"></script>
+<script type="text/javascript" src="../js_lib/jquery.cookie.js"></script>
+<script type="text/javascript" src="../js/popUpBox.js"></script>
+<script type="text/javascript">
+<!--
+var math=Math.random();
+document.write("<script src='../js/common.js?ver="+math+"'><\/script>");
+document.write("<script src='../pc/js/login.js?ver="+math+"'><\/script>");
+$(function(){
+	login.init("loginKefu","../customer/login.do","../customer.do","customer");
+});
+//-->
+</script>
+</body>
+</html>

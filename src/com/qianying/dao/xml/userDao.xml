@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- xml文件 -->
+<mapper namespace="com.qianying.dao.interfaces.IUserDao">
+	<!-- 查询用户密码 -->
+	<select id="checkCustomerPwd" parameterType="String" resultType="String">
+		select top 1  user_password from SDf00504 where customer_id = #{id} and ltrim(rtrim(isnull(com_id,'')))=#{com_id};
+	</select>
+	
+	<!-- 查询员工密码 -->
+	<select id="checkEmployeePwd" parameterType="String" resultType="String">
+		select top 1 user_password from ctl09003 where clerk_id = #{id} and ltrim(rtrim(isnull(com_id,'')))=#{com_id};
+	</select>
+	
+	<!-- 查询管理员密码 -->
+	<select id="checkManagerPwd" parameterType="String" resultType="String">
+		select top 1  user_password from ctl09003 where clerk_id = #{id} and ltrim(rtrim(isnull(com_id,'')))=#{com_id};
+	</select>
+	
+	<!-- 更新客户密码 -->
+	<update id="updateCustomerPwd" parameterType="String">
+		update SDf00504 set user_password = #{newPwd} where customer_id = #{id};
+	</update>
+	
+	<!-- 更新员工密码 -->
+	<update id="updateEmployeePwd" parameterType="String">
+		update ctl09003 set user_password = #{newPwd} where clerk_id = #{id} and ltrim(rtrim(isnull(com_id,'')))=#{com_id};
+	</update>
+	
+	<!-- 更新管理员密码 -->
+	<update id="updateManagerPwd" parameterType="String">
+		update ctl09003 set user_password = #{newPwd} where clerk_id = #{id} and ltrim(rtrim(isnull(com_id,'')))=#{com_id};
+	</update>
+	
+	<!-- 查询员工手机号是否存在 -->
+	<select id="checkEmployeePone" parameterType="String" resultType="Integer">
+		select count(*) from ctl09003 where ltrim(rtrim(isnull(user_id,''))) = #{mobileNum} and ltrim(rtrim(isnull(com_id,'')))=#{com_id};
+	</select>
+<!-- 	检查运营商手机是否存在 -->
+	<select id="checkOperatePone" parameterType="String" resultType="Integer">
+		select count(*) from Ctl00501 where ltrim(rtrim(isnull(tel_no,''))) = #{mobileNum};
+	</select>
+	
+	<!-- 查询管理员手机号是否存在 -->
+	<select id="checkManagerPhone" parameterType="String" resultType="Integer">
+		select count(*) from ctl09003 where ltrim(rtrim(isnull(user_id,''))) = #{mobileNum} and ltrim(rtrim(isnull(com_id,'')))=#{com_id};
+	</select>
+	
+	<!-- 查询客户手机号是否存在 -->
+	<select id="checkCustomerPone" parameterType="String" resultType="Integer">
+		select count(*) from SDf00504 where ltrim(rtrim(isnull(user_id,''))) = #{mobileNum} and ltrim(rtrim(isnull(com_id,'')))=#{com_id};
+	</select>
+	
+	<!-- 更新客户密码 -->
+	<update id="updateForgetCustomerPwd" parameterType="String">
+		update SDf00504 set user_password = #{newPwd} where 
+		ltrim(rtrim(isnull(user_id,''))) = #{mobileNum}
+		<if test="com_id!=null">
+		 and ltrim(rtrim(isnull(com_id,'')))=#{com_id}
+		</if>
+	</update>
+	
+	<!-- 更新员工密码 -->
+	<update id="updateForgetEmployeePwd" parameterType="String">
+		update ctl00801 set user_password = #{newPwd} where ltrim(rtrim(isnull(movtel,''))) = #{mobileNum} and ltrim(rtrim(isnull(com_id,'')))=#{com_id};
+		update ctl09003 set user_password = #{newPwd} where ltrim(rtrim(isnull(user_id,''))) = #{mobileNum} and ltrim(rtrim(isnull(com_id,'')))=#{com_id};
+	</update>
+	
+	<!-- 更新管理员密码 -->
+	<update id="updateForgetManagerPwd" parameterType="String">
+		update ctl09003 set user_password = #{newPwd} where ltrim(rtrim(isnull(user_id,''))) = #{mobileNum} and ltrim(rtrim(isnull(com_id,'')))=#{com_id};
+	</update>
+	
+	<select id="getWorking_status" parameterType="String" resultType="Integer">
+	select top 1 isnull(working_status,0) from ctl00801 where movtel=#{mobileNum} and ltrim(rtrim(isnull(com_id,'')))=#{com_id}
+	</select>
+	
+	<select id="getEmployeeWeixinID" parameterType="hashMap" resultType="hashMap">
+	select clerk_name,movtel,weixinID,weixin from ctl00801 
+	where ltrim(rtrim(isnull(com_id,'')))=#{com_id} and not ltrim(rtrim(isnull(weixinID,'')))=''
+	<if test="searchKey!=null">
+	and (
+	clerk_name like #{searchKey} or
+	clerk_id like #{searchKey} or
+	weixin like #{searchKey} or
+	weixinID like #{searchKey} or
+	movtel like #{searchKey}
+	)
+	</if>
+	</select>
+	<select id="getCustomerWeixinID" parameterType="hashMap" resultType="hashMap">
+	select corp_sim_name,tel_no,weixinID,weixin from sdf00504 
+	where ltrim(rtrim(isnull(com_id,'')))=#{com_id} and not ltrim(rtrim(isnull(weixinID,'')))=''
+	<if test="searchKey!=null">
+	and (
+	corp_name like #{searchKey} or
+	corp_sim_name like #{searchKey} or
+	customer_id like #{searchKey} or
+	weixin like #{searchKey} or
+	weixinID like #{searchKey} or
+	tel_no like #{searchKey}
+	)
+	</if>
+	</select>
+	
+	<select id="getKfWeixinID" parameterType="String" resultType="String">
+	select top 1 weixinID from ctl00801 where ltrim(rtrim(isnull(headship,''))) like '%客服%'
+	</select>
+	
+	<select id="updateWeixin" parameterType="hashMap" resultType="String">
+	update sdf00504 set weixin=#{weixin} where ltrim(rtrim(isnull(user_id,'')))=#{phone};
+	update Ctl00504 set weixin=#{weixin} where ltrim(rtrim(isnull(user_id,'')))=#{phone};
+	update ctl00801 set weixin=#{weixin} where ltrim(rtrim(isnull(movtel,'')))=#{phone};
+	update Sdf00504_saiyu set weixin=#{weixin} where ltrim(rtrim(isnull(user_id,'')))=#{phone};
+<!-- 	select weixinID from sdf00504 where  ltrim(rtrim(isnull(com_id,'')))=#{com_id} and ltrim(rtrim(isnull(user_id,'')))=#{phone}; -->
+	</select>
+	<select id="checkEvalPone" parameterType="hashMap" resultType="String">
+		select ltrim(rtrim(isnull(user_id,''))) as user_id from Sdf00504_saiyu where 
+		ltrim(rtrim(isnull(com_id,'')))=#{com_id}
+		and ltrim(rtrim(isnull(user_id,'')))=#{value} 
+		and isclient=#{type}
+	</select>
+	
+	<select id="getClientDriver" parameterType="hashMap" resultType="hashMap">
+	<if test="driveId==null">
+		declare @driveId varchar(40);
+	set @driveId=(select ltrim(rtrim(isnull(driveId,''))) as driveId from sdf00504 
+	where ltrim(rtrim(isnull(com_id,'')))= #{com_id} 
+	and ltrim(rtrim(isnull(customer_id,'')))= #{customer_id});
+	</if>
+	select 
+	ltrim(rtrim(isnull(customer_id,''))) as customer_id,
+	ltrim(rtrim(isnull(corp_sim_name,''))) as corp_sim_name,
+	ltrim(rtrim(isnull(corp_name,''))) as corp_name,
+	ltrim(rtrim(isnull(working_status,''))) as working_status,
+	ltrim(rtrim(isnull(corp_working_lisence,''))) as corp_working_lisence,
+	ltrim(rtrim(isnull(movtel,''))) as movtel,
+	ltrim(rtrim(isnull(user_id,''))) as user_id,
+	ltrim(rtrim(isnull(weixinID,''))) as weixinID,
+	ltrim(rtrim(isnull(addr1,''))) as addr1,
+	ltrim(rtrim(isnull(license_type,''))) as license_type,
+	ltrim(rtrim(isnull(memo,''))) as memo
+	 from sdf00504_saiyu 
+	where isclient='1' 
+	<if test="driveId!=null">
+	and '${driveId}' like '%'+ltrim(rtrim(isnull(customer_id,'')))+'%'
+	</if>
+	<if test="driveId==null">
+	and @driveId like '%'+ltrim(rtrim(isnull(customer_id,'')))+'%'
+	</if>
+	<if test="searchKey!=null">
+	and (
+	customer_id like #{searchKey} or
+	corp_name like #{searchKey} or
+	corp_sim_name like #{searchKey} or
+	corp_working_lisence like #{searchKey} or
+	memo like #{searchKey} or
+	movtel like #{searchKey} or
+	user_id like #{searchKey}
+	)
+	</if>
+</select>
+	<update id="postCientDriveId" parameterType="hashMap">
+	<if test="type=='add'">
+	declare @driveId varchar(40);
+	set @driveId=(select ltrim(rtrim(isnull(driveId,''))) as driveId from sdf00504 
+	where ltrim(rtrim(isnull(com_id,'')))= #{com_id} 
+	and ltrim(rtrim(isnull(customer_id,'')))= #{customer_id});
+	update sdf00504 set driveId=@driveId+#{driveId} where ltrim(rtrim(isnull(com_id,'')))= #{com_id} and ltrim(rtrim(isnull(customer_id,'')))= #{customer_id}
+	</if>
+	<if test="type=='del'">
+	update sdf00504 set driveId=REPLACE(driveId,'${driveId},','') where ltrim(rtrim(isnull(com_id,'')))= #{com_id} and ltrim(rtrim(isnull(customer_id,'')))= #{customer_id}
+	</if>
+	</update>
+	<update id="updateClientDriveId" parameterType="Object">
+	update sdf00504 set driveId=driveId+'${driveId},' where ltrim(rtrim(isnull(com_id,'')))= #{com_id} and ltrim(rtrim(isnull(customer_id,'')))= #{customer_id}
+	</update>
+	<select id="getPlatformsPhone" parameterType="hashMap" resultType="hashMap">
+	<if test="customer_id==null">
+	select ltrim(rtrim(isnull(clerk_name,''))) as clerk_name,
+	ltrim(rtrim(isnull(movtel,''))) as movtel  from ctl00801
+	where ltrim(rtrim(isnull(headship,''))) like #{headship}
+	and ltrim(rtrim(isnull(com_id,'')))= #{com_id}
+	and not ltrim(rtrim(isnull(movtel,'')))=''
+	</if>
+	<if test="customer_id!=null">
+	select ltrim(rtrim(isnull(t2.clerk_name,''))) as clerk_name,
+	ltrim(rtrim(isnull(t2.movtel,''))) as movtel from sdf00504 t1 left join ctl00801 t2 on
+	ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t2.com_id,''))) and
+	ltrim(rtrim(isnull(t1.clerk_id,'')))=ltrim(rtrim(isnull(t2.clerk_id,'')))
+	where ltrim(rtrim(isnull(t1.com_id,'')))= #{com_id}
+	and ltrim(rtrim(isnull(t1.customer_id,'')))= #{customer_id}
+	</if>
+	</select>
+	
+	<select id="checkLoginEwm" parameterType="hashMap" resultType="hashMap">
+	 select 
+	ltrim(rtrim(isnull(t1.com_id,''))) as com_id,
+	ltrim(rtrim(isnull(t1.user_id,''))) as name,
+	ltrim(rtrim(isnull(t3.com_sim_name,''))) as com_sim_name,
+	ltrim(rtrim(isnull(t1.user_password,''))) as pwd
+	from ${table} t1 
+	left join ctl00501 t3 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t3.com_id,'')))
+	where ltrim(rtrim(isnull(t1.user_id,'')))=#{name}
+	and ltrim(rtrim(isnull(t1.working_status,'0')))='1'
+	</select>
+	
+	<select id="checkedLogin" parameterType="hashMap" resultType="hashMap">
+	select * from ${table} where
+	ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id}
+	<if test="table==ctl00801">
+	and ltrim(rtrim(isnull(t1.movtel,'')))=#{name}
+	</if>
+	<if test="table!=ctl00801">
+	and ltrim(rtrim(isnull(t1.user_id,'')))=#{name}
+	</if>
+	</select>
+	
+	<update id="saveUserInfo" parameterType="hashMap">
+	<if test="clerk_id!=null">
+	update ctl00801 set clerk_name=#{name},movtel=#{movtel},addr1=#{addr1} 
+	where ltrim(rtrim(isnull(com_id,'')))=#{com_id} and ltrim(rtrim(isnull(clerk_id,'')))=#{clerk_id}
+	</if>
+	<if test="customer_id!=null">
+	update sdf00504 set corp_name=#{name},corp_sim_name=#{name},movtel=#{movtel},tel_no=#{movtel},addr1=#{addr1},fhdz=#{addr1}
+	where ltrim(rtrim(isnull(com_id,'')))=#{com_id} and ltrim(rtrim(isnull(customer_id,'')))=#{customer_id}
+	</if>
+	</update>
+	
+</mapper>
+

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<REQUEST>  
+<itembegin index="3" sheetName="司机-勿改此页名"/>
+<item mainfiledName="corp_name"                index="0"  excelChineseName="司机全称" />
+<item mainfiledName="corp_sim_name"            index="1"  excelChineseName="司机简称"/>
+<item mainfiledName="easy_id"                  index="2"  excelChineseName="记忆码"/>
+<!-- <item mainfiledName="customer_id"         index="3"  excelChineseName="司机内码"/> -->
+<item mainfiledName="self_id"                  index="4"  excelChineseName="司机外码"/>
+<item mainfiledName="user_id"                  index="5"  excelChineseName="用户账号"/>
+<item mainfiledName="user_password"            index="6"  excelChineseName="用户密码"/>
+<item mainfiledName="tel_no"                   index="7"  excelChineseName="联系电话"/>
+<item mainfiledName="corp_working_lisence"     index="8"  excelChineseName="车牌号"/>
+<item mainfiledName="license_type"             index="9"  excelChineseName="证件类型"/>
+<item mainfiledName="memo"                     index="10"  excelChineseName="车辆类型"/>
+<item mainfiledName="qq"                       index="11"  excelChineseName="QQ"/>
+<item mainfiledName="weixin"                   index="12" excelChineseName="微信"/>
+<item mainfiledName="weixinID"                 index="13" excelChineseName="微信通讯录账号"/>
+<item mainfiledName="addr1"                    index="14" excelChineseName="地址"/>
+<item mainfiledName="clerk_name"               index="15" excelChineseName="联系人"/>
+<!--<item mainfiledName="addr1"                	   index="16" excelChineseName="联系地址"/> -->
+<item mainfiledName="movtel"                   index="16" excelChineseName="手机号"/>
+<item mainfiledName="regionalism_id"           index="17" excelChineseName="所属行政区域编码"/>
+<!-- <item mainfiledName="regionalism_id"      index="18" excelChineseName="所属行政区域"/> -->
+<item mainfiledName="working_status"           index="19" excelChineseName="工作状态"/>
+<item mainfiledName="accountSum"               index="20" excelChineseName="账户余额"/>
+<item mainfiledName="pay_style"                index="21" excelChineseName="支付方式"/>
+<item mainfiledName="bank_id"                  index="22" excelChineseName="开户银行"/>
+<item mainfiledName="bank_accounts"            index="23" excelChineseName="银行账号"/>
+<item mainfiledName="practice_date"            index="24" excelChineseName="最近合作时间"/>
+<item mainfiledName="star_cooperate_date"      index="25" excelChineseName="开始合作时间"/>
+<item mainfiledName="working_range"            index="26" excelChineseName="经营范围"/>
+</REQUEST>                                              
+                                             

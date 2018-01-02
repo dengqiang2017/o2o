@@ -1,0 +1,42 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: Microsoft YaHei;
+    color: #000000;
+}
+ul>li{
+    list-style: none;
+}
+ul{
+    margin-bottom: 0;
+}
+.header{
+    background-color: #2C7D5D;
+    text-align: center;
+    color: #ffffff;
+    padding: 10px;
+    font-size: 20px;
+    position: relative;
+}
+.header>a{
+    color: #ffffff;
+    cursor: pointer;
+}
+.header>a:hover{
+    text-decoration: none;
+}
+.body>ul>li{
+    padding: 10px;
+    border-bottom: 1px solid #dddddd;
+}
+.body>ul>li>label{
+    width: 20%;
+    float: left;
+    margin-top: 7px;
+}
+.body>ul>li>input{
+    width: 80%;
+    float: left;
+    border: none !important;
+    box-shadow: none !important;
+}

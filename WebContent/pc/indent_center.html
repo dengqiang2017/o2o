@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>订单中心</title>
+    <meta http-equiv="U-XA-Compatible" content="IE-edge">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" href="../pcxy/css/global.css?ver=172447">
+    <link rel="stylesheet" href="../pcxy/css/bootstrap.css">
+    <link rel="stylesheet" href="../pcxy/css/autowhole.css?ver=001">
+    <link rel="stylesheet" href="../css/popUpBox.css">
+    <script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+    <script type="text/javascript" src="../js_lib/jquery.cookie.js"></script>
+    <script src="../pcxy/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/common.js?ver=0013"></script>
+    <script type="text/javascript" src="../js/popUpBox.js?ver=0013"></script>
+    <script src="../js/o2od.js?ver=001"></script>
+    <script src="../pc/js/employee/findparms.js"></script>
+    <script type="text/javascript" src="../pc/js/autoComplete.js"></script>
+    <script type="text/javascript" src="../datepicker/WdatePicker.js"></script>
+    <script type="text/javascript" src="../pc/js/employee/productpage.js?ver=0013"></script>
+    <script type="text/javascript" src="../pc/js/employee/ordercompro.js?ver=0015"></script>
+    <script type="text/javascript" src="../pc/js/customer/order.js?ver=0013"></script>
+    <link rel="stylesheet" href="css/indent_center.css">
+</head>
+<body>
+<div class="container" style="padding-right: 0;padding-left: 0">
+   <!---------------header-------------->
+    <div class="header">
+        <a class="glyphicon glyphicon-chevron-left header_a" onclick="javascript:history.go(-1);"></a>
+        订单中心
+    </div>
+   <!---------------cut-page-------------->
+    <div class="cut-page">
+        <ul>
+            <li>
+                <div class="title1 center-block"></div>
+                <span class="span_color">全部订单</span>
+            </li>
+            <li>
+                <div class="title2_2 center-block"></div>
+                <span>代发货</span>
+            </li>
+            <li>
+                <div class="title3_3 center-block"></div>
+                <span>代收货</span>
+            </li>
+            <li>
+                <div class="title4_4 center-block"></div>
+                <span>待评价</span>
+            </li>
+        </ul>
+        <div class="clear"></div>
+    </div>
+   <!-- 全部订单-->
+   <div class="all_orderk">
+    <div class="all_order">
+        <div class="check">
+            <div class="check_left">
+            <div class="indent-checked center-block" style="float: left;margin-right: 5px;margin-left: 5px"></div>
+                <div style="float: left;margin-top: 3px"> <span>全选</span></div>
+            </div>
+            <div class="check_right">
+                <button class="btn_style">再次购买</button>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="all_order_list">
+        <div class="list_a">
+            <div class="col-xs-2">
+            <div class="indent-checked" style="float: left"></div>
+            </div>
+            <div class="col-xs-4">
+            <div class="list_a_img" style="float: left">
+                <img src="images/jpg.jpg">
+            </div>
+                </div>
+            <div class="col-xs-6">
+            <div class="list_a_details" style="float: left">
+                <ul>
+                    <li><span>813池塘养鱼配合饲料</span></li>
+                    <li>金额：<span>100.11元</span></li>
+                    <li>数量：<span>1吨/t</span></li>
+                </ul>
+            </div>
+                </div>
+            <div class="clear"></div>
+        </div>
+        <div class="list_b">订单编号：<span>NO.2016031700001XSSK</span></div>
+        <div class="list_c">
+            <button class="btn_css">再次购买</button>
+            <div class="clear"></div>
+        </div>
+    </div>
+   <div class="all_order_list">
+       <div class="list_a">
+           <div class="col-xs-2">
+               <div class="indent-checked" style="float: left"></div>
+           </div>
+           <div class="col-xs-4">
+               <div class="list_a_img" style="float: left">
+                   <img src="images/jpg.jpg">
+               </div>
+           </div>
+           <div class="col-xs-6">
+               <div class="list_a_details" style="float: left">
+                   <ul>
+                       <li><span>813池塘养鱼配合饲料</span></li>
+                       <li>金额：<span>100.11元</span></li>
+                       <li>数量：<span>1吨/t</span></li>
+                   </ul>
+               </div>
+           </div>
+           <div class="clear"></div>
+       </div>
+       <div class="list_b">订单编号：<span>NO.2016031700001XSSK</span></div>
+       <div class="list_c">
+           <button class="btn_css">再次购买</button>
+           <div class="clear"></div>
+       </div>
+   </div>
+   </div>
+<!------------------待发货----------------->
+    <div class="deliverk">
+        <div class="all_order">
+            <div class="check">
+                <div class="check_left">
+                    <div class="indent-checked center-block" style="float: left;margin-right: 5px;margin-left: 5px"></div>
+                    <div style="float: left;margin-top: 3px"> <span>全选</span></div>
+                </div>
+                <div class="check_right">
+                    <a href="check_driver.html" class="btn_style">选择司机</a>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="all_order_list">
+            <div class="list_a">
+                <div class="col-xs-2">
+                    <div class="indent-checked" style="float: left"></div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="list_a_img" style="float: left">
+                        <img src="images/jpg.jpg">
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="list_a_details" style="float: left">
+                        <ul>
+                            <li><span>813池塘养鱼配合饲料</span></li>
+                            <li>金额：<span>100.11元</span></li>
+                            <li>数量：<span>1吨/t</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="list_b">订单编号：<span>NO.2016031700001XSSK</span></div>
+            <div class="list_c">
+                <a href="check_driver.html" class="btn_css">选择司机</a>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="all_order_list">
+            <div class="list_a">
+                <div class="col-xs-2">
+                    <div class="indent-checked" style="float: left"></div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="list_a_img" style="float: left">
+                        <img src="images/jpg.jpg">
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="list_a_details" style="float: left">
+                        <ul>
+                            <li><span>813池塘养鱼配合饲料</span></li>
+                            <li>金额：<span>100.11元</span></li>
+                            <li>数量：<span>1吨/t</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="list_b">订单编号：<span>NO.2016031700001XSSK</span></div>
+            <div class="list_c">
+                <a href="check_driver.html" class="btn_css">选择司机</a>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+   <!------------------待收货----------------->
+    <div class="deliveryk">
+        <div class="all_order">
+            <div class="check">
+                <div class="check_left">
+                    <div class="indent-checked center-block" style="float: left;margin-right: 5px;margin-left: 5px"></div>
+                    <div style="float: left;margin-top: 3px"> <span>全选</span></div>
+                </div>
+                <div class="check_right">
+                    <button class="btn_style" id="qrsh">确认收货</button>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="all_order_list">
+            <div class="list_a">
+                <div class="col-xs-2">
+                    <div class="indent-checked" style="float: left"></div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="list_a_img" style="float: left">
+                        <img src="images/jpg.jpg">
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="list_a_details" style="float: left">
+                        <ul>
+                            <li><span>813池塘养鱼配合饲料</span></li>
+                            <li>金额：<span>100.11元</span></li>
+                            <li>数量：<span>1吨/t</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="list_b">订单编号：<span>NO.2016031700001XSSK</span></div>
+            <div class="list_c">
+                <button class="btn_css" style="margin-left: 15px" id="qrsh">确认收货</button>
+                <a href="order_tracking.html" class="btn_css2">查看物流</a>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="all_order_list">
+            <div class="list_a">
+                <div class="col-xs-2">
+                    <div class="indent-checked" style="float: left"></div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="list_a_img" style="float: left">
+                        <img src="images/jpg.jpg">
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="list_a_details" style="float: left">
+                        <ul>
+                            <li><span>813池塘养鱼配合饲料</span></li>
+                            <li>金额：<span>100.11元</span></li>
+                            <li>数量：<span>1吨/t</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="list_b">订单编号：<span>NO.2016031700001XSSK</span></div>
+            <div class="list_c">
+                <button class="btn_css" style="margin-left: 15px" id="qrsh">确认收货</button>
+                <a class="btn_css2">查看物流</a>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+   <!------------------待评价----------------->
+    <div class="evaluatek">
+        <div class="all_order">
+            <div class="check">
+                <div class="check_left">
+                    <div class="indent-checked center-block" style="float: left;margin-right: 5px;margin-left: 5px"></div>
+                    <div style="float: left;margin-top: 3px"> <span>全选</span></div>
+                </div>
+                <div class="check_right">
+                    <a href="evaluate.html" class="btn_style" id="pjdd">评价</a>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="all_order_list">
+            <div class="list_a">
+                <div class="col-xs-2">
+                    <div class="indent-checked" style="float: left"></div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="list_a_img" style="float: left">
+                        <img src="images/jpg.jpg">
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="list_a_details" style="float: left">
+                        <ul>
+                            <li><span>813池塘养鱼配合饲料</span></li>
+                            <li>金额：<span>100.11元</span></li>
+                            <li>数量：<span>1吨/t</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="list_b">订单编号：<span>NO.2016031700001XSSK</span></div>
+            <div class="list_c">
+                <a href="evaluate.html" class="btn_css" id="pjdd">评价</a>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="all_order_list">
+            <div class="list_a">
+                <div class="col-xs-2">
+                    <div class="indent-checked" style="float: left"></div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="list_a_img" style="float: left">
+                        <img src="images/jpg.jpg">
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="list_a_details" style="float: left">
+                        <ul>
+                            <li><span>813池塘养鱼配合饲料</span></li>
+                            <li>金额：<span>100.11元</span></li>
+                            <li>数量：<span>1吨/t</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="list_b">订单编号：<span>NO.2016031700001XSSK</span></div>
+            <div class="list_c">
+                <a href="evaluate.html" class="btn_css" id="pjdd">评价</a>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+</div>
+   <input type="hidden" name="customer_id" value="${sessionScope.customerInfo.upper_customer_id}">
+   <script>
+        $('.cut-page>ul>li').eq(0).click(function(){
+            $('.all_orderk').css({display:'block'});
+            $('.deliverk').css({display:'none'});
+            $('.deliveryk').css({display:'none'});
+            $('.evaluatek').css({display:'none'});
+            $('.title1_1').removeClass('title1_1').addClass('title1');
+            $('.title2').removeClass('title2').addClass('title2_2');
+            $('.title3').removeClass('title3').addClass('title3_3');
+            $('.title4').removeClass('title4').addClass('title4_4');
+            $('.cut-page>ul>li span').eq(0).addClass('span_color');
+            $('.cut-page>ul>li>span').eq(1).removeClass('span_color');
+            $('.cut-page>ul>li>span').eq(2).removeClass('span_color');
+            $('.cut-page>ul>li span').eq(3).removeClass('span_color');
+        });
+        $('.cut-page>ul>li').eq(1).click(function(){
+            $('.all_orderk').css({display:'none'});
+            $('.deliverk').css({display:'block'});
+            $('.deliveryk').css({display:'none'});
+            $('.evaluatek').css({display:'none'});
+            $('.title1').removeClass('title1').addClass('title1_1');
+            $('.title2_2').removeClass('title2_2').addClass('title2');
+            $('.title3').removeClass('title3').addClass('title3_3');
+            $('.title4').removeClass('title4').addClass('title4_4');
+            $('.cut-page>ul>li>span').eq(0).removeClass('span_color');
+            $('.cut-page>ul>li span').eq(1).addClass('span_color');
+            $('.cut-page>ul>li>span').eq(2).removeClass('span_color');
+            $('.cut-page>ul>li span').eq(3).removeClass('span_color');
+        });
+        $('.cut-page>ul>li').eq(2).click(function(){
+            $('.all_orderk').css({display:'none'});
+            $('.deliverk').css({display:'none'});
+            $('.deliveryk').css({display:'block'});
+            $('.evaluatek').css({display:'none'});
+            $('.title1').removeClass('title1').addClass('title1_1');
+            $('.title2').removeClass('title2').addClass('title2_2');
+            $('.title3_3').removeClass('title3_3').addClass('title3');
+            $('.title4').removeClass('title4').addClass('title4_4');
+            $('.cut-page>ul>li>span').eq(0).removeClass('span_color');
+            $('.cut-page>ul>li>span').eq(1).removeClass('span_color');
+            $('.cut-page>ul>li span').eq(2).addClass('span_color');
+            $('.cut-page>ul>li span').eq(3).removeClass('span_color');
+        });
+        $('.cut-page>ul>li').eq(3).click(function(){
+            $('.all_orderk').css({display:'none'});
+            $('.deliverk').css({display:'none'});
+            $('.deliveryk').css({display:'none'});
+            $('.evaluatek').css({display:'block'});
+            $('.title1').removeClass('title1').addClass('title1_1');
+            $('.title2').removeClass('title2').addClass('title2_2');
+            $('.title3').removeClass('title3').addClass('title3_3');
+            $('.title4_4').removeClass('title4_4').addClass('title4');
+            $('.cut-page>ul>li>span').eq(0).removeClass('span_color');
+            $('.cut-page>ul>li>span').eq(1).removeClass('span_color');
+            $('.cut-page>ul>li>span').eq(2).removeClass('span_color');
+            $('.cut-page>ul>li span').eq(3).addClass('span_color');
+        });
+        $(".indent-checked").click(function(){//注册图片选择框 选择或者取消功能
+            var b=$(this).hasClass("indent-check");
+            if (b) {
+                $(this).removeClass("indent-check");
+            }else{
+                $(this).addClass("indent-check");
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+@charset "utf-8";
+/* CSS Document */
+
+.function-ctn{ background:#fff;
+	border-radius:10px;
+	padding-top:20px;
+	padding-bottom:5px;
+	margin-top:20px;
+	font-size:16px;
+	font-weight:bold;
+	box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+.function-img{ display:block;
+	width:100px;
+	height:100px;
+	margin:auto;
+	overflow:hidden;
+}
+.function-img img{ width:100%;
+}
+.function-name{ text-align:center;
+	width:70px;
+	line-height:20px;
+	margin:auto;
+	height:40px;
+	padding-top:5px;
+	overflow:hidden;
+	margin-bottom:5px;
+}

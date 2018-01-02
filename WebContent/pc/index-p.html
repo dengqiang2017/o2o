@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+<title>牵引O2O营销服务平台</title>
+<link rel="stylesheet" href="../pcxy/css/bootstrap.css">
+<link rel="stylesheet" href="../pcxy/css/global.css">
+<link rel="stylesheet" href="../css/popUpBox.css?ver=0013">
+<link rel="stylesheet" href="../pcxy/css/product-o2o.css">
+<!-- <link rel="stylesheet" href="../pcxy/css/product.css?ver=0013"> -->
+<link rel="stylesheet" href="../pcxy/css/image-view.css?ver=0013">
+<link rel="stylesheet" href="../pcxy/css/autowhole.css?ver=001">
+<script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+<script type="text/javascript" src="../js_lib/jquery.cookie.js"></script>
+<script src="../pcxy/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/common.js?ver=0013"></script>
+<script type="text/javascript" src="../js/popUpBox.js?ver=0013"></script>
+<script src="../js/o2od.js?ver=001"></script>
+<script src="../pc/js/employee/findparms.js"></script>
+<script type="text/javascript" src="../pc/js/autoComplete.js"></script>
+<script type="text/javascript" src="../datepicker/WdatePicker.js"></script>
+<script type="text/javascript"
+	src="../pc/js/employee/productpage.js?ver=0013"></script>
+<script type="text/javascript"
+	src="../pc/js/employee/ordercom.js?ver=0014"></script>
+<script type="text/javascript" src="../pc/js/customer/order.js?ver=0013"></script>
+
+</head>
+<body>
+	<div class="bg"></div>
+	<div class="header">
+		<a href="login-kehu.html"
+			style="font-size: 16px; margin-left: 10px; color: white;">登录</a> <a
+			href="register-kehu.html"
+			style="font-size: 16px; margin-left: 10px; color: white;">注册</a>
+		<div style="float: right; text-align: right;">
+			<a href="login-yuangong.html">员工</a>
+		</div>
+	</div>
+	<div class="container">
+		<div class="ctn-fff box-ctn" style="min-height: 500px;">
+			<input type="hidden" id="customer_id" value="CS1_ZEROM">
+			<div class="box-head">
+            <div class="col-sm-3">
+              <div class="form-group">
+                  <div class="input-group">
+                    <input type="text" class="form-control input-sm" maxlength="20" placeholder="请输入搜索关键词" id="searchKey">
+                    <span class="input-group-btn">
+                      <button class="btn btn-success btn-sm find" type="button">搜索</button>
+                    </span>
+                  </div>
+                </div>
+            </div>
+              <button type="button" class="btn btn-primary btn-sm" id="product-check">筛选</button>
+            <div class="side-cover" style="display: none;"></div>
+            <div class="cover" style="display: block;"></div>
+            <div class="product-check" style="display: block;">
+              <div class="p-c-header" >
+                <span class="title">筛选</span>
+                <span class="left-btn">取消</span>
+                <span class="right-btn">确定</span>
+              </div>
+              <div class="p-c-body">
+                <div class="p-c-group">
+                  <div class="p-c-title active">
+                    <span>品牌</span>
+                  </div>
+                  
+                </div>
+                <div class="p-c-group">
+                  <div class="p-c-title">
+                    <span>用途</span>
+                  </div>
+                </div>
+                <div class="p-c-group">
+                  <div class="p-c-title">
+                    <span>类别</span>
+                  </div>
+                </div>
+                <div class="p-c-group">
+                  <div class="p-c-title">
+                    <span>店铺</span>
+                  </div>
+                </div>
+                <div class="p-c-group">
+                  <div class="p-c-title">
+                    <span>价格区间</span>
+                  </div>
+                </div>
+              </div>
+              <div class="p-c-content">
+                <ul style="display: block;">
+                  <li class="active">
+                    <span>全部品牌</span>
+                    <i class="glyphicon glyphicon-ok"></i>
+                  </li>
+                  <li class="active">
+                    <span>林氏木业</span>
+                    <i class="glyphicon glyphicon-ok"></i>
+                  </li> 
+                </ul>
+                <ul style="display: none;">
+                  <li>
+                    <span>全部用途</span>
+                    <i class="glyphicon glyphicon-ok"></i>
+                  </li>
+                  <li>
+                    <span>用途1</span>
+                    <i class="glyphicon glyphicon-ok"></i>
+                  </li>
+                </ul>
+                <ul style="display: none;">
+                  <li>
+                    <span>全部类别</span>
+                    <i class="glyphicon glyphicon-ok"></i>
+                  </li>
+                  <li>
+                    <span>沙发</span>
+                    <i class="glyphicon glyphicon-ok"></i>
+                  </li> 
+                </ul>
+                <ul style="display: none;">
+                  <li>
+                    <span>所有店铺</span>
+                    <i class="glyphicon glyphicon-ok"></i>
+                  </li>
+                  <li>
+                    <span>店铺1</span>
+                    <i class="glyphicon glyphicon-ok"></i>
+                  </li>
+                </ul>
+                <ul style="display: none;">
+                  <li>
+                    <span>全部价格</span>
+                    <i class="glyphicon glyphicon-ok"></i>
+                  </li>
+                  <li>
+                    <span>1-100</span><input type="hidden" value="1-100">
+                    <i class="glyphicon glyphicon-ok"></i>
+                  </li>
+                   <li>
+                    <span>100-300</span><input type="hidden" value="100-300">
+                    <i class="glyphicon glyphicon-ok"></i>
+                  </li>
+                  <li>
+                    <span>300-1000</span><input type="hidden" value="300-1000">
+                    <i class="glyphicon glyphicon-ok"></i>
+                  </li>
+                  <li>
+                    <span>1000-1500</span><input type="hidden" value="1000-1500">
+                    <i class="glyphicon glyphicon-ok"></i>
+                  </li>
+                  <li>
+                    <span>1500-2000</span><input type="hidden" value="1500-2000">
+                    <i class="glyphicon glyphicon-ok"></i>
+                  </li>
+                  <li>
+                    <span>2000-2500</span><input type="hidden" value="2000-2500">
+                    <i class="glyphicon glyphicon-ok"></i>
+                  </li>
+                  <li>
+                    <span>2500-3000</span><input type="hidden" value="2500-3000">
+                    <i class="glyphicon glyphicon-ok"></i>
+                  </li>
+                  
+                </ul>
+              </div>
+              <div class="clear-ctn">
+                <div class="clear-btn">清除选项</div>
+              </div>
+            </div>
+        </div>
+			
+			<div class="box-body">
+				<div class="tabs-content" style="display: block;">
+					<div class="ctn">
+						<div style="display: none;">
+							<div class="p-ctn" id="item">
+								<input type="hidden" id="item_id"> <input type="hidden"
+									id="seeds_id">
+									<div class="p-msg">
+								<div class="p-top">
+									<div class="col-sm-3 col-xs-5 pimg-ctn">
+										<a href="../product/productDetail.do"><img class="p-img"
+											src="" alt=""></a>
+									</div>
+									<div class="col-sm-9 col-xs-7 pmsg-ctn">
+										<span class="p-name" id="item_name"></span>
+										<div class="ctn">
+											<span class="p-class" id="item_spec"></span> <span
+												class="p-class" id="item_type"></span> <span
+												class="p-class" id="item_color"></span> <span
+												class="p-class" id="class_card"></span> <span
+												class="p-class" id="quality_class" style="width: 100%;"></span>
+										</div>
+									</div>
+								</div>
+								<div class="p-middle">
+								<input type="hidden" id="sd_unit_price">
+									<div class="pro-check"></div>
+									<div class="p-form col-sm-6" style="display: none;">
+										<label for="">类别</label> <select name="price_type" id="">
+											<option value="">零售</option>
+											<option value="">批发</option>
+											<option value="">协议</option>
+										</select>
+									</div>
+									<div class="p-form col-sm-6" style="display: none;">
+										<label for="">促销</label> <select id="" name="discount_ornot">
+											<option value="Y">有</option>
+											<option value="N">无</option>
+										</select>
+									</div>
+									<div class="p-form col-sm-6" style="display: none;">
+										<label for="">时间</label> <input type="text"
+											name="discount_time_begin" class="p-xs"> <span
+											class="p-xs-m">~</span> <input type="text"
+											name="discount_time" class="p-xs">
+									</div>
+									<div class="p-form col-sm-6">
+										<label for="">单价</label> <span id="sd_unit_price_DOWN"
+											class="p-content-xs red"></span> <span class="p-xs-m">~</span>
+										<span id="sd_unit_price_UP" class="p-content-xs red"></span>
+									</div>
+									<div class="p-form col-sm-6">
+										<label for="">数量</label> 
+										<div class="num-input-xs">
+					                      <span class="add"></span>
+					                      <span class="sub"></span>
+											<input type="text" class="num" id="pronum" data-number="n"> 
+					                    </div>
+											<span class="p-content-xs" id="casing_unit"></span>
+									</div>
+									<div class="p-form col-sm-6">
+										<label for="">折算数量</label> <span id="pack_unit"
+											style="display: none;"></span> <input type="text"
+											class="p-xs zsum" data-number="n" disabled="disabled"> <span
+											id="item_unit"></span>
+									</div>
+									<div class="p-form col-sm-6">
+										<label for="">金额</label> <span class="p-content red"
+											id="sum_si"></span>
+									</div>
+								</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6" id="item01"></div>
+						<div class="col-sm-6" id="item02"></div>
+					</div>
+					<div class="ctn" style="display: none;">
+						<button class="btn btn-add" type="button">点击加载更多</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="back-top" id="scroll" style="display: none;"></div>
+	<div class="footer">
+		<span class="glyphicon glyphicon-earphone"></span>
+		<div class="btn-gp">
+			<button class="btn btn-info allcheck" id="allcheck">全选</button>
+			<button class="btn btn-info" id="saveOrder_no">提交</button>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,145 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: Microsoft YaHei;
+    color: #000000;
+}
+ul>li{
+    list-style: none;
+}
+ul{
+    margin-bottom: 0;
+}
+.header{
+    background-color: #3ABB92;
+    text-align: center;
+    color: #ffffff;
+    padding: 10px;
+    font-size: 20px;
+    position: relative;
+}
+.header>a{
+    color: #ffffff;
+    cursor: pointer;
+}
+.body{
+    background-color: #EAEAEA;
+    padding: 10px;
+}
+.body>ul>li{
+    margin-bottom: 5px;
+}
+.box{
+    border-radius: 5px;
+    background-color: #ffffff;
+    padding: 5px;
+    position: relative;
+}
+.box01{
+    margin: 10px auto;
+    text-align: right;
+    color: #BDBDBD;
+}
+.blue{
+    background-color: #3ABB92;
+    border-radius: 5px;
+    padding: 5px;
+}
+.blue_left{
+    width: 15%;
+    float: left;
+    height: 46px;
+    color: #ffffff;
+    text-align: center;
+    font-size: 18px;
+}
+.blue_center{
+    width: 70%;
+    float: left;
+    background-color: #ffffff;
+    height: 46px;
+}
+.blue_center>input{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    border: none;
+}
+.blue_right{
+    width: 15%;
+    float: left;
+    height: 46px;
+    color: #ffffff;
+    text-align: center;
+    font-size: 18px;
+    line-height: 68px;
+}
+.date_box{
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+.date_box>span{
+    color: #C6C6C6;
+}
+.po_img{
+    width: 80px;
+    height: 80px;
+    background-image: url("../images/verify-success.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.po_img02{
+    width: 80px;
+    height: 80px;
+    background-image: url("../images/verify-under.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.po_img03{
+    width: 80px;
+    height: 80px;
+    background-image: url("../images/verify-defeated.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.box02{
+    width: 94%;
+    margin: auto;
+}
+.btn_a{
+    width: 100%;
+    border: 1px solid #3BBB92;
+    color: #3BBB92;
+    margin-top: 10px;
+}
+.pull-left>p{
+    position: absolute;bottom: 0;left: 0;right:0;text-align: center;color: #ffffff;font-size: 18px;margin-bottom: 5px
+}
+.head_portrait_amend {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+.ct {
+    cursor: pointer;
+    display: block;
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+}

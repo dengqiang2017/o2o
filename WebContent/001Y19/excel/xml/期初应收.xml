@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<REQUEST>  
+<itembegin index="3" sheetName="期初应收-勿改此页名"/>
+<item mainfiledName="dept_id"                   index="0"  excelChineseName="所属部门编码" />
+<item mainfiledName="dept_id"                   index="1"  excelChineseName="所属部门" />
+<item mainfiledName="clerk_id"                  index="2"  excelChineseName="所属员工编码" />
+<!-- <item mainfiledName="clerk_id"             index="3"  excelChineseName="所属员工" /> -->
+<item mainfiledName="customer_id"               index="4"  excelChineseName="客户编码" />
+<!-- <item mainfiledName="customer_id"          index="5"  excelChineseName="客户名称" /> -->
+<item mainfiledName="oh_sum"                    index="6"  excelChineseName="期初金额" />
+<item mainfiledName="rcv_hw_no"                 index="7"  excelChineseName="结算方式" />
+<!-- <item mainfiledName="sd_order_id"               index="8"  excelChineseName="结算方式" /> -->
+<item mainfiledName="c_memo"                    index="9"  excelChineseName="备注" />
+<item mainfiledName="seeds_id"                  index="10"  excelChineseName="行标识" />
+</REQUEST>                                            

@@ -1,0 +1,1160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- xml文件 -->
+<mapper namespace="com.qianying.dao.interfaces.IStatisticalRreportDAO">
+	<!-- <cache/> -->
+	<sql id="searchKeySql">
+	<if test="searchKey!=null">
+	and (
+	t1.item_name like #{searchKey}
+	<if test="customer_id==null">
+	 or t1.customer_id in (select customer_id from SDf00504 where corp_name like #{searchKey})
+	</if>
+	or t1.type_id in (select sort_id from ctl03200 where sort_name like #{searchKey})
+	<if test="dept_idInfo==null">
+	 or t1.dept_id in (select sort_id from Ctl00701 where dept_name like #{searchKey})
+	</if>
+	<if test="clerk_id==null">
+	or t1.clerk_id in (select clerk_id from Ctl00801 where clerk_name like #{searchKey})
+	</if>
+	)
+	</if>
+	<if test="dept_idInfo!=null">
+		${dept_idInfo}
+	</if>
+	<if test="clerk_id!=null">
+		and t1.clerk_id=#{clerk_id}
+	</if>
+	<if test="customer_id!=null">
+		and t1.customer_id=#{customer_id}
+	</if> 
+	</sql>
+	<sql id="wheresqlday">
+		where t1.com_id=#{com_id}  and ltrim(rtrim(isnull(t1.shipped,'')))='已发货'
+	<!-- 当天   -->
+	<![CDATA[
+	 and convert(varchar(23),t1.at_term_datetime_Act,121)>=#{beginTime} and convert(varchar(23),t1.at_term_datetime_Act,121)<#{endTime}
+	 ]]>
+	 <include refid="searchKeySql"/>
+	</sql>
+	<sql id="monthsql">
+		where t1.com_id=#{com_id} and ltrim(rtrim(isnull(t1.shipped,'')))='已发货'
+		<!-- 本月 -->
+	<![CDATA[
+	 and convert(varchar(23),t1.at_term_datetime_Act,121)>=#{month_begin} and convert(varchar(23),t1.at_term_datetime_Act,121)<#{month_end}
+	 ]]>
+	 <include refid="searchKeySql"/>
+	</sql>
+	<sql id="up_monthsql">
+		where t1.com_id=#{com_id} and ltrim(rtrim(isnull(t1.shipped,'')))='已发货'
+		<!-- 上月 -->
+	<![CDATA[
+	 and convert(varchar(23),t1.at_term_datetime_Act,121)>=#{up_month_begin} and convert(varchar(23),t1.at_term_datetime_Act,121)<#{up_month_end}
+	 ]]>
+	 <include refid="searchKeySql"/>
+	</sql>
+	<sql id="up_month_Yearssql">
+	where t1.com_id=#{com_id} and ltrim(rtrim(isnull(t1.shipped,'')))='已发货'
+		<!-- 去年这个月 -->
+	<![CDATA[
+	 and convert(varchar(23),t1.at_term_datetime_Act,121)>=#{up_month_Years_begin} and convert(varchar(23),t1.at_term_datetime_Act,121)<#{up_month_Years_end}
+	 ]]>
+	 <include refid="searchKeySql"/>
+	</sql>
+	<sql id="up_yearssql">
+	where t1.com_id=#{com_id} and ltrim(rtrim(isnull(t1.shipped,'')))='已发货'
+		<!-- 去年 -->
+	<![CDATA[
+	 and convert(varchar(23),t1.at_term_datetime_Act,121)>=#{up_years_begin} 
+	 and convert(varchar(23),t1.at_term_datetime_Act,121)<#{up_month_Years_end}
+	 ]]>
+	 <include refid="searchKeySql"/>
+	</sql>
+	<sql id="yearssql">
+	where t1.com_id=#{com_id} and ltrim(rtrim(isnull(t1.shipped,'')))='已发货'
+		<!-- 今年 -->
+	<![CDATA[
+	 and convert(varchar(23),t1.at_term_datetime_Act,121)>=#{years_begin} 
+	 and convert(varchar(23),t1.at_term_datetime_Act,121)<#{endTime}
+	 ]]>
+	 <include refid="searchKeySql"/>
+	</sql>
+	<sql id="groupsql">
+		group by t1.com_id,t1.dept_id;
+	</sql>
+	<sql id="ordersql">
+		order by t1.dept_id
+	</sql>
+	
+	<sql id="fullsql">
+
+	</sql>
+	<sql id="dropsql">
+	 		drop table #day; 
+<!-- 	 		drop table #month;  -->
+	 		drop table #up_month;drop table #years;
+		drop table #up_years;drop table #up_years_month;drop table #dept;drop table #detilList;
+	</sql>
+	<sql id="clerk_client_sql">
+	t1.clerk_id,t1.customer_id,
+	</sql>
+	<sql id="groupdetailsql">
+	group by t1.com_id,t1.dept_id,<include refid="clerk_client_sql"/>t1.item_id,t1.type_id
+	</sql>
+	<sql id="detailfiledsql">
+	t1.com_id,t1.dept_id,<include refid="clerk_client_sql"/>t1.item_id,t1.type_id,SUM(t1.sd_oq)as num
+	</sql>
+	<sql id="deptsql">
+	<if test="dept_id!=null">
+	and t1.dept_id=#{dept_id}
+	</if>
+	</sql>
+	<sql id="tablesql">
+	from View_sdd02020_ctl03001 t1
+	</sql>
+	<!-- 获取订单销量分部门统计列表 -->
+	<select id="orderReportDeptCountlist" parameterType="hashMap" resultType="hashMap">
+<!-- 		select t1.sort_id as dept_id,t1.dept_name into #dept from  Ctl00701 t1  -->
+<!-- 		where t1.com_id=#{com_id} and t1.sort_id not in (select sort_id from Ctl00701 where sort_id like upper_dept_id+'%') and t1.m_flag ='0' -->
+		select com_id='${com_id}',dept_id='',dept_name='' into #dept 
+<!-- 		from ctl00701 t1 -->
+<!-- 	where ltrim(rtrim(isnull(t1.sort_id,''))) not in -->
+<!-- 	( -->
+<!-- 	  select ltrim(rtrim(isnull(upper_dept_id,''))) from ctl00701 -->
+<!-- 	) and t1.m_flag ='1' -->
+	  
+<!--  	and t1.com_id=#{com_id} ; -->
+
+		select t1.com_id,t1.dept_id,SUM(t1.sd_oq)as num into #day  
+		<include refid="tablesql"/> 
+		<include refid="wheresqlday" />
+		<include refid="groupsql" />
+		
+<!-- 		select t1.dept_id,SUM(t1.sd_oq)as num into #month <include refid="tablesql"/> -->
+<!-- 		<include refid="monthsql" /> -->
+<!-- 		<include refid="groupsql" /> -->
+		
+		select t1.com_id,t1.dept_id,SUM(t1.sd_oq)as num into #up_month <include refid="tablesql"/>
+		<include refid="up_monthsql" />
+		<include refid="groupsql" />
+		
+		select t1.com_id,t1.dept_id,SUM(t1.sd_oq)as num into #up_years_month <include refid="tablesql"/>
+		<include refid="up_month_Yearssql" />
+		<include refid="groupsql" />
+		
+		select t1.com_id,t1.dept_id,SUM(t1.sd_oq)as num into #years <include refid="tablesql"/>
+		<include refid="yearssql" />
+		<include refid="groupsql" />
+		
+		select t1.com_id,t1.dept_id,SUM(t1.sd_oq)as num into #up_years <include refid="tablesql"/>	
+		<include refid="up_yearssql" />
+		<include refid="groupsql" />
+		
+		select t1.com_id,t1.dept_id,t1.dept_name,t0.num as monthnum,
+<!-- 		t2.num as monthnum, daynum -->
+		t3.num as upmonthnum,t4.num as yearsnum,
+		t5.num as up_ninanum,t6.num as up_years_monthnum  into #detilList 
+from #dept t1 left join #day t0 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t0.com_id,''))) and ltrim(rtrim(isnull(t1.dept_id,'')))=ltrim(rtrim(isnull(t0.dept_id,''))) 
+left join #up_month t3 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t3.com_id,''))) and ltrim(rtrim(isnull(t1.dept_id,'')))=ltrim(rtrim(isnull(t3.dept_id,'')))          
+left join #years t4 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t4.com_id,''))) and ltrim(rtrim(isnull(t1.dept_id,'')))=ltrim(rtrim(isnull(t4.dept_id,'')))             
+left join #up_years t5 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t5.com_id,''))) and ltrim(rtrim(isnull(t1.dept_id,'')))=ltrim(rtrim(isnull(t5.dept_id,'')))          
+left join #up_years_month t6 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t6.com_id,''))) and ltrim(rtrim(isnull(t1.dept_id,'')))=ltrim(rtrim(isnull(t6.dept_id,'')))    		
+		select t1.com_id,
+ t1.dept_id,t1.dept_name,t1.monthnum,
+ 		t1.upmonthnum,t1.yearsnum,
+		t1.up_ninanum,t1.up_years_monthnum ,order0=1
+ from #detilList t1
+		    union all 
+  select  t1.com_id,
+ dept_id='',dept_name='外销合计',
+ sum(isnull(t1.monthnum,0.000)) as monthnum,sum(isnull(t1.upmonthnum,0.000)) as upmonthnum,
+ sum(isnull(t1.yearsnum,0.000)) as yearsnum,sum(isnull(t1.up_ninanum,0.000)) as up_ninanum,
+ sum(isnull(t1.up_years_monthnum,0.000)) as up_years_monthnum,order0=0
+  from #detilList t1  where t1.com_id=#{com_id} and not t1.dept_id='DE000001DE000024'
+ group by  t1.com_id
+ 		    union all 
+  select  t1.com_id,
+ dept_id='',dept_name='总计',
+ sum(isnull(t1.monthnum,0.000)) as monthnum,sum(isnull(t1.upmonthnum,0.000)) as upmonthnum,
+ sum(isnull(t1.yearsnum,0.000)) as yearsnum,sum(isnull(t1.up_ninanum,0.000)) as up_ninanum,
+ sum(isnull(t1.up_years_monthnum,0.000)) as up_years_monthnum,order0=0
+  from #detilList t1  
+ group by  t1.com_id
+		<include refid="ordersql" />  desc;
+		<include refid="dropsql"/>
+	</select>
+<!-- 销售统计报表-明细统计、客户统计、业务员统计公用： orderReportDeptDetailList-->
+<select id="orderReportDeptDetailList" parameterType="hashMap" resultType="hashMap">
+select t1.com_id,t1.dept_id,t2.dept_name,<include refid="clerk_client_sql"/>t1.corp_sim_name,
+  t1.item_id,t1.type_id,t1.item_sim_name,t1.item_unit,
+  t1.dept_id_OUT,t1.peijian_id,t1.item_name
+into #dept 
+from View_sdd02020_ctl03001 t1
+left join Ctl00801 t3 on t1.clerk_id=t3.clerk_id  and t1.com_id=t3.com_id
+left join Ctl00701 t2 on t3.dept_id=t2.sort_id and t3.com_id=t2.com_id
+where 
+ t1.com_id=#{com_id} <include refid="searchKeySql"/>
+group by t1.com_id,t1.dept_id,t1.dept_id_OUT,t2.dept_name,
+<include refid="clerk_client_sql"/>t1.item_id,t1.peijian_id,
+t1.type_id,t1.item_sim_name,t1.item_name,t1.corp_sim_name,t1.item_unit;
+
+select t1.com_id,t1.dept_id,<include refid="clerk_client_sql"/>t1.item_id,t1.type_id,SUM(t1.sd_oq)as num into #day 
+<include refid="tablesql"/>
+<include refid="wheresqlday" /><include refid="deptsql"/>
+<include refid="groupdetailsql"/>
+
+<!--  select <include refid="detailfiledsql"/> into #month <include refid="tablesql"/> -->
+<!-- <include refid="monthsql" /><include refid="deptsql"/> -->
+<!-- <include refid="groupdetailsql"/> -->
+
+ select <include refid="detailfiledsql"/> into #up_month <include refid="tablesql"/>
+<include refid="up_monthsql" /><include refid="deptsql"/>
+<include refid="groupdetailsql"/>;
+
+ select <include refid="detailfiledsql"/> into #years <include refid="tablesql"/>
+<include refid="yearssql" /><include refid="deptsql"/>
+<include refid="groupdetailsql"/>;
+
+ select <include refid="detailfiledsql"/> into #up_years_month <include refid="tablesql"/>
+<include refid="up_month_Yearssql" /><include refid="deptsql"/>
+<include refid="groupdetailsql"/>;
+
+  select <include refid="detailfiledsql"/> into #up_years <include refid="tablesql"/>
+<include refid="up_yearssql" /><include refid="deptsql"/>
+<include refid="groupdetailsql"/>;
+<!--  组合各个分表的数据到一个临时表中 -->
+select t1.com_id,t1.dept_id,t1.dept_name,<include refid="clerk_client_sql"/>t1.item_id,t1.type_id,t1.corp_sim_name,
+  t1.item_sim_name,t1.item_unit, 
+  t1.dept_id_OUT, t1.peijian_id,t1.item_name,
+  t0.num as monthnum,t3.num as upmonthnum,t4.num as yearsnum,
+  t5.num as up_ninanum,t6.num as up_years_monthnum  into #detilList   
+from #dept t1 left join #day t0 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t0.com_id,''))) and ltrim(rtrim(isnull(t1.dept_id,'')))=ltrim(rtrim(isnull(t0.dept_id,''))) and ltrim(rtrim(isnull(t1.clerk_id,'')))=ltrim(rtrim(isnull(t0.clerk_id,''))) and t1.customer_id=t0.customer_id and t1.item_id=t0.item_id 
+left join #up_month t3 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t3.com_id,''))) and ltrim(rtrim(isnull(t1.dept_id,'')))=ltrim(rtrim(isnull(t3.dept_id,''))) and ltrim(rtrim(isnull(t1.clerk_id,'')))=ltrim(rtrim(isnull(t3.clerk_id,''))) and t1.customer_id=t3.customer_id and t1.item_id=t3.item_id 
+left join #years t4 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t4.com_id,''))) and ltrim(rtrim(isnull(t1.dept_id,'')))=ltrim(rtrim(isnull(t4.dept_id,''))) and ltrim(rtrim(isnull(t1.clerk_id,'')))=ltrim(rtrim(isnull(t4.clerk_id,''))) and t1.customer_id=t4.customer_id and t1.item_id=t4.item_id 
+left join #up_years t5 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t5.com_id,''))) and ltrim(rtrim(isnull(t1.dept_id,'')))=ltrim(rtrim(isnull(t5.dept_id,''))) and ltrim(rtrim(isnull(t1.clerk_id,'')))=ltrim(rtrim(isnull(t5.clerk_id,''))) and t1.customer_id=t5.customer_id and t1.item_id=t5.item_id 
+left join #up_years_month t6 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t6.com_id,''))) and ltrim(rtrim(isnull(t1.dept_id,'')))=ltrim(rtrim(isnull(t6.dept_id,''))) and ltrim(rtrim(isnull(t1.clerk_id,'')))=ltrim(rtrim(isnull(t6.clerk_id,''))) and t1.customer_id=t6.customer_id and t1.item_id=t6.item_id 		
+<if test="client==null and clerk==null">
+ select t1.com_id,
+ ltrim(rtrim(isnull(t1.dept_id,''))) as dept_id, ltrim(rtrim(isnull(t1.dept_name,''))) as dept_name,
+ ltrim(rtrim(isnull(t1.clerk_id,''))) as clerk_id,ltrim(rtrim(isnull(t1.customer_id,''))) as customer_id,
+ t1.item_id,t1.type_id,t1.corp_sim_name,t1.item_sim_name,t1.item_unit,
+ ltrim(rtrim(isnull(t1.dept_id_OUT,''))) as dept_id_OUT, ltrim(rtrim(isnull(t1.peijian_id,''))) as peijian_id,ltrim(rtrim(isnull(t1.item_name,''))) as item_name,
+ sum(isnull(t1.monthnum,0.000)) as monthnum,sum(isnull(t1.upmonthnum,0.000)) as upmonthnum,
+ sum(isnull(t1.yearsnum,0.000)) as yearsnum,sum(isnull(t1.up_ninanum,0.000)) as up_ninanum,
+ sum(isnull(t1.up_years_monthnum,0.000)) as up_years_monthnum,order1=1,order2=2
+  from #detilList t1 
+ group by  t1.com_id,ltrim(rtrim(isnull(t1.dept_id,''))),ltrim(rtrim(isnull(t1.dept_id_OUT,''))),ltrim(rtrim(isnull(t1.dept_name,''))) ,
+ ltrim(rtrim(isnull(t1.clerk_id,''))),ltrim(rtrim(isnull(t1.customer_id,''))) ,t1.type_id,
+ t1.item_id,ltrim(rtrim(isnull(t1.peijian_id,''))),ltrim(rtrim(isnull(t1.item_name,''))) ,t1.corp_sim_name,t1.item_sim_name ,t1.item_unit
+  
+    union all 
+  select t1.com_id,
+ ltrim(rtrim(isnull(t1.dept_id,''))) as dept_id,ltrim(rtrim(isnull(t1.dept_name,''))) as dept_name,ltrim(rtrim(isnull(t1.clerk_id,''))) as clerk_id,ltrim(rtrim(isnull(t1.customer_id,''))) as customer_id,item_id='',type_id='',corp_sim_name='',item_sim_name='客户合计',item_unit='',
+ ltrim(rtrim(isnull(t1.dept_id_OUT,''))) as dept_id_OUT, peijian_id='', item_name='',
+ sum(isnull(t1.monthnum,0.000)) as monthnum,sum(isnull(t1.upmonthnum,0.000)) as upmonthnum,
+ sum(isnull(t1.yearsnum,0.000)) as yearsnum,sum(isnull(t1.up_ninanum,0.000)) as up_ninanum,
+ sum(isnull(t1.up_years_monthnum,0.000)) as up_years_monthnum,order1=1,order2=1
+  from #detilList t1  
+ group by  t1.com_id,ltrim(rtrim(isnull(t1.dept_id,''))),ltrim(rtrim(isnull(t1.dept_id_OUT,''))),ltrim(rtrim(isnull(t1.dept_name,''))) ,
+ ltrim(rtrim(isnull(t1.clerk_id,''))),ltrim(rtrim(isnull(t1.customer_id,''))) 
+
+  union all 
+  select t1.com_id,
+ ltrim(rtrim(isnull(t1.dept_id,''))) as dept_id,ltrim(rtrim(isnull(t1.dept_name,''))) as dept_name,ltrim(rtrim(isnull(t1.clerk_id,''))) as clerk_id,customer_id='',item_id='',type_id='',corp_sim_name='',item_sim_name='业务员合计',item_unit='',
+ ltrim(rtrim(isnull(t1.dept_id_OUT,''))) as dept_id_OUT, peijian_id='',  item_name='', 
+ sum(isnull(t1.monthnum,0.000)) as monthnum,sum(isnull(t1.upmonthnum,0.000)) as upmonthnum,
+ sum(isnull(t1.yearsnum,0.000)) as yearsnum,sum(isnull(t1.up_ninanum,0.000)) as up_ninanum,
+ sum(isnull(t1.up_years_monthnum,0.000)) as up_years_monthnum,order1=1,order2=0
+  from #detilList t1  
+ group by  t1.com_id,ltrim(rtrim(isnull(t1.dept_id,''))),ltrim(rtrim(isnull(t1.dept_id_OUT,''))),ltrim(rtrim(isnull(t1.dept_name,''))) ,
+ ltrim(rtrim(isnull(t1.clerk_id,'')))
+
+  union all 
+  select t1.com_id,
+ ltrim(rtrim(isnull(t1.dept_id,''))) as dept_id,ltrim(rtrim(isnull(t1.dept_name,''))) as dept_name,clerk_id='',customer_id='',item_id='',type_id='',corp_sim_name='',item_sim_name='分部合计',item_unit='',
+ ltrim(rtrim(isnull(t1.dept_id_OUT,''))) as dept_id_OUT, peijian_id='',  item_name='', 
+ sum(isnull(t1.monthnum,0.000)) as monthnum,sum(isnull(t1.upmonthnum,0.000)) as upmonthnum,
+ sum(isnull(t1.yearsnum,0.000)) as yearsnum,sum(isnull(t1.up_ninanum,0.000)) as up_ninanum,
+ sum(isnull(t1.up_years_monthnum,0.000)) as up_years_monthnum,order1=1,order2=0
+  from #detilList t1  
+ group by  t1.com_id,ltrim(rtrim(isnull(t1.dept_id,''))),ltrim(rtrim(isnull(t1.dept_id_OUT,''))) ,ltrim(rtrim(isnull(t1.dept_name,''))) 
+    union all 
+  select t1.com_id,
+ dept_id='',dept_name='',clerk_id='',customer_id='',item_id='',type_id='',corp_sim_name='',item_sim_name='总计',item_unit='',
+ dept_id_OUT='', peijian_id='',  item_name='',
+ sum(isnull(t1.monthnum,0.000)) as monthnum,sum(isnull(t1.upmonthnum,0.000)) as upmonthnum,
+ sum(isnull(t1.yearsnum,0.000)) as yearsnum,sum(isnull(t1.up_ninanum,0.000)) as up_ninanum,
+ sum(isnull(t1.up_years_monthnum,0.000)) as up_years_monthnum,order1=0,order2=0
+  from #detilList t1  
+ group by  t1.com_id
+order by order1 desc ,com_id, ltrim(rtrim(isnull(t1.dept_id,'')))  desc  ,
+  ltrim(rtrim(isnull(t1.clerk_id,'')))  desc ,ltrim(rtrim(isnull(t1.customer_id,''))) desc  ,order2 desc 
+</if>
+<if test="clerk!=null"><include refid="clerksql"/>
+</if>
+<if test="client!=null"><include refid="clientsql"/>
+</if>
+<include refid="dropsql"/> 
+</select>
+<!-- 销售统计报表-销售记录 -->
+<select id="orderRecord" parameterType="hashMap" resultType="hashMap">
+select t1.dept_id,t2.dept_name,t1.clerk_id,t3.clerk_name,t1.customer_id,
+t1.corp_name,t1.corp_sim_name,t1.type_id,t5.sort_name
+,t1.item_id,t1.item_name,t1.item_sim_name,t1.sd_oq,t1.sd_unit_price,t1.sum_si,
+t1.at_term_datetime_Act,t1.ivt_oper_listing,t1.sd_order_id, 
+ltrim(rtrim(isnull(t2.sort_id,''))) as dept_id_OUT,ltrim(rtrim(isnull(t3.self_id,''))) as clerk_id_OUT,
+ltrim(rtrim(isnull(t1.customer_id_OUT,''))) as customer_id_OUT,
+ltrim(rtrim(isnull(t1.peijian_id,''))) as peijian_id,ord=0
+ from View_sdd02020_ctl03001 t1
+left join Ctl00801 t3 on t1.clerk_id=t3.clerk_id and t1.com_id=t3.com_id
+left join Ctl00701 t2 on t3.dept_id=t2.sort_id and t3.com_id=t2.com_id
+left join ctl03200 t5 on t1.type_id=t5.sort_id and t1.com_id=t5.com_id
+<include refid="wheresqlday" />
+union all 
+select   dept_id='',dept_name='',clerk_id='',clerk_name='',customer_id='',corp_name='',corp_sim_name='',type_id='',sort_name='', 
+item_id='',item_name='',item_sim_name='合计',sum(isnull(t1.sd_oq,0.00)) as sd_oq ,sd_unit_price=null,sum(isnull(t1.sum_si,0.00)) as sum_si ,
+convert(varchar(10),t1.at_term_datetime_Act,121),ivt_oper_listing='',sd_order_id='',
+dept_id_OUT='',clerk_id_OUT='',customer_id_OUT='',peijian_id='',ord=0 
+from View_sdd02020_ctl03001 t1
+<include refid="wheresqlday" />
+group by convert(varchar(10),t1.at_term_datetime_Act,121)
+union all 
+select dept_id='',dept_name='',clerk_id='',clerk_name='',customer_id='',corp_name='',corp_sim_name='',type_id='',sort_name='', 
+item_id='',item_name='',item_sim_name='总计',sum(isnull(t1.sd_oq,0.00)) as sd_oq ,sd_unit_price=null,sum(isnull(t1.sum_si,0.00)) as sum_si ,
+at_term_datetime_Act=null,ivt_oper_listing='',sd_order_id='',
+dept_id_OUT='',clerk_id_OUT='',customer_id_OUT='',peijian_id='',ord=1 
+from View_sdd02020_ctl03001 t1
+<include refid="wheresqlday" />
+group by t1.com_id
+order by ord,t1.at_term_datetime_Act desc
+</select>
+<select id="orderRecordSum" parameterType="hashMap" resultType="hashMap">
+select 
+sum(isnull(t1.sum_si,0)) as sum_si ,sum(isnull(t1.sd_oq,0)) as sd_oq  from View_sdd02020_ctl03001 t1
+<include refid="wheresqlday" />
+</select>
+
+ 
+<sql id="clerksql">
+ select ltrim(rtrim(isnull(t1.com_id,''))) as com_id,
+ ltrim(rtrim(isnull(t1.dept_id,''))) as dept_id,ltrim(rtrim(isnull(t1.dept_name,''))) as dept_name,ltrim(rtrim(isnull(t1.clerk_id,''))) as clerk_id,
+ ltrim(rtrim(isnull(t1.item_id,''))) as item_id,ltrim(rtrim(isnull(t1.type_id,''))) as type_id,
+ ltrim(rtrim(isnull(t1.item_sim_name,''))) as item_sim_name,ltrim(rtrim(isnull(t1.item_unit,''))) as item_unit,
+ ltrim(rtrim(isnull(t1.dept_id_OUT,''))) as dept_id_OUT,ltrim(rtrim(isnull(t1.peijian_id,''))) as peijian_id,ltrim(rtrim(isnull(t1.item_name,''))) as item_name,
+ sum(isnull(t1.monthnum,0.000)) as monthnum,sum(isnull(t1.upmonthnum,0.000)) as upmonthnum,
+ sum(isnull(t1.yearsnum,0.000)) as yearsnum,sum(isnull(t1.up_ninanum,0.000)) as up_ninanum,
+ sum(isnull(t1.up_years_monthnum,0.000)) as up_years_monthnum,order1=1,order2=2
+  from #detilList t1 
+ group by  ltrim(rtrim(isnull(t1.com_id,''))),ltrim(rtrim(isnull(t1.dept_id,''))) ,ltrim(rtrim(isnull(t1.dept_id_OUT,''))) ,ltrim(rtrim(isnull(t1.dept_name,''))),
+ ltrim(rtrim(isnull(t1.clerk_id,''))), t1.type_id,ltrim(rtrim(isnull(t1.item_id,''))),ltrim(rtrim(isnull(t1.peijian_id,''))),ltrim(rtrim(isnull(t1.item_name,''))),
+t1.item_sim_name,ltrim(rtrim(isnull(t1.item_unit,''))) 
+  
+  union all 
+  select t1.com_id,
+ ltrim(rtrim(isnull(t1.dept_id,''))) as dept_id,ltrim(rtrim(isnull(t1.dept_name,''))) as dept_name,ltrim(rtrim(isnull(t1.clerk_id,''))) as clerk_id,
+ item_id='',type_id='',
+ item_sim_name='业务员合计',item_unit='',
+ ltrim(rtrim(isnull(t1.dept_id_OUT,''))) as dept_id_OUT,peijian_id='',item_name='', 
+ sum(isnull(t1.monthnum,0.000)) as monthnum,sum(isnull(t1.upmonthnum,0.000)) as upmonthnum,
+ sum(isnull(t1.yearsnum,0.000)) as yearsnum,sum(isnull(t1.up_ninanum,0.000)) as up_ninanum,
+ sum(isnull(t1.up_years_monthnum,0.000)) as up_years_monthnum,order1=1,order2=0
+  from #detilList t1  
+ group by  t1.com_id,ltrim(rtrim(isnull(t1.dept_id,''))) ,ltrim(rtrim(isnull(t1.dept_id_OUT,''))),ltrim(rtrim(isnull(t1.dept_name,''))),ltrim(rtrim(isnull(t1.clerk_id,'')))
+
+  union all 
+  select t1.com_id,
+ ltrim(rtrim(isnull(t1.dept_id,''))) as dept_id,ltrim(rtrim(isnull(t1.dept_name,''))) as dept_name,clerk_id='',
+ item_id='',type_id='',
+ item_sim_name='分部合计',item_unit='',
+ ltrim(rtrim(isnull(t1.dept_id_OUT,''))) as dept_id_OUT,peijian_id='',item_name='', 
+ sum(isnull(t1.monthnum,0.000)) as monthnum,sum(isnull(t1.upmonthnum,0.000)) as upmonthnum,
+ sum(isnull(t1.yearsnum,0.000)) as yearsnum,sum(isnull(t1.up_ninanum,0.000)) as up_ninanum,
+ sum(isnull(t1.up_years_monthnum,0.000)) as up_years_monthnum,order1=1,order2=0
+  from #detilList t1  
+ group by  t1.com_id,ltrim(rtrim(isnull(t1.dept_id,''))) ,ltrim(rtrim(isnull(t1.dept_id_OUT,''))),ltrim(rtrim(isnull(t1.dept_name,'')))
+    union all 
+  select t1.com_id,
+ dept_id='',dept_name='',clerk_id='',
+ item_id='',type_id='',
+ item_sim_name='总计',item_unit='',
+ dept_id_OUT='',peijian_id='',item_name='',  
+ sum(isnull(t1.monthnum,0.000)) as monthnum,sum(isnull(t1.upmonthnum,0.000)) as upmonthnum,
+ sum(isnull(t1.yearsnum,0.000)) as yearsnum,sum(isnull(t1.up_ninanum,0.000)) as up_ninanum,
+ sum(isnull(t1.up_years_monthnum,0.000)) as up_years_monthnum,order1=0,order2=0
+  from #detilList t1  
+ group by  t1.com_id
+ 
+ order by order1 desc ,com_id, ltrim(rtrim(isnull(t1.dept_id,'')))  desc  ,
+                                   ltrim(rtrim(isnull(t1.clerk_id,'')))  desc  ,order2 desc   
+</sql> 
+<sql id="clientsql">
+
+ select t1.com_id,
+ ltrim(rtrim(isnull(t1.dept_id,''))) as dept_id,ltrim(rtrim(isnull(t1.dept_name,''))) as dept_name,
+ ltrim(rtrim(isnull(t1.customer_id,''))) as customer_id,
+ t1.item_id,t1.type_id,t1.corp_sim_name,t1.item_sim_name,t1.item_unit,
+ ltrim(rtrim(isnull(t1.dept_id_OUT,''))) as dept_id_OUT,ltrim(rtrim(isnull(t1.peijian_id,''))) as peijian_id,ltrim(rtrim(isnull(t1.item_name,''))) as item_name, 
+ sum(isnull(t1.monthnum,0.000)) as monthnum,sum(isnull(t1.upmonthnum,0.000)) as upmonthnum,
+ sum(isnull(t1.yearsnum,0.000)) as yearsnum,sum(isnull(t1.up_ninanum,0.000)) as up_ninanum,
+ sum(isnull(t1.up_years_monthnum,0.000)) as up_years_monthnum,order1=1,order2=2
+  from #detilList t1 
+ group by  t1.com_id,ltrim(rtrim(isnull(t1.dept_id,''))),ltrim(rtrim(isnull(t1.dept_id_OUT,''))) ,ltrim(rtrim(isnull(t1.dept_name,''))),
+ ltrim(rtrim(isnull(t1.customer_id,''))) ,t1.type_id,
+ t1.item_id,ltrim(rtrim(isnull(t1.peijian_id,''))),t1.corp_sim_name,
+ t1.item_sim_name,ltrim(rtrim(isnull(t1.item_name,''))) ,t1.item_unit 
+
+    union all 
+  select t1.com_id,
+ ltrim(rtrim(isnull(t1.dept_id,''))) as dept_id ,ltrim(rtrim(isnull(t1.dept_name,''))) as dept_name,
+ ltrim(rtrim(isnull(t1.customer_id,''))) as customer_id,
+ item_id='',type_id='',corp_sim_name='',item_sim_name='客户合计',item_unit='',
+ ltrim(rtrim(isnull(t1.dept_id_OUT,''))) as dept_id_OUT, peijian_id='',item_name='',  
+ sum(isnull(t1.monthnum,0.000)) as monthnum,sum(isnull(t1.upmonthnum,0.000)) as upmonthnum,
+ sum(isnull(t1.yearsnum,0.000)) as yearsnum,sum(isnull(t1.up_ninanum,0.000)) as up_ninanum,
+ sum(isnull(t1.up_years_monthnum,0.000)) as up_years_monthnum,order1=1,order2=1
+  from #detilList t1  
+ group by  t1.com_id,ltrim(rtrim(isnull(t1.dept_id,''))),ltrim(rtrim(isnull(t1.dept_id_OUT,''))),ltrim(rtrim(isnull(t1.dept_name,''))),
+ ltrim(rtrim(isnull(t1.customer_id,''))) 
+
+  union all 
+  select t1.com_id,
+ ltrim(rtrim(isnull(t1.dept_id,''))) as dept_id,ltrim(rtrim(isnull(t1.dept_name,''))) as dept_name,
+ customer_id='',
+ item_id='',type_id='',corp_sim_name='',item_sim_name='分部合计',item_unit='',
+ ltrim(rtrim(isnull(t1.dept_id_OUT,''))) as dept_id_OUT, peijian_id='',item_name='',  
+ sum(isnull(t1.monthnum,0.000)) as monthnum,sum(isnull(t1.upmonthnum,0.000)) as upmonthnum,
+ sum(isnull(t1.yearsnum,0.000)) as yearsnum,sum(isnull(t1.up_ninanum,0.000)) as up_ninanum,
+ sum(isnull(t1.up_years_monthnum,0.000)) as up_years_monthnum,order1=1,order2=0
+  from #detilList t1  
+ group by  t1.com_id,ltrim(rtrim(isnull(t1.dept_id,''))),ltrim(rtrim(isnull(t1.dept_id_OUT,''))) ,ltrim(rtrim(isnull(t1.dept_name,'')))
+    union all 
+  select t1.com_id,
+ dept_id='',dept_name='',
+ customer_id='',
+ item_id='',type_id='',corp_sim_name='',item_sim_name='总计',item_unit='',
+ dept_id_OUT='', peijian_id='',item_name='',  
+ sum(isnull(t1.monthnum,0.000)) as monthnum,sum(isnull(t1.upmonthnum,0.000)) as upmonthnum,
+ sum(isnull(t1.yearsnum,0.000)) as yearsnum,sum(isnull(t1.up_ninanum,0.000)) as up_ninanum,
+ sum(isnull(t1.up_years_monthnum,0.000)) as up_years_monthnum,order1=0,order2=0
+  from #detilList t1  
+ group by  t1.com_id
+ 
+ order by order1 desc ,com_id, ltrim(rtrim(isnull(t1.dept_id,'')))  desc  ,
+                                  ltrim(rtrim(isnull(t1.customer_id,''))) desc  ,order2 desc   
+</sql>
+<sql id="recwheresql">
+where t1.com_id=#{com_id}  
+<if test="customer_id!=null">
+${customer_id} 
+</if>
+<if test="client_id!=null">
+and t1.customer_id =#{client_id}
+</if>
+<if test="clerk_id!=null">
+and t1.clerk_id=#{clerk_id}
+</if>
+<if test="rcv_hw_no!=null">
+and t1.rcv_hw_no=#{rcv_hw_no}
+</if>
+<![CDATA[
+and convert(varchar(23),t1.finacial_d,121)>=#{beginTime}
+and convert(varchar(23),t1.finacial_d,121)<#{endTime}
+]]>
+<if test="searchKey!=null">
+and (t1.recieved_id like #{searchKey} or t1.recieved_auto_id like #{searchKey} or t1.rejg_hw_no like #{searchKey}
+ or t1.c_memo like #{searchKey}
+ or t1.sum_si_origin like #{searchKey}
+ or t1.clerk_id in (select clerk_id from Ctl00801 where clerk_name like #{searchKey})
+ or t1.dept_id in (select sort_id from Ctl00701 where dept_name like #{searchKey} or dept_sim_name like #{dept_sim_name})
+ )
+</if>
+</sql>
+<!-- 销售收款报表记录查询 -->
+<select id="receivablesReportList" parameterType="hashMap" resultType="hashMap">
+select ltrim(rtrim(isnull(t1.com_id,''))) as com_id,
+ltrim(rtrim(isnull(t1.customer_id,''))) as customer_id,
+ltrim(rtrim(isnull(t1.sum_si_origin,''))) as sum_si_origin,
+convert(varchar(23),t1.finacial_d,121) as finacial_d,ltrim(rtrim(isnull(t2.corp_name,''))) as corp_name,
+ltrim(rtrim(isnull(t2.corp_sim_name,''))) as corp_sim_name,t1.sum_si,ltrim(rtrim(isnull(t1.rcv_hw_no,''))) as rcv_hw_no,ltrim(rtrim(isnull(t3.settlement_sim_name,''))) as settlement_sim_name,
+ltrim(rtrim(isnull(t1.recieved_id,''))) as recieved_id,ltrim(rtrim(isnull(t1.dept_id,''))) as dept_id,ltrim(rtrim(isnull(t5.dept_name,''))) as dept_name,
+ltrim(rtrim(isnull(t5.dept_sim_name,''))) as dept_sim_name
+,ltrim(rtrim(isnull(t4.clerk_name,''))) as clerk_name,ltrim(rtrim(isnull(t1.clerk_id,''))) as clerk_id,ltrim(rtrim(isnull(t1.rejg_hw_no,''))) as rejg_hw_no,order0=2
+from ARd02051 t1 
+left join Sdf00504 t2 on ltrim(rtrim(isnull(t1.customer_id,'')))=ltrim(rtrim(isnull(t2.customer_id,'')))  and ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t2.com_id,'')))
+left join ctl02107 t3 on ltrim(rtrim(isnull(t1.rcv_hw_no,'')))=ltrim(rtrim(isnull(t3.sort_id,'')))  and ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t3.com_id,'')))
+left join Ctl00801 t4 on ltrim(rtrim(isnull(t1.clerk_id,'')))=ltrim(rtrim(isnull(t4.clerk_id,'')))  and ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t4.com_id,'')))
+left join Ctl00701 t5 on ltrim(rtrim(isnull(t1.dept_id,'')))=ltrim(rtrim(isnull(t5.sort_id,''))) and ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t5.com_id,'')))
+<include refid="recwheresql"/> and isnull(t1.comfirm_flag,'N')='Y'
+union all
+select ltrim(rtrim(isnull(t1.com_id,''))) as com_id,ltrim(rtrim(isnull(t1.customer_id,''))) as customer_id,sum_si_origin='',finacial_d='',corp_name='合计',corp_sim_name='合计',SUM(ISNULL(t1.sum_si,0.000000)),
+rcv_hw_no='',settlement_sim_name='',recieved_id='',dept_id='',dept_name='',dept_sim_name='',clerk_name='',clerk_id='',rejg_hw_no='' ,order0=1
+from ARd02051 t1 
+<include refid="recwheresql"/> and isnull(t1.comfirm_flag,'N')='Y'
+group by ltrim(rtrim(isnull(t1.com_id,''))),ltrim(rtrim(isnull(t1.customer_id,'')))
+union all 
+select ltrim(rtrim(isnull(t1.com_id,''))) as com_id,customer_id='',sum_si_origin='',finacial_d='',corp_name='总计',corp_sim_name='总计',SUM(ISNULL(t1.sum_si,0.000000)),
+rcv_hw_no='',settlement_sim_name='',recieved_id='',dept_id='',dept_name='',dept_sim_name='',clerk_name='',clerk_id='',rejg_hw_no='',order0=0 
+from ARd02051 t1 
+<include refid="recwheresql"/> and isnull(t1.comfirm_flag,'N')='Y'
+group by ltrim(rtrim(isnull(t1.com_id,'')))
+order by com_id,customer_id desc,order0  desc;
+</select>
+
+<!-- 客户对账单 -->
+<select id="accountStatementList" parameterType="hashMap" resultType="hashMap">
+<![CDATA[
+{call sp_SellAdduPQry(#{com_id, mode=IN, jdbcType=VARCHAR},#{beginTime, mode=IN, jdbcType=VARCHAR},
+#{endTime , mode=IN, jdbcType=VARCHAR}, #{client_id,mode=IN,jdbcType=VARCHAR}
+, #{clerk_id,mode=IN,jdbcType=VARCHAR},#{dept_id,mode=IN,jdbcType=VARCHAR},#{dept_right,mode=IN,jdbcType=VARCHAR},#{settlement_sortID,mode=IN,jdbcType=VARCHAR}
+,#{key_words,mode=IN,jdbcType=VARCHAR},#{if_check,mode=IN,jdbcType=VARCHAR} ,#{if_LargessGoods,mode=IN,jdbcType=VARCHAR})}
+]]>
+</select>
+
+<!-- 应收款总账查询 -->
+<select id="accountsReceivableLedgerList" parameterType="hashMap" resultType="hashMap">
+<![CDATA[
+{call sp_ARMaster
+  (#{com_id, mode=IN, jdbcType=VARCHAR},#{beginTime, mode=IN, jdbcType=VARCHAR},
+   #{endTime , mode=IN, jdbcType=VARCHAR}, '', #{Zero,mode=IN,jdbcType=VARCHAR},
+   '','',#{tjfs ,mode=IN,jdbcType=INTEGER}, 
+   #{client_id,mode=IN,jdbcType=VARCHAR},#{settlement_sortID,mode=IN,jdbcType=VARCHAR}
+  )
+}
+]]>
+</select>
+<!-- 采购付款报表查询 -->
+<sql id="getPaymentWhere">
+	left join ctl00504 t2 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t2.com_id,''))) and t1.customer_id=t2.corp_id
+  	left join ctl00701 t3 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t3.com_id,''))) and t1.dept_id=t3.dept_id
+  	left join ctl00801 t4 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t4.com_id,''))) and t1.clerk_id=t4.clerk_id
+	where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id} and t1.recieved_direct='付款'
+<if test="customer_id!=null">
+	and ltrim(rtrim(isnull(t1.customer_id,'')))=#{customer_id}
+</if>
+<if test="beginTime!=null">
+	<![CDATA[
+	and convert(varchar(23),t1.mainten_datetime,121)>=#{beginTime}
+	]]>
+	</if>
+	<if test="endTime!=null">
+	<![CDATA[
+	and convert(varchar(23),t1.mainten_datetime,121)<=#{endTime}
+	]]>
+	</if>
+</sql>
+<select id="getPaymentSheetCount" parameterType="hashMap" resultType="Integer">
+		select count(*) from ARd02051 t1
+		<include refid="getPaymentWhere"/>
+</select>
+<select id="getPaymentSheetList" parameterType="hashMap" resultType="hashMap">
+	declare @maxId int,@maxId2 int;
+	set @maxid=(
+	select max(idh) from (
+	select top ${page}
+	ROW_NUMBER() OVER (
+		ORDER BY
+		ltrim(rtrim(isnull(t1.recieved_auto_id,''))) desc ,
+		ltrim(rtrim(isnull(t1.customer_id,''))) desc
+		) as idh 
+  	from ARd02051 t1 
+  	<include refid="getPaymentWhere"/>
+  	) as t);
+       set @maxId2=@maxId;
+ <if test="page==1">
+			set @maxId=@maxId-1;
+ </if>
+	select top ${rows} t.* from (
+	select ROW_NUMBER() OVER (
+		ORDER BY
+		ltrim(rtrim(isnull(t1.recieved_auto_id,''))) desc ,
+		ltrim(rtrim(isnull(t1.customer_id,''))) desc
+		) as idh,
+  	  t1.sum_si,t1.seeds_id,
+  	  convert(varchar(16),t1.finacial_d,121) as finacial_d,
+  	  convert(varchar(16),t1.qianmingTime,121) as qianmingTime,
+  	  ltrim(rtrim(isnull(t1.recieved_auto_id,''))) as recieved_auto_id,
+  	  ltrim(rtrim(isnull(t1.sum_si_origin,''))) as sum_si_origin,
+  	  ltrim(rtrim(isnull(t1.qianming,''))) as qianming,
+  	  ltrim(rtrim(isnull(t4.clerk_name,''))) as clerk_name,
+  	  ltrim(rtrim(isnull(t1.c_memo,''))) as c_memo,t2.corp_name,t2.movtel,t3.dept_name 
+  	from ARd02051 t1 
+  	<include refid="getPaymentWhere"/>
+  	) as t where t.idh>@maxid
+</select>
+<!-- 应付明细账查询 -->
+<!-- <select id="getFkAccount" parameterType="hashMap" resultType="hashMap"> -->
+<!-- <![CDATA[ -->
+<!-- {call Sp_StockAdduPQry( -->
+<!-- #{com_id,mode=IN,jdbcType=CHAR},#{star_date,mode=IN,jdbcType=VARCHAR},#{end_date,mode=IN,jdbcType=VARCHAR}, -->
+<!-- #{vendor_id,mode=IN,jdbcType=VARCHAR},#{dept_id,mode=IN,jdbcType=VARCHAR},#{clerk_id,mode=IN,jdbcType=VARCHAR}, -->
+<!-- #{dept_right,mode=IN,jdbcType=VARCHAR})} -->
+<!-- ]]> -->
+<!-- </select> -->
+<sql id="getFkAccountWhere">
+	left join ARd02051 t2 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t2.com_id,''))) and t1.st_auto_no=t2.rejg_hw_no
+	left join ctl00504 t3 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t3.com_id,''))) and t1.vendor_id=t3.corp_id
+	where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id}
+<if test="customer_id!=''">
+	and ltrim(rtrim(isnull(t1.vendor_id,'')))=#{customer_id}
+</if>
+<if test="beginTime!=null">
+	<![CDATA[
+	and convert(varchar(23),t1.mainten_datetime,121)>=#{beginTime}
+	]]>
+	</if>
+	<if test="endTime!=null">
+	<![CDATA[
+	and convert(varchar(23),t1.mainten_datetime,121)<=#{endTime}
+	]]>
+	</if>
+</sql>
+<select id="getFkAccountCount" parameterType="hashMap" resultType="Integer">
+		select count(*) from STDM02001 t1
+		<include refid="getFkAccountWhere"/>
+</select>
+<select id="getFkAccountList" parameterType="hashMap" resultType="hashMap">
+	declare @maxId int,@maxId2 int;
+	set @maxid=(
+	select max(idh) from (
+	select top ${page}
+	ROW_NUMBER() OVER (
+		ORDER BY
+		ltrim(rtrim(isnull(t1.st_auto_no,''))) desc ,
+		ltrim(rtrim(isnull(t1.mainten_datetime,''))) desc ,
+		ltrim(rtrim(isnull(t1.vendor_id,''))) desc
+		) as idh 
+  	from STDM02001 t1 
+  	<include refid="getFkAccountWhere"/>
+  	) as t);
+       set @maxId2=@maxId;
+ <if test="page==1">
+			set @maxId=@maxId-1;
+ </if>
+	select top ${rows} t.* from (
+	select ROW_NUMBER() OVER (
+		ORDER BY
+			ltrim(rtrim(isnull(t1.st_auto_no,''))) desc ,
+		ltrim(rtrim(isnull(t1.mainten_datetime,''))) desc,
+		ltrim(rtrim(isnull(t1.vendor_id,''))) desc
+		) as idh,
+  	  t1.finacial_d,t3.corp_name,t1.st_hw_no,t2.recieved_auto_id,t2.sum_si,t2.mainten_datetime,(select sum(t4.price*t4.rep_qty) from VIEW_STDM02001_ctl03001 t4 
+	where t4.st_auto_no=t1.st_auto_no and t4.com_id=#{com_id}) as yfSum
+  	from STDM02001 t1 
+  	<include refid="getFkAccountWhere"/>
+  	) as t where t.idh>@maxid
+</select>
+<!-- 采购明细统计查询 -->
+<sql id="cgmxWhere">
+  	left join Ctl03001 t3 on t1.com_id=t3.com_id and t1.item_id=t3.item_id
+  	left join Ivt01001 t4 on t1.com_id=t4.com_id and t1.store_struct_id=t4.sort_id 
+  	left join ctl00504 t5 on t1.com_id=t5.com_id and t1.vendor_id=t5.corp_id
+	where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id} and t1.stock_type='进货' and comfirm_flag='Y'
+<if test="vendor_id!=''">
+	and ltrim(rtrim(isnull(t1.vendor_id,'')))=#{vendor_id}
+</if>
+<if test="beginTime!=null">
+	<![CDATA[
+	and convert(varchar(23),t1.at_term_datetime,121)>=#{beginTime}
+	]]>
+	</if>
+	<if test="endTime!=null">
+	<![CDATA[
+	and convert(varchar(23),t1.at_term_datetime,121)<=#{endTime}
+	]]>
+	</if>
+</sql>
+<select id="getCgmxStatisticalCount" parameterType="hashMap" resultType="Integer">
+		select count(*) from View_STDM03001 t1
+		<include refid="cgmxWhere"/>
+</select>
+<select id="getCgmxStatisticalList" parameterType="hashMap" resultType="hashMap">
+	declare @maxId int,@maxId2 int;
+	set @maxid=(
+	select max(idh) from (
+	select top ${page}
+	ROW_NUMBER() OVER (
+		ORDER BY
+		ltrim(rtrim(isnull(t1.rcv_auto_no,''))) desc ,
+		ltrim(rtrim(isnull(t1.item_id,''))) desc
+		) as idh 
+  	from View_STDM03001 t1
+  	) as t);
+       set @maxId2=@maxId;
+ <if test="page==1">
+			set @maxId=@maxId-1;
+ </if>
+	select top ${rows} t.* from (
+	select ROW_NUMBER() OVER (
+		ORDER BY
+		ltrim(rtrim(isnull(t1.rcv_auto_no,''))) desc ,
+		ltrim(rtrim(isnull(t1.item_id,''))) desc
+		) as idh,
+  	  t1.rep_qty,t1.item_id,t1.price,t1.rcv_auto_no,t1.at_term_datetime,t1.discount_rate,
+  	  t3.item_name,t3.item_spec,t3.item_type,t3.item_color,t3.casing_unit,t4.store_struct_name,t5.corp_name
+  	from View_STDM03001 t1 
+  	<include refid="cgmxWhere"/>
+  	) as t where t.idh>@maxid
+</select>
+
+ <sql id="salesCommissWhere">
+ where 
+ ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id}
+ and not ltrim(rtrim(isnull(t1.Status_OutStore,'待支付')))='待支付'
+ and not ltrim(rtrim(isnull(t1.Status_OutStore,'待支付')))='支付中'
+ and ltrim(rtrim(isnull(t1.ivt_oper_listing,''))) not in (
+ 		select distinct t4.ivt_oper_listing from ARd02051 t3 
+ 		left join View_sdd02020_ctl03001 t4 on ltrim(rtrim(isnull(t3.com_id,'')))=ltrim(rtrim(isnull(t4.com_id,''))) 
+ 		and(
+ 		ltrim(rtrim(isnull(t3.rejg_hw_no,''))) like '%'+ltrim(rtrim(isnull(t4.ivt_oper_listing,'')))+'%' or
+ 		ltrim(rtrim(isnull(t3.c_memo,''))) like '%'+ltrim(rtrim(isnull(t4.ivt_oper_listing,'')))+'%' 
+ 		) 
+ 		where 
+ 		not ltrim(rtrim(isnull(t4.ivt_oper_listing,'')))='' 
+ 		and ltrim(rtrim(isnull(t3.com_id,'')))=#{com_id}
+ 		and ltrim(rtrim(isnull(t3.comfirm_flag,'N')))='N'
+ 	)
+ <if test="beginTime!=null">
+	<![CDATA[
+	and convert(varchar(23),t1.so_consign_date,121)>=#{beginTime}
+	]]>
+</if>
+<if test="endTime!=null">
+	<![CDATA[
+	and convert(varchar(23),t1.so_consign_date,121)<=#{endTime}
+	]]>
+</if>
+<if test="customer_id!=null">
+ltrim(rtrim(isnull(t1.customer_id,''))) =#{customer_id}
+</if>
+<if test="m_flag!=null">
+ltrim(rtrim(isnull(t1.m_flag,'0'))) =#{m_flag}
+</if>
+<if test="upper_customer_id!=null">
+ltrim(rtrim(isnull(t2.upper_customer_id,''))) like #{upper_customer_id}
+</if>
+ <if test="searchKey!=null">
+ and(
+ t1.customer_id like #{searchKey} or 
+ t2.upper_customer_id like #{searchKey} or
+ t2.corp_name like #{searchKey} or
+ t1.item_id like #{searchKey}
+ )
+ </if>
+ </sql>
+ <sql id="salesCommissionSql">
+ (
+ 	select t1.customer_id,t2.upper_customer_id,t2.corp_name,t3.corp_name as upper_corp_name,
+ 	ltrim(rtrim(isnull(t1.m_flag,'0'))) as m_flag,
+ 	1 as percentageProportion,sum(t1.sd_unit_price*t1.sd_oq) as sum_si from View_sdd02020 t1
+  	left join Sdf00504 t2 on t1.com_id=t2.com_id and t1.customer_id=t2.customer_id
+    left join Sdf00504 t3 on t1.com_id=t3.com_id and t2.upper_customer_id=t3.customer_id,t1.m_flag
+    <include refid="salesCommissWhere"/>
+    group by t1.customer_id,t2.upper_customer_id,t2.corp_name,t3.corp_name
+ ) as t1
+ </sql> 
+  <select id="getSalesCommissionCount" parameterType="hashMap" resultType="Integer">
+   select count(*) from  <include refid="salesCommissionSql"/>
+	</select>
+	<select id="getSalesCommissionList" parameterType="hashMap" resultType="hashMap">
+	declare @maxId int,@maxId2 int;
+	set @maxid=(
+	select max(idh) from (
+	select top ${page}
+	ROW_NUMBER() OVER (
+		ORDER BY
+		ltrim(rtrim(isnull(t1.customer_id,'')))
+		) as idh 
+  	from <include refid="salesCommissionSql"/>
+  	) as t);
+       set @maxId2=@maxId;
+  	 <if test="page==1">
+			set @maxId=@maxId-1;
+		</if>
+	select top ${rows} t.* from (
+	select ROW_NUMBER() OVER (
+		ORDER BY
+		ltrim(rtrim(isnull(t1.customer_id,'')))
+		) as idh,
+  	  t1.*
+  	from <include refid="salesCommissionSql"/>
+  	) as t where  t.idh>@maxid
+	</select>
+ <sql id="salesBonusSql">
+  (
+ 	select t1.customer_id,t2.corp_name,sum(t1.sd_unit_price*t1.sd_oq) as sum_si from View_sdd02020_ctl03001 t1
+  	left join Sdf00504 t2 on t1.com_id=t2.com_id and t1.customer_id=t2.customer_id
+    <include refid="salesCommissWhere"/>
+    group by t1.customer_id, t2.corp_name
+ ) as t1
+ </sql>
+  <select id="getSalesBonusCount" parameterType="hashMap" resultType="Integer">
+	select count(*) from  <include refid="salesBonusSql"/>
+	</select>
+	<select id="getSalesBonusList" parameterType="hashMap" resultType="hashMap">
+		declare @maxId int,@maxId2 int;
+	set @maxid=(
+	select max(idh) from (
+	select top ${page}
+	ROW_NUMBER() OVER (
+		ORDER BY
+		ltrim(rtrim(isnull(t1.customer_id,'')))
+		) as idh 
+  	from <include refid="salesBonusSql"/>
+  	) as t);
+       set @maxId2=@maxId;
+  	 <if test="page==1">
+			set @maxId=@maxId-1;
+		</if>
+	select top ${rows} t.* from (
+	select ROW_NUMBER() OVER (
+		ORDER BY
+		ltrim(rtrim(isnull(t1.customer_id,'')))
+		) as idh,
+  	  t1.*
+  	from <include refid="salesBonusSql"/>
+  	) as t where  t.idh>@maxid
+	</select>
+	
+	<select id="planReportCount" parameterType="hashMap" resultType="hashMap">
+	select 
+	ltrim(rtrim(isnull(t1.item_id,''))) as item_id,
+	ltrim(rtrim(isnull(t2.item_name,''))) as item_name,
+	ltrim(rtrim(isnull(t2.item_sim_name,''))) as item_sim_name,
+	isnull(t2.pack_unit,1) as pack_unit,
+	ltrim(rtrim(isnull(t2.casing_unit,''))) as casing_unit,
+	ltrim(rtrim(isnull(t2.item_unit,''))) as item_unit,
+	ltrim(rtrim(isnull(t2.vendor_id,''))) as vendor_id,
+	Convert(decimal(18,2),isnull(t1.discount_rate,isnull(t2.item_cost,0))) as item_cost,
+	Convert(decimal(18,2),isnull(t1.sd_unit_price,isnull(t2.item_zeroSell,0))) as item_zeroSell ,
+	Convert(decimal(18,2),sum(t1.send_qty)) as kucun,
+	ltrim(rtrim(isnull(t3.corp_name,''))) as corp_name,
+	ltrim(rtrim(isnull(t3.corp_sim_name,''))) as corp_sim_name,
+	convert(varchar(10),t1.at_term_datetime,121) as planTime,
+	Convert(decimal(18,2),sum(t1.sd_oq)*isnull(t1.discount_rate,isnull(t2.item_cost,0))) as je,
+	Convert(decimal(18,2),sum(t1.sd_oq)/isnull(t2.pack_unit,1)) as zsum,
+	Convert(decimal(18,2),sum(t1.sd_oq))  as planNum
+	from View_SDP02020 t1
+	left join CTL03001 t2 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t2.com_id,''))) 
+	and ltrim(rtrim(isnull(t1.item_id,'')))=ltrim(rtrim(isnull(t2.item_id,'')))
+	left join Ctl00504 t3 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t3.com_id,''))) 
+	and ltrim(rtrim(isnull(t2.vendor_id,'')))=ltrim(rtrim(isnull(t3.corp_id,'')))
+	where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id}  and isnull(t1.sd_oq,0)>0
+	and ltrim(rtrim(isnull(t2.item_status,'停用')))='使用'
+	<if test="vendor_id!=null">
+	and t2.vendor_id=#{vendor_id}
+	</if>
+	<if test="customer_id!=null">
+	and t1.customer_id=#{customer_id}
+	</if>
+	 <if test="searchKey!=null">
+	and (
+	ltrim(rtrim(isnull(t2.item_name,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t2.item_sim_name,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t2.item_color,''))) like #{searchKey} or 
+	ltrim(rtrim(isnull(t2.item_spec,''))) like #{searchKey} or 
+	ltrim(rtrim(isnull(t2.item_type,''))) like #{searchKey} or 
+	ltrim(rtrim(isnull(t2.easy_id,''))) like #{searchKey} or 
+	ltrim(rtrim(isnull(t1.ivt_oper_listing,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t1.item_id,''))) like #{searchKey} or 
+	ltrim(rtrim(isnull(t3.corp_name,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t3.corp_sim_name,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t3.easy_id,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t1.vendor_id,''))) like #{searchKey}
+	)
+	</if>
+	<if test="beginDate!=null">
+	and convert(varchar(10),t1.at_term_datetime,121)>=#{beginDate}
+	</if>
+	<if test="endDate!=null">
+	<![CDATA[
+	and convert(varchar(10),t1.at_term_datetime,121)<=#{endDate}
+	]]>
+	</if>
+	group by 
+	t1.item_id,
+	t2.item_name,
+	t2.item_sim_name,
+	t2.pack_unit,
+	t2.casing_unit,
+	t2.item_unit,
+	t2.vendor_id,
+	t2.item_cost,t1.discount_rate,
+	t2.item_zeroSell,t1.sd_unit_price,
+	t3.corp_name,t3.corp_sim_name,
+	convert(varchar(10),t1.at_term_datetime,121)
+	order by t3.corp_name,t2.item_name
+	</select>
+<!-- 	明细统计 -->
+	<sql id="planReportDetailSql">
+	select
+	ltrim(rtrim(isnull(t1.customer_id,''))) as customer_id,
+	ltrim(rtrim(isnull(t1.item_id,''))) as item_id,
+	ltrim(rtrim(isnull(t2.vendor_id,''))) as vendor_id,
+	ltrim(rtrim(isnull(t2.item_name,''))) as item_name,
+	ltrim(rtrim(isnull(t2.item_sim_name,''))) as item_sim_name,
+	isnull(t2.pack_unit,1) as pack_unit,
+	ltrim(rtrim(isnull(t2.casing_unit,''))) as casing_unit,
+	ltrim(rtrim(isnull(t2.item_unit,''))) as item_unit,
+	Convert(decimal(18,2),isnull(t1.discount_rate,isnull(t2.item_cost,0))) as item_cost,
+	Convert(decimal(18,2),isnull(t1.sd_unit_price,isnull(t2.item_zeroSell,0))) as item_zeroSell ,  
+<!-- 	Convert(decimal(18,2),isnull(t1.discount_rate,0)) as caigouPrice , -->
+<!-- 	Convert(decimal(18,2),isnull(t1.sd_unit_price,0)) as sd_unit_price , -->
+<!-- 	Convert(decimal(18,2),isnull(t2.item_zeroSell,0)) as item_zeroSell, -->
+	
+	 	Convert(decimal(18,2),isnull(t1.discount_rate,isnull(t2.item_cost,0))) as caigouPrice , 
+	Convert(decimal(18,2),isnull(t1.sd_unit_price,isnull(t2.item_zeroSell,0))) as sd_unit_price ,  
+	ltrim(rtrim(isnull(t3.corp_name,''))) as corp_name,
+<!-- 	供应商名称 -->
+	ltrim(rtrim(isnull(t3.corp_sim_name,''))) as corp_sim_name,
+	ltrim(rtrim(isnull(t4.corp_name,''))) as c_corp_name,
+<!-- 	店面名称 -->
+	ltrim(rtrim(isnull(t4.corp_sim_name,''))) as c_corp_sim_name,
+	convert(varchar(10),t1.at_term_datetime,121) as at_term_datetime,
+	<if test="mingxi!=null">
+	t1.seeds_id,
+	Convert(decimal(18,2),isnull(t1.send_qty,0)) as kucun,
+	Convert(decimal(18,2),isnull(t1.sd_oq,0)) as planNum ,
+	Convert(decimal(18,2),isnull(t1.sd_oq,0)*isnull(t1.discount_rate,isnull(t2.item_cost,0))) as je
+	</if>
+	<if test="mingxi==null">
+	Convert(decimal(18,2),sum(isnull(t1.send_qty,0))) as kucun,
+	Convert(decimal(18,2),sum(isnull(t1.sd_oq,0))) as planNum ,
+	Convert(decimal(18,2),sum(isnull(t1.sd_oq,0)*isnull(t1.discount_rate,isnull(t2.item_cost,0)))) as je
+	</if>
+	from View_SDP02020 t1
+	left join CTL03001 t2 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t2.com_id,''))) 
+	and ltrim(rtrim(isnull(t1.item_id,'')))=ltrim(rtrim(isnull(t2.item_id,'')))
+	left join Ctl00504 t3 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t3.com_id,''))) 
+	and ltrim(rtrim(isnull(t2.vendor_id,'')))=ltrim(rtrim(isnull(t3.corp_id,'')))
+	left join sdf00504 t4 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t4.com_id,''))) 
+	and ltrim(rtrim(isnull(t1.customer_id,'')))=ltrim(rtrim(isnull(t4.customer_id,'')))
+	where 
+	ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id} and isnull(t1.sd_oq,0)>0
+	<if test="item_id!=null">
+	and ltrim(rtrim(isnull(t1.item_id,'')))=#{item_id}
+	</if>
+	<if test="customer_id!=null">
+	and ltrim(rtrim(isnull(t1.customer_id,'')))=#{customer_id}
+	</if>
+	and ltrim(rtrim(isnull(t2.item_status,'停用')))='使用'
+	<if test="vendor_id!=null">
+	and ltrim(rtrim(isnull(t2.vendor_id,'')))=#{vendor_id}
+	</if>
+	<if test="vendorId!=null">
+	and ltrim(rtrim(isnull(t2.vendor_id,'')))=#{vendorId}
+	</if>
+	<if test="beginDate!=null">
+	and convert(varchar(10),t1.at_term_datetime,121)>=#{beginDate}
+	</if>
+	<if test="endDate!=null">
+	<![CDATA[
+	and convert(varchar(10),t1.at_term_datetime,121)<=#{endDate}
+	]]>
+	</if>
+	 <if test="searchKey!=null">
+	and (
+	ltrim(rtrim(isnull(t1.ivt_oper_listing,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t1.item_id,''))) like #{searchKey} or 
+	ltrim(rtrim(isnull(t1.vendor_id,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t2.item_name,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t2.item_sim_name,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t2.easy_id,''))) like #{searchKey} or 
+	ltrim(rtrim(isnull(t2.item_color,''))) like #{searchKey} or 
+	ltrim(rtrim(isnull(t2.item_spec,''))) like #{searchKey} or 
+	ltrim(rtrim(isnull(t2.item_type,''))) like #{searchKey} or 
+	ltrim(rtrim(isnull(t3.corp_name,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t3.corp_sim_name,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t3.easy_id,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t4.corp_name,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t4.corp_sim_name,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t4.easy_id,''))) like #{searchKey}
+	)
+	</if>
+	<if test="mingxi==null">
+	group by 
+	t1.customer_id,t1.item_id,t1.discount_rate,t1.sd_unit_price,
+	t2.item_name,
+	t2.item_sim_name,
+	t2.pack_unit,
+	t2.casing_unit,
+	t2.item_unit,
+	t2.vendor_id,
+	t2.item_cost,t1.discount_rate,
+	t2.item_zeroSell,
+	t3.corp_name,t3.corp_sim_name,
+	t4.corp_name,t4.corp_sim_name,
+	convert(varchar(10),t1.at_term_datetime,121)
+	</if>
+	</sql>
+	<select id="planReportDetail" parameterType="hashMap" resultType="hashMap">
+	select * from (
+	<include refid="planReportDetailSql"/>
+	) t
+<!-- 	order by convert(varchar(10),t1.at_term_datetime,121) desc,t4.corp_sim_name,t2.item_name,t3.corp_sim_name -->
+	order by 
+	<if test="desc==null || desc==0">
+	t.customer_id,t.c_corp_sim_name,t.corp_sim_name
+	</if>
+	<if test="desc==1">
+	t.item_name,t.customer_id,t.c_corp_sim_name
+	</if>
+	</select>
+	
+	<update id="updatePlanGys" parameterType="hashMap">
+	<if test="seeds_id!=null">
+	update sdp02021 set sd_oq=#{sd_oq} where seeds_id=#{seeds_id}
+	</if>
+	<if test="item_id!=null">
+	update sdp02021 set discount_rate=#{discount_rate}
+	<if test="item_zeroSell!=null">
+	,sd_unit_price=#{item_zeroSell}
+	</if>
+	where ltrim(rtrim(isnull(item_id,'')))=#{item_id} and ltrim(rtrim(isnull(com_id,'')))=#{com_id} 
+	and ivt_oper_listing in (select ivt_oper_listing from VIEW_SDP02020 where
+	ltrim(rtrim(isnull(item_id,'')))=#{item_id} and ltrim(rtrim(isnull(com_id,'')))=#{com_id} 
+	and convert(varchar(10),at_term_datetime,121)>=#{beginDate}
+	<![CDATA[
+	and convert(varchar(10),at_term_datetime,121)<=#{endDate}
+	]]>
+	);
+	update STD02001 set price=#{item_cost} where 
+	ltrim(rtrim(isnull(com_id,'')))=#{com_id}
+	and ltrim(rtrim(isnull(unit_id,'')))=#{vendor_id}
+	and ltrim(rtrim(isnull(item_id,'')))=#{item_id}
+	and convert(varchar(10),at_term_datetime,121)>=#{beginDate}
+	<![CDATA[
+	and convert(varchar(10),at_term_datetime,121)<=#{endDate}
+	]]>	
+	update ctl03001 set item_cost=#{item_cost} 
+	<if test="item_zeroSell!=null">
+	,item_zeroSell=#{item_zeroSell}
+	</if>
+	where ltrim(rtrim(isnull(item_id,'')))=#{item_id} and ltrim(rtrim(isnull(com_id,'')))=#{com_id};
+	</if>
+	<if test="seeds_id==null and item_id==null">
+	update sdp02021 set vendor_id=#{gysid},sd_unit_price=#{item_cost} where  
+	ltrim(rtrim(isnull(com_id,'')))=#{com_id} 
+	and ltrim(rtrim(isnull(ivt_oper_listing,''))) in(
+	select ltrim(rtrim(isnull(ivt_oper_listing,''))) from view_SDP02020
+	where ltrim(rtrim(isnull(com_id,'')))=#{com_id}
+	and convert(varchar(10),at_term_datetime,121)=#{planTime}
+	and ltrim(rtrim(isnull(item_id,'')))=#{item_id} 
+	);
+	update ctl03001 set vendor_id=#{gysid} where  
+	ltrim(rtrim(isnull(com_id,'')))=#{com_id}
+	and ltrim(rtrim(isnull(item_id,'')))=#{item_id};
+	</if>
+	</update>
+	
+  <select id="planReportDetailPageCount" parameterType="hashMap" resultType="Integer">
+	select count(*) from (
+	<include refid="planReportDetailSql"/>
+	) t
+	</select>
+	<select id="planReportDetailPage" parameterType="hashMap" resultType="hashMap">
+	declare @maxId int,@maxId2 int;
+	set @maxid=(
+	select max(idh) from (
+	select top ${page}
+	ROW_NUMBER() OVER (
+		ORDER BY 
+		<if test="desc==null || desc==0">
+	t.customer_id,t.c_corp_sim_name,t.corp_sim_name
+	</if>
+	<if test="desc==1">
+	t.item_name,t.customer_id,t.c_corp_sim_name
+	</if>
+		) as idh 
+  	from (
+  	<include refid="planReportDetailSql"/>
+  	) t
+  	) as t);
+       set @maxId2=@maxId;
+  	 <if test="page==1">
+			set @maxId=@maxId-1;
+		</if>
+	select top ${rows} t.* from (
+	select ROW_NUMBER() OVER (
+		ORDER BY 
+		<if test="desc==null || desc==0">
+	t.customer_id,t.c_corp_sim_name,t.corp_sim_name
+	</if>
+	<if test="desc==1">
+	t.item_name,t.customer_id,t.c_corp_sim_name
+	</if>
+		) as idh,
+  	  t.*
+  	from (
+  	<include refid="planReportDetailSql"/>
+  	) t
+  	) as t where  t.idh>@maxid
+	</select>
+<!-- 	店面,供应商金额汇总 -->
+	<select id="getPlanBusinessAccontCount" parameterType="hashMap" resultType="hashMap">
+	select 
+	<if test="type==null or type==''">
+	ltrim(rtrim(isnull(t1.customer_id,''))) as customer_id,
+ltrim(rtrim(isnull(t4.corp_name,''))) as corp_name,
+	ltrim(rtrim(isnull(t4.corp_sim_name,''))) as corp_sim_name,
+</if>
+<if test="type!=null and type!=''">
+ltrim(rtrim(isnull(t2.vendor_id,''))) as vendor_id,
+ltrim(rtrim(isnull(t3.corp_name,''))) as corp_name,
+	ltrim(rtrim(isnull(t3.corp_sim_name,''))) as corp_sim_name,
+</if>
+	SUM(isnull(t1.sd_oq,0)*isnull(t1.discount_rate,isnull(t2.item_cost,0))) as zje  
+	from VIEW_SDP02020 t1
+	left join CTL03001 t2 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t2.com_id,''))) 
+	and ltrim(rtrim(isnull(t1.item_id,'')))=ltrim(rtrim(isnull(t2.item_id,'')))
+	left join Ctl00504 t3 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t3.com_id,''))) 
+	and ltrim(rtrim(isnull(t2.vendor_id,'')))=ltrim(rtrim(isnull(t3.corp_id,'')))
+	left join sdf00504 t4 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t4.com_id,''))) 
+	and ltrim(rtrim(isnull(t1.customer_id,'')))=ltrim(rtrim(isnull(t4.customer_id,'')))
+	where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id} and isnull(t1.sd_oq,0)>0
+	and ltrim(rtrim(isnull(t2.item_status,'停用')))='使用'
+	<if test="customer_id!=null">
+	and ltrim(rtrim(isnull(t1.customer_id,'')))=#{customer_id}
+	</if>
+	<if test="vendor_id!=null">
+	and t2.vendor_id=#{vendor_id}
+	</if>
+	  <if test="beginDate!=null">
+	and convert(varchar(10),t1.at_term_datetime,121)>=#{beginDate}
+	</if>
+	<if test="endDate!=null">
+	<![CDATA[
+	and convert(varchar(10),t1.at_term_datetime,121)<=#{endDate}
+	]]>
+	</if>
+	 <if test="searchKey!=null">
+	and (
+	ltrim(rtrim(isnull(t1.ivt_oper_listing,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t1.item_id,''))) like #{searchKey} or 
+	ltrim(rtrim(isnull(t1.vendor_id,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t2.item_name,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t2.item_sim_name,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t2.easy_id,''))) like #{searchKey} or 
+	ltrim(rtrim(isnull(t2.item_color,''))) like #{searchKey} or 
+	ltrim(rtrim(isnull(t2.item_spec,''))) like #{searchKey} or 
+	ltrim(rtrim(isnull(t2.item_type,''))) like #{searchKey} or 
+	ltrim(rtrim(isnull(t3.corp_name,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t3.corp_sim_name,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t3.easy_id,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t4.corp_name,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t4.corp_sim_name,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t4.easy_id,''))) like #{searchKey}
+	)
+	</if>
+group by 
+<if test="type==null or type==''">
+t1.customer_id,t4.corp_name,t4.corp_sim_name
+order by t1.customer_id
+</if>
+<if test="type!=null and type!=''">
+t2.vendor_id,t3.corp_name,t3.corp_sim_name
+order by t2.vendor_id
+</if>
+</select>
+</mapper>

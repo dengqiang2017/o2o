@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <title>O2O营销服务平台</title>
+    <meta http-equiv="Pragma" content="no-cache">
+    <link rel="stylesheet" href="../../pcxy/css/bootstrap.css">
+    <link rel="stylesheet" href="../../pcxy/css/global.css">
+    <link rel="stylesheet" href="../../css/popUpBox.css">
+    <script type="text/javascript" src="../../js_lib/jquery.11.js"></script>
+    <script type="text/javascript" src="../../js_lib/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../../js_lib/jquery.jqprint.js"></script>
+	<script type="text/javascript" src="../../js_lib/jquery-migrate-1.1.0.js"></script>
+    <script src="../../pcxy/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../js/popUpBox.js"></script>
+    <script type="text/javascript" src="../../pc/js/employee/selClient.js"></script>
+    <script type="text/javascript">
+    <!--
+    var math=Math.random();
+    document.write("<script src='../../datepicker/WdatePicker.js?ver="+math+"'><\/script>");
+    document.write("<script src='../../js/common.js?ver="+math+"'><\/script>");
+    document.write("<script src='../../js/o2otree.js?ver="+math+"'><\/script>");
+    document.write("<script src='../../js/o2od.js?ver="+math+"'><\/script>");
+    document.write("<script src='accountStatementPrint.js?ver="+math+"'><\/script>");
+    //-->
+    </script>
+</head>
+    <style>
+          .qm_img>img{
+              width: 45%;
+              float: left;
+              padding: 10px;
+          }
+    </style>
+<body>
+<div class="bg"></div>
+<div class="header">
+    <ol class="breadcrumb">
+        <li><span class="glyphicon glyphicon-triangle-right"></span><a href="../../report/accountStatement.do">返回</a></li>
+        <li class="active"><span class="glyphicon glyphicon-triangle-right"></span>客户对账打印</li>
+    </ol>
+    <div class="header-title">客户对账打印
+        <a href="../../report/accountStatement.do" class="header-back"><span class="glyphicon glyphicon-menu-left"></span></a>
+    </div>
+    <div class="header-logo"></div>
+</div>
+<div class="left-hide-ctn" style="">
+    <h4>客户信息</h4>
+    <div class="form-group">
+        <div class="input-group">
+            <input type="text" class="form-control input-sm" maxlength="50" id="clientkeyname" placeholder="请输入搜索关键词"> <span class="input-group-btn">
+				<button class="btn btn-danger btn-sm" type="button" id="findclient">搜索</button>
+			</span>
+        </div>
+    </div>
+    <div class="hide-table">
+        <ul class="hide-title">
+            <li class="col-xs-6">客户名称</li>
+            <li class="last col-xs-6">手机号</li>
+        </ul>
+        <div><ul class="hide-msg">
+        <li class="col-xs-6">我公司(虚拟)</li>
+        <li class="last col-xs-6"></li>
+        <li><input type="hidden" value="CS1" id="CS1"></li>
+    </ul></div>
+    </div>
+    <div class="ctn" style="display: none;">
+        <button class="btn btn_add_client" type="button">点击加载更多</button>
+    </div>
+</div>
+<div class="cover" style=""></div>
+<div class="container" style="margin-top: 60px;">
+    <div class="row">
+        <div class="ctn">
+            <div class="ctn-fff box-ctn" style="min-height:750px;">
+                <div class="box-head" style="display: none;">
+                    <button type="button" id="c-msg" class="btn btn-primary btn-sm m-t-b">客户信息</button>
+                    <button type="button" id="seekh" class="btn btn-primary btn-sm m-t-b">选择客户</button>
+                    <div class="sim-table" style="display: none;">
+                        <ul class="sim-title">
+                            <li class="col-xs-6">客户名称</li>
+                            <li class="last col-xs-6">手机号</li>
+                        </ul>
+                        <ul class="sim-msg">
+                            <li class="col-xs-6"></li>
+                            <li class="last col-xs-6"></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <!-- 所有sheet公用 -->
+                    <div class="folding-btn m-t-b">
+                        <button type="button" class="btn btn-primary btn-sm btn-folding" id="expand">展开搜索</button>
+                        <button type="button" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-share-alt"></span> 导出</button>
+                        <!-- <button type="button" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-share-alt"></span> 导入</button> -->
+                    </div>
+                    <form action="" style="clear:both;overflow:hidden;">
+                        <input type="hidden" name="client_id" id="customer_id">
+                        <!-- 	<input type="hidden" id="customer_id"> -->
+                        <div class="col-sm-3 col-lg-2 m-t-b">
+                            <div class="form-group">
+                                <label for="">起始日期</label>
+                                <input type="date" id="d4311"
+                                       class="form-control input-sm Wdate"
+                                       onfocus="WdatePicker({dateFmt:'yyyy-MM-dd',maxDate:'#F{$dp.$D(\'d4312\')||\'2020-10-01\'}',isShowClear:false})" name="beginDate">
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-lg-2 m-t-b">
+                            <div class="form-group">
+                                <label for="">结束日期</label>
+                                <input type="date" id="d4312" class="form-control input-sm Wdate"
+                                       onfocus="WdatePicker({dateFmt:'yyyy-MM-dd',minDate:'#F{$dp.$D(\'d4311\')}',maxDate:'2020-10-01',isShowClear:false})" name="endDate">
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-lg-2 m-t-b">
+                            <div class="form-group">
+                                <label for="">关键词</label>
+                                <input type="text" class="form-control input-sm" name="key_words" maxlength="20" placeholder="请输入关键词">
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-lg-2 m-t-b" style="display: none;">
+                            <div class="form-group">
+                                <label for="">结算方式</label>
+                                <div class="input-group">
+                                    <span class="form-control input-sm" id="settlement_name"></span>
+									<span class="input-group-btn">
+									<input type="hidden" class="form-control input-sm"  id="settlement_id" name="settlement_sortID">
+										<button type="button" class="btn btn-default btn-sm">X</button>	
+								        <button class="btn btn-success btn-sm" type="button" id="settlement">浏览</button>
+								    </span>
+                                </div>
+                            </div>
+                        </div> 
+                        <div class="col-sm-3 col-lg-2 m-t-b">
+                            <button type="button" class="btn btn-primary btn-sm find" style="margin-top:25px;">搜索</button>
+                            <button type="button" class="btn btn-danger btn-sm print" style="margin-top:25px;">打印</button>
+                        </div>
+                    </form>
+                    	<div class="radio-group">
+	<div class="radio">
+	<label class="radio-inline">
+	<input type="radio" value="全部" name="if_check" checked="checked">全部
+	</label>
+	</div>
+	<div class="radio" style="margin-top:10px">
+	<label class="radio-inline">
+	<input type="radio" value="已对账" name="if_check">已对账
+	</label>
+	</div>
+	<div class="radio" style="margin-top:10px">
+	<label class="radio-inline">
+	<input type="radio" value="未对账" name="if_check">未对账
+	</label>
+	</div>
+	<div style="clear:both"></div>
+	</div>
+                    <div id="print">
+                    <div class="text-center">
+                        <h3>客户对账打印</h3>
+                    </div>
+                    <div style="margin-top: 10px;margin-bottom: 10px;font-size: 18px">
+                        <div class="col-xs-12 col-lg-3">
+                            客户名称:<span id="corp_name"></span>
+                        </div>
+                        <div class="col-xs-12 col-lg-3">
+                            联系电话：<span id="telno"></span>
+                        </div>
+                        <div style="clear: both"></div>
+                    </div>
+                    <!-- 以收款员进行分类，每个收款员结束后进行合计 -->
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>发生日期</th>
+                                <th>单号</th>
+                                <th>业务类型</th>
+                                <th>品名</th>
+                                <th>规格</th>
+                                <th>型号</th>
+                                <th>数量</th>
+                                <th>应收</th>
+                                <th>实收</th>
+                                <th>结余</th>
+<!--                                 <th>对账人</th> -->
+                                <th>对账时间</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h4 style="margin-top: 15px;margin-left: 5px">客户电子签名:</h4>
+                    <div class="qm_img">
+                        <img class="img-responsive" id="qianming">
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+</div>
+
+
+<div class="footer">
+    <div class="btn-gp">
+        <a href="../../report/accountStatement.do" class="btn btn-primary">返回</a>
+    </div>
+</div>
+<script type="text/javascript">
+<!--
+var cMsg=$(".sim-table");
+$("#c-msg").click(function(){
+    if(cMsg.is(":hidden")){
+        cMsg.show();
+    }else{
+        cMsg.hide();
+    }
+});
+//-->
+</script>
+</body>
+</html>
+

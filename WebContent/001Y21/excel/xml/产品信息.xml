@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<REQUEST>  
+<itembegin index="3" sheetName="产品-勿改此页名"/>
+<item mainfiledName="item_status"             index="0" excelChineseName="使用状态"/>
+<item mainfiledName="item_name"               index="1"  excelChineseName="产品名称" />
+<item mainfiledName="item_sim_name"           index="2"  excelChineseName="产品简称"/>
+<item mainfiledName="item_id"                 index="3"  excelChineseName="产品内码"/>
+<item mainfiledName="peijian_id"              index="4"  excelChineseName="产品外码"/>
+<item mainfiledName="easy_id"                 index="5"  excelChineseName="记忆码"/>
+<item mainfiledName="item_spec"               index="6"  excelChineseName="规格"/>
+<item mainfiledName="item_type"               index="7"  excelChineseName="型号"/>
+<item mainfiledName="item_color"              index="8"  excelChineseName="颜色"/>
+<item mainfiledName="item_struct"             index="9"  excelChineseName="结构"/>
+<item mainfiledName="class_card"              index="10" excelChineseName="品牌"/>
+<item mainfiledName="item_unit"               index="11" excelChineseName="基本单位"/>
+<item mainfiledName="pack_unit"               index="12" excelChineseName="换算数量"/>
+<item mainfiledName="casing_unit"             index="13" excelChineseName="包装单位"/>
+<!-- <item mainfiledName="type_id"                 index="14" excelChineseName="产品类别-通过产品类别名称进行计算"/> -->
+<item mainfiledName="type_id" index="14" compute="sort_id" tableName="Ctl03200" 
+queryName="sort_name"  or="sort_id" excelChineseName="部门编码" />
+<!-- <item mainfiledName="type_id"            index="15" excelChineseName="产品类别名称"/> -->
+<item mainfiledName="vendor_id"                index="16" excelChineseName="默认供应商编码"/>
+<!-- <item mainfiledName="serve_id"           index="17" excelChineseName="默认供应商名称 -->
+<item mainfiledName="store_struct_id"         index="18" excelChineseName="默认仓位编码"/>
+<!-- <item mainfiledName="store_struct_id"    index="19" excelChineseName="默认仓位名称"/> -->
+<item mainfiledName="vendor_idMy"             index="20" excelChineseName="质量等级"/>
+<item mainfiledName="item_cost"               index="21" excelChineseName="成本价"/>
+<item mainfiledName="item_zerosell"           index="22" excelChineseName="零售价"/>
+<item mainfiledName="item_sellprice"          index="23" excelChineseName="批发价"/>
+<item mainfiledName="item_yardprice"          index="24" excelChineseName="厂价"/>
+<item mainfiledName="price_display"           index="25" excelChineseName="标价"/>
+<item mainfiledName="price_prefer"            index="26" excelChineseName="现金折扣"/>
+<item mainfiledName="price_otherdiscount"     index="27" excelChineseName="其他折扣"/>
+<item mainfiledName="discount_rate"           index="28" excelChineseName="折扣"/>
+<item mainfiledName="AZTS_free"               index="29" excelChineseName="产品服务费"/>
+<item mainfiledName="work_type"               index="30" excelChineseName="所属工序类别"/>
+<item mainfiledName="qz_days"                 index="31" excelChineseName="备货时间"/>
+<item mainfiledName="i_weight"                index="32" excelChineseName="重量"/>
+<item mainfiledName="js"                      index="33" excelChineseName="件数"/>
+<item mainfiledName="goods_origin"            index="34" excelChineseName="物料用途"/>
+<item mainfiledName="item_style"              index="35" excelChineseName="物料来源"/>
+<item mainfiledName="if_o2o"                  index="36" excelChineseName="O2O？"/>
+<item mainfiledName="store_struct_idorder"    index="37" excelChineseName="pos位置号"/>
+<item mainfiledName="d_usefullife"            index="38" excelChineseName="有效期"/>
+<item mainfiledName="bar_gb15425_94"          index="39" excelChineseName="默认条码"/>
+<item mainfiledName="m_flag"                  index="40" excelChineseName="固定资产？"/>
+<item mainfiledName="item_unit_weight"        index="41"  excelChineseName="单位重量"/>
+<item mainfiledName="item_detailspec_cn"      index="42"  excelChineseName="产品描述"/>
+<!-- <item mainfiledName="describe"        		  index="42"  excelChineseName="产品描述"/> -->
+</REQUEST>                                                                                                 

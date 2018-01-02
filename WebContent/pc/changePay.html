@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>第三方支付</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/changePay.css">
+    <link rel="stylesheet" href="../../pcxy/css/bootstrap.css?ver=132512">
+    <script type="text/javascript" src="../js_lib/jquery.11.js"></script> 
+</head>
+
+<body>
+     <!-- 标题部分开始-->
+     <div class="cartnew-title">
+         <h2 class="step4">我的购物车</h2>
+         <ul style="display: none">
+             <li><span>查看购物车</span></li>
+             <li><span>填写订单</span></li>
+             <li class="end"><span class="act">付款，完成购买</span></li>
+         </ul>
+     </div>
+     <!-- 标题部分结束-->
+     <div class="cartnew-main">
+         <div class="cartnew-pay">
+             <h2>您的订单已成功，现在就去付款吧~</h2>
+             <h3>
+                 您的订单号：<strong id="orderNo"></strong>
+                 应付金额：<strong id="zfje"></strong> 元　
+                 支付方式：第三方网银在线支付　　
+                 送货时间：  工作日、双休日和节假日均送货
+             </h3>
+             <h4>
+                <span></span>如果2小时内您无法完成付款，系统会将您的订单取消。  <button type="button"  class="btn btn-default">返回</button></h4>
+             <div class="yohopaywrapper">
+                 <div class="yohopaycontent">
+                     <ul class="paytypenavlist">
+                         <li class="paytypenavitem acttab" id="2">使用银行卡</li>
+                     </ul>
+                     <div class="yohopaytypelist show" id="paycontent2" data-val="2">
+                         <div class="col-lg-3 col-sm-3 col-xs-6">
+                         <div class="yohopaydetail choosetype" data-val="12_BOCB2C">
+                             <div class="choosedtag"></div>
+                             <a target="_blank" href="http://www.boc.cn/"><img src="http://static.yohobuy.com/images/pay/icon/zhongguo.png" alt="中国银行"></a>
+                         </div>
+                         </div>
+                         <div class="col-lg-3 col-sm-3 col-xs-6">
+                         <div class="yohopaydetail" data-val="12_ABC">
+                             <div class="choosedtag"></div>
+                             <a target="_blank" href="http://www.abchina.com/cn/"><img src="http://static.yohobuy.com/images/pay/icon/nongye.png" alt="中国农业银行"></a>
+                         </div>
+                         </div>
+                         <div class="col-lg-3 col-sm-3 col-xs-6">
+                         <div class="yohopaydetail" data-val="12_ICBCB2C">
+                             <div class="choosedtag"></div>
+                             <a target="_blank" href="http://www.icbc.com.cn/icbc/"><img src="http://static.yohobuy.com/images/pay/icon/gongshang.png" alt="中国工商银行"></a>
+                         </div>
+                         </div>
+                         <div class="col-lg-3 col-sm-3 col-xs-6">
+                         <div class="yohopaydetail" data-val="12_CMB">
+                             <div class="choosedtag"></div>
+                             <a target="_blank" href="http://www.cmbchina.com/"><img src="http://static.yohobuy.com/images/pay/icon/zhaoshang.png" alt="招商银行"></a>
+                         </div>
+                         </div>
+                         <div class="col-lg-3 col-sm-3 col-xs-6">
+                         <div class="yohopaydetail" data-val="12_CCB">
+                             <div class="choosedtag"></div>
+                             <a target="_blank" href="http://www.ccb.com/cn/home/index.html"><img src="http://static.yohobuy.com/images/pay/icon/zhongguojianshe.png" alt="中国建设银行"></a>
+                         </div>
+                         </div>
+                         <div class="col-lg-3 col-sm-3 col-xs-6">
+                         <div class="yohopaydetail" data-val="12_POSTGC">
+                             <div class="choosedtag"></div>
+                             <a target="_blank" href="http://www.psbc.com/portal/zh_CN/index.html"><img src="http://static.yohobuy.com/images/pay/icon/zhongguoyouzhengchuxu.png" alt="中国邮政储蓄"></a>
+                         </div>
+                         </div>
+                         <div class="col-lg-3 col-sm-3 col-xs-6">
+                         <div class="yohopaydetail" data-val="12_POSTGC">
+                             <div class="choosedtag"></div>
+                             <a target="_blank" href="http://www.bankcomm.com/BankCommSite/default.shtml"><img src="http://www.bankcomm.com/BankCommSite/shtml/jyjr/cn/images/logo_img.png" alt="中国交通银行"></a>
+                         </div>
+                         </div>
+                         <div class="col-lg-3 col-sm-3 col-xs-6">
+                         <div class="yohopaydetail" data-val="12_POSTGC">
+                             <div class="choosedtag"></div>
+                             <a target="_blank" href="http://www.cmbc.com.cn/"><img src="http://www.cmbc.com.cn/statics/images/images/logo.gif" alt="中国民生银行"></a>
+                         </div>
+                         </div>
+                         <div class="col-lg-3 col-sm-3 col-xs-6">
+                         <div class="yohopaydetail" data-val="12_POSTGC">
+                             <div class="choosedtag"></div>
+                             <a target="_blank" href="http://bank.pingan.com/"><img src="http://bank.pingan.com/app_images/pingan/v30/newbank/payh_logo.png" alt="中国平安银行"></a>
+                         </div>
+                         </div>
+                         <div class="col-lg-3 col-sm-3 col-xs-6">
+                         <div class="yohopaydetail" data-val="12_POSTGC">
+                             <div class="choosedtag"></div>
+                             <a target="_blank" href="http://www.cmbchina.com/"><img src="http://www.cmbchina.com/images/main_logo.gif" alt="招商银行"></a>
+                         </div>
+                         </div>
+                     </div>
+                     <input type="hidden" name="payment_type" value="12_BOCB2C" id="payment_type">
+                 </div>
+             </div>
+         </div>
+     </div>
+<script> 
+    $('.yohopaytypelist .yohopaydetail').click(function(){
+        $('.yohopaytypelist .yohopaydetail').removeClass('choosetype');
+        $(this).addClass('choosetype');
+    });
+    try {
+    var param=window.location.href.split("?")[1];
+    var params=param.split("|");
+    $("#orderNo").html(params[0]);
+    $("#zfje").html(params[1]);
+	} catch (e) {
+		alert("参数错误,请重新进入!");
+		history.go(-1);
+	}
+    $(".btn-default").click(function(){
+    	try {
+			window.location.close();
+		} catch (e) {
+			history.go(-1);
+		}
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<REQUEST>  
+<itembegin index="4" sheetName="库存初始化-勿改此页名"/>
+<item mainfiledName="store_struct_id"        index="0"  compute="store_struct_id" tableName="Ivt01001" queryName="store_struct_id"  or="sort_id" excelChineseName="库房编码" />
+<!-- <item mainfiledName="store_struct_id"   index="1"  excelChineseName="库房名称" /> -->
+<item mainfiledName="item_id"                index="2"  compute="item_id" tableName="Ctl03001" queryName="item_id"  or="peijian_id" excelChineseName="产品编码"/>
+<!-- <item mainfiledName="easy_id"           index="3"  excelChineseName="产品名称"/> -->
+<item mainfiledName="if_lotnum_mng"          index="4"  excelChineseName="库存数量是否区分批号"/> -->
+<item mainfiledName="item_type"              index="5"  excelChineseName="个性化录入的型号"/>
+<item mainfiledName="item_color"             index="6"  excelChineseName="个性化颜色"/>
+<item mainfiledName="tiaoma_id"              index="7"  excelChineseName="条码"/>
+<item mainfiledName="lot_number"             index="8"  excelChineseName="批号"/>
+<item mainfiledName="single_piece_id"        index="9"  excelChineseName="单位件数"/>
+<item mainfiledName="oddment_num"            index="10" excelChineseName="零头数"/>
+<item mainfiledName="oh"                     index="11" excelChineseName="库存初始化数量"/>
+<item mainfiledName="accn_ivt"               index="12" excelChineseName="总数量"/>
+<item mainfiledName="i_price"                index="13" excelChineseName="成本单价"/>
+<item mainfiledName="i_Amount"               index="14" excelChineseName="总金额"/>
+<item mainfiledName="item_Sellprice"         index="15" excelChineseName="建议批发价"/>
+<item mainfiledName="item_zeroSell"          index="16" excelChineseName="建议零售价"/>
+<item mainfiledName="item_yardPrice"         index="17" excelChineseName="出厂价"/>
+<item mainfiledName="item_source"            index="18" excelChineseName="产品来源"/>
+<item mainfiledName="dept_id"                index="19" compute="dept_id" tableName="Ctl00701" queryName="dept_id"  or="sort_id" excelChineseName="责任部门编码"/>
+<!-- <item mainfiledName="customer_id"       index="20" excelChineseName="责任部门"/> -->
+<item mainfiledName="clerk_id"               index="21" compute="clerk_id" tableName="Ctl00801" queryName="clerk_id"  or="self_id" excelChineseName="责任员工编码"/>
+<!-- <item mainfiledName="safety_class"      index="22" excelChineseName="责任员工"/> -->
+<item mainfiledName="finacial_y"             index="23" excelChineseName="核算年"/>
+<item mainfiledName="finacial_m"             index="24" excelChineseName="核算月"/>
+<!-- <item mainfiledName="mainten_clerk_id"  index="25" excelChineseName="维护员工编码"/> -->
+<!-- <item mainfiledName="mainten_clerk_id"  index="26" excelChineseName="维护员工"/> -->
+<!-- <item mainfiledName="mainten_clerk_id"  index="27" excelChineseName="维护时间"/> -->
+<!-- <item mainfiledName="use_oq"            index="28" excelChineseName="当前可用库存数"/> -->
+<item mainfiledName="item_code"              index="29" excelChineseName="BOM设计项目编码"/>
+<item mainfiledName="customer_id"            index="30" excelChineseName="客户内码"/>
+<!-- <item mainfiledName="customer_id"       index="31" excelChineseName="客户"/> 
+<item mainfiledName="PH"                     index="32" excelChineseName="排产编号"/>-->
+<item mainfiledName="class_card"             index="33" excelChineseName="个性化录入的产地品牌"/>
+<item mainfiledName="memo_other"             index="34" excelChineseName="其它制造要求"/>
+<item mainfiledName="item_struct"            index="35" excelChineseName="个性化产品内部结构"/>
+<item mainfiledName="initial_flag" value="N"/>
+</REQUEST>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>巴中天仁钢化定制平台-个人中心</title>
+    <meta http-equiv="U-XA-Compatible" content="IE-edge">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" href="../pcxy/css/bootstrap.css">
+    <link rel="stylesheet" href="../css/popUpBox.css">
+    <script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+    <script type="text/javascript" src="../js_lib/jquery.cookie.js"></script>
+    <script src="../pcxy/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/popUpBox.js"></script>
+    <script src="../js/o2od.js"></script>
+<!--     <script src="../js/ajaxfileupload.js"></script> -->
+<!--     <script src="../pc/js/weixin/fileupload.js"></script> -->
+    <link rel="stylesheet" href="css/personal_center.css">
+    <script type="text/javascript">
+<!-- 
+var math=Math.random();
+document.write("<script src='../js/common.js?ver="+math+"'><\/script>");
+document.write("<script src='cms/js/head.js?ver="+math+"'><\/script>");
+var url=window.location.href;
+$(function(){
+$.get("../customer/getCustomerInfo.do",function(data){
+	$("#clerk_name").html(data.corp_sim_name);
+	$("#tel_no").html(data.user_id); 
+	var imgPath="001/userpic/"+data.customer_id+"/Pic_You.png";
+	$("#user_logo").attr("src","../"+imgPath+"?ver="+Math.random());
+});
+if(url.indexOf("?")<0){
+	window.location.href=url+"?ver="+math;
+}
+$(".body_bottom").find("li").click(function(){
+	window.location.href=$(this).find("a").attr("href");
+});  
+});
+//-->
+</script>
+</head>
+<body>
+<!---------------header-------------->
+<div class="header">
+    <div class="header_top">
+        <div class="head_portait">
+            <img id="user_logo" src="images/头像.png" onerror="this.src='images/头像.png'">
+        </div>
+        <div class="wz">
+            <p style="margin-top: 28px" id="clerk_name"></p>
+            <span id="tel_no"></span>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div style="height: 15px;background-color: #F6F5F5"></div>
+</div>
+<!---->
+<!---------------body---------------->
+<div class="myorderk">
+    <div class="myorder">
+        <div class="myorder_left">
+            <span>我的订单</span>
+        </div>
+        <div class="myorder_right">
+            <img src="images/down.png">
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="myorder_list">
+        <ul>
+            <li>
+                <a class="li_a01" href="await_pay.html">
+                    <div class="myorder_list_img">
+                        <img class="center-block" src="images/待支付订单.png">
+                    </div>
+                    <span class="span_style">报价单</span>
+                </a>
+            </li>
+            <li>
+                <a class="li_a01" href="order_status.html">
+                    <div class="myorder_list_img">
+                        <img class="center-block" src="images/箱子.png">
+                    </div>
+                    <span class="span_style">全部订单</span>
+                </a>
+            </li>
+            <li>
+                <a class="li_a01" href="order_status.html?type=2">
+                    <div class="myorder_list_img">
+                        <img class="center-block" src="images/货车.png">
+                    </div>
+                    <span class="span_style">待收货</span>
+                </a>
+            </li>
+            <li style="display: none;">
+                <a class="li_a01" href="order_status.html?type=3">
+                    <div class="myorder_list_img">
+                        <img class="center-block" src="images/奖杯.png">
+                    </div>
+                    <span class="span_style">待评价订单</span>
+                </a>
+            </li>
+        </ul>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+    <div style="height: 15px;background-color: #F6F5F5"></div>
+    <div class="body_bottom">
+        <ul>
+            <li style="display: none;">
+                <div class="pull-left">
+                    <img src="images/查看市场价.png">
+                    <span>查看市场价</span>
+                </div>
+                <div class="pull-right">
+                    <img src="images/箭头.png">
+                </div>
+                <div class="clear"></div>
+            </li>
+            <li>
+                <div class="pull-left">
+                    <img src="images/对账单.png">
+                    <span>对账单</span>
+                </div>
+                <a href="statement.html" class="pull-right">
+                    <img src="images/箭头.png">
+                </a>
+                <div class="clear"></div>
+            </li>
+            <li>
+                <div class="pull-left">
+                    <img src="images/个人中心.png">
+                    <span>个人信息</span>
+                </div>
+                <a href="personal_details.html" class="pull-right">
+                    <img src="images/箭头.png">
+                </a>
+                <div class="clear"></div>
+            </li>
+            <li>
+                <div class="pull-left">
+                    <img src="images/退出登录.png">
+                    <span>退出登录</span>
+                </div>
+                <a href="../login/exitLogin.do?type=2" class="pull-right">
+                    <img src="images/箭头.png">
+                </a>
+                <div class="clear"></div>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="logo_container"></div>
+</body>
+</html>

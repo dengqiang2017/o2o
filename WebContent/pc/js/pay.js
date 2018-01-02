@@ -1,0 +1,15 @@
+$(function(){
+	//后台拦截器进行判断,如果没有登录则跳转到登录页面,登录成功后跳转到支付页面
+	$("#orderpay").click(function(){
+		pop_up_box.postWait();
+		$.post("../customer/orderpay.do",{
+			"orderpay":com_id+"_"+item_id+"_"+$(".num").val()
+		},function(data){
+			pop_up_box.loadWaitClose();
+			if(data.success){
+				//跳转到支付成功界面
+				window.location.href="../login/toUrl.do?url=/customer/orderConfirm.do";
+			}
+		});
+	});
+});

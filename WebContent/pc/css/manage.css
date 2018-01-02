@@ -1,0 +1,226 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: Microsoft YaHei;
+    color: #000000;
+}
+ul>li{
+    list-style: none;
+}
+
+.index01_top{
+    background-color: #FFFFFF;
+    height: 90px;
+}
+.index01_bottom>img{
+    width: 100%;
+}
+.center{
+    width: 58%;
+    margin: auto;
+    padding: 20px 0;
+}
+.active{
+    color: #0091e3 !important;
+    border-bottom:1px solid #0091e3;
+}
+.center>.pull-left>a>img{
+    width: 160px;
+}
+.center>.pull-right>ul>li{
+    float: left;
+    font-size: 20px;
+    margin-left: 40px;
+    line-height: 49px;
+}
+.center>.pull-right>ul>li>a:hover{
+    color: #0091e3 !important;
+    border-bottom:1px solid #0091e3;
+}
+.center>.pull-right>ul>li>a{
+    color: #000000;
+    padding: 10px 0;
+}
+.center>.pull-right>ul>li>a:hover{
+    text-decoration: none;
+}
+.center>.pull-right>ul{
+    margin-bottom: 0;
+}
+
+/*-------*/
+
+.secition{
+    background: url("/images/beijing.jpg") no-repeat 0 0;
+    min-height: 784px;
+    width: 100%;
+    margin-top: 99px;
+    padding-top: 10px;
+    padding-bottom: 40px;
+    background-size: cover;
+}
+.secition_box{
+    margin: auto;
+    margin-top: 20px;
+}
+.secition_box_top{
+    display: box;
+    display: -webkit-box;
+    display: -moz-box;
+    box-pack:justify;
+    -webkit-box-pack:justify;
+    -moz-box-pack:justify;
+    box-align:center;
+    -webkit-box-align:center;
+    -moz-box-align:center;
+    width: 1283px;
+    margin: auto;
+}
+.fl{
+    width: 190px;
+    height: 70px;
+    background-color: #0094DC;
+    color: #FFFFFF;
+    margin-right: 83px;
+    text-align: center;
+    line-height: 70px;
+    font-size: 25px;
+    cursor: pointer;
+}
+.secition_box_bottom01{
+    margin: auto;
+    margin-top: 20px;
+    width: 85%;
+    display: none;
+}
+.secition_box_bottom02{
+    margin: auto;
+    margin-top: 20px;
+    width: 85%;
+    display: none;
+}
+.secition_box_bottom03{
+    margin: auto;
+    margin-top: 20px;
+    width: 85%;
+    display: block;
+}
+.secition_box_bottom04{
+    margin: auto;
+    margin-top: 20px;
+    width: 85%;
+    display: none;
+}
+/* lable:FIRST-CHILD */
+.x-1{
+    width: 33.3%;
+    float: left;
+    height: 70px;
+    background-color: #0094DC;
+    color: #FFFFFF;
+    text-align: center;
+    line-height: 70px;
+    font-size: 33px;
+    cursor: pointer;
+}
+.secition_box_bottomtop_y01{
+    display: block;
+}
+.secition_box_bottomtop_y02{
+    display: none;
+}
+.secition_box_bottomtop_y03{
+    display: none;
+}
+.secition_box_bottomtop_y001{
+    display: block;
+}
+.secition_box_bottomtop_y002{
+    display: none;
+}
+.secition_box_bottomtop_y003{
+    display: none;
+}
+.x-active{
+    background-color: #fff !important;
+    color: #0094DC !important;
+    border: 2px solid #0094DC;
+}
+.y-box{
+    background-color: #FFFFFF;
+    min-height: 500px;
+    padding:5px 58px;
+}
+.y-box>ul>li{
+    border-bottom: 1px solid #0094DC;
+    font-size: 25px;
+    padding:15px 0;
+}
+.y-box>ul>li>span{
+    color: #0094DC;
+}
+.y-box-center{
+    width: 550px;
+    margin: auto;
+    margin-bottom: 30px;
+}
+.y-box-center>p{
+    font-size: 18px;
+}
+.bq{
+/*     width: 100px; */
+/*     height: 35px; */
+    width: auto;
+    height: auto;
+    text-align: center;
+    line-height: 35px;
+    color: #0094DC;
+    background-color: #BFE4F6;
+    border-radius: 10px;
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.rq {
+    position: relative;
+}
+.zs {
+    display: none;
+}
+.xs {
+    display: block;
+}
+.box {
+    width: 264px;
+    box-shadow: 0 5px 5px rgba(0,0,0,0.3);
+    position: relative;
+}
+.box_bottom {
+    padding: 19px;
+    text-align: left;
+    height: 126px;
+    background-color: #FFFFFF;
+}
+.qh {
+    width: 200px;
+    margin: 30px auto;
+    position: relative;
+    text-align: center;
+}
+.left {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.center02 {
+    line-height: 38px;
+    font-size: 20px;
+}
+.right {
+    position: absolute;
+    right: 0;
+    top: 0;
+}

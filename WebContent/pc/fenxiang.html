@@ -1,0 +1,50 @@
+<script type="text/javascript">
+<!--
+var imgurl="";
+// if(window.location.href.indexOf("jsp")<0){
+	var prex="";
+	if(window.location.href.indexOf(".cn")>0){
+		prex=window.location.href.split("cn")[0]+"cn/pc/";
+	}
+	if(window.location.href.indexOf(".com")>0){
+		prex=window.location.href.split("com")[0]+"com/pc/";
+	}
+	if (window.location.href.indexOf("customerrap")>0) {
+		var poster=$(".row").find("video:eq(0)").attr("poster");
+		if(poster){
+			imgurl=prex+poster;
+		}else{
+			imgurl=prex+$(".articledetail").find("video:eq(0)").attr("poster");
+		}
+	}else{
+	imgurl=prex+$(".row").find("img:eq(0)").attr("src");
+	}
+// }
+	window._bd_share_config = {
+		"common" : {
+			"bdSnsKey" : {},
+			"bdText" : "",
+			"bdMini" : "1",
+			"bdMiniList" : false,
+			"bdPic" : imgurl,
+			"bdStyle" : "0",
+			"bdSize" : "16"
+		},
+		"slide" : {
+			"type" : "slide",
+			"bdImg" : "6",
+			"bdPos" : "left",
+			"bdTop" : "100"
+		},
+		"image" : {
+			"viewList" : [ "qzone", "tsina", "tqq", "renren", "weixin" ],
+			"viewText" : "牵引互联",
+			"viewSize" : "32"
+		}
+	};
+	with (document)
+		0[(getElementsByTagName('head')[0] || body)
+				.appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='
+				+ ~(-new Date() / 36e5)];
+//-->
+</script>

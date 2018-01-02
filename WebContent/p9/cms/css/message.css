@@ -1,0 +1,81 @@
+@charset "utf-8";
+/* CSS Document*/
+
+.panel{ width:94%;
+	margin:auto;
+	background:#fff;
+	margin-bottom:20px;
+	margin-top:10px;
+	font-size:14px;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+.panel-head{ height:50px;
+	line-height:50px;
+	text-align: center;
+	font-weight: bold;
+	font-size: 16px;
+}
+.panel-body{ border-top:1px solid #ccc;
+	padding:20px 0;
+	line-height:30px;
+	overflow: hidden;
+}
+.tips-img{ width:30px;
+	height:32px;
+	margin:auto;
+}
+.tips-text{
+	line-height:24px;
+	max-height:120px;
+	overflow:hidden;
+	font-size:18px;
+}
+.check-box{ width:90%;
+	height:36px;
+	margin:auto;
+	border:2px solid #ccc;
+	text-align:center;
+	line-height:36px;
+	position:relative;
+	cursor:pointer;
+}
+.checked{ border:2px solid #08cd08;
+	font-weight:600;
+}
+.checked:after{ content:"";
+	width:14px;
+	height:14px;
+	background-image:url(../image/checked.png);
+	position:absolute;
+	left:-1px;
+	top:-1px;
+}
+
+.tree{
+	margin-left: 40px;
+}
+
+.tree li{
+	position: relative;
+	height: 36px;
+	line-height: 36px;
+	cursor: pointer;
+}
+
+.tree li:before{
+	content: '';
+	display: block;
+	position: absolute;
+	width: 16px;
+	height: 16px;
+	left: -24px;
+	top: 10px;
+	background-image: url(../image/home.png);
+	background-size: 100% 100%;
+}
+
+.tree li:hover,.tree .activeT{
+	font-weight: bold;
+	color: red;
+}

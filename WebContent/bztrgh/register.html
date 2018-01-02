@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+       <script type="text/javascript">
+ <!--
+ window.location.href="../login/register.do";
+ //-->
+   </script>
+    <meta http-equiv="U-XA-Compatible" content="IE-edge">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" href="../css/popUpBox.css">
+    <link rel="stylesheet" href="css/register.css?ver=001">
+    <script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+    <script type="text/javascript" src="../js_lib/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../js/common.js"></script>
+    <script type="text/javascript" src="../js/popUpBox.js"></script>
+    <script src="cms/js/head.js"></script>
+    <script type="text/javascript" src="js/password.js?ver=004"></script>
+    <script type="text/javascript" src="js/register.js?ver=004"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            巴中天仁钢化
+        </div>
+        <div class="main">
+            <div class="input-group">
+                <input type="hidden" value="customer" id="regType">
+                <input type="hidden" value="customer" id="erweima">
+                <select class="form-control" style="display: none;"><option value="001">赛宇电器-灯具行业O2O运营商</option></select>
+                <div class="label"><img src="images/注册界面_03.jpg" alt=""></div>
+                <div class="input">
+                    <input type="text" placeholder="请输入手机号" name="user_id" maxlength="11" data-number="num">
+                </div>
+            </div>
+            <div class="input-group">
+                <div class="label"><img src="images/注册界面_07.jpg" alt="" data-bd-imgshare-binded="1"></div>
+                <div class="input">
+                    <input type="password" placeholder="图形验证码" id="verifycode" maxlength="4">
+                    <img alt="" src="images/1464002035654.jpg" id="verifycodeimg" style="max-width: 100px;position: absolute;right: -14px;top: -18px;">
+                    <a id="verifycodea" style="position: absolute;right: -14px;top: 17px;font-size: 15px;cursor: pointer;text-decoration: none;">看不清楚换一张</a>
+                </div>
+            </div>
+            <div class="input-group">
+                <div class="label"><img src="images/注册界面_07.jpg" alt=""></div>
+                <div class="input">
+                    <input type="text" placeholder="输入验证码" maxlength="6" name="verificationCode" disabled="disabled">
+                </div>
+                <div id="get_code" class="get_carge">
+                    获取验证码
+                </div>
+            </div>
+            <div class="input-group">
+                <div class="label"><img src="images/注册界面_11.jpg" alt=""></div>
+                <div class="input">
+                    <input type="password" placeholder="请输入6-12位字符密码" name="user_password" maxlength="20">
+                </div>
+            </div>
+            <div class="input-group">
+                <div class="label"><img src="images/注册界面_11.jpg" alt=""></div>
+                <div class="input">
+                    <input type="password" placeholder="请确认密码" name="confirmPwd" maxlength="20">
+                </div>
+            </div>
+            <div class="row" style="display: none;">
+                <div class="col-sm-9 col-sm-offset-3">
+                    <div class="pull-left form-group">
+                        <div class="from-group">
+                            <input type="checkbox" id="check" checked="checked">
+                            <label for="check">我已阅读并同意<a href="#" style="color:#fff; text-decoration:underline;">《<span class="yysname"></span>用户协议》</a></label>
+                        </div>
+                    </div>
+                    <div class="pull-right"><a href="#" style="color:#fff;">忘记密码?</a></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-9 col-sm-offset-3 lr-tips">
+                    <span class="tips-red" id="msg"></span>
+                </div>
+                <span class="tips" id="msg"></span>
+                <div class="signup-btn01" id="registerBtn">确认</div>
+                <div class="signup-btn02" onclick="window.location.href='login.html';">取消</div>
+            </div>
+        </div>
+        <div style="height: 70px"></div>
+    </div>
+<div class="logo_container"></div>
+<script>
+    $('input').bind('focus',function(){
+        $('.logo_container').css('position','static');
+    }).bind('blur',function(){
+        $('.logo_container').css({'position':'fixed','bottom':'0'});
+    });
+</script>
+</body>
+</html>

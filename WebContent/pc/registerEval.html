@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="U-XA-Compatible" content="IE-edge">
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+<title>电工注册</title>
+    <script type="text/javascript">
+	 <!--
+	 window.location.href="../login/register.do?type=Eval";
+	 //-->
+    </script>
+<link rel="stylesheet" href="../pcxy/css/signup.css">
+<link rel="stylesheet" href="../css/popUpBox.css">
+<script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+<script type="text/javascript" src="../js_lib/jquery.cookie.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../js/popUpBox.js"></script>
+<script type="text/javascript">
+ <!--
+var math=Math.random();
+document.write("<script src='js/password.js?ver="+math+"'><\/script>");
+document.write("<script src='js/register.js?ver="+math+"'><\/script>");
+//-->
+</script>
+</head>
+<body>
+	<div class="container">
+		<div class="header">
+			<div class="logo">
+				<img src="image/logo.png" alt="">
+			</div>
+			<div style="text-align: center;">电工注册</div>
+		</div>
+		<div class="main">
+			<div class="input-group">
+				<input type="hidden" value="eval" id="regType">
+				<input type="hidden" value="eval" id="erweima">
+				<select class="form-control" style="display: none;"></select>
+				<div class="label"><img src="../pcxy/image/signp01.png" alt=""></div>
+				<div class="input">
+					<input type="text" placeholder="请输入您的手机号" name="user_id" maxlength="11" data-number="num">
+				</div>
+			</div>
+			<div class="input-group">
+				<div class="label"><img src="../pcxy/image/signp02.png" alt=""></div>
+				<div class="input">
+					<input type="password" placeholder="6-16位，由数字、字母和标点符号组成" name="user_password" maxlength="20">
+				</div>
+			</div>
+			<div class="input-group">
+				<div class="label"><img src="../pcxy/image/signp02.png" alt=""></div>
+				<div class="input">
+					<input type="password" placeholder="请再次输入密码" name="confirmPwd" maxlength="20">
+				</div>
+			</div>
+			<div class="input-group" style="height: 100px;">
+				<div class="label"><img src="../pcxy/image/signp02.png" alt=""></div>
+				<div class="input">
+					<input type="text" placeholder="图形验证码" id="verifycode" maxlength="4">
+					<img alt="加载中..." src="" id="verifycodeimg" style="max-width: 100px;position: absolute;right: 0;top: -12px;">
+					<a id="verifycodea" style="position: absolute;right: 0;cursor: pointer;">换一张</a>
+				</div>
+			</div>
+			<div class="input-group">
+				<div class="label"><img src="../pcxy/image/signp03.png" alt=""></div>
+				<div class="input">
+					<input type="text" placeholder="输入验证码,有效期2分钟" maxlength="6" name="verificationCode">
+					<button type="button" class="btn" id="get_code" style="cursor: pointer;">获取验证码</button>
+				</div>
+			</div> 
+			<div class="row" style="display: none;">
+				<div class="col-sm-9 col-sm-offset-3">
+					<div class="pull-left form-group">
+						<div class="from-group">
+							<input type="checkbox" id="check" checked="checked">
+							<label for="check">我已阅读并同意<a href="#" style="color:#fff; text-decoration:underline;">《<span class="yysname"></span>用户协议》</a></label>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-9 col-sm-offset-3 lr-tips">
+					<span class="tips-red" id="msg"></span>
+				</div>
+				<span class="tips" id="msg"></span>
+				<div class="signup-btn" id="registerBtn">注册</div>
+				<div class="signup-btn" onclick="window.location.href='loginEval.html';">已有账号，直接登录</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

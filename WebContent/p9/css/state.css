@@ -1,0 +1,107 @@
+/*-----conmment-----*/
+*{font-family:'Microsoft YaHei',Arial,Helvetica,sans-serif;font-size: 18px;color: #000000;padding: 0;margin: 0}
+a{text-decoration: none}
+a:hover{text-decoration: none}
+ul{margin-bottom: 0}
+ul>li{list-style: none}
+
+/*公用头部*/
+.index01_top{
+    background-color: #FFFFFF;
+    height: 90px;
+    border-bottom: 1px solid #ddd;
+}
+.index01_bottom>img{
+    width: 100%;
+}
+.center{
+    width: 58%;
+    margin: auto;
+    padding: 20px 0;
+}
+.active{
+    color: #0091e3 !important;
+    border-bottom:1px solid #0091e3;
+}
+.center>.pull-left>a>img{
+    width: 160px;
+}
+.center>.pull-right>ul>li{
+    float: left;
+    font-size: 20px;
+    margin-left: 40px;
+    line-height: 49px;
+}
+.center>.pull-right>ul>li>a:hover{
+    color: #0091e3 !important;
+    border-bottom:1px solid #0091e3;
+}
+.center>.pull-right>ul>li>a{
+    color: #000000;
+    padding: 10px 0;
+}
+.center>.pull-right>ul>li>a:hover{
+    text-decoration: none;
+}
+.center>.pull-right>ul{
+    margin-bottom: 0;
+}
+/*-------*/
+
+/*---------state-container----------*/
+.state-container{width: 1200px;margin: auto;text-align: center;margin-top: 130px;position: relative}
+.state-container a{position: absolute;left: 0;top: 0;}
+.state-ul>ul>li{border-bottom: 1px solid #000000;padding: 10px 0}
+.active {color: #0091e3 !important;border-bottom: 1px solid #0091e3;}
+
+@media (min-width: 770px){
+    .pull-right>img{
+        display: none;
+    }
+    .pull-right>ul{
+        display: block;
+    }
+    .zz{display: none}
+    .zz_box{display: none}
+}
+@media (max-width: 769px){
+    .pull-right>img{
+        display: block;
+    }
+    .pull-right>ul{
+        display: none;
+    }
+    .center {
+        width: 90%;
+        margin: auto;
+        padding: 20px 0;
+    }
+    .zz_box {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 10000;
+        display: none;
+    }
+    .zz {
+        background-color: #fff;
+        display: none;
+        position: fixed;
+        top: 78px;
+        left: 0;
+        right: 0;
+        z-index: 10001;
+    }
+    .zz>ul>a>li {
+        padding: 10px 0;
+        font-size: 18px;
+        border-bottom: 1px solid #ddd;
+        text-indent: 18px;
+    }
+    .state-ul{margin-top: 20px}
+    .state-container{width: 90%;margin: auto;text-align: center;margin-top: 100px;}
+    .state-container h1{font-size: 27px !important;margin-bottom: 0;}
+    .pull-left{text-align: left !important;}
+}

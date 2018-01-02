@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>推送服务</title>
+<script src="js_lib/jquery-1.8.3.js"></script>
+<script src="js_lib/ajax-pushlet-client.js"></script>
+<script type="text/javascript"> 
+if (!$.browser.msie) {	 
+	if (PL.sessionId == null) {
+		PL._init();
+		PL.joinListen('myevent');
+		function onData(event) {
+			var data = event.get("info_count");
+			var daily_data = event.get("daily_count");
+			var wifi_data = event.get("wifi_count");
+			data = $.parseJSON(data); 
+			daily_data = $.parseJSON(daily_data); 
+			wifi_data = $.parseJSON(wifi_data); 
+			window.parent.getConnCount(data);
+			window.parent.getDailyCount(daily_data);
+			window.parent.getWifiCount(wifi_data);
+			window.parent.getInformation();
+		}
+	}
+}
+</script>
+</head>
+<body> 
+</body>
+</html>

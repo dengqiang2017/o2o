@@ -1,0 +1,122 @@
+.none {
+    display: none;
+}
+body,
+button,
+input,
+select,
+textarea {
+    font: 11pt/1.125 Arial, Helvetica, sans-serif;
+    font-family: "微软雅黑", "宋体";
+}
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+th,
+tr,
+td,
+p,
+blockquote,
+pre,
+form,
+fieldset,
+legend,
+input,
+button,
+textarea,
+hr {
+    margin: 0;
+    padding: 0;
+}
+body{
+    background: rgb(240,240,240);
+}
+.center{
+    text-align: center;
+}
+header,header div{width: 100%;height: 190px;background: rgb(145,220,213);}
+header{width: 100%;}
+footer{width: 1025px;}
+.layout-btn{
+    width: 1025px;
+    /* padding-bottom: 172px; */
+    background: rgb(255,255,255);
+    height:1090px;
+    margin: 450px auto;
+    margin-bottom: 30px;
+    margin-top: 0px;
+    z-index:1;
+    margin-top:-1080px;   
+}
+.layout-btn div{
+    margin: 0 auto;
+    width:900px;
+}
+/* .title-data{ */
+/*     font-size: 30px; */
+/*     padding: 50px 0 30px 0; */
+/*     text-align: center; */
+/* } */
+hr{border-bottom-width: 1px; border-top-style: none; border-bottom-style: dashed; border-bottom-color: #CCC;}
+.prompt{
+    padding-top: 39px;
+    line-height: 25px;
+    padding-bottom: 38px;
+    color: #333333;
+}
+.input_content{
+}
+input{width: 205px;height: 35px;}
+.inline-block{display: inline-block; }
+.vertical-align{vertical-align: top;}
+.btn{
+    display: inline-block;
+    overflow: visible;
+    padding: 0 36px;
+    line-height: 30px;
+    vertical-align: middle;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    font-size: 14px;
+    border-width: 1px;
+    border-style: solid;
+    cursor: pointer;
+    height: 32px;
+    background: #5aaa4b;
+    color: #FFFFFF;
+    margin-top: -5px;
+	width:auto;
+}
+section{
+    width: 1045px;
+    background: #ffffff \0;
+    *background: #ffffff;
+    margin: 0 auto;
+    margin-top: -80px;
+}
+.section_border{
+background: none repeat scroll 0 0 rgba(255, 255, 255, 0.5);
+/*  filter:Alpha(opacity=50); background:#fff;/*实现IE背景透明*/
+ width:1045px;
+ height:1091px;
+ margin-top:-85px;
+  z-index:0;
+ }
+.date_input{
+   height: 110px;
+    margin-top: -35px;
+}
+ .date_input div{text-align: center;margin-top: 50px;margin-left: 10%;}

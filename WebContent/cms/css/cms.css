@@ -1,0 +1,32 @@
+.edit_btn{
+	position: absolute;
+right: 0px;
+top: 5px;
+}
+.edit_default, .edit_article {
+    position: absolute;
+    display: none;
+    z-index: 99999;
+}
+.edit_btn button{
+	float: left;
+}
+#imgFile{
+ width: 60px;
+ height: 36px;
+ float: left;
+ opacity:0;
+margin-left: -63px;
+z-index: 10;
+cursor: pointer;
+}
+.img_border_top{ width:100%; border-bottom-style: dashed; color:blue; border-bottom-width: 3px; height:0; left:0; top:1px;}
+.img_border_bottom{ width:100%; border-bottom-style: dashed;color:blue;  border-bottom-width: 3px; height:0; left:0; bottom:1px;}
+.img_border_left{ height:100%; border-left-style: dashed;color:blue;  border-left-width: 3px; width:0; left:1px; top:0;}
+.img_border_right{ height:100%; border-left-style: dashed;color:blue;  border-left-width: 3px; width:0; right:1px; top:0;}
+.iframeedit{
+	float: right;
+}
+#xuanxian button{
+	font-size: 16px;
+}

@@ -1,0 +1,669 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: Microsoft YaHei;
+    color: #000000;
+}
+ul>li{
+    list-style: none;
+}
+
+/*公用头部*/
+.index01_top{
+    background-color: #FFFFFF;
+    height: 90px;
+}
+.index01_bottom>img{
+    width: 100%;
+}
+.center{
+    width: 58%;
+    margin: auto;
+    padding: 20px 0;
+}
+.active{
+    color: #0091e3 !important;
+    border-bottom:1px solid #0091e3;
+}
+.center>.pull-left>a>img{
+    width: 160px;
+}
+.center>.pull-right>ul>li{
+    float: left;
+    font-size: 20px;
+    margin-left: 40px;
+    line-height: 49px;
+}
+.center>.pull-right>ul>li>a:hover{
+    color: #0091e3 !important;
+    border-bottom:1px solid #0091e3;
+}
+.center>.pull-right>ul>li>a{
+    color: #000000;
+    padding: 10px 0;
+}
+.center>.pull-right>ul>li>a:hover{
+    text-decoration: none;
+}
+.center>.pull-right>ul{
+    margin-bottom: 0;
+}
+/*-------*/
+.about01{
+    margin-top: 90px;
+}
+.about01>img{
+    width: 100%;
+}
+.about02{
+    text-align: center;
+    margin-top: 50px;
+}
+.about02_bottom{
+    text-align: center;
+    font-size: 36px;
+    margin-top: 65px;
+}
+.about02_bottom>p{
+    margin-bottom: 35px;
+}
+
+/*通用1*/
+.index05_bottom{
+    width: 1152px;
+    margin: auto;
+    position: relative;
+    margin-top: 80px;
+    height: 505px;
+}
+.index05_bottom_left{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.index05_bottom_right{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.index05_bottom_center{
+    position: absolute;
+    top: 0;
+    left: 444px;
+}
+.box2 {
+    width: 272px;
+    height: 466px;
+    box-shadow: 0 5px 5px rgba(0,0,0,0.3);
+    position: relative;
+    text-align: center;
+    padding-top: 30px;
+}
+.box2:hover{
+    transition: all 1s;
+    transform: scale(1.1,1.1);
+    -webkit-transform: scale(1.1,1.1);
+}
+.box2_top01 {
+    position: relative;
+    text-align: center;
+    background-image: url("../images/yuan01.png");
+    height: 202px;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-size: 33px;
+    width: 74%;
+    margin: auto;
+    margin-bottom: 20px;
+    background-size: 100%;
+    padding-top: 69px;
+}
+.box2_top01>p {
+    color: #E73E8B;
+}
+.box2_bottom>p {
+    color: #E73E8B;
+    font-size: 22px;
+}
+.box3 {
+    width: 272px;
+    height: 466px;
+    box-shadow: 0 5px 5px rgba(0,0,0,0.3);
+    position: relative;
+    text-align: center;
+    padding-top: 30px;
+}
+.box3:hover{
+    transition: all 1s;
+    transform: scale(1.1,1.1);
+    -webkit-transform: scale(1.1,1.1);
+}
+.box2_top02 {
+    position: relative;
+    text-align: center;
+    background-image: url("../images/yuan02.png");
+    height: 202px;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-size: 33px;
+    width: 74%;
+    margin: auto;
+    margin-bottom: 20px;
+    background-size: 100%;
+    padding-top: 69px;
+}
+.box2_top02>p {
+    color: #0091E3;
+}
+.box3_bottom>p {
+    color: #0091E3;
+    font-size: 22px;
+}
+.box4 {
+    width: 272px;
+    height: 466px;
+    box-shadow: 0 5px 5px rgba(0,0,0,0.3);
+    position: relative;
+    text-align: center;
+    padding-top: 30px;
+}
+.box4:hover{
+    transition: all 1s;
+    transform: scale(1.1,1.1);
+    -webkit-transform: scale(1.1,1.1);
+}
+.box2_top03 {
+    position: relative;
+    text-align: center;
+    background-image: url("../images/yuan03.png");
+    height: 202px;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-size: 33px;
+    width: 74%;
+    margin: auto;
+    margin-bottom: 20px;
+    background-size: 100%;
+    padding-top: 69px;
+}
+.box2_top03>p {
+    color: #53D37F;
+}
+.box4_bottom>p {
+    color: #53D37F;
+    font-size: 22px;
+}
+/*-----*/
+
+.about03{
+    text-align: center;
+    margin-top: 50px;
+}
+
+/*通用2*/
+.case03_box {
+    width: 1152px;
+    margin: auto;
+    box-shadow: 0 5px 5px rgba(0,0,0,0.3);
+    position: relative;
+    padding: 20px 0 20px 40px;
+    margin-bottom: 20px;
+}
+.case03_box:hover{
+    box-shadow: 0 10px 15px rgba(0,0,0,0.3);
+    transition: all 0.5s;
+}
+.col-lg-7>ul>li {
+    padding: 10px 20px;
+    border-bottom: 1px dashed #ddd;
+    text-align: left;
+    color: #666;
+    font-size: 17px;
+}
+/*-----*/
+.about04{
+    width: 1152px;
+    margin: auto;
+}
+.about05{
+    width: 1152px;
+    margin: auto;
+    padding: 40px;
+    text-align: left;
+    font-size: 18px;
+    color: #666;
+}
+.about06{
+    background-color: #4489CA;
+    padding: 60px 0;
+}
+.about06-left{
+    float: left;
+    text-align: center;
+    color: #FFFFFF;
+}
+.about06-left>h1{
+    font-size: 70px;
+}
+.about06-right{
+    float: right;
+    text-align: center;
+    color: #FFFFFF;
+}
+.about06-right>h1{
+    font-size: 35px;
+}
+@media (max-width: 770px){
+    .zz_box{
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 10000;
+        display: none;
+    }
+    .zz{
+        background-color: #fff;
+        display: none;
+        position: fixed;
+        top:78px;
+        left: 0;
+        right: 0;
+        z-index: 10001;
+    }
+    .index01_top {
+        background-color: #FFFFFF;
+        height: 90px;
+        z-index: 10001;
+    }
+    .about01 {
+        margin-top: 78px;
+    }
+    .zz>ul>a>li {
+        padding: 10px 0;
+        font-size: 18px;
+        border-bottom: 1px solid #ddd;
+        text-indent: 18px;
+    }
+    .zz>ul>a:hover{
+        text-decoration: none;
+    }
+    .pull-right>ul{
+        display: none;
+    }
+    .pull-right>img{
+        cursor: pointer;
+    }
+    .pull-right>img{
+        display: block;
+    }
+    .pull-right>ul{
+        display: none;
+    }
+    .center {
+        width: 90%;
+        margin: auto;
+        padding: 20px 0;
+    }
+    .center>.pull-left>a>img {
+        width: 130px;
+    }
+    .tbd{
+        display: block;
+    }
+    .tbd2{
+        display: none;
+    }
+    .about02_bottom>p {
+        margin-bottom: 10px;
+        font-size: 16px;
+    }
+    .index05_bottom {
+        width: 100%;
+        margin: auto;
+        position: relative;
+        margin-top: 80px;
+        height: auto;
+    }
+    .box2 {
+        width: 272px;
+        height: 422px;
+        position: relative;
+        text-align: center;
+        padding-top: 26px;
+        box-shadow: 0 5px 5px rgba(0,0,0,0.3);
+        margin: auto;
+    }
+    .box4 {
+        width: 272px;
+        height: 422px;
+        box-shadow: 0 5px 5px rgba(0,0,0,0.3);
+        position: relative;
+        text-align: center;
+        padding-top: 30px;
+        margin: auto;
+        margin-top: 25px;
+    }
+    .box2_top02 {
+        position: relative;
+        text-align: center;
+        background-image: url("../images/yuan02.png");
+        height: 201px;
+        background-repeat: no-repeat;
+        background-position: center;
+        font-size: 31px;
+        width: 69%;
+        margin: auto;
+        margin-bottom: 20px;
+        background-size: 100%;
+        padding-top: 69px;
+    }
+    .box3 {
+        width: 272px;
+        height: 422px;
+        box-shadow: 0 5px 5px rgba(0,0,0,0.3);
+        position: relative;
+        text-align: center;
+        padding-top: 30px;
+        margin-top: 25px;
+    }
+    .index05_bottom_left {
+        position: relative;
+    }
+    .index05_bottom_right {
+        position: relative;
+    }
+    .box2:hover{
+        transition: all 1s;
+        transform: scale(1,1);
+        -webkit-transform: scale(1,1);
+    }
+    .box3:hover{
+        transition: all 1s;
+        transform: scale(1,1);
+        -webkit-transform: scale(1,1);
+    }
+    .box4:hover{
+        transition: all 1s;
+        transform: scale(1,1);
+        -webkit-transform: scale(1,1);
+    }
+    .case03_box {
+        width: 95%;
+        margin: auto;
+        box-shadow: 0 5px 5px rgba(0,0,0,0.3);
+        position: relative;
+        margin-bottom: 20px;
+        padding: 0;
+    }
+    .col-lg-7>ul>li {
+        padding: 10px 20px;
+        border-bottom: 1px dashed #ddd;
+        text-align: left;
+        color: #666;
+        font-size: 13px;
+    }
+    .xc{
+        padding: 0;
+    }
+    .about04 {
+        width: 95%;
+        margin: auto;
+    }
+    .about05 {
+        width: 95%;
+        margin: auto;
+        padding: 10px;
+        text-align: left;
+        font-size: 13px;
+        color: #666;
+    }
+    .about03 {
+        text-align: center;
+        margin-top: 50px;
+        margin-bottom: 20px;
+    }
+    .about06-left {
+         float: none;
+        text-align: center;
+        color: #FFFFFF;
+    }
+    .about06-left>h1 {
+        font-size: 26px;
+    }
+    .about06-right>img{
+        width: 200px;
+    }
+    .about06-right>h1 {
+        font-size: 19px;
+    }
+    .about06-right {
+        float: none;
+        color: #FFFFFF;
+    }
+    .box2_top01 {
+        position: relative;
+        text-align: center;
+        background-image: url("../images/yuan01.png");
+        height: 201px;
+        background-repeat: no-repeat;
+        background-position: center;
+        font-size: 31px;
+        width: 69%;
+        margin: auto;
+        margin-bottom: 20px;
+        background-size: 100%;
+        padding-top: 69px;
+    }
+    .box2_top03 {
+        position: relative;
+        text-align: center;
+        background-image: url("../images/yuan03.png");
+        height: 201px;
+        background-repeat: no-repeat;
+        background-position: center;
+        font-size: 31px;
+        width: 69%;
+        margin: auto;
+        margin-bottom: 20px;
+        background-size: 100%;
+        padding-top: 69px;
+    }
+    .box2_bottom>p {
+        color: #E73E8B;
+        font-size: 20px;
+    }
+    .box3_bottom>p {
+        color: #0091E3;
+        font-size: 22px;
+    }
+    .box4_bottom>p {
+        color: #53D37F;
+        font-size: 22px;
+    }
+    .about02_bottom {
+        text-align: center;
+        font-size: 36px;
+        margin-top: 0;
+    }
+    .about02 {
+        text-align: center;
+        margin-top: 35px;
+    }
+}
+@media (min-width: 800px)and (max-width: 1200px){
+    /*----------header----------*/
+    .center {
+        width: 746px;
+        margin: auto;
+        padding: 20px 0;
+    }
+    .center>.pull-left>a>img {
+        width: 130px;
+    }
+    .center>.pull-right>ul>li {
+        float: left;
+        font-size: 17px;
+        margin-left: 40px;
+        line-height: 39px;
+    }
+    .pull-right>img{
+        display: none;
+    }
+    .zz{
+        display: none;
+    }
+    /*--------------*/
+    .pull-right>img{
+        display: none;
+    }
+    .tbd{
+        display: none;
+    }
+    .tbd2{
+        display: block;
+    }
+    .about02_bottom {
+        text-align: center;
+        font-size: 24px;
+        margin-top: 65px;
+    }
+    .index05_bottom {
+        width: 770px;
+        margin: auto;
+        position: relative;
+        margin-top: 80px;
+        height: auto;
+    }
+    .box2 {
+        width: 196px;
+        height: 382px;
+        box-shadow: 0 5px 5px rgba(0,0,0,0.3);
+        position: relative;
+        text-align: center;
+        padding-top: 0;
+    }
+    .box2_top01 {
+        position: relative;
+        text-align: center;
+        background-image: url("../images/yuan01.png");
+        height: 213px;
+        background-repeat: no-repeat;
+        background-position: center;
+        font-size: 31px;
+        width: 74%;
+        margin: auto;
+        margin-bottom: -15px;
+        background-size: 100%;
+        padding-top: 65px;
+    }
+    .box3 {
+        width: 196px;
+        height: 382px;
+        box-shadow: 0 5px 5px rgba(0,0,0,0.3);
+        position: relative;
+        text-align: center;
+        padding-top: 0;
+    }
+    .box2_top02 {
+        position: relative;
+        text-align: center;
+        background-image: url("../images/yuan02.png");
+        height: 213px;
+        background-repeat: no-repeat;
+        background-position: center;
+        font-size: 33px;
+        width: 74%;
+        margin: auto;
+        margin-bottom: -15px;
+        background-size: 100%;
+        padding-top: 81px;
+    }
+    .box4 {
+        width: 196px;
+        height: 382px;
+        box-shadow: 0 5px 5px rgba(0,0,0,0.3);
+        position: relative;
+        text-align: center;
+        padding-top: 0;
+    }
+    .box2_top03 {
+        position: relative;
+        text-align: center;
+        background-image: url("../images/yuan03.png");
+        height: 213px;
+        background-repeat: no-repeat;
+        background-position: center;
+        font-size: 33px;
+        width: 74%;
+        margin: auto;
+        margin-bottom: -15px;
+        background-size: 100%;
+        padding-top: 81px;
+    }
+    .col-lg-5 {
+        width: 41.66666667%;
+        float: left;
+    }
+    .col-lg-7 {
+        width: 58.33333333%;
+        float: left;
+    }
+    .case03_box {
+        width: 997px;
+        margin: auto;
+        box-shadow: 0 5px 5px rgba(0,0,0,0.3);
+        position: relative;
+        padding: 20px 0 20px 40px;
+        margin-bottom: 20px;
+    }
+    .about04 {
+        width: 997px;
+        margin: auto;
+    }
+    .about05 {
+        width: 997px;
+        margin: auto;
+        padding: 40px;
+        text-align: left;
+        font-size: 18px;
+        color: #666;
+    }
+    .about06 {
+        background-color: #4489CA;
+        padding: 31px 0;
+    }
+    .about06-right {
+        float: right;
+        text-align: center;
+        color: #FFFFFF;
+        margin-top: 32px;
+    }
+    .container {
+        width: 763px;
+    }
+    .about06-left>h1 {
+        font-size: 45px;
+    }
+    .about06-right>img{
+        width: 100px;
+    }
+    .about06-right>h1 {
+        font-size: 20px;
+    }
+}
+@media (min-width: 1200px){
+    .zz{
+        display: none !important;
+    }
+    .pull-right>img{
+        display: none;
+    }
+    .tbd{
+        display: none;
+    }
+    .tbd2{
+        display: block;
+    }
+}

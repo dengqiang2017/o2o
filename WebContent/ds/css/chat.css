@@ -1,0 +1,139 @@
+.header-phone{
+    background-color: #333333;
+    height: 50px;
+    color: #FFFFFF;
+    display:-moz-box;display:-webkit-box;display:box;-moz-box-align:center;-webkit-box-align:center;-o-box-align:center;box-align:center;-moz-box-pack:justify;-webkit-box-pack:justify;-o-box-pack:justify;box-pack:justify;
+}
+body{
+    width: auto !important;
+    height: auto !important;
+}
+.header-phone .col-xs-8{
+    color: #FFFFFF;
+}
+.header-phone img{
+    width: 25px;
+}
+#list{
+    margin-bottom: 47px !important;
+}
+.footer_pic{
+    width: 35px;
+    height: 35px;
+    position: fixed;
+    right: 27px;
+    bottom: 4px;
+}
+.header .col-xs-8{
+    color: #FFFFFF;
+}
+body{
+    background-color: #EBEBEB;
+}
+.footer{
+    background-color: #F4F5F5;
+    padding: 5px;
+}
+.footer img{
+  width: 100%;
+    height: 100%;
+}
+.footer .col-xs-10{
+    padding-left: 10px !important;
+    padding-right: 5px !important;
+}
+.chat{
+    width: 100%;
+    background-color: #FFFFFF;
+    border: none;
+    border-bottom: 1px solid #e2e2e2;
+    min-height: 25px;
+    margin-top: 10px;
+    max-height: 76px;
+    overflow-y: scroll;
+    text-align: left;
+    outline: none;
+}
+.chat_box{
+    margin-top: 50px;
+}
+.chat_right{
+    float: right;
+    padding: 10px 0;
+}
+.chat_left{
+    float: left;
+    padding: 10px 0;margin-left: -45px;
+}
+.pic{
+    float: left;
+}
+.word{
+    background-color: #9FE658;
+    border-radius: 5px;
+    margin-right: 5px;
+    float: left;
+    padding: 5px;
+    max-width: 200px;
+    word-wrap:break-word;
+    word-break:break-all;
+}
+.word_left{
+    background-color: #FFFFFF !important;
+}
+.pic img{
+    width: 40px;
+    height: 40px;
+}
+.chat_left .pic{
+    margin-right: 5px;
+}
+.chat_box li{
+    width: 100%;
+}
+.footer .col-xs-2{
+    position: relative;
+}
+.tp_left{
+    float: left;
+}
+.tp_left img{
+    max-width: 150px;
+}
+.head_portrait_amend {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+.ct {
+    cursor: pointer;
+    display: block;
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+}
+.header_left{
+    position: absolute;
+    left: 10px;
+    top: 12px !important;
+}
+@media (min-width: 770px) {
+    .chat_box{
+        margin-top: 0 !important;
+        height: 459px;
+        overflow-y: auto;
+    }
+    .footer_pic {
+        width: 35px;
+        height: 35px;
+        position: initial;
+        right: 27px;
+        bottom: 4px;
+    }
+}

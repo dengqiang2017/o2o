@@ -1,0 +1,1640 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- xml文件 -->
+<mapper namespace="com.qianying.dao.interfaces.IManagerDAO">
+<!-- 	<cache/> -->
+	<!-- 	数据保存 -->
+	<insert id="insert" parameterType="hashMap">
+	insert into ctl00801(com_id,dept_id,clerk_id,self_id,clerk_name,user_password,working_status)
+	values(#{com_id},#{dept_id},#{clerk_id},#{clerk_id},#{clerk_name},#{user_password},'Y');
+	
+	insert into ctl09003(com_id,user_id,clerk_id,i_browse,user_password)
+	values(#{com_id},#{user_id},#{clerk_id},'Y',#{user_password});
+	</insert>
+	<!-- 数据更新 -->
+	<update id="updateByID" parameterType="hashMap">
+	</update>
+	<insert id="insertSql" parameterType="String">
+	<![CDATA[
+		${sSql}
+		]]>
+	</insert>
+	<!-- 数据删除 -->
+	<delete id="deleteByID" parameterType="Long">
+	delete from ctl00801 where seeds_id=#{id}; 
+	</delete>
+	<select id="queryByID" parameterType="Long"  resultType="hashMap">
+	select * from ctl00801 where seeds_id=#{id};
+	</select>
+	<select id="checkLogin" parameterType="String" resultType="hashMap">
+	select top 1 usr_grp_id as usr_grp_id,rtrim(user_id) as user_id,clerk_id as clerk_id,
+	i_browse as i_browse,rtrim(user_password) as user_password 
+	from ctl09003 where user_id=#{name} and ltrim(rtrim(isnull(com_id,'')))=#{com_id}
+	</select>
+<!-- 	获取系统参数 -->
+	<select id="getSystemParams" parameterType="String" resultType="hashMap">
+		select top 1 * from	CTLf01000 where ltrim(rtrim(isnull(com_id,'')))=#{com_id}
+	</select>
+	<select id="getSystemParamsByComId" parameterType="String" resultType="hashMap">
+		select * from CTLf01001 where ltrim(rtrim(isnull(com_id,'')))=#{com_id}
+	</select>
+	<!-- 分页查询 -->
+	<select id="findQuery" parameterType="com.qianying.page.CustomerQuery"  resultType="hashMap">
+ 	</select> 
+ 	<select id="queryBySql" parameterType="hashMap" resultType="hashMap">
+ 	</select>
+<!--  	查询一级部门列表 -->
+ 	<select id="getDeptByUpper_dept_id" parameterType="hashMap" resultType="hashMap" >
+	select 
+	<if test="filed!=null">
+	${filed}
+	,ltrim(rtrim(isnull(t2.dept_sim_name,''))) as upper_dept_name
+	</if>
+	<if test="filed==null">
+	*
+	</if>
+ from  Ctl00701 t1
+ left join ctl00701 t2 on t1.com_id=t2.com_id and t1.upper_dept_id=t2.sort_id
+	where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id}
+	<if test="id!=null">
+	and not ltrim(rtrim(isnull(t1.sort_id,'')))=#{id}
+	</if>
+	<if test="find==null">
+	<if test="upper_dept_id==null and name==null">
+	 and ltrim(rtrim(isnull(t1.upper_dept_id,'')))=''
+	</if>
+	</if>
+	<if test="upper_dept_id!=null">
+	 and (ltrim(rtrim(isnull(t1.upper_dept_id,'')))=#{upper_dept_id} 
+	 or ltrim(rtrim(isnull(t1.sort_id,'')))=#{upper_dept_id})
+	</if>
+	<if test="dept_name!=null">
+	 and (
+	 ltrim(rtrim(isnull(t1.dept_name,''))) like #{searchKey} or 
+	 ltrim(rtrim(isnull(t1.dept_manager,''))) like #{searchKey} or 
+	 ltrim(rtrim(isnull(t1.easy_id,''))) like #{searchKey} or 
+	 ltrim(rtrim(isnull(t1.sort_id,''))) like #{searchKey} or 
+	 ltrim(rtrim(isnull(t1.dept_id,''))) like #{searchKey}  
+	 )	
+	</if>
+	<if test="name!=null">
+	 and (ltrim(rtrim(isnull(t1.dept_name,''))) like #{name} 
+	 or ltrim(rtrim(isnull(t1.sort_id,''))) like #{name}) 	
+	</if>
+	<if test="dept_manager!=null">
+	 and ltrim(rtrim(isnull(t1.dept_manager,''))) like #{dept_manager} 	
+	</if> 
+	order by t1.seeds_id asc
+ 	</select>
+	<!--  产品的增加,删除,修改 -->
+	<insert id="saveDept" parameterType="hashMap">
+		insert into Ctl00701(com_id,sort_id,dept_id,dept_sim_name,dept_name,easy_id,
+		dept_manager,dept_addr,tel_no,fax_no,zip,working_status,upper_dept_id,m_flag)
+		values(#{com_id},#{sort_id},#{dept_id},#{dept_sim_name},#{dept_name},#{easy_id},#{dept_manager},
+		#{dept_addr},#{tel_no},#{fax_no},#{zip},#{working_status},#{upper_dept_id},#{m_flag});
+	</insert>
+	<update id="updateDept" parameterType="hashMap">
+	update Ctl00701 set
+	dept_sim_name=#{dept_sim_name},dept_name=#{dept_name},easy_id=#{easy_id},
+		dept_manager=#{dept_manager},dept_addr=#{dept_addr},tel_no=#{tel_no},fax_no=#{fax_no},zip=#{zip},working_status=#{working_status},
+		upper_dept_id=#{upper_dept_id},m_flag=#{m_flag}
+		where sort_id=#{sort_id} and ltrim(rtrim(isnull(com_id,'')))=#{com_id}
+	</update>
+	<select id="getDeptEmployee" parameterType="hashMap" resultType="hashMap">
+		select top 1000 t1.*,t2.dept_sim_name,t2.dept_name from Ctl00801 t1
+		left join Ctl00701 t2 on t1.dept_id=t2.sort_id and t1.com_id=t2.com_id
+		left join Ctl01001 t3 on t1.regionalism_id=t2.sort_id and t1.com_id=t2.com_id
+		<where>
+		ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id} and ltrim(rtrim(isnull(t1.working_status,'')))='1'
+		<if test="sort_id!=null">
+		and t1.dept_id=#{sort_id};
+		</if>
+		<if test="name!=null">
+		and (t1.clerk_name like #{name} or t1.easy_id like #{name}
+		or t1.clerk_id like #{name} or ltrim(rtrim(isnull(t2.dept_name,'')))  like #{name} or t1.movtel like #{name}
+		);
+		</if>
+		</where> 
+	</select>
+	<delete id="deleteDept" parameterType="String">
+	delete from Ctl00701 where sort_id=#{sort_id} and ltrim(rtrim(isnull(com_id,'')))=#{com_id}
+	</delete>
+	<select id="getMaxDeptSort_id" resultType="String">
+	select top 1 sort_id as sort_id from Ctl00701 order by sort_id desc;
+	</select>
+	<select id="getDeptBySortId" parameterType="String" resultType="hashMap">
+		select top 1 *,ltrim(rtrim(isnull(t2.dept_sim_name,''))) as upper_dept_name
+		from Ctl00701 t1
+		left join ctl00701 t2 on t1.com_id=t2.com_id and t1.upper_dept_id=t2.sort_id
+		where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id} and t1.sort_id=#{sort_id}
+	</select>
+<!-- 	获取行政区划树 -->
+	<select id="getRegionalismTree" parameterType="hashMap" resultType="hashMap">
+	select top 500 * from Ctl01001
+		<where>
+		ltrim(rtrim(isnull(com_id,'')))=#{com_id}
+		<if test="find==null">
+		<if test="regionalism_id==null">
+		 and ltrim(rtrim(isnull(upper_regionalism_id,'')))=''
+		</if>
+		</if>
+		<if test="regionalism_id!=null">
+		  and ltrim(rtrim(isnull(upper_regionalism_id,'')))=#{regionalism_id}
+		</if>
+		<if test="regionalism_name_cn!=null">
+			and regionalism_name_cn like  #{regionalism_name_cn}
+		</if>
+		<if test="name!=null">
+			and (regionalism_name_cn like  #{name} or easy_id like #{name})
+		</if>
+		<if test="easy_id!=null">
+			and easy_id like  #{easy_id}
+		</if>
+		</where> 
+		order by seeds_id asc;
+	</select>
+	<select id="getRegionalismInfo" parameterType="String" resultType="hashMap">
+	select top 1 t1.*,t2.dept_name from Ctl01001 t1 left join Ctl00701 t2 on t1.dept_id=t2.sort_id  and t1.com_id=t2.com_id
+	where t1.sort_id=#{sort_id} and
+	ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id}
+	</select>
+	<select id="getDataInfo" parameterType="hashMap" resultType="hashMap">
+	select top 1 
+	ltrim(rtrim(isnull(corp_working_lisence,''))) as corp_working_lisence,
+	ltrim(rtrim(isnull(idcard,''))) as idcard,
+	ltrim(rtrim(isnull(openid,''))) as openid,
+	ltrim(rtrim(isnull(corp_sim_name,''))) as corp_sim_name,
+	ltrim(rtrim(isnull(user_id,''))) as user_id,
+	ltrim(rtrim(isnull(weixinID,''))) as weixinID 
+    from ${table} where ltrim(rtrim(isnull(com_id,'')))=#{com_id} and ${idName}=#{idVal}; 
+	</select>
+<!-- /////库房相关////////////////// -->
+<select id="getWarehouseTree" parameterType="hashMap" resultType="hashMap">
+ SELECT 
+ ltrim(rtrim(isnull(w2.clerk_name,''))) as clerk_name,
+ ltrim(rtrim(isnull(w3.dept_name,''))) as dept_name,
+ ltrim(rtrim(isnull(w4.regionalism_name_cn,''))) as regionalism_name_cn,
+ ltrim(rtrim(isnull(w1.sort_id,''))) as sort_id,
+ ltrim(rtrim(isnull(w1.store_struct_id,''))) as store_struct_id,
+ ltrim(rtrim(isnull(w1.store_struct_name,''))) as store_struct_name,
+ ltrim(rtrim(isnull(w1.regionalism_id,''))) as regionalism_id,
+ ltrim(rtrim(isnull(w1.store_struct_type,''))) as store_struct_type,
+ ltrim(rtrim(isnull(w1.addr,''))) as addr
+ FROM Ivt01001 w1 
+left join Ctl00801 w2 on w1.clerk_id=w2.clerk_id and w1.com_id=w2.com_id
+left join Ctl00701 w3 on w1.dept_id=w3.sort_id and w1.com_id=w3.com_id 
+left join Ctl01001 w4 on w1.regionalism_id=w4.sort_id and w1.com_id=w4.com_id
+<where>
+ltrim(rtrim(isnull(w1.com_id,'')))=#{com_id}
+<if test="id!=null">
+and not ltrim(rtrim(isnull(w1.sort_id,'')))=#{id}
+</if>
+<if test="sort_id==null">
+and ltrim(rtrim(isnull(w1.upper_storestruct,''))) =''
+</if>
+<if test="sort_id!=null">
+and (
+ltrim(rtrim(isnull(w1.upper_storestruct,'')))=#{sort_id} or
+ltrim(rtrim(isnull(w1.sort_id,'')))=#{sort_id}
+)
+</if>
+<if test="name!=null">
+and (w1.store_struct_name like #{name} or w1.easy_id like #{name})
+</if>
+</where>
+order by w1.seeds_id asc;
+</select>
+<select id="getWarehouse" parameterType="String" resultType="hashMap">
+select w1.*,w2.clerk_name,w3.dept_name,w4.regionalism_name_cn,w5.clerk_name,w6.store_struct_name as upper_storestruct_name
+ from Ivt01001 w1
+left join Ctl00801 w2 on w1.clerk_id=w2.clerk_id and w1.com_id=w2.com_id
+left join Ctl00701 w3 on w1.dept_id=w3.sort_id  and w1.com_id=w3.com_id
+left join Ctl01001 w4 on w1.regionalism_id=w4.regionalism_id and w1.com_id=w4.com_id
+left join SDf00504 w5 on w1.customer_id=w5.customer_id and w1.com_id=w5.com_id
+left join Ivt01001 w6 on w1.upper_storestruct=w6.sort_id and w1.com_id=w6.com_id
+where ltrim(rtrim(isnull(w1.sort_id,'')))=#{sort_id} and ltrim(rtrim(isnull(w1.com_id,'')))=#{com_id}
+</select>
+
+<sql id="warehouseSql">
+left join Ctl00801 w2 on t1.clerk_id=w2.clerk_id and t1.com_id=w2.com_id
+left join Ctl00701 w3 on t1.dept_id=w3.sort_id and t1.com_id=w3.com_id 
+left join Ctl01001 w4 on t1.regionalism_id=w4.sort_id and t1.com_id=w4.com_id
+where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id}
+<if test="searchKey!=null">
+and ltrim(rtrim(isnull(t1.store_struct_name,''))) like #{searchKey}
+</if>
+<if test="find==null">
+<if test="sort_id==null">
+and ltrim(rtrim(isnull(t1.upper_storestruct,'')))=''
+</if>
+</if>
+<if test="sort_id!=null">
+and ltrim(rtrim(isnull(t1.upper_storestruct,'')))=#{sort_id}
+</if>
+<if test="store_struct_name!=null and store_struct_name!=''">
+ and ltrim(rtrim(isnull(t1.store_struct_name,''))) like #{store_struct_name}
+</if>
+<if test="dept_name!=null and dept_name!=''">
+ and ltrim(rtrim(isnull(w3.dept_name,''))) like #{dept_name}
+</if>
+<if test="store_struct_type!=null and store_struct_type!=''">
+ and ltrim(rtrim(isnull(t1.store_struct_type,''))) = #{store_struct_type}
+</if>
+<if test="easy_id!=null and easy_id!=''">
+ and ltrim(rtrim(isnull(t1.easy_id,''))) like #{easy_id}
+</if>
+</sql>
+<select id="getWarehouseByPage" parameterType="hashMap" resultType="hashMap"> 
+ 	declare @maxId int,@maxId2 int;
+	set @maxid=(
+	select max(idh) from (
+	select top ${page}
+	ROW_NUMBER() OVER (
+		ORDER BY
+		ltrim(rtrim(isnull(t1.sort_id,'')))
+		) as idh 
+  	from Ivt01001 t1
+  	<include refid="warehouseSql"/>
+  	) as t);
+       set @maxId2=@maxId;
+  	 <if test="page==1">
+		set @maxId=@maxId-1;
+	</if>
+select top ${rows} t.* from (
+select ROW_NUMBER() OVER (
+	ORDER BY
+	ltrim(rtrim(isnull(t1.sort_id,'')))
+	) as idh,
+ ltrim(rtrim(isnull(w2.clerk_name,''))) as clerk_name,
+ ltrim(rtrim(isnull(w3.dept_name,''))) as dept_name,
+ ltrim(rtrim(isnull(w4.regionalism_name_cn,''))) as regionalism_name_cn,
+ ltrim(rtrim(isnull(t1.sort_id,''))) as sort_id,
+ ltrim(rtrim(isnull(t1.sort_id,''))) as store_struct_id,
+ ltrim(rtrim(isnull(t1.store_struct_name,''))) as store_struct_name,
+ ltrim(rtrim(isnull(t1.store_struct_type,''))) as store_struct_type,
+ ltrim(rtrim(isnull(t1.regionalism_id,''))) as regionalism_id,
+ ltrim(rtrim(isnull(t1.addr,''))) as addr
+ FROM Ivt01001 t1
+  <include refid="warehouseSql"/>
+ ) as t where  t.idh>@maxid 
+</select>
+<select id="getWarehouseByPageCount" parameterType="hashMap" resultType="Integer">
+	SELECT count(t1.sort_id) FROM Ivt01001 t1
+ 	<include refid="warehouseSql"/>
+</select>
+<!-- 获取最大的seed值 -->
+<select id="getMaxSeeds_id" parameterType="hashMap" resultType="Integer">
+	select isnull(max(${filedName}),0) from ${tableName} 
+</select>
+<!-- 结算方式相关 -->
+<select id="getSettlementList" parameterType="hashMap" resultType="hashMap">
+select  
+ltrim(rtrim(isnull(w1.c_backname,''))) as c_backname,
+ltrim(rtrim(isnull(w1.c_fullname,''))) as c_fullname,
+ltrim(rtrim(isnull(w1.c_province,''))) as c_province,
+ltrim(rtrim(isnull(w1.c_city,''))) as c_city,
+ltrim(rtrim(isnull(w1.cheque_flag,''))) as cheque_flag,
+ltrim(rtrim(isnull(w1.dept_id,''))) as dept_id,
+ltrim(rtrim(isnull(w1.settlement_type_id,''))) as settlement_type_id,
+ltrim(rtrim(isnull(w1.easy_id,''))) as easy_id,
+ltrim(rtrim(isnull(w1.settlement_sim_name,''))) as settlement_sim_name,
+ltrim(rtrim(isnull(w1.upper_settlement_id,''))) as upper_settlement_id,
+ltrim(rtrim(isnull(w1.sort_id,''))) as sort_id,
+ltrim(rtrim(isnull(w1.c_accounts,''))) as c_accounts,
+isnull(w1.I_Amount,0) as i_Amount,
+ltrim(rtrim(isnull(w2.dept_name,''))) as dept_name from ctl02107 w1 
+left join Ctl00701 w2 on w1.dept_id=w2.sort_id and
+ltrim(rtrim(isnull(w1.com_id,'')))=ltrim(rtrim(isnull(w2.com_id,''))) 
+<where>
+ltrim(rtrim(isnull(w1.com_id,'')))=#{com_id}
+<if test="id!=null">
+and not ltrim(rtrim(isnull(w1.sort_id,'')))=#{id}
+</if>
+<if test="find==null">
+<if test="sort_id==null">
+and ltrim(rtrim(isnull(w1.upper_settlement_id,'')))=''
+</if>
+</if>
+<if test="sort_id!=null">
+and (ltrim(rtrim(isnull(w1.sort_id,'')))=#{sort_id} or ltrim(rtrim(isnull(w1.upper_settlement_id,'')))=#{sort_id})
+</if>
+<if test="settlement_sim_name!=null">
+and ltrim(rtrim(isnull(settlement_sim_name,''))) like #{settlement_sim_name}
+</if>
+<if test="name!=null">
+and (ltrim(rtrim(isnull(store_struct_name,''))) like #{name} or easy_id like #{name})
+</if>
+<if test="easy_id!=null">
+and ltrim(rtrim(isnull(w1.easy_id,''))) like #{easy_id}
+</if>
+</where>
+</select>
+<select id="getSettlement" parameterType="String" resultType="hashMap">
+select 
+ltrim(rtrim(isnull(w1.c_backname,''))) as c_backname,
+ltrim(rtrim(isnull(w1.c_fullname,''))) as c_fullname,
+ltrim(rtrim(isnull(w1.c_province,''))) as c_province,
+ltrim(rtrim(isnull(w1.c_city,''))) as c_city,
+ltrim(rtrim(isnull(w1.cheque_flag,''))) as cheque_flag,
+ltrim(rtrim(isnull(w1.dept_id,''))) as dept_id,
+ltrim(rtrim(isnull(w1.settlement_type_id,''))) as settlement_type_id,
+ltrim(rtrim(isnull(w1.easy_id,''))) as easy_id,
+ltrim(rtrim(isnull(w1.settlement_sim_name,''))) as settlement_sim_name,
+ltrim(rtrim(isnull(w1.upper_settlement_id,''))) as upper_settlement_id,
+ltrim(rtrim(isnull(w1.sort_id,''))) as sort_id,
+ltrim(rtrim(isnull(w1.c_accounts,''))) as c_accounts,
+isnull(w1.I_Amount,0) as i_Amount,
+isnull(w1.c_accounts,0) as c_accounts,
+ltrim(rtrim(isnull(w2.dept_name,''))) as dept_name,
+ltrim(rtrim(isnull(w3.settlement_sim_name,''))) as upper_settlement_name from ctl02107 w1 
+left join Ctl00701 w2 on w1.dept_id=w2.sort_id and ltrim(rtrim(isnull(w1.com_id,'')))=ltrim(rtrim(isnull(w2.com_id,'')))
+left join ctl02107 w3 on w1.upper_settlement_id=w3.sort_id and ltrim(rtrim(isnull(w1.com_id,'')))=ltrim(rtrim(isnull(w3.com_id,'')))
+where ltrim(rtrim(isnull(w1.sort_id,'')))=#{sort_id} and 
+ltrim(rtrim(isnull(w1.com_id,'')))=#{com_id}
+</select>
+<!-- /////////////////////////////// -->
+<select id="getUpperId" parameterType="hashMap" resultType="String">
+select top 1 ${upperName} FROM ${table} where ${idName}=#{idVal} 
+<if test="idName!='com_id'">
+and ltrim(rtrim(isnull(com_id,'')))=#{com_id}
+</if>
+</select>
+<!-- //////////////////////// -->
+<delete id="deleteRecord" parameterType="hashMap">
+delete from ${table} where 
+<if test="table!='ctl00501'">
+ltrim(rtrim(isnull(com_id,'')))=#{com_id} and 
+</if>
+ltrim(rtrim(isnull(${idName},'')))=#{idVal}
+<if test="upperName!=null">
+ or ltrim(rtrim(isnull(${upperName},'')))=#{idVal}
+</if>
+</delete>
+<!-- 删除已增加入库单 -->
+<delete id="delPurchasingCheck" parameterType="hashMap">
+delete from ${table} where ltrim(rtrim(isnull(com_id,'')))=#{com_id}
+<if test="rcv_auto_no!=null">
+and rcv_auto_no=#{rcv_auto_no}
+</if>
+<if test="st_auto_no!=null">
+and st_auto_no=#{st_auto_no}
+</if>
+<if test="ivt_oper_listing!=null">
+and ivt_oper_listing=#{ivt_oper_listing}
+</if>
+<if test="item_id!=null">
+and item_id=#{item_id}
+</if>
+</delete>
+<delete id="delOrder" parameterType="hashMap">
+delete from ${table} where ltrim(rtrim(isnull(com_id,'')))=#{com_id}
+<if test="st_auto_no!=null">
+and st_auto_no=#{st_auto_no}
+</if>
+<if test="item_id!=null">
+and item_id=#{item_id}
+</if>
+</delete>
+<!-- 流程相关 -->
+<select id="getApproval_step" parameterType="hashMap" resultType="Integer">
+select top 1 t.approval_step from OA_ctl03001 t 
+where t.item_name=#{item_name}  and t.approval_step!=20
+and  ltrim(rtrim(isnull(t.com_id,'')))=#{com_id} 
+<if test="customer_id!=null">
+ and t.upper_customer_id=#{customer_id}
+</if>
+order by t.approval_step desc
+</select>
+<select id="getProcessInfo" parameterType="Integer" resultType="hashMap">
+select top 1 t.*,t1.clerk_name,t2.dept_name,t3.corp_sim_name  from OA_ctl03001 t 
+left join ctl00801 t1 on t.clerk_id=t1.clerk_id and t.com_id=t1.com_id
+left join Ctl00701 t2 on  t.dept_id=t2.sort_id and t.com_id=t2.com_id
+left join sdf00504 t3 on t.customer_id=t3.customer_id and t.com_id=t3.com_id
+where t.id=#{seeds_id}
+</select>
+<select id="getProcessList" parameterType="hashMap" resultType="hashMap">
+select t.*,t1.clerk_name,t2.dept_name,t3.corp_sim_name,
+ltrim(rtrim(isnull(t3.headship,''))) as zhiwu from OA_ctl03001 t 
+left join ctl00801 t1 on t.clerk_id=t1.clerk_id and t.com_id=t1.com_id
+left join sdf00504 t3 on t.customer_id=t3.customer_id and t.com_id=t3.com_id
+left join Ctl00701 t2 on t.dept_id=t2.sort_id and t.com_id=t2.com_id
+where ltrim(rtrim(isnull(t.com_id,'')))=#{com_id} and 
+ltrim(rtrim(isnull(t.item_name,'')))=#{item_name} and t.approval_step!=20
+<if test="customer_id!=null">
+ and ltrim(rtrim(isnull(t.upper_customer_id,'')))=#{customer_id}
+</if>
+order by approval_step
+</select>
+<!-- 获取抄送人员 -->
+<select id="getChaosong" parameterType="hashMap" resultType="hashMap">
+	select t.ID,t.item_id,t1.clerk_id,t1.clerk_name,t1.weixinID from OA_ctl03001 t 
+left join ctl00801 t1 on t.com_id=t1.com_id and t.clerk_id like '%'+t1.clerk_id+'%' 
+where 
+<if test="seeds_id!=null">
+t.ID=#{seeds_id}
+</if>
+<if test="seeds_id==null">
+ltrim(rtrim(isnull(t.com_id,'')))=#{com_id} and
+ltrim(rtrim(isnull(t.item_name,'')))=#{item_name} and t.approval_step=20
+</if>
+</select>
+<select id="getMaxApproval_step" parameterType="hashMap" resultType="Integer">
+select top 1 approval_step from OA_ctl03001 where item_name=#{item_name} and
+ltrim(rtrim(isnull(com_id,'')))=#{com_id} and approval_step!=20
+order by approval_step desc
+</select>
+<update id="moveProcess" parameterType="hashMap">
+declare @maxId int;
+	set @maxId=(select id from OA_ctl03001 where 
+	ltrim(rtrim(isnull(com_id,'')))=#{com_id} and approval_step!=20
+	<if test="customer_id!=null">
+	and ltrim(rtrim(isnull(upper_customer_id,'')))=#{customer_id} 
+	</if>
+	 and item_name=#{item_name}
+	 and approval_step=#{approval_stepN}
+	 );
+<if test="type=='up'">
+update OA_ctl03001 set approval_step=approval_step-1 where id=#{id};
+update OA_ctl03001 set approval_step=approval_step+1 where  id=@maxId;
+</if>
+<if test="type=='down'">
+update OA_ctl03001 set approval_step=approval_step+1 where id=#{id};
+update OA_ctl03001 set approval_step=approval_step-1 where id=@maxId;
+</if>
+</update>
+<delete id="delProcess" parameterType="hashMap">
+delete from OA_ctl03001 where id=#{id};
+update OA_ctl03001 set approval_step=approval_step-1
+ where item_name=#{item_name} and  approval_step>#{approval_step} and approval_step!=20
+<if test="customer_id!=null">
+and upper_customer_id=#{customer_id}
+</if>
+
+ and ltrim(rtrim(isnull(com_id,'')))=#{com_id}
+</delete>
+<select id="getOneFiledNameByID" parameterType="hashMap" resultType="Object">
+select top 1 ${showFiledName} 
+from ${table} where ${findFiled} and ltrim(rtrim(isnull(com_id,'')))=#{com_id}
+</select>
+<select id="getMaxApproval" parameterType="hashMap" resultType="String">
+select top 1 item_id from OA_ctl03001 
+where ltrim(rtrim(isnull(com_id,'')))=#{com_id}  and approval_step!=20
+order by item_id desc;
+</select>
+
+<select id="getClerkIdTo9003" parameterType="String" resultType="hashMap">
+select * from ctl09003 where ltrim(rtrim(isnull(com_id,'')))=#{com_id} and clerk_id=#{clerk_id}
+</select>
+
+<select id="getEmployeeInfo" parameterType="hashMap" resultType="hashMap">
+<if test="type=='cls' and type_id!=null">
+<!-- 产品 类别 -->
+select t1.sort_name as name from Ctl03200 t1 
+where  ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id} ${type_id}
+
+</if>
+<if test="type=='client' and customer_id!=null">
+select t1.corp_sim_name as name from sdf00504 t1 
+where  ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id}  ${customer_id}
+</if>
+<if test="type=='dept' and dept_idInfo!=null">
+select t1.dept_name as name from Ctl00701 t1 
+where  ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id}  ${dept_idInfo}
+</if>
+<if test="type=='warehouse' and store_struct_id_Info!=null">
+select t1.store_struct_name as name from Ivt01001 t1
+where  ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id} ${store_struct_id_Info}
+</if>
+</select>
+
+<!-- 判断删除项是否被引用过    -->
+<select id="sp_BaseIsUsed" parameterType="hashMap" resultType="String" statementType="CALLABLE">
+<![CDATA[
+	{#{output,mode=OUT,jdbcType=NUMERIC,javaType=Integer} =call sp_BaseIsUsed
+	  (#{com_id, mode=IN, jdbcType=VARCHAR},#{sort_id , mode=IN, jdbcType=VARCHAR},
+	   #{i_Flag,mode=IN,jdbcType=INTEGER})
+	}
+	]]>
+</select>
+
+<select id="getDeptAll" parameterType="String" resultType="hashMap">
+select t.*,
+       case when t.working_status = '01' then '使用' 
+            when t.working_status = '02' then '停用' 
+            else t.working_status 
+            end as working_status_translate,
+       case when t.m_flag = '0' then '生产' 
+            when t.m_flag = '1' then '营销' 
+            when t.m_flag = '2' then '管理' 
+            when t.m_flag = '3' then '财务' 
+            else t.m_flag 
+            end as m_flag_translate,
+       t1.dept_name as upper_dept_name
+from ctl00701 t
+left outer join Ctl00701 t1 on t.upper_dept_id = t1.sort_id or t.upper_dept_id = t1.dept_id
+where  ltrim(rtrim(isnull(t.com_id,'')))=#{com_id}
+</select>
+
+<select id="getSettlementAll" parameterType="String" resultType="hashMap">
+select t.* from Ctl02107 t 
+where  ltrim(rtrim(isnull(t.com_id,'')))=#{com_id}
+</select>
+
+<select id="getRegionalismAll" parameterType="String" resultType="hashMap">
+select t.*,
+       case when t.if_statistic = '0' then '否' 
+            when t.if_statistic = '1' then '是' 
+            else t.if_statistic 
+            end as if_statistic_translate,
+       t1.regionalism_name_cn as upper_regionalism_name
+from Ctl01001 t
+left outer join Ctl01001 t1 on t.upper_regionalism_id = t1.regionalism_id or t.upper_regionalism_id = t1.sort_id
+where  ltrim(rtrim(isnull(t.com_id,'')))=#{com_id}
+</select>
+
+<select id="getClientAll" parameterType="String" resultType="hashMap">
+select t.*,
+       t.clerk_idAccountApprover as clerk_idaccountapprover,
+       t.ifUseCredit as ifusecredit,
+       t1.clerk_name as sell_clerk_name,
+       t4.clerk_name as clerk_nameaccountapprover,
+       isnull(t5.corp_sim_name,isnull(t5.corp_name,'')) as upper_customer_name,
+       t2.dept_name,
+       t3.regionalism_name_cn,
+       case when t.HY_style = '0' then '0-客户自提' 
+            when t.HY_style = '1' then '1-第三方物流公司' 
+            when t.HY_style = '2' then '2-公司自发' 
+            else t.HY_style 
+            end as hy_style_translate
+from sdf00504 t
+left outer join Ctl00801 t1 on ltrim(rtrim(isnull(t.com_id,'')))=ltrim(rtrim(isnull(t1.com_id,''))) and t.clerk_id = t1.clerk_id
+left outer join Ctl00801 t4 on ltrim(rtrim(isnull(t.com_id,'')))=ltrim(rtrim(isnull(t4.com_id,''))) and t.clerk_idaccountapprover = t4.clerk_id
+left outer join Ctl00701 t2 on ltrim(rtrim(isnull(t.com_id,'')))=ltrim(rtrim(isnull(t2.com_id,''))) and t.dept_id = t2.dept_id
+left outer join Ctl01001 t3 on ltrim(rtrim(isnull(t.com_id,'')))=ltrim(rtrim(isnull(t3.com_id,''))) and t.regionalism_id = t3.regionalism_id
+left outer join sdf00504 t5 on ltrim(rtrim(isnull(t.com_id,'')))=ltrim(rtrim(isnull(t5.com_id,''))) and t.upper_customer_id = t5.customer_id
+where  ltrim(rtrim(isnull(t.com_id,'')))=#{com_id}
+and not ltrim(rtrim(isnull(t.customer_id,'')))='CS1'
+and not ltrim(rtrim(isnull(t.customer_id,'')))='CS1_ERROR'
+and not ltrim(rtrim(isnull(t.customer_id,'')))='CS1_ZEROM'
+</select>
+
+<select id="getWarehouseAll" parameterType="String" resultType="hashMap">
+select t.*,
+       t1.store_struct_name as upper_store_struct_name,
+       t2.dept_name,
+       t3.clerk_name,
+       t4.regionalism_name_cn,
+       t5.corp_name,
+       case when t.counting_style = '0' then '0-是' 
+            when t.counting_style = '1' then '1-不是' 
+            else t.counting_style 
+            end as counting_style_translate,
+       t6.clerk_name as mainten_clerk_name
+	from Ivt01001 t
+	left outer join Ivt01001 t1 on t1.store_struct_id = t.upper_storestruct or t1.sort_id = t.upper_storestruct
+	left outer join Ctl00701 t2 on t2.dept_id = t.dept_id
+	left outer join Ctl00801 t3 on t3.clerk_id = t.clerk_id
+	left outer join Ctl01001 t4 on t4.regionalism_id = t.regionalism_id
+	left outer join Sdf00504 t5 on t5.customer_id = t.customer_id
+	left outer join Ctl00801 t6 on t6.clerk_id = t.mainten_clerk_id
+	where  ltrim(rtrim(isnull(t.com_id,'')))=#{com_id}
+</select>
+
+<select id="getProdAll" parameterType="String" resultType="hashMap">
+select t.*,
+       t1.sort_name,
+       case when t.if_O2O = '1' then '1-线下ERP用户'
+            when t.if_O2O = '2' then '2-线上后台管理用户'
+            else t.if_O2O
+            end as if_o2o_translate,
+       t2.store_struct_name,
+       t3.corp_name as server_name,
+       case when t.m_flag = '1' then '1-不是固定资产'
+            when t.m_flag = '0' then '0-是固定资产'
+            else t.m_flag
+            end as m_flag_translate,
+       t4.clerk_name as mainten_clerk_name,
+       t5.corp_name as vendor_idmy_name
+from Ctl03001 t
+left outer join Ctl03200 t1 on t.type_id = t1.sort_id and t.com_id=t1.com_id
+left outer join Ivt01001 t2 on t.store_struct_id = t2.store_struct_id and t.com_id=t2.com_id
+left outer join Ctl00504 t3 on t.serve_id = t3.self_id and t.com_id=t3.com_id
+left outer join Ctl00801 t4 on t.mainten_clerk_id = t4.clerk_id and t.com_id=t4.com_id
+left outer join Ctl00504 t5 on t.vendor_idmy = t3.self_id and t.com_id=t5.com_id
+where  ltrim(rtrim(isnull(t.com_id,'')))=#{com_id}
+<if test="type_id!=null">
+and ltrim(rtrim(isnull(t.type_id,''))) like #{type_id}
+</if>
+<if test="searchKey!=null">
+	and (ltrim(rtrim(isnull(t.item_name,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t.item_sim_name,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t3.corp_name,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t.peijian_id,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t.item_id,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t.easy_id,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t.item_type,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t.type_id,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t1.sort_name,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t.class_card,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t.item_color,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t.item_spec,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t.quality_class,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t.item_style,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t.goods_origin,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t.item_status,''))) like #{searchKey} or
+	ltrim(rtrim(isnull(t1.if_statistic,''))) like #{searchKey} or
+	isnull(t.qz_days,0) like #{searchKey} )
+</if>
+order by t.vendor_id,t.item_id
+</select>
+
+<select id="getProdClassAll" parameterType="String" resultType="hashMap">
+select t.*,
+       t1.sort_name as upper_sort_name,
+       case when t.if_statistic = '0' then '0-不统计'
+            when t.if_statistic = '1' then '1-统计'
+            else t.if_statistic 
+            end as if_statistic_translate,
+       t2.clerk_name as mainten_clerk_name
+from Ctl03200 t
+left outer join Ctl03200 t1 on t.upper_sort_id = t1.sort_id or t.upper_sort_id  = t.self_id
+left outer join Ctl00801 t2 on t.mainten_clerk_id = t2.clerk_id or t.mainten_clerk_id = t2.self_id
+where  ltrim(rtrim(isnull(t.com_id,'')))=#{com_id}
+</select>
+
+<select id="getGysTree" parameterType="hashMap" resultType="hashMap">
+	select 
+	<if test="all==null">
+	ltrim(rtrim(isnull(t1.corp_id,''))) as corp_id,
+	ltrim(rtrim(isnull(t1.corp_sim_name,''))) as corp_sim_name,
+	ltrim(rtrim(isnull(t1.corp_name,''))) as corp_name,
+	ltrim(rtrim(isnull(t1.user_id,''))) as user_id,
+	ltrim(rtrim(isnull(t1.weixinID,''))) as weixinID
+	</if>
+	<if test="all!=null">
+	t1.*,t2.regionalism_name_cn
+	</if>
+	 from Ctl00504 t1 
+	 <if test="all!=null">
+	 left join Ctl01001 t2 on t1.regionalism_id=t2.regionalism_id and t1.com_id=t2.com_id
+	 </if>
+	where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id}  
+	<if test="id!=null">
+	and not ltrim(rtrim(isnull(t1.corp_id,'')))=#{id}
+	</if>
+	<if test="all==null">
+	and ltrim(rtrim(isnull(t1.working_status,'是')))='是'
+	</if>
+	<if test="all!=null">
+	<if test="working_status!=null">
+	and ltrim(rtrim(isnull(t1.working_status,'是')))=#{working_status}
+	</if>
+	</if>
+	<if test="find==null">
+	<if test="corp_id==null">
+	and ltrim(rtrim(isnull(t1.direct_upper_corp_id,'')))='' 
+	</if>
+	</if>
+	<if test="corp_id!=null">
+	and ltrim(rtrim(isnull(t1.corp_id,'')))=#{corp_id} 
+	</if>
+	<if test="name!=null">
+	and (
+	 ltrim(rtrim(isnull(t1.corp_sim_name,''))) like #{name} or
+	 ltrim(rtrim(isnull(t1.corp_name,''))) like #{name} or
+	 ltrim(rtrim(isnull(t1.easy_id,''))) like #{name} or
+	 ltrim(rtrim(isnull(t1.corp_id,''))) like #{name} or
+	 ltrim(rtrim(isnull(t1.self_id,''))) like #{name} or
+	 ltrim(rtrim(isnull(t1.user_id,''))) like #{name} or
+	 ltrim(rtrim(isnull(t1.tel_no,''))) like #{name} or
+	 ltrim(rtrim(isnull(t1.corp_addr,''))) like #{name}
+	)
+	</if>
+	order by corp_id,corp_sim_name 
+</select>
+<sql id="gysWhere">
+	where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id} 
+	<if test="searchKey!=null">
+	and (
+	t1.corp_sim_name like #{searchKey} or
+	 t1.corp_name like #{searchKey} or
+	 t1.easy_id like #{searchKey} or
+	 t1.corp_id like #{searchKey} or
+	 t1.self_id like #{searchKey} or
+	 t1.tel_no like #{searchKey} or
+	 t1.corp_addr like #{searchKey} 
+	)
+	</if>
+</sql>
+<select id="getGysPageCount" parameterType="hashMap" resultType="Integer">
+	select count(*) from Ctl00504 t1
+	<include refid="gysWhere"/>
+</select>
+<select id="getGysPageList" parameterType="hashMap" resultType="hashMap">
+		declare @maxId int;
+		set @maxId=( select max(idh) from
+		(
+		select top
+		${page} ROW_NUMBER()
+		OVER
+		(
+		ORDER BY isnull(t1.working_status,1) desc,
+		ltrim(rtrim(isnull(t1.corp_id,''))),
+		ltrim(rtrim(isnull(t1.corp_sim_name,'')))
+		) as idh
+		from Ctl00504 t1
+		<include refid="gysWhere"/>
+		) as t);
+		<if test="page==1">
+			set @maxId=@maxId-1;
+		</if>
+		select top ${rows} t.*
+		from (
+		select
+		ROW_NUMBER()
+		OVER
+		(
+		ORDER BY isnull(t1.working_status,1) desc,
+		ltrim(rtrim(isnull(t1.corp_id,''))),
+		ltrim(rtrim(isnull(t1.corp_sim_name,'')))
+		) as idh,t1.*,t2.regionalism_name_cn from
+		Ctl00504 t1
+		left join Ctl01001 t2 on t1.regionalism_id=t2.regionalism_id and t1.com_id=t2.com_id
+		<include refid="gysWhere"/>
+		) t where t.idh>@maxId
+</select>	
+	
+	<sql id="operateWhere">
+	where ltrim(rtrim(isnull(com_id,''))) like #{com_id}
+	 
+	<if test="searchKey!=null">
+	and (
+	 com_sim_name like #{searchKey} or
+	 com_name like #{searchKey} or
+	 tel_no like #{searchKey} or
+	 com_id like #{searchKey}  
+	)
+	</if>
+	</sql>
+	<select id="getOperatePageCount" parameterType="hashMap" resultType="Integer">
+	select count(*) from Ctl00501
+	<include refid="operateWhere"/>
+	</select>
+	<select id="getOperatePageList" parameterType="hashMap" resultType="hashMap">
+	declare @maxId int;
+		set @maxId=( select max(idh) from
+		(
+		select top
+		${page} ROW_NUMBER()
+		OVER
+		(
+		ORDER BY
+		ltrim(rtrim(isnull(t1.com_id,''))),
+		ltrim(rtrim(isnull(t1.com_sim_name,'')))
+		) as idh
+		from Ctl00501 t1
+		<include refid="operateWhere"/>
+		) as t);
+		<if test="page==1">
+			set @maxId=@maxId-1;
+		</if>
+		select top ${rows} t.*
+		from (
+		select
+		ROW_NUMBER()
+		OVER
+		(
+		ORDER BY
+		ltrim(rtrim(isnull(t1.com_id,''))),
+		ltrim(rtrim(isnull(t1.com_sim_name,'')))
+		) as idh,t1.* from
+		Ctl00501 t1
+		<include refid="operateWhere"/>
+		) t where t.idh>@maxId
+	</select>
+	<select id="getOperateTree" parameterType="hashMap" resultType="hashMap">
+		select 
+	<if test="all==null">
+	ltrim(rtrim(isnull(com_id,''))) as com_id,com_sim_name,com_name,tel_no
+	</if>
+	<if test="all!=null">
+	t1.*,t2.com_name as upper_com_name,t2.com_sim_name as upper_com_sim_name
+	</if>
+	 from Ctl00501 t1 
+	 <if test="all!=null">
+	 left join Ctl00501 t2 on t1.upper_com_id=t2.com_id
+	 </if>
+	where 1=1
+	<if test="all==null">
+	and ltrim(rtrim(isnull(t1.com_id,''))) like #{com_id}
+	and ltrim(rtrim(isnull(t1.working_status,'是')))='是'
+	</if>
+	<if test="all!=null">
+	<if test="working_status!=null">
+	and ltrim(rtrim(isnull(t1.working_status,'是')))=#{working_status}
+	</if>
+	</if>
+	<if test="find==null">
+	<if test="com_id==null">
+	and ltrim(rtrim(isnull(t1.upper_com_id,'')))=''
+	</if>
+	</if>
+	<if test="comId!=null">
+	and ltrim(rtrim(isnull(t1.upper_com_id,''))) = #{comId} 
+<!-- 	and ltrim(rtrim(isnull(t1.com_id,''))) = #{comId}  -->
+	and not ltrim(rtrim(isnull(t1.com_id,''))) = #{comId} 
+	</if>
+	<if test="name!=null">
+	and (
+	 t1.com_sim_name like #{name} or
+	 t1.com_name like #{name} or
+	 t1.easy_id like #{name} or
+	 t1.com_id like #{name} or
+	 t1.tel_no like #{name}
+	)
+	</if>
+	order by t1.com_id,t1.com_sim_name 
+</select>
+	<select id="checkPhone" parameterType="String" resultType="Integer">
+	select count(*) from ${table} where ltrim(rtrim(isnull(user_id,''))) =#{phone} ${sqlwhere}
+	</select>
+	
+	<select id="getElectricianInfo" parameterType="hashMap" resultType="hashMap">
+	select t1.*,t2.regionalism_name_cn from Sdf00504_saiyu t1 
+	left join Ctl01001 t2 on t1.regionalism_id=t2.regionalism_id and t1.com_id=t2.com_id
+	where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id} 
+	and t1.customer_id=#{customer_id} and isclient=#{isclient}
+	</select>
+	
+	<select id="getDriverAndDian" parameterType="hashMap" resultType="hashMap">
+	select t1.*,t2.regionalism_name_cn from Sdf00504_saiyu t1 
+	left join Ctl01001 t2 on t1.regionalism_id=t2.regionalism_id and t1.com_id=t2.com_id
+	where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id}
+	and isclient=#{isclient}
+	order by customer_id,corp_name
+	</select>
+<sql id="tijianWhere">
+where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id}
+<if test="customer_id!=null">
+and t1.customer_id=#{customer_id}
+</if>
+<if test="position_big!=null">
+and t1.position_big like #{position_big}
+</if>
+<if test="workState!=null">
+and ltrim(rtrim(isnull(t1.work_state,'运行中'))) like #{workState}
+</if>
+<if test="item_name!=null">
+and t1.item_name like #{item_name}
+</if>
+<if test="bx_oper_listing!=null">
+and t1.bx_oper_listing=#{bx_oper_listing}
+</if>
+<if test="searchKey!=null">
+and (
+ltrim(rtrim(isnull(t1.item_name,''))) like #{searchKey} or
+ltrim(rtrim(isnull(t1.position_big,''))) like #{searchKey} or
+ltrim(rtrim(isnull(t1.position,''))) like #{searchKey} or
+ltrim(rtrim(isnull(t1.item_brand,''))) like #{searchKey} or
+ltrim(rtrim(isnull(t1.item_name,''))) like #{searchKey} or
+ltrim(rtrim(isnull(t1.ivt_oper_listing,''))) like #{searchKey} or 
+ltrim(rtrim(isnull(t1.bx_oper_listing,''))) like #{searchKey})
+</if>
+<if test="spNo!=null">
+and t1.bx_oper_listing in (
+ select n2.ivt_oper_listing  from OA_ctl03001_approval n1 
+ left join SDd02021_saiyu n2 on n1.content like  '%'+n2.ivt_oper_listing+'%' and n1.com_id=n2.com_id
+ where n1.ivt_oper_listing=#{spNo}
+ )
+</if>
+</sql>
+<select id="getCustomerTijianCount" parameterType="hashMap" resultType="Integer">
+	select count(*) from SDd02010_saiyu t1 
+	<include refid="tijianWhere"/>
+</select>
+
+<select id="getCustomerTijianList" parameterType="hashMap" resultType="hashMap">
+	declare @maxId int,@maxId2 int;
+	set @maxId=( select max(idh) from (
+	select top ${page}
+	ROW_NUMBER()
+	OVER
+	(
+	ORDER BY
+	ltrim(rtrim(isnull(t1.ivt_oper_listing,''))) desc,
+	ltrim(rtrim(isnull(t1.position_big,''))) desc,
+	ltrim(rtrim(isnull(t1.position,''))) ,
+	ltrim(rtrim(isnull(t1.item_brand,''))) desc,
+	ltrim(rtrim(isnull(t1.item_name,''))) desc
+	) as idh
+	from SDd02010_saiyu t1
+	<include refid="tijianWhere"/>
+	) as t);
+	<if test="page==1">
+	 set @maxId=@maxId-1;
+    </if>
+		select top ${rows} t.*
+		from (
+		select
+		ROW_NUMBER()
+		OVER
+		(
+		ORDER BY
+		ltrim(rtrim(isnull(t1.ivt_oper_listing,''))) desc,
+		ltrim(rtrim(isnull(t1.position_big,''))) desc,
+		ltrim(rtrim(isnull(t1.position,''))) ,
+		ltrim(rtrim(isnull(t1.item_brand,''))) desc,
+		ltrim(rtrim(isnull(t1.item_name,''))) desc
+		) as idh,t1.*,t2.corp_name as corp_sim_name
+		from SDd02010_saiyu t1
+		left join sdf00504  t2 on t1.com_id=t2.com_id and t1.customer_id=t2.customer_id
+	<include refid="tijianWhere"/>
+	) t where t.idh>@maxId
+</select>
+
+<select id="getThirdPartyPersonnelTree" parameterType="hashMap" resultType="hashMap">
+	select t1.customer_id,t1.corp_sim_name,
+	t1.movtel,t1.weixinID,t1.user_id,t1.idcard,t1.corp_working_lisence
+	from Sdf00504_saiyu t1
+	where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id} and isnull(t1.isclient,'0')=#{type}
+	<if test="name!=null and name!=''">
+	and (
+	t1.corp_sim_name like #{name} or
+	t1.corp_name like #{name} or
+	t1.easy_id like #{name} or
+	t1.self_id like #{name} or
+	t1.user_id like #{name} or
+	t1.addr1 like #{name} or
+	t1.corp_working_lisence like #{name} or
+	t1.movtel like #{name}
+	)
+	</if>
+	</select>
+<select id="getWareinitAll" parameterType="hashMap" resultType="hashMap">
+select t.*,
+       t1.store_struct_name,
+       t2.item_name,
+       t3.clerk_name as mainten_clerk_name
+from IVTd01300 t
+left outer join Ivt01001 t1 on t.com_id = t1.com_id and t.store_struct_id = t1.store_struct_id
+left outer join Ctl03001 t2 on t.com_id = t1.com_id and t.item_id = t2.item_id
+left outer join Ctl00801 t3 on t.com_id = t3.com_id and t.mainten_clerk_id = t3.clerk_id 
+where ltrim(rtrim(isnull(t.com_id,'')))=#{com_id} order by t.ivt_num_detail asc;
+</select>
+<select id="findMeteringUnit" parameterType="hashMap" resultType="hashMap">
+select * from  Ctl04004 where ltrim(rtrim(isnull(com_id,'')))=#{com_id};
+</select>
+<insert id="addMeteringUnit" parameterType="hashMap">
+insert into Ctl04004 (com_id,sort_id,unit_name) values(#{com_id},#{sort_id},#{unit_name});
+</insert>
+<update id="editMeteringUnit" parameterType="hashMap">
+update Ctl04004 set unit_name = #{unit_name} where ltrim(rtrim(isnull(com_id,''))) = #{com_id} and sort_id = #{sort_id};
+</update>
+<delete id="delMeteringUnit" parameterType="hashMap">
+delete from Ctl04004 where ltrim(rtrim(isnull(com_id,''))) = #{com_id} and sort_id = #{sort_id};
+</delete>
+<select id="getProducarea" parameterType="hashMap" resultType="hashMap">
+select * from  Ctl04005 where ltrim(rtrim(isnull(com_id,''))) = #{com_id};
+</select>
+<insert id="addProducarea" parameterType="hashMap">
+insert into Ctl04005 (com_id,producarea_id,producarea_name) values(#{com_id},#{producarea_id},#{producarea_name});
+</insert>
+<update id="editProducarea" parameterType="hashMap">
+update Ctl04005 set producarea_name = #{producarea_name} where ltrim(rtrim(isnull(com_id,''))) = #{com_id} and producarea_id = #{producarea_id};
+</update>
+<delete id="delProducarea" parameterType="hashMap">
+delete from Ctl04005 where ltrim(rtrim(isnull(com_id,''))) = #{com_id} and producarea_id = #{producarea_id};
+</delete>
+<select id="getAccountingSubjects" parameterType="hashMap" resultType="hashMap">
+select * from  ctl04100 where ltrim(rtrim(isnull(com_id,''))) = #{com_id};
+</select>
+<insert id="addAccountingSubjects" parameterType="hashMap">
+insert into ctl04100 (com_id,sort_id,expenses_id,expenses_name,subject_type_id,expenses_unitprice,upper_expenses_id) 
+values(#{com_id},#{expenses_id},#{expenses_id},#{expenses_name},#{subject_type_id},#{expenses_unitprice},#{upper_expenses_id});
+</insert>
+<update id="editAccountingSubjects" parameterType="hashMap">
+update ctl04100 set expenses_name = #{expenses_name},
+       subject_type_id = #{subject_type_id},
+       expenses_unitprice = #{expenses_unitprice},
+       upper_expenses_id = #{upper_expenses_id}
+where ltrim(rtrim(isnull(com_id,''))) = #{com_id} and expenses_id = #{expenses_id};
+</update>
+<delete id="delAccountingSubjects" parameterType="hashMap">
+delete from ctl04100 where ltrim(rtrim(isnull(com_id,''))) = #{com_id} and expenses_id = #{expenses_id};
+</delete>
+
+<select id="tijianExport" parameterType="hashMap" resultType="hashMap">
+	select t1.*,t2.item_sim_name as item_id_name,t3.corp_name from SDd02010_saiyu t1 
+	left join ctl03001 t2 on t1.item_id=t2.item_id and t1.com_id=t2.com_id
+	left join SDF00504 t3 on t1.customer_id=t3.customer_id and t1.com_id=t3.com_id
+	<include refid="tijianWhere"/>
+	order by 
+    ltrim(rtrim(isnull(t1.position_big,''))) desc,
+	ltrim(rtrim(isnull(t1.position,''))) ,
+	ltrim(rtrim(isnull(t1.item_brand,''))) desc,
+	ltrim(rtrim(isnull(t1.item_name,''))) desc
+</select>
+
+<select id="getTijianInfo" parameterType="hashMap" resultType="hashMap">
+	select t1.*,t2.item_sim_name as item_id_name from SDd02010_saiyu t1 
+	left join ctl03001 t2 on t1.item_id=t2.item_id and t1.com_id=t2.com_id
+	where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id} and t1.ivt_oper_listing=#{ivt_oper_listing}
+</select>
+
+<select id="getOperateId" parameterType="String" resultType="Integer">
+	select count(*) from Ctl00501
+	<if test="idVal!=null and idVal!=''">
+    where ltrim(rtrim(isnull(upper_com_id,''))) = #{idVal}
+	</if> 
+</select>
+<select id="getCustomerInfo" parameterType="hashMap" resultType="hashMap">
+	select * from sdf00504 t1 where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id}
+	<if test="customer_id!=null">
+	and t1.customer_id=#{customer_id}
+	</if>
+	<if test="searchKey!=null">
+	and (
+	t1.corp_name like #{searchKey} or
+	t1.corp_sim_name like #{searchKey} or
+	t1.user_id like #{searchKey} or
+	t1.customer_id like #{searchKey} or
+	t1.weixin like #{searchKey} or
+	t1.weixinID like #{searchKey} or
+	t1.easy_id like #{searchKey})
+	</if>
+</select>
+
+<select id="findUpAddressByNo" parameterType="hashMap" resultType="hashMap">
+	select top 1 * from upaddress_saiyu where ltrim(rtrim(isnull(com_id,'')))=#{com_id} 
+	<if test="ivt_oper_listing!=null">
+	and ltrim(rtrim(isnull(ivt_oper_listing,'')))=#{ivt_oper_listing}
+	</if>
+	<if test="type!=null">
+	and ltrim(rtrim(isnull(type,'')))=#{type} 
+	</if>
+	<if test="dian_customer_id!=null">
+	and ltrim(rtrim(isnull(dian_customer_id,'')))=#{dian_customer_id}
+	</if>
+</select>
+
+<delete id="deltijian" parameterType="hashMap">
+delete  from SDd02010_saiyu where ltrim(rtrim(isnull(com_id,'')))=#{com_id} 
+and ltrim(rtrim(isnull(ivt_oper_listing,'')))=#{ivt_oper_listing} 
+</delete>
+<update id="updateTijian" parameterType="hashMap">
+update sdd02010_saiyu set ${namekey}='' where ltrim(rtrim(isnull(com_id,'')))=#{com_id}
+and ltrim(rtrim(isnull(ivt_oper_listing,'')))=#{ivt_oper_listing}
+and ltrim(rtrim(isnull(customer_id,'')))=#{customer_id}
+</update>
+<select id="saveTijian" parameterType="hashMap" resultType="Integer">
+insert into sdd02010_saiyu(com_id,ivt_oper_listing)values(#{com_id},0);
+select max(seeds_id) from sdd02010_saiyu;
+</select>
+<select id="getctl00190bycomid" parameterType="hashMap" resultType="Integer">
+	select count(*) from ctl00190 where ltrim(rtrim(isnull(com_id,''))) =#{com_id}
+	</select>
+<select id="getctl00190by001" parameterType="String" resultType="hashMap">
+select * from ctl00190 where ltrim(rtrim(isnull(com_id,'')))='001' 
+and not ltrim(rtrim(isnull(com_id,'')))=#{com_id}
+</select>
+
+<update id="updateDriveInfo" parameterType="hashMap">
+update Sdf00504_saiyu set corp_working_lisence=#{corp_working_lisence},idcard=#{idcard}
+where user_id=#{user_id}
+</update>
+<select id="getMemberInfo" parameterType="hashMap" resultType="hashMap">
+	select * from ${table} where ${filedName}=#{val};
+</select>
+<!-- 采购验收入库存储过程调用 -->
+<select id="saveProcurement"  parameterType="hashMap" statementType="CALLABLE" resultType="int" useCache="false">
+<![CDATA[ 
+{call Sp_stockStock(#{com_ID, mode=IN, jdbcType=CHAR},#{rcv_auto_no, mode=IN, jdbcType=VARCHAR},#{comfirm_flag, mode=IN, jdbcType=CHAR})}
+]]>
+</select>
+<!-- 采购退货存储过程调用 -->
+<select id="purchaseReturn"  parameterType="hashMap" statementType="CALLABLE" resultType="Object" useCache="false">
+<![CDATA[ 
+{call Sp_stockQuitGoods(#{com_ID, mode=IN, jdbcType=CHAR},
+#{rcv_auto_no, mode=IN, jdbcType=VARCHAR},
+#{comfirm_flag, mode=IN, jdbcType=CHAR})}
+]]>
+</select>
+<!-- 查询m_flag -->
+<select id="queryFlag" parameterType="hashMap" resultType="Integer">
+	select m_flag from VIEW_STDM02001_ctl03001 where item_id=#{item_id} and st_auto_no=#{st_auto_no}
+</select>
+<!-- 更新验收入库从表 -->
+<update id="updateRkcb" parameterType="hashMap">
+update STD03001 set rcv_auto_no=#{rcv_auto_no},rcv_hw_no=#{rcv_hw_no},at_term_datetime=#{at_term_datetime},finacial_d=#{finacial_d},c_memo=#{c_memo}
+where rcv_auto_no=#{rcvNo} and item_id=#{item_id} and com_id=#{com_id}
+</update>
+<!-- 更新验收入库主表 -->
+<update id="updateRkzb" parameterType="hashMap">
+update STDM03001 set stock_type=#{stock_type},dept_id=#{dept_id},clerk_id=#{clerk_id},c_memo=#{c_memo},rcv_auto_no=#{rcv_auto_no},rcv_hw_no=#{rcv_hw_no},
+mainten_datetime=#{mainten_datetime},mainten_clerk_id=#{mainten_clerk_id},ivt_oper_cfm=#{ivt_oper_cfm},
+ivt_oper_cfm_time=#{ivt_oper_cfm_time},comfirm_flag=#{comfirm_flag}
+where rcv_auto_no=#{rcvNo} and vendor_id=#{vendor_id} and com_id=#{com_id}
+</update>
+<!-- 更新已入库产品数量 -->
+<update id="updateRkcp" parameterType="hashMap">
+update STD03001 set rep_qty=#{rep_qty},st_sum=#{st_sum}
+where rcv_auto_no=#{rcv_auto_no} and item_id=#{item_id} and com_id=#{com_id} and store_struct_id=#{store_struct_id}
+</update>
+<select id="updateOperateOk" parameterType="hashMap" resultType="String">
+	update Ctl00501 set recharge_amount=#{recharge_amount},recharge_time=#{recharge_time},working_status='是' where ltrim(rtrim(isnull(com_id,'')))=#{com_id};
+	select top 1 clerk_id from ctl00801 
+	where ltrim(rtrim(isnull(com_id,'')))=#{com_id} 
+	and ltrim(rtrim(isnull(movtel,'')))=(select tel_no from Ctl00501 where ltrim(rtrim(isnull(com_id,'')))=#{com_id});
+</select>
+<select id="getComIdWeixinID" parameterType="hashMap" resultType="String">
+	select top 1 ltrim(rtrim(isnull(weixinID,''))) as weixinID from ctl00801 
+	where ltrim(rtrim(isnull(com_id,'')))=#{com_id} 
+	and ltrim(rtrim(isnull(movtel,'')))=(
+	select tel_no from Ctl00501 where ltrim(rtrim(isnull(com_id,'')))=#{com_id} 
+	<if test="amount==0">
+	and isnull(recharge_amount,0)=0
+	</if>
+	<if test="amount==1">
+	and isnull(recharge_amount,0)>0
+	</if>
+	)
+</select>
+<select id="getOperateNoWorkList"  resultType="hashMap">
+	select ltrim(rtrim(isnull(com_name,''))) as com_name,
+	ltrim(rtrim(isnull(tel_no,''))) as weixinID,
+	ltrim(rtrim(isnull(com_id,''))) as com_id
+	 from Ctl00501 where ltrim(rtrim(isnull(working_status,'否')))='否'
+	and ltrim(rtrim(isnull(com_id,'')))!='001'; 
+</select>
+<update id="updateRkzbByFlag" parameterType="hashMap">
+update STDM03001 set comfirm_flag=#{comfirm_flag},
+mainten_clerk_id=#{clerk_id},mainten_datetime=#{now},
+ivt_oper_cfm=#{clerk_id},ivt_oper_cfm_time=#{now}
+where ltrim(rtrim(isnull(rcv_auto_no,'')))=#{rcv_auto_no}  and ltrim(rtrim(isnull(com_id,'')))=#{com_id}
+</update>
+<update id="updateFlagByNo" parameterType="hashMap">
+update STD02001 set m_flag=#{m_flag}
+where st_auto_no=#{st_auto_no} and item_id=#{item_id} and com_id=#{com_id}
+</update>
+<update id="updateKcById" parameterType="hashMap">
+update IVTd01302 set accn_ivt =#{accn_ivt},use_oq=#{use_oq},i_price=#{i_price}
+where store_struct_id=#{store_struct_id} and item_id=#{item_id} and com_id=#{com_id}
+</update>
+<!-- 期初维护更新库存 -->
+<update id="updatekcTable" parameterType="hashMap">
+update IVTd01302 set accn_ivt =#{accn_ivt},oh=#{oh},use_oq=#{use_oq},i_price=#{i_price},
+i_Amount=#{i_Amount} where store_struct_id=#{store_struct_id} and item_id=#{item_id} and com_id=#{com_id}
+</update>
+<!-- 查询对应仓库的产品库存数量 -->
+<select id="getAccivt" parameterType="hashMap" resultType="string">
+select accn_ivt from IVTd01302 
+where store_struct_id=#{store_struct_id} and item_id=#{item_id} and com_id=#{com_id}
+</select>
+<!-- 退货更新库存(手写SQL)-->
+<update id="updateKcReturn" parameterType="hashMap">
+update IVTd01302 set accn_ivt=#{accn_ivt},use_oq=#{use_oq}
+where store_struct_id=#{store_struct_id} and item_id=#{item_id} and com_id=#{com_id}
+</update>
+<select id="checkSystem" parameterType="hashMap" resultType="hashMap">
+	select 
+	ltrim(rtrim(isnull(param_name,''))) as param_name,
+	ltrim(rtrim(isnull(param_val,''))) as param_val
+	 from CTLf01001 where
+	ltrim(rtrim(isnull(com_id,'')))=#{com_id}
+	and ltrim(rtrim(isnull(param_name,'')))=#{param_name}
+</select>
+<select id="getTableFiled" parameterType="String" resultType="hashMap">
+select top 1 * from ${table}
+</select>
+<!-- 获取表结构 -->
+<select id="getFiledList" parameterType="hashMap" resultType="hashMap">
+<!-- 	,systypes.name as type  -->
+SELECT 
+ltrim(rtrim(isnull(syscolumns.name,''))) as filed,
+ltrim(rtrim(isnull(systypes.name,''))) as type,
+syscolumns.isnullable,
+syscolumns.length as len
+FROM syscolumns, systypes 
+WHERE syscolumns.xusertype = systypes.xusertype 
+AND syscolumns.id = object_id('${table}')
+and not syscolumns.name='ID'
+and not syscolumns.name='com_id'
+and not syscolumns.name='seeds_id'
+and not syscolumns.name='seed_id'
+</select>
+
+<update id="updateProPrice" parameterType="hashMap">
+update Ctl03001 set item_cost=#{price} where ltrim(rtrim(isnull(com_id,'')))=#{com_id} and ltrim(rtrim(isnull(item_id,'')))=#{item_id};
+<!-- update sdp02021 set discount_rate=#{discount_rate} where  -->
+<!-- ltrim(rtrim(isnull(com_id,'')))=#{com_id} and ltrim(rtrim(isnull(item_id,'')))=#{item_id}; -->
+<!-- and convert(varchar(10),at_term_datetime,121)>=#{beginDate} -->
+<!-- 	<![CDATA[ -->
+<!-- 	and convert(varchar(10),at_term_datetime,121)<=#{endDate} -->
+<!-- 	]]> -->
+</update>
+
+<select id="getWeixinState" parameterType="String" resultType="String">
+    select ltrim(rtrim(isnull(t1.weixinID,''))) as weixinID from (
+   select weixinStatus,weixinID  from Sdf00504 t1 where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id}
+  union all
+    select weixinStatus,weixinID  from Ctl00801 t1 where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id}
+  union all
+  select weixinStatus,weixinID  from Sdf00504_saiyu t1 where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id}
+  union all
+  select weixinStatus,weixinID  from ctl00504 t1 where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id}) as t1 
+  where ltrim(rtrim(isnull(t1.weixinID,'')))!='' and isnull(t1.weixinStatus,0)=1
+   group by ltrim(rtrim(isnull(t1.weixinID,'')))
+</select>
+<update id="updateWeixinState" parameterType="hashMap">
+<if test="weixins!=null">
+<foreach collection="weixins" item="tag">
+<if test="tag.userid!=null">
+	update Sdf00504 set weixinStatus=1 where ltrim(rtrim(isnull(weixinID,'')))=#{tag.userid};
+	update Ctl00801 set weixinStatus=1 where ltrim(rtrim(isnull(weixinID,'')))=#{tag.userid};
+	update Sdf00504_saiyu set weixinStatus=1 where ltrim(rtrim(isnull(weixinID,'')))=#{tag.userid};
+	update ctl00504 set weixinStatus=1 where ltrim(rtrim(isnull(weixinID,'')))=#{tag.userid};
+</if>
+</foreach>
+</if>
+<if test="weixins==null">
+	update ${table} set weixinStatus=1 where ltrim(rtrim(isnull(com_id,'')))=#{com_id} and ltrim(rtrim(isnull(weixinID,'')))=#{weixinID};
+<!-- 	update Ctl00801 set weixinStatus=1 where ltrim(rtrim(isnull(com_id,'')))=#{com_id} and ltrim(rtrim(isnull(weixinID,'')))=#{weixinID}; -->
+<!-- 	update Sdf00504_saiyu set weixinStatus=1 where ltrim(rtrim(isnull(com_id,'')))=#{com_id} and ltrim(rtrim(isnull(weixinID,'')))=#{weixinID}; -->
+<!-- 	update ctl00504 set weixinStatus=1 where ltrim(rtrim(isnull(com_id,'')))=#{com_id} and ltrim(rtrim(isnull(weixinID,'')))=#{weixinID}; -->
+</if>
+</update>
+<!-- 更新销售开单审核状态 -->
+<update id="updateComfirmFlag" parameterType="hashMap">
+update SDd02020 set comfirm_flag=#{comfirm_flag}
+where ltrim(rtrim(isnull(com_id,'')))=#{com_id} and ivt_oper_listing=#{ivt_oper_listing}
+</update>
+<!-- 更新采购退货单审核状态 -->
+<update id="updateReturnFlag" parameterType="hashMap">
+update STDM03001 set comfirm_flag=#{comfirm_flag},
+mainten_clerk_id=#{clerk_id},mainten_datetime=#{now},
+ivt_oper_cfm=#{clerk_id},ivt_oper_cfm_time=#{now}
+where ltrim(rtrim(isnull(com_id,'')))=#{com_id} and rcv_auto_no=#{rcv_auto_no}
+</update>
+<!-- 销售退货更新销售订单数量 -->
+<update id="updateSalesOrder" parameterType="hashMap">
+update SDd02021 set sd_oq=#{sd_oq}
+where ltrim(rtrim(isnull(com_id,'')))=#{com_id} and ivt_oper_listing=#{ivt_oper_listing} 
+and item_id=#{item_id} and store_struct_id=#{store_struct_id}
+</update>
+<sql id="checkDelCilentSql">
+where ltrim(rtrim(isnull(com_id,'')))=#{com_id} and ltrim(rtrim(isnull(customer_id,'')))=#{sort_id}
+</sql>
+<select id="checkDelCilent" parameterType="hashMap" resultType="Integer">
+declare @maxId int;
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sdd02031]') AND type in (N'U'))
+  set @maxId=(select count(*) from sdd02031 <include refid="checkDelCilentSql"/>);
+  if @maxId=0
+  begin
+  IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[t_Pre_Trading]') AND type in (N'U'))
+   set @maxId=( select count(*) from t_Pre_Trading <include refid="checkDelCilentSql"/>)
+  end
+
+  select @maxId
+</select>
+
+<insert id="saveWeixinTemplateMessageInfo" parameterType="hashMap">
+declare @tempid int;
+set @tempid=(select count(*) from t_weixin_template where ltrim(rtrim(isnull(com_id,'')))=#{com_id} and ltrim(rtrim(isnull(template_id,'')))=#{template_id});
+if @tempid=0
+insert into t_weixin_template (com_id,template_id,title,content)values(#{com_id},#{json.template_id},#{json.},#{json.title},#{json.content});
+else 
+update t_weixin_template set title=#{json.title},content=#{json.content} where ltrim(rtrim(isnull(com_id,'')))=#{com_id} and ltrim(rtrim(isnull(template_id,'')))=#{template_id}
+</insert>
+<!-- 更新报损单审核状态 -->
+<update id="updateBsComfirmFlag" parameterType="hashMap">
+update IVTd01201 set comfirm_flag=#{comfirm_flag}
+where ltrim(rtrim(isnull(com_id,'')))=#{com_id} and ivt_oper_listing=#{ivt_oper_listing}
+</update>
+<!-- 当仓库产品数量为0时删除该仓库产品信息 -->
+<delete id="delKcItem" parameterType="hashMap">
+delete IVTd01302 where com_id=#{com_id} and item_id=#{item_id} and store_struct_id=#{store_struct_id}
+</delete>
+<select id="selRkNum" parameterType="hashMap" resultType="double">
+select rep_qty from View_STDM03001 where com_id=#{com_id} and item_id=#{item_id} and rcv_auto_no=#{rcv_auto_no}
+</select>
+<select id="selSalesNum" parameterType="hashMap" resultType="double">
+select sd_oq from View_sdd02020_ctl03001 where com_id=#{com_id} and item_id=#{item_id} 
+and ivt_oper_listing=#{ivt_oper_listing} and store_struct_id=#{store_struct_id}
+</select>
+<update id="updateOrderStatus" parameterType="hashMap">
+ update SDd02021 set Status_OutStore=#{newname} 
+ where ltrim(rtrim(isnull(Status_OutStore,'')))=#{oldname} and ltrim(rtrim(isnull(com_id,'')))=#{com_id}
+</update>
+<select id="getGysInfo" parameterType="hashMap" resultType="hashMap">
+	select t1.*,t2.regionalism_name_cn from Ctl00504 t1 
+left join Ctl01001 t2 on t1.regionalism_id=t2.regionalism_id and t1.com_id=t2.com_id 
+where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id}
+and ltrim(rtrim(isnull(t1.corp_id,'')))=#{corp_id} 
+</select>
+<!-- 期初库存 -->
+<select id="initKucunShenhe" parameterType="hashMap" resultType="Object" statementType="CALLABLE">
+	<![CDATA[
+	{call sp_baseinitStore(#{com_id, mode=IN, jdbcType=CHAR},#{ivt_num_detail , mode=IN, jdbcType=INTEGER},
+	   #{initial_flag,mode=IN,jdbcType=CHAR})
+	}
+	]]>
+</select>
+<!-- 期初应付 -->
+<select id="initYfkShenHe" parameterType="hashMap" resultType="Object" statementType="CALLABLE">
+	<![CDATA[
+	{call pro_baseinitdealDebt(#{com_id, mode=IN, jdbcType=CHAR},#{seeds_id , mode=IN, jdbcType=INTEGER},
+	   #{initial_flag,mode=IN,jdbcType=CHAR})
+	}
+	]]>
+</select>
+<!-- 期初应收 -->
+<select id="initYskShenHe" parameterType="hashMap" resultType="Object"  statementType="CALLABLE">
+	<![CDATA[
+	{call pro_baseinitAccept(#{com_id, mode=IN, jdbcType=CHAR},#{seeds_id , mode=IN, jdbcType=INTEGER},
+	   #{initial_flag,mode=IN,jdbcType=CHAR})
+	}
+	]]>
+</select>
+<update id="updateShenhe" parameterType="hashMap">
+<if test="shenheType=='kucun'">
+	update IVTd01300 set initial_flag=#{initial_flag}
+	,mainten_clerk_id=#{clerk_id},maintenance_datetime=#{now}
+	where ivt_num_detail=#{ivt_num_detail};
+</if>
+<if test="shenheType=='yfk'">
+	update stfM0201 set initial_flag=#{initial_flag},mainten_clerk_id=#{clerk_id},mainten_datetime=#{now}
+	 where seeds_id=#{seeds_id};
+</if>
+<if test="shenheType=='ysk'">
+	update ARf02030 set initial_flag=#{initial_flag},mainten_clerk_id=#{clerk_id},mainten_datetime=#{now}
+	 where seeds_id=#{seeds_id};
+</if>
+</update>
+<!-- 采购入库审核 -->
+<select id="Sp_stockStock" parameterType="hashMap" resultType="Object"  statementType="CALLABLE">
+	<![CDATA[
+	{call Sp_stockStock(#{com_id, mode=IN, jdbcType=CHAR},#{rcv_auto_no , mode=IN, jdbcType=VARCHAR},
+	   #{comfirm_flag,mode=IN,jdbcType=CHAR})
+	}
+	]]>
+</select>
+<!-- 采购退货审核 -->
+<select id="Sp_stockQuitGoods" parameterType="hashMap" resultType="Object"  statementType="CALLABLE">
+	<![CDATA[
+	{call Sp_stockQuitGoods(#{com_id, mode=IN, jdbcType=CHAR},#{rcv_auto_no , mode=IN, jdbcType=VARCHAR},
+	   #{comfirm_flag,mode=IN,jdbcType=CHAR})
+	}
+	]]>
+</select>
+<update id="updateProductByClass" parameterType="String">
+update ctl03001 set type_id=#{new_type_id} 
+where ltrim(rtrim(isnull(com_id,'')))=#{com_id} 
+and ltrim(rtrim(isnull(type_id,'')))=#{type_id}
+</update>
+<select id="getEmployeeType_id" parameterType="hashMap" resultType="hashMap">
+	select ltrim(rtrim(isnull(t1.com_id,''))) as com_id,
+	ltrim(rtrim(isnull(t1.type_id,''))) as type_id,
+	ltrim(rtrim(isnull(t1.clerk_id,''))) as clerk_id
+	from ctl00801 t1 where 
+	ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id}
+	and ltrim(rtrim(isnull(type_id,''))) like #{type_id}
+</select>
+<update id="updateEmployeeType_idById" parameterType="String">
+update ctl00801 set type_id=#{type_id} 
+where ltrim(rtrim(isnull(com_id,'')))=#{com_id} 
+and ltrim(rtrim(isnull(clerk_id,'')))=#{clerk_id}
+</update>
+
+
+<update id="updateWeixinOpenid" parameterType="hashMap">
+update sdf00504 set openid=#{openid} 
+where ltrim(rtrim(isnull(com_id,'')))=#{com_id} 
+and ltrim(rtrim(isnull(customer_id,'')))=#{customer_id}
+</update>
+
+<select id="getArticleInfo" parameterType="hashMap" resultType="net.sf.json.JSONObject">
+	select top 1 id,isnull(projectType,0) as type from t_article where 
+	ltrim(rtrim(isnull(com_id,'')))=#{com_id} 
+	and ltrim(rtrim(isnull(htmlname,'')))=#{htmlname} 
+	<if test="clerk_id==null">
+	and ltrim(rtrim(isnull(projectName,'')))=#{projectName}
+	and isnull(projectType,'0')=#{projectType}
+	</if>
+</select>
+<select id="getArticleInfoData" parameterType="hashMap" resultType="hashMap">
+select top 1 id,
+ ltrim(rtrim(isnull(projectName,''))) as projectName,
+ ltrim(rtrim(isnull(publisher,''))) as publisher,
+ ltrim(rtrim(isnull(zhiding,'0'))) as zhiding,
+ ltrim(rtrim(isnull(show,'1'))) as show,
+ ltrim(rtrim(isnull(filetype,'0'))) as filetype,
+ ltrim(rtrim(isnull(projectType,'0'))) as type,
+ ltrim(rtrim(isnull(title,''))) as title,
+ ltrim(rtrim(isnull(htmlname,''))) as htmlname,
+ ltrim(rtrim(isnull(gjc,''))) as gjc,
+ ltrim(rtrim(isnull(img,''))) as img,
+ ltrim(rtrim(isnull(poster,''))) as poster,
+ convert(varchar(10),releaseTime,121) as releaseTime
+from t_article 
+where 
+<if test="id!=null">
+id=#{id}
+</if>
+<if test="id==null">
+ltrim(rtrim(isnull(com_id,'')))=#{com_id}
+and ltrim(rtrim(isnull(htmlname,'')))=#{htmlname}
+<if test="projectName!=null">
+and ltrim(rtrim(isnull(projectName,'')))=#{projectName}
+</if>
+<if test="clerk_id==null">
+and isnull(projectType,'0')=#{projectType}
+</if>
+</if>
+</select>
+<sql id="articleSql">
+where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id}
+<if test="clerk==null">
+and ltrim(rtrim(isnull(t1.projectName,'')))=#{projectName}
+and ltrim(rtrim(isnull(t1.projectType,'0')))=#{type}
+</if>
+<if test="clerk!=null">
+<if test="clerk_id!=null">
+and ltrim(rtrim(isnull(t1.clerk_id,'')))=#{clerk_id}
+</if>
+<if test="clerk_id==null">
+and not ltrim(rtrim(isnull(t1.clerk_id,'')))=''
+</if>
+</if>
+<if test="show!=null and show!=''">
+	and ltrim(rtrim(isnull(t1.show,'1')))=#{show}
+</if>
+<if test="zhiding!=null and zhiding!=''">
+and ltrim(rtrim(isnull(t1.zhiding,'0')))=#{zhiding}
+</if> 
+<if test="filetype!=null">
+and ltrim(rtrim(isnull(t1.filetype,'0')))=#{filetype}
+</if>
+<if test="begin_date!=null">
+<![CDATA[
+and convert(varchar(10),t1.releaseTime,121)<=#{begin_date}
+]]>
+</if>
+<if test="beginDate!=null">
+<![CDATA[
+and convert(varchar(10),t1.releaseTime,121)>=#{beginDate}
+]]>
+</if>
+<if test="endDate!=null">
+<![CDATA[
+  and convert(varchar(10),t1.releaseTime,121)<=#{endDate}
+]]>
+</if>
+<if test="searchKey!=null">
+and(
+ ltrim(rtrim(isnull(t1.title,''))) like #{searchKey} or
+ ltrim(rtrim(isnull(t1.gjc,''))) like #{searchKey}
+)
+</if>
+ </sql>
+<select id="getArticleCount" parameterType="hashMap" resultType="Integer">
+	select count(*) from t_article t1
+	<include refid="articleSql"/>
+</select>
+<select id="getArticlePage" parameterType="hashMap" resultType="hashMap">
+	declare @maxId int,@maxId2 int;
+	set @maxid=(
+	select max(idh) from (
+	select top ${page}
+	ROW_NUMBER() OVER (
+		ORDER BY t1.zhiding desc,
+		t1.releaseTime ${desc}
+		) as idh 
+  	from t_article t1
+  	<include refid="articleSql"/>
+  	) as t);
+       set @maxId2=@maxId;
+  	 <if test="page==1">
+		set @maxId=@maxId-1;
+	</if>
+select top ${rows} t.* from (
+select ROW_NUMBER() OVER (
+	ORDER BY t1.zhiding desc,
+	t1.releaseTime ${desc}
+	) as idh,
+ ltrim(rtrim(isnull(t1.projectName,''))) as projectName,
+ ltrim(rtrim(isnull(t1.htmlname,''))) as htmlname,
+ ltrim(rtrim(isnull(t1.publisher,''))) as publisher,
+ ltrim(rtrim(isnull(t1.zhiding,'0'))) as zhiding,
+ ltrim(rtrim(isnull(t1.show,'1'))) as show,
+ ltrim(rtrim(isnull(t1.filetype,'0'))) as filetype,
+ ltrim(rtrim(isnull(t1.projectType,'0'))) as type,
+ ltrim(rtrim(isnull(t1.title,''))) as title,
+ ltrim(rtrim(isnull(t1.gjc,''))) as gjc,
+ ltrim(rtrim(isnull(t1.img,''))) as img,
+ ltrim(rtrim(isnull(t1.poster,''))) as poster,
+ convert(varchar(10),t1.releaseTime,121) as releaseTime
+ FROM t_article t1
+  <include refid="articleSql"/>
+ ) as t where  t.idh>@maxid 
+</select>
+
+<delete id="delArticle" parameterType="hashMap">
+delete from t_article 
+where ltrim(rtrim(isnull(com_id,'')))=#{com_id}
+and ltrim(rtrim(isnull(projectName,'')))=#{projectName}
+and ltrim(rtrim(isnull(htmlname,'')))=#{htmlname}
+<if test="clerk_id==null">
+and ltrim(rtrim(isnull(projectType,'0')))=#{projectType}
+</if>
+</delete>
+
+<update id="updateOpenid" parameterType="hashMap">
+<if test="openid!=null and openid!=''">
+	<if test="clerk_id!=null">
+	update ctl00801 set openid=#{openid} 
+	where ltrim(rtrim(isnull(com_id,'')))=#{com_id}
+	and ltrim(rtrim(isnull(clerk_id,'')))=#{clerk_id}
+	</if>
+	<if test="corp_id!=null">
+	update ctl00504 set openid=#{openid} 
+	where ltrim(rtrim(isnull(com_id,'')))=#{com_id}
+	and ltrim(rtrim(isnull(corp_id,'')))=#{corp_id}
+	</if>
+</if>
+</update>
+
+<select id="getOpenidById" parameterType="hashMap" resultType="hashMap">
+	<if test="table=='sdf00504'">
+	select ltrim(rtrim(isnull(openid,''))) as openid,
+	ltrim(rtrim(isnull(corp_sim_name,''))) as name from sdf00504 
+	where ltrim(rtrim(isnull(com_id,'')))=#{com_id}
+	and ltrim(rtrim(isnull(customer_id,''))) in (${id})
+	</if>
+	<if test="table=='ctl00801'">
+	select ltrim(rtrim(isnull(openid,''))) as openid,
+	ltrim(rtrim(isnull(clerk_name,''))) as name from ctl00801 
+	where ltrim(rtrim(isnull(com_id,'')))=#{com_id}
+	and ltrim(rtrim(isnull(clerk_id,''))) in (${id})
+	</if>
+	<if test="table=='ctl00504'">
+	select ltrim(rtrim(isnull(openid,''))) as openid,
+	ltrim(rtrim(isnull(corp_name,''))) as name from ctl00504 
+	where ltrim(rtrim(isnull(com_id,'')))=#{com_id}
+	and ltrim(rtrim(isnull(corp_id,''))) in (${id})
+	</if>
+</select>
+<!-- 微信服务号操作 -->
+<insert id="tongbuWeixinTemplate" parameterType="hashMap">
+<foreach collection="jsons" item="json">
+	insert into t_weixin_template (com_id,title,template_id,content)
+	values(#{com_id},#{json.title},#{json.template_id},#{json.content});
+</foreach>
+</insert>
+<select id="getWexinMsgTemplate" parameterType="hashMap" resultType="hashMap">
+	select 
+	title,template_id,content
+ from t_weixin_template 
+ where ltrim(rtrim(isnull(com_id,'')))=#{com_id}
+ <if test="title!=null">
+ and ltrim(rtrim(isnull(title,''))) like #{title}
+ </if>
+ <if test="template_id!=null">
+ and ltrim(rtrim(isnull(template_id,''))) like #{template_id}
+ </if>
+</select>
+<update id="updatePurOrderFlag" parameterType="hashMap">
+update STD02001 set m_flag=5 where ltrim(rtrim(isnull(com_id,'')))=#{com_id}
+and ltrim(rtrim(isnull(st_auto_no,'')))=#{st_auto_no}
+and ltrim(rtrim(isnull(item_id,'')))=#{item_id}
+<if test="item_type!=null">
+<!-- and ltrim(rtrim(isnull(item_type,'')))=#{item_type} -->
+</if>
+update STDM02001 set mainten_clerk_id=#{clerk_id},mainten_datetime=#{nowTime}
+where ltrim(rtrim(isnull(com_id,'')))=#{com_id}
+and ltrim(rtrim(isnull(st_auto_no,'')))=#{st_auto_no}
+</update>
+<select id="getAllClientphone" parameterType="String" resultType="hashMap">
+select 
+ltrim(rtrim(isnull(user_id,''))) as phone,
+ltrim(rtrim(isnull(license_type,''))) as license_type,
+ltrim(rtrim(isnull(corp_sim_name,''))) as corp_sim_name 
+from sdf00504 
+where ltrim(rtrim(isnull(com_id,'')))=#{com_id}
+</select>
+<select id="getUserInfoByType" parameterType="hashMap" resultType="hashMap">
+	select ltrim(rtrim(isnull(com_id,''))) as com_id,
+	ltrim(rtrim(isnull(weixinID,''))) as weixinID from
+	 ${table}
+	where ltrim(rtrim(isnull(com_id,'')))=#{com_id} 
+	and ltrim(rtrim(isnull(weixinID,'')))!=''
+</select>
+
+<select id="getAllClient" parameterType="hashMap" resultType="hashMap">
+	select seeds_id,ltrim(rtrim(isnull(user_id,''))) as user_id from sdf00504
+</select>
+<update id="updateClientLicense" parameterType="hashMap">
+update sdf00504 set license_type=#{license_type} where seeds_id=#{seeds_id}
+</update>
+</mapper>

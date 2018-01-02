@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- xml文件 -->
+<mapper namespace="com.qianying.dao.interfaces.IChartDao">
+	<cache/>
+<sql id="vieworderSql">
+	<if test="type_id!=null">
+	and ltrim(rtrim(isnull(t2.type_id,''))) like #{type_id}
+	</if>
+	<if test="searchKey!=null">
+	and (
+	t2.item_name like #{searchKey} or
+	t2.item_sim_name like #{searchKey} or
+	t2.item_type like #{searchKey} or
+	t2.item_spec like #{searchKey} or
+	t2.item_color like #{searchKey} or 
+	t3.sort_name like #{searchKey}
+	)
+	</if>
+</sql>
+<select id="productViewAndOrder" parameterType="hashMap"  resultType="hashMap">
+select * from (
+select COUNT(*) as num,'浏览次数' as name from Ctl03101 t1 
+left join Ctl03001 t2 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t2.com_id,''))) and ltrim(rtrim(isnull(t1.item_id,'')))=ltrim(rtrim(isnull(t2.item_id,'')))
+left join ctl03200 t3 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t3.com_id,''))) and ltrim(rtrim(isnull(t2.type_id,'')))=ltrim(rtrim(isnull(t3.sort_id,'')))
+where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id}
+ <if test="beginDate!=null">
+and convert(varchar(10),t1.view_time,121)>=#{beginDate}
+</if>
+<if test="endDate!=null">
+<![CDATA[
+and convert(varchar(10),t1.view_time,121)<=#{endDate}
+]]> 
+</if>
+<include refid="vieworderSql"/>
+) as t1
+union all  
+select COUNT(*)as num,'已下单(笔数)' as name from View_SDd02020_CTL03001 t2 
+left join ctl03200 t3 on ltrim(rtrim(isnull(t2.com_id,'')))=ltrim(rtrim(isnull(t3.com_id,''))) and ltrim(rtrim(isnull(t2.type_id,'')))=ltrim(rtrim(isnull(t3.sort_id,'')))
+where ltrim(rtrim(isnull(t2.com_id,'')))=#{com_id}
+and not ltrim(rtrim(isnull(t2.Status_OutStore,'待支付')))='待支付'
+and not ltrim(rtrim(isnull(t2.Status_OutStore,'待支付')))='支付中'
+<if test="beginDate!=null">
+and convert(varchar(10),t2.so_consign_date,121)>=#{beginDate}
+</if>
+<if test="endDate!=null">
+<![CDATA[
+and convert(varchar(10),t2.so_consign_date,121)<=#{endDate}
+]]> 
+</if>
+<include refid="vieworderSql"/>
+union all
+select COUNT(*)as num,'未支付(笔数)' as name from View_SDd02020_CTL03001 t2 
+left join ctl03200 t3 on ltrim(rtrim(isnull(t2.com_id,'')))=ltrim(rtrim(isnull(t3.com_id,''))) and ltrim(rtrim(isnull(t2.type_id,'')))=ltrim(rtrim(isnull(t3.sort_id,'')))
+where ltrim(rtrim(isnull(t2.com_id,'')))=#{com_id}
+and (ltrim(rtrim(isnull(t2.Status_OutStore,'待支付')))='待支付'
+or ltrim(rtrim(isnull(t2.Status_OutStore,'待支付')))='支付中')
+<if test="beginDate!=null">
+and convert(varchar(10),t2.so_consign_date,121)>=#{beginDate}
+</if>
+<if test="endDate!=null">
+<![CDATA[
+and convert(varchar(10),t2.so_consign_date,121)<=#{endDate}
+]]> 
+</if>
+<include refid="vieworderSql"/>  
+</select>
+
+<sql id="salesSql">
+convert(varchar(${type}),t2.so_consign_date,121)
+</sql>
+<select id="salesCount" parameterType="hashMap" resultType="hashMap">
+select sum(t2.sd_oq) as num,<include refid="salesSql"/> as name from View_SDd02020_CTL03001 t2 
+left join ctl03200 t3 on ltrim(rtrim(isnull(t2.com_id,'')))=ltrim(rtrim(isnull(t3.com_id,''))) and ltrim(rtrim(isnull(t2.type_id,'')))=ltrim(rtrim(isnull(t3.sort_id,'')))
+where ltrim(rtrim(isnull(t2.com_id,'')))=#{com_id}
+and not ltrim(rtrim(isnull(t2.Status_OutStore,'待支付')))='待支付'
+and not ltrim(rtrim(isnull(t2.Status_OutStore,'待支付')))='支付中'
+<if test="beginDate!=null">
+and convert(varchar(10),t2.so_consign_date,121)>=#{beginDate}
+</if>
+<if test="endDate!=null">
+<![CDATA[
+and convert(varchar(10),t2.so_consign_date,121)<=#{endDate}
+]]> 
+</if>
+<include refid="vieworderSql"/> 
+group by <include refid="salesSql"/>
+order by <include refid="salesSql"/>
+</select>
+</mapper>

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<REQUEST>  
+<!-- 设置从多少行开始  默认从0开始-->
+<!-- 在以下配置的与Excel对应,代码中是从0开始,Excel中从1开始,注意两者的对应顺序 -->
+<!-- sheetName-Excel中sheet的名称;index-表示从多少行开始导入数据 -->
+<itembegin index="3" sheetName="发货-勿改此页名"/>
+<!-- 存储字段名:filedName 计算字段名称:compute -->
+<!-- mainfiledName-该数据存到主表中 ;index-数据在Excel中多少列,比如0对应Excel中的第一列;compute-计算结果的字段,取其数据;
+tableName-查询的数据表名;queryName-sql查询数据字段;or-查询时的第二个或者查询字段名;excelChineseName-该数据列的中文名称,用于在出现错误时以中文进行提示-->
+<item mainfiledName="dept_id" index="0" compute="sort_id" tableName="Ctl00701" 
+queryName="dept_id"  or="sort_id" excelChineseName="部门编码" />
+<item mainfiledName="clerk_id" filedName="clerk_id_sid"  index="2" 
+compute="clerk_id" tableName="Ctl00801" queryName="self_id" or="clerk_id" excelChineseName="员工编码"/>
+<!-- datatype-数据来源类型,主要是外码是长整数会造成数据存储出现异常;isnullval-当根据内外码都查不出数据时的默认值-->
+<item mainfiledName="customer_id" filedName="customer_id" compute="customer_id" tableName="Sdf00504"
+queryName="self_id" datatype="txt" isnullval="CS1_ERROR" or="customer_id" index="4"  excelChineseName="客户编码" />
+<!-- 订单编号外码 -->
+<item mainfiledName="sd_order_id" filedName="sd_order_id" index="6" excelChineseName="订单单号"/>
+<!-- 自动生成单号 -->
+<item mainfiledName="ivt_oper_listing" filedName="ivt_oper_listing" auto="no" excelChineseName="订单自动单号"/>
+<item mainfiledName="so_consign_date" index="7"/>
+<item filedName="Status_OutStore" index="8"/>
+<item filedName="peijian_id" index="9"/>	
+<item filedName="item_id" compute="item_id" tableName="ctl03001" queryName="peijian_id" or="item_id" excelChineseName="订单编号"/>	
+<!-- 默认仓位 -->
+<item filedName="store_struct_id" compute="sort_id" tableName="Ivt01001" excelChineseName="仓位" />	
+<!-- 根据指定的数据字段计算相应的数据 ,-->
+<item filedName="unit_id" compute="item_unit" tableName="ctl03001" queryName="peijian_id" excelChineseName="基本单位"/>
+<item filedName="pack_num" compute="pack_unit" tableName="ctl03001" queryName="peijian_id" excelChineseName="换算数量"/>
+<item filedName="pack_unit" compute="casing_unit" tableName="ctl03001" queryName="peijian_id" excelChineseName="包装单位"/>
+<!-- 结算价 -->
+<item filedName="sd_unit_price" excelChineseName="结算单价"/>
+<!-- 折扣 -->
+<item filedName="discount_rate" excelChineseName="折扣"/>
+<!-- 厂价 -->
+<item filedName="price_display" index="13" excelChineseName="厂价"/>
+
+<!-- <item filedName="send_sum" index="18"/>  -->
+<item filedName="sd_oq" index="20" excelChineseName="发货数量"/>
+<item filedName="sum_si" index="21" excelChineseName="金额"/>
+<item filedName="at_term_datetime_Act" index="22" excelChineseName="发货日期"/>
+<item mainfiledName="Kar_paizhao" index="23" excelChineseName="车牌号"/>
+<item filedName="price_prefer" index="24" excelChineseName="折扣"/>
+<item filedName="price_otherDiscount" index="25" excelChineseName="其它折扣"/>
+<!-- 单据的操作类型：“发货”或“退货” orname的值大于0值为value否则为valueOr -->
+<!-- orname-用于根据Excel中同行某一列 进行数据判断后存储;value-根据指定数据值判断后相等存储的值;valueOr-根据指定数据值判断后不相等存储的值;
+ compareSrc-比较字段来源等于item从表,main主表;-->
+<item mainfiledName="ivt_oper_bill" orname="send_sum" compareSrc="item" value="发货" valueOr="退货"/>
+<!-- 直接指定数据来源,不从Excel中来 -->
+<item mainfiledName="sd_order_direct" value="发货"/>
+<item mainfiledName="transport_AgentClerk_Reciever" value="客户自提"/>
+<item mainfiledName="comfirm_flag" value="Y"/>
+<item filedName="send_qty" value="0"/>
+<!-- “账上款”对应的结算方式内码 -->
+<!-- <item mainfiledName="settlement_type_id" compute="sort_id" tableName="ctl02107" queryName="settlement_sim_name" like="like" value="账上款"/> -->
+<item mainfiledName="if_sendmsg" index="32" excelChineseName="是否短信通知"/>
+<item mainfiledName="settlement_type_id" value="JS001JS004"/>
+</REQUEST>

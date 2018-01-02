@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="U-XA-Compatible" content="IE-edge">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <title>客户足迹</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/contant.css">
+    <link rel="stylesheet" href="css/relationship.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/popUpBox.css">
+</head>
+<body>
+<div class="bgT"></div>
+<div class="container" style="margin-bottom: 20px">
+    <div class="secition">
+        <div class="secition_top">
+            <div class="clearfix">
+                <div class="pull-left">
+				<div class="secition-top" style="margin-bottom: 20px;font-size: 16px">
+                    <a href="../employee.do">首页</a>
+                    <a href="clientList.html">客户列表</a>>
+                    <a href="relationship.html">客户拜访</a>>
+                    <span>客户足迹</span>
+                </div></div>
+                <div class="pull-right">
+                    <div class="news">
+                        <a href="send.html">
+                        <img src="images/news.png" class="center-block">
+                                                              消息推送
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="secition_title clearfix">
+                <div class="pull-left">
+                    <div class="head_portrait">
+                        <img id="user_logo">
+                    </div>
+                    <div class="word clearfix">
+                        <div class="col-md-4 col-xs-12 font26" id="clerk_name"></div>
+                        <div class="col-md-4 col-xs-12 font14" style="margin-bottom: 0;padding-top: 14px" id="movtel"></div>
+                        <div class="col-md-12 col-xs-12 font14" id="memo"></div>
+                    </div>
+                </div>
+                <div class="pull-right">
+                    <div class="right_top" id="clientType">
+                        <span>S</span>
+                        <span>A</span>
+                        <span>B</span>
+                        <span>C</span>
+                        <span>D</span>
+                    </div>
+                    <div class="right_bottom clearfix">
+                        <div class="right_bottom_left">
+                            <textarea id="memoTx" rows="2" class="form-control" placeholder="这里是客户信息，也可以记录一些客户的偏好，以及一些重要的客户信息"></textarea>
+                        </div>
+                        <div class="right_bottom_right">
+                            <img src="images/clock.png" onclick="WdatePicker({el:'d12',onpicked:function(){loadData();}})" width="16" height="22" align="absmiddle">
+                            <span id="d12"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="secition_body">
+            <div class="secition_header clearfix">
+                <div class="pull-left">客户足迹</div>
+            </div>
+            <div class="secition_list">
+                <ul></ul>
+            </div>
+            <div id="item" style="display: none;">
+           		<li class="clearfix">
+                       <div class="pull-left" id="content">足迹记录</div>
+                       <div class="pull-right" id="time">2016.10.25<i class="fa fa-times-circle" aria-hidden="true"></i></div>
+                </li>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="mymodal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">新建记录</h4>
+            </div>
+            <div class="modal-body">
+                <textarea class="form-control" rows="3"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary">保存</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+<script type="text/javascript" src="../js_lib/jquery.cookie.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/popUpBox.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../datepicker/WdatePicker.js"></script>
+<script type="text/javascript" src="js/footmark.js"></script>
+</body>
+</html>

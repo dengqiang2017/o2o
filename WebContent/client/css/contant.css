@@ -1,0 +1,8 @@
+/*-----conmment-----*/
+*{font-family:'Microsoft YaHei',Arial,Helvetica,sans-serif;font-size: 18px;color: #000000;}
+a{text-decoration: none}
+a:hover{text-decoration: none}
+ul{margin-bottom: 0}
+ul>li{list-style: none}
+body{padding-top: 0 !important;padding-bottom: 0 !important;}
+.bgT{background-color: #017AA5;position: fixed;left: 0;top: 0;right: 0;bottom: 0;z-index: -1}

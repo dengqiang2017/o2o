@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- xml文件 -->
+<mapper namespace="com.qianying.dao.interfaces.IOrderTrackingDAO">
+	<!-- <cache/> -->
+  
+ <update id="confimShouhuo" parameterType="hashMap">
+ <if test="json!=null">
+   update sdd02021 set Status_OutStore=#{json.Status_OutStore} where
+ 	 ltrim(rtrim(isnull(com_id,'')))=#{json.com_id}
+ 	 and ivt_oper_listing=#{json.orderNo}
+	 and  ltrim(rtrim(isnull(item_id,'')))=#{json.item_id};
+ </if>
+ <if test="jsons==null and json==null">
+   update sdd02021 set Status_OutStore=#{Status_OutStore} where 
+ 	 ltrim(rtrim(isnull(com_id,'')))=#{com_id} 
+ 	 and ivt_oper_listing=#{orderNo}
+	 and  ltrim(rtrim(isnull(item_id,'')))=#{item_id};
+ </if>
+ <if test="jsons!=null">
+ <foreach collection="jsons" index="index" item="tag" >
+  update sdd02021 set Status_OutStore=#{tag.Status_OutStore} where 
+ 	 ltrim(rtrim(isnull(com_id,'')))=#{tag.com_id} 
+ 	 and ivt_oper_listing=#{tag.orderNo}
+	 and  ltrim(rtrim(isnull(item_id,'')))=#{tag.item_id};
+	 </foreach>
+ </if>
+ </update>
+ 
+ <select id="getOrderInfoByCaiguo" parameterType="hashMap" resultType="hashMap">
+	select seeds_id,
+	ltrim(rtrim(isnull(Status_OutStore,''))) as Status_OutStore
+ from sdd02021 where 
+	 ltrim(rtrim(isnull(com_id,'')))=#{com_id}
+<!-- 	  and ivt_oper_listing=#{orderNo} -->
+	  and ltrim(rtrim(isnull(st_hw_no,'')))=#{st_hw_no}
+	 and  ltrim(rtrim(isnull(item_id,'')))=#{item_id}
+</select>
+ <select id="getOrderInfoStatus_OutStoreBySeeds_id" parameterType="hashMap" resultType="String">
+select top 1 
+ltrim(rtrim(isnull(Status_OutStore,''))) as Status_OutStore
+ from sdd02021 where 
+ seeds_id in(${seeds_id})
+ group by Status_OutStore
+</select>
+ <update id="updateOrderStatus" parameterType="hashMap">
+ update sdd02021 set 
+ <if test="Kar_paizhao!=null">
+ Kar_paizhao=#{Kar_paizhao},
+ </if>
+ <if test="didian!=null">
+ c_memo=#{didian},
+ </if>
+ <if test="HYS!=null">
+ HYS=#{HYS},
+ </if>
+ <if test="tihuoDate!=null">
+ c_memo=c_memo+',${tihuoDate}',
+ </if>
+ <if test="wuliu!=null">
+ transport_AgentClerk_Reciever=#{wuliu},
+ </if>
+ <if test="Status_OutStore!=null">
+ Status_OutStore=#{Status_OutStore}
+ </if>
+ <if test="shipped!=null">
+ shipped=#{shipped}
+ </if>
+ where seeds_id in(${seeds_id})
+  <if test="shipped!=null">
+ and ltrim(rtrim(isnull(st_hw_no,'')))=''
+ </if>
+ </update>
+ <update id="updateStdm02001" parameterType="hashMap">
+ update STD02001 set 
+ <if test="m_flag!=null">
+ m_flag=#{m_flag},
+ </if>
+ <if test="wuliufs!=null">
+ c_memo=#{wuliufs},wuliudx=#{wuliudx},
+ </if>
+com_id=#{com_id} 
+ where ltrim(rtrim(isnull(com_id,'')))=#{com_id} 
+	  and ltrim(rtrim(isnull(st_auto_no,'')))=#{st_hw_no}
+	  and ltrim(rtrim(isnull(mps_id,'')))=#{mps_id}
+	  and  ltrim(rtrim(isnull(item_id,'')))=#{item_id};
+ </update>
+ 
+ <select id="getOrderInfoBySeeds_id" parameterType="hashMap" resultType="hashMap">
+	select ltrim(rtrim(isnull(t1.com_id,''))) as com_id,
+	<if test="customer!=null">
+  	ltrim(rtrim(isnull(t1.customer_id,''))) as customer_id
+	</if>
+  	<if test="vendor!=null">
+  	ltrim(rtrim(isnull(t4.vendor_id,''))) as vendor_id,
+  	ltrim(rtrim(isnull(t2.weixinID,''))) as weixinID,
+  	ltrim(rtrim(isnull(t2.user_id,''))) as phone,
+  	ltrim(rtrim(isnull(t2.corp_name,''))) as corp_name
+  	</if>
+  	from view_sdd02020 t1 
+  	<if test="vendor!=null">
+	left join STDM02001 t4 on t1.st_hw_no=t4.st_auto_no and t1.com_id=t4.com_id
+	left join Ctl00504 t2 on t4.vendor_id=t2.corp_id and t4.com_id=t2.com_id
+	</if>
+	 where t1.seeds_id in(${seeds_id})
+	group by t1.com_id
+	<if test="customer!=null">
+	,t1.customer_id
+	</if>
+  	<if test="vendor!=null">
+	,t4.vendor_id,t2.weixinID,t2.user_id,t2.corp_name
+	</if>
+ </select>
+ <select id="getCaigouOrderInfoByOrderSeeds_id" parameterType="hashMap" resultType="hashMap">
+	select ltrim(rtrim(isnull(item_id,''))) as item_id,
+	ltrim(rtrim(isnull(com_id,''))) as com_id,
+	ltrim(rtrim(isnull(st_hw_no,''))) as st_hw_no,
+	ltrim(rtrim(isnull(ivt_oper_listing,''))) as orderNo 
+	from 
+	sdd02021 where seeds_id in(${seeds_id})
+	group by item_id,com_id,st_hw_no,ivt_oper_listing
+</select>
+
+<select id="getWuliuByOrder" parameterType="hashMap" resultType="hashMap">
+	select top ${rows} ${filedName} from sdd02021 
+	group by ${filedName} 
+	order by seeds_id desc;
+</select>
+<select id="getProductionPlanPH" parameterType="hashMap" resultType="hashMap">
+	select ltrim(rtrim(isnull(PH,''))) as PH from YieM02011 
+	where ltrim(rtrim(isnull(auto_mps_id,'')))=#{orderNo} and ltrim(rtrim(isnull(item_id,'')))=#{item_id} and 
+	ltrim(rtrim(isnull(com_id,'')))=#{com_id}
+</select>
+
+<!-- 	获取订单产品信息包含库存 -->
+	  <sql id="productWare">
+	  View_sdd02020_kuc t1 
+	<if test="type=='采购'">
+	left join Ctl00504 t2 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t2.com_id,'')))
+	and ltrim(rtrim(isnull(t1.vendor_id,'')))=ltrim(rtrim(isnull(t2.corp_id,'')))
+	</if>
+	where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id}
+	and ltrim(rtrim(isnull(t1.item_status,'使用')))='使用'
+	and ltrim(rtrim(isnull(t1.shipped,'')))=#{type}
+	<if test="type_id!=null">
+		and ltrim(rtrim(isnull(t1.type_id,''))) like #{type_id}
+	</if>
+	<if test="searchKey!=null">
+		and ( ltrim(rtrim(isnull(t1.item_name,''))) like #{searchKey} or
+		ltrim(rtrim(isnull(t1.item_sim_name,''))) like #{searchKey} or
+		ltrim(rtrim(isnull(t1.peijian_id,''))) like	#{searchKey} or
+		ltrim(rtrim(isnull(t1.item_id,''))) like #{searchKey} or
+		ltrim(rtrim(isnull(t1.easy_id,''))) like #{searchKey} or
+		ltrim(rtrim(isnull(t1.type_easy_id,''))) like #{searchKey} or
+		ltrim(rtrim(isnull(t1.item_type,''))) like #{searchKey} or
+		ltrim(rtrim(isnull(t1.type_id,''))) like #{searchKey} or
+		ltrim(rtrim(isnull(t1.sort_name,''))) like #{searchKey} or
+		ltrim(rtrim(isnull(t1.class_card,''))) like #{searchKey} or
+		ltrim(rtrim(isnull(t1.item_color,''))) like #{searchKey} or
+		ltrim(rtrim(isnull(t1.item_spec,''))) like #{searchKey} or
+		ltrim(rtrim(isnull(t1.quality_class,''))) like #{searchKey} or
+		ltrim(rtrim(isnull(t1.item_style,''))) like #{searchKey} or
+		<if test="type=='采购'">
+		ltrim(rtrim(isnull(t2.corp_name,''))) like #{searchKey} or
+		ltrim(rtrim(isnull(t2.corp_sim_name,''))) like #{searchKey} or
+		ltrim(rtrim(isnull(t2.easy_id,''))) like #{searchKey} or
+		ltrim(rtrim(isnull(t2.user_id,''))) like #{searchKey} or
+		ltrim(rtrim(isnull(t2.movtel,''))) like #{searchKey} or
+		</if>
+		ltrim(rtrim(isnull(t1.goods_origin,''))) like #{searchKey})
+	</if>
+	  </sql>
+<select id="getWaitingHandleOrderCount" parameterType="hashMap" resultType="Integer">
+	select count(t1.item_id) from <include refid="productWare"/>
+</select>
+	<select id="getWaitingHandleOrderList" parameterType="hashMap" resultType="hashMap">
+	declare @maxId int,@maxId2 int;
+		set @maxId=( select max(idh) from (
+		select top ${page} ROW_NUMBER()	OVER(ORDER BY
+		ltrim(rtrim(isnull(t1.class_card,''))) desc,
+		ltrim(rtrim(isnull(t1.type_id,'')))	desc,
+		ltrim(rtrim(isnull(t1.item_name,''))) desc,
+		ltrim(rtrim(isnull(t1.item_type,''))) desc,
+		ltrim(rtrim(isnull(t1.item_spec,''))) desc
+		) as idh
+		from <include refid="productWare"/>
+		) as t);
+		<if test="page==1">
+			set @maxId=@maxId-1;
+		</if>
+		select top ${rows} t.*
+		from (select ROW_NUMBER() OVER(ORDER BY
+		ltrim(rtrim(isnull(t1.class_card,''))) desc,
+		ltrim(rtrim(isnull(t1.type_id,'')))	desc,
+		ltrim(rtrim(isnull(t1.item_name,''))) desc,
+		ltrim(rtrim(isnull(t1.item_type,''))) desc,
+		ltrim(rtrim(isnull(t1.item_spec,''))) desc
+		) as idh,
+		t1.*
+		<if test="type=='采购'">
+		,ltrim(rtrim(isnull(t2.corp_name,''))) as gys_name,
+		ltrim(rtrim(isnull(t2.corp_sim_name,''))) as gys_sim_name,
+		ltrim(rtrim(isnull(t2.movtel,''))) as gys_movtel
+		</if>
+		from <include refid="productWare"/>
+		) t where t.idh>@maxId
+	</select>
+
+
+</mapper>

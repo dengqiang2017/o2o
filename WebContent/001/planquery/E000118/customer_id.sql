@@ -1,0 +1,1 @@
+ and ( ltrim(rtrim(isnull(customer_id,''))) like 'CS1C000133%' or  ltrim(rtrim(isnull(customer_id,''))) like 'CS1C000138%' or  ltrim(rtrim(isnull(customer_id,''))) like 'CS1C000141%' or  ltrim(rtrim(isnull(customer_id,''))) like 'CS1C000001%')

@@ -1,0 +1,340 @@
+/*---------���ò���---------*/
+*{
+    padding: 0;
+    margin: 0;
+    font-family: Microsoft YaHei;
+}
+.header{
+    text-align: center;
+    background-color: #36a0ac;
+    padding: 10px 0;
+    color: #FFFFFF;
+    position: relative;
+}
+.a_position{
+    position: absolute !important;
+    left: 10px !important;
+    top:12px !important;
+    color:#FFFFFF;
+}
+.a_position:hover{
+    color:#FFFFFF;
+    text-decoration: none;
+    cursor: pointer;
+}
+.clear{
+    clear: both;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+.orient{
+    padding: 13px;
+}
+.orient_01{
+    display: inline-block;
+    color: #999999;
+    font-size: 16px;
+}
+.orient_02{
+    display: inline-block;
+    color:#666666;
+    font-size: 16px;
+} 
+
+.order_01{
+    background-color: #FFFFFF;
+    padding: 13px;
+    font-size: 16px;
+}
+.pull-right>a{
+    cursor: pointer;
+}
+.pull-right>a:hover{
+    text-decoration: none;
+}
+.order_02{
+    padding: 13px;
+    color: #666666;
+    font-size: 16px;
+}
+.order_03{
+    padding: 13px;
+    border-top:2px solid #d0d0d0;
+    border-bottom:1px solid #d0d0d0;
+    overflow: hidden;
+    max-width: 100%;
+    position: relative;
+}
+.order_03>img{
+	width: 130px;
+	height:130px;
+    padding: 10px;
+}
+.left{
+    position: absolute;
+    left: 20px;
+    top: 65px;
+}
+.left>img{
+    width: 20px;
+    height: 25px;
+}
+.right>img{
+    width: 20px;
+    height: 25px;
+}
+.right{
+    position: absolute;
+    right: 15px;
+    top: 65px;
+}
+.order_03_imgk{
+    width: 852px;
+    position: relative;
+    height: 100%;
+}
+.imgk{
+   position: absolute;
+    left: 0;
+    top: 0;
+    transition: all 0.5s;
+    width: 100%;
+    height: 100%;
+}
+.imgk>img{
+    width: 132px;
+    height: 132px;
+    float: left;
+    margin-right: 10px;
+}
+.order_04{
+    background-color: #FFFFFF;
+    padding: 13px;
+    font-size: 14px;
+}
+.orderbox01{
+    margin-bottom: 20px;
+}
+.pay{
+    text-align: center;
+    background-color: #36A0AD;
+    width: 100%;
+    position: fixed;
+    bottom: 66px;
+    left: 0;
+    right: 0;
+    z-index: 990;
+}
+.reap{
+    position: fixed;
+    bottom: 66px;
+    left: 0;
+    right: 0;
+    z-index: 991;
+    font-size: 16px;
+    display: none;
+}
+.reap_02_div{
+    list-style: none;
+    border-top:1px solid #FFFFFF ;
+    border-bottom:1px solid #FFFFFF;
+    color: #FFFFFF;
+    padding: 10px;
+}
+.reap_02_div>.pull-right>span{
+    color: #FFFFFF;
+}
+.reap_02_div>.pull-right>img{
+    width: 20px;
+    height: 20px;
+    margin-bottom: 3px;
+}
+.reap_01{
+    padding: 15px;
+    color: #FFFFFF;
+    background-color: #000000;
+    opacity: 0.8;
+}
+.kk{
+    /*position: absolute;*/
+    /*left: 0;*/
+    /*top: 0;*/
+    /*transition: all 0.5s;*/
+}
+.reap_02{
+    background-color: #000000;
+    opacity: 0.8;
+    width: 100%;
+    float: left;
+}
+.reap_03{
+    border-bottom:1px solid #FFFFFF;
+    color: #FFFFFF;
+    padding: 15px;
+    text-align: center;
+    background-color: #000000;
+    opacity: 0.8;
+    position: relative;
+}
+.reap_03_left{
+    position: absolute;
+    left: 80px;
+    top: 15px;
+}
+.reap_03_left>img{
+    width: 20px;
+    height: 25px;
+}
+.reap_03_right{
+    position: absolute;
+    right: 80px;
+    top: 15px;
+}
+.reap_03_right>img{
+    width: 20px;
+    height: 25px;
+}
+.reap_03>img{
+    width:25px ;
+    height: 25px;
+}
+.reap_04{
+    text-align: center;
+    color: #FFFFFF;
+    padding: 15px;
+    background-color: #E03430;
+    cursor: pointer;
+}
+.reap_05{
+    text-align: center;
+    color: #FFFFFF;
+    padding: 15px;
+    background-color: #E03430;
+    cursor: pointer;
+    width: 100%;
+}
+.reap_05:hover{
+    color: #FFFFFF;
+}
+.pull-right>span{
+    font-size: 20px;
+}
+.reap_02k{
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+.reapk{
+    width: 100%;
+    height: 177px;
+    position: relative;
+}
+.verify{
+    position: fixed;
+    bottom: 66px;
+    background-color: #000000;
+    opacity: 0.9;
+    left: 0;
+    right: 0;
+    z-index: 991;
+    color: #FFFFFF;
+    font-size: 16px;
+    display: none;
+}
+.verify_01{
+    padding: 10px 20px;
+}
+.verify_02>ul>li{
+    text-align: center;
+    padding: 10px 0;
+    border-top: 1px solid #FFFFFF;
+}
+#lxr{
+    background-color: #000000;
+    border: none;
+    color: #FFFFFF;
+}
+#lxhm{
+    background-color: #000000;
+    border: none;
+    color: #FFFFFF;
+}
+#shdz{
+    background-color: #000000;
+    border: none;
+    color: #FFFFFF;
+}
+.verify_02>ul>li>div{
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+}
+.verify_02>ul>li>div>img{
+    width: 100%;
+    height: 100%;
+}
+/*----------------footer--------------*/
+.side_tools{
+    width: 100%;
+    height: 66px;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    border-top:1px solid #7a6d6c ;
+}
+.tools_icon{
+    display: block;
+    color: #7a6d6c;
+    height: 66px;
+    text-align: center;
+    background-color: #fff;
+    cursor: pointer;
+    font-size: 11px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    width:33.3333%;
+    float: left;
+}
+.tools_icon>.icon {
+    display: block;
+    width: 31px;
+    color: #7a6d6c;
+    height: 33px;
+    margin: 8px auto 0;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+.tools_icon>.icon01 {
+    background-image: url(../images/register_19.jpg);
+}
+.tools_icon>.icon02 {
+    background-image: url(../images/register_22.jpg);
+}
+.tools_icon>.icon05 {
+    background-image: url(../images/register_24.jpg);
+}
+.tools_icon>.icon03 {
+    background-image: url(../images/register_31.jpg);
+}
+.tools_icon>.icon04 {
+    background-image: url(../images/register_26.jpg);
+}
+.tools_icon>.icon07 {
+    background-image: url(../images/register_26.jpg);
+}
+.tools_icon>span>a{
+    font-size: 14px;
+    color: #7a6d6c;
+}
+.tools_icon>span>a:hover{
+    text-decoration: none;
+}
+.tools_icon>span>a:hover{
+    text-decoration: none;
+}

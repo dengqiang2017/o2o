@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<REQUEST>  
+<itembegin index="3" sheetName="部门-勿改此页名"/>
+<item mainfiledName="sort_id"        index="0"  excelChineseName="部门内码" />
+<item mainfiledName="dept_id"        index="1"  excelChineseName="部门外码" />
+<item mainfiledName="dept_sim_name"  index="2"  excelChineseName="部门简称"/>
+<item mainfiledName="dept_name"      index="3"  excelChineseName="部门全称"/>
+<item mainfiledName="upper_dept_id"  index="4"  excelChineseName="上级部门编码"/>
+<!-- 上级部门名称 -->
+<item mainfiledName="dept_manager"   index="6"  excelChineseName="部门负责人"/>
+<item mainfiledName="dept_addr"      index="7"  excelChineseName="部门地址"/>
+<item mainfiledName="tel_no"         index="8"  excelChineseName="部门电话"/>
+<item mainfiledName="fax_no"         index="9"  excelChineseName="部门传真"/>
+<item mainfiledName="zip"            index="10" excelChineseName="部门邮编"/>
+<item mainfiledName="working_status" index="11" excelChineseName="工作状态"/>
+<item mainfiledName="m_flag"         index="12" excelChineseName="部门类型"/>
+</REQUEST>

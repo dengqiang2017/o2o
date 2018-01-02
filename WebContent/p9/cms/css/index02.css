@@ -1,0 +1,285 @@
+.banner_div{
+    width: 100%;
+    height: 670px;
+    position: relative;
+}
+.banner img{
+    width: 100%;
+}
+.banner{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: all 0.5s;
+    opacity: 1;
+}
+.lefth{
+    width: 50px;
+    height: 100px;
+    position: absolute;
+    left: 20px;
+    top:300px;
+    background-image: url("../images/arrow_left.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100% 100%;
+    z-index: 10;
+}
+.righth{
+    width: 50px;
+    height: 100px;
+    position: absolute;
+    right: 20px;
+    top:300px;
+    background-image: url("../images/arrow_right.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100% 100%;
+    z-index: 10;
+}
+.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12{
+    padding-right: 0px;
+}
+.banner_div>div{
+    cursor: pointer;
+}
+@media screen and (min-width: 1200px){
+    html,body{
+        background-color: #85BFDE;
+    }
+    .csSlideOuter .csPager.cSpg > li{
+        padding: 0 20px;
+    }
+    .csSlideOuter .csPager.cSpg > li a{
+        width: 18px;
+        height: 18px;
+    }
+    .text_01{
+        font-size: 45px;
+        line-height: 70px;
+        margin-top: 50px;
+    }
+    .img_01{
+        height: 40px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+    .points{
+        margin-bottom: 120px;
+    }
+    .points .left{
+        height: 588px;
+        box-shadow: 6px 0px 5px rgba(0,0,0,.8);
+    }
+    .col-lg-offset-1 {
+        margin-left: 0.53333333%;
+    }
+    .points .right{
+        padding-left: 25px;
+        background-color: #FFFFFF;
+        height: 588px;
+        box-shadow: 5px 5px 4px rgba(0,0,0,.3);
+    }
+    .points h2{
+        font-size: 45px;
+        font-family: "Î¢ÈíÑÅºÚ";
+        font-weight: bold;
+        padding-bottom: 10px;
+        padding-top: 100px;
+        margin-bottom: 20px;
+        border-bottom:2px solid #dddddd;
+    }
+    .points h4{
+        font-size: 32px;
+        font-family: "Î¢ÈíÑÅºÚ";
+        padding-right: 100px;
+        line-height: 50px;
+    }
+    .to_top{
+        cursor: pointer;
+        position: fixed;
+        bottom: 20px;
+        right: 5px;
+    }
+}
+@media (max-width: 770px) {
+    .banner_div{
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+    .banner>div>img {
+        width: 100%;
+        height: 250px;
+    }
+    .lefth{
+        width: 30px;
+        height: 50px;
+        position: absolute;
+        left: 10px;
+        top:100px;
+        background-image: url("../images/arrow_left.png");
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 100% 100%;
+        z-index: 10;
+    }
+    .righth{
+        width: 30px;
+        height: 50px;
+        position: absolute;
+        right: 10px;
+        top:100px;
+        background-image: url("../images/arrow_right.png");
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 100% 100%;
+        z-index: 10;
+    }
+    .banner{
+        width: 100%;
+        height: 250px;
+        position: relative;
+    }
+    .banner>img{
+        height: 260px;
+    }
+}
+
+
+
+@media screen and (max-width: 1199px) and (min-width: 769px){
+    html,body{
+        background-color: #85BFDE;
+    }
+    .csSlideOuter .csPager.cSpg > li{
+        padding: 0 15px;
+    }
+    .csSlideOuter .csPager.cSpg > li a{
+        width: 12px;
+        height: 12px;
+    }
+    .text_01{
+        font-size: 32px;
+        line-height: 55px;
+        margin-top: 30px;
+    }
+    .img_01{
+        height: 40px;
+        margin-top: 35px;
+        margin-bottom: 35px;
+    }
+    .points{
+        margin-bottom: 66px;
+    }
+    .points .left{
+        height: 388px;
+        box-shadow: 4px 0px 5px rgba(0,0,0,.8);
+    }
+    .col-lg-offset-1 {
+        margin-left: 0.53333333%;
+    }
+    .points .right{
+        padding-left: 20px;
+        background-color: #FFFFFF;
+        height: 388px;
+        box-shadow: 3px 3px 4px rgba(0,0,0,.3);
+    }
+    .col-sm-offset-1 {
+        margin-left: 1.53333333%;
+    }
+    .points h2{
+        font-size: 35px;
+        font-family: "Î¢ÈíÑÅºÚ";
+        font-weight: bold;
+        padding-bottom: 10px;
+        padding-top: 15px;
+        padding-right: 55px;
+        margin-bottom: 12px;
+        border-bottom:1px solid #dddddd;
+    }
+    .points h4{
+        font-size: 25px;
+        font-family: "Î¢ÈíÑÅºÚ";
+        padding-right: 55px;
+        line-height: 35px;
+    }
+    .to_top{
+        position: fixed;
+        left: 0px;
+        bottom: 10px;
+        cursor: pointer;
+    }
+    .banner_div{
+        width: 100%;
+        height: 400px;
+        position: relative;
+    }
+    .banner>img{
+        height: 400px;
+    }
+}
+
+@media screen and (max-width: 768px){
+    html,body{
+        background-color: #85BFDE;
+    }
+    .csSlideOuter .csPager.cSpg > li{
+        padding: 0 10px;
+    }
+    .csSlideOuter .csPager.cSpg > li a{
+        width: 8px;
+        height: 8px;
+    }
+    .text_01{
+        font-size: 25px;
+        line-height: 30px;
+        margin-top: 15px;
+    }
+    .img_01{
+        height: 40px;
+        /*padding: 20px;*/
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .points{
+        margin-bottom: 20px;
+    }
+    .points .right{
+        height: 80px;
+    }
+    .points h2{
+        font-size: 25px;
+        font-family: "Î¢ÈíÑÅºÚ";
+        font-weight: bold;
+        line-height: 80px;
+        text-align: center;
+    }
+    .points span{
+        width: 6px;
+        height: 6px;
+        background-color: #000000;
+        border-radius: 3px;
+        margin-top: 37px;
+    }
+    .points h4{
+        font-size: 18px;
+        font-family: "Î¢ÈíÑÅºÚ";
+        margin-top: 31px;
+    }
+    .points h4.third_text{
+        margin-top: 13px;
+    }
+    .points h4.second_text{
+        margin-top: 22px;
+    }
+    .to_top{
+        position: fixed;
+        right: 0;
+        bottom: 62px;
+        width: 50px;
+        cursor: pointer;
+    }
+}

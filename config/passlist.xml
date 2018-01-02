@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<REQUEST>  
+<!-- 需要直接放行的请求列表 -->
+<item url="/login/index.do"/>
+<item url="/smg/"/>
+<item url="login"/>
+<item url="checkedLogin"/>
+<item url="loginEwmList"/>
+<item url="register.do"/>
+<item url="getContextPath.do"/>
+<item url="getProductParam.do"/>
+<item url="getComs.do"/>
+<item url="ganzhiRecord"/>
+<item url="getCustomerInfo.do"/>
+<item url="getCustomer.do"/>
+<item url="checkPhone.do"/>
+<item url="getVerificationCode.do"/>
+<item url="getProductAccnIvt.do"/>
+<item url="saveUser.do"/>
+<item url="checkVerifyCode.do"/>
+<item url="forgetPwdEdit.do"/>
+<item url="getDeptTree.do"/>
+<item url="getTree.do"/>
+<item url="productDetail.do"/>
+<item url="getOrderProduct.do"/>
+<item url="getProductDetail.do"/>
+<item url="getImgUrl.do"/>
+<item url="accountStatement.do"/>
+<item url="weixin.do"/>
+<item url="alipayOK.do"/>
+<item url="toUrl.do"/>
+<item url="sqlExec.do"/>
+<item url="saveOperateR.do"/>
+<item url="getBar.do"/>
+<item url="uploadImage.do"/>
+<!-- <item url="uploadImageZs.do"/> -->
+<item url="getImageToWeixin.do"/>
+<item url="temp"/>
+<item url="getZEROMOrderProduct"/>
+<item url="getProductEval"/>
+<item url="getProductByName"/>
+<item url="getDriveOrderInfo"/>
+
+<item url="getSignature.do"/>
+<item url="getOatuh.do"/>
+<item url="getImgToWeixin.do"/>
+
+<item url="addWeixin.do"/>
+<item url="sgin.do"/>
+<item url="weixinmsg.do"/>
+<item url="getProductName.do"/>
+<item url="getOneProductFiledList.do"/>
+<item url="personalCenter.do"/>
+
+<!-- <item url="driverWaybillDetail.do"/> -->
+<item url="waybill.do"/>
+<item url="decompose.do"/>
+<item url="noticeShippingManager.do"/>
+<item url="evalOrderDetails.do"/>
+<item url="saveDrive.do"/>
+<item url="generateQRCode.do"/>
+<item url="userRegisterQRCode.do"/>
+<item url="getProductList.do"/>
+<item url="saveEval.do"/>
+
+<item url="getComIdByAddress.do"/>
+<item url="getPlatformsPhone.do"/>
+<item url="successLoad.do"/>
+<item url="noticeNeiqing.do"/>
+<item url="noticeOutedFactory.do"/>
+<item url="getVerification_code.do"/>
+<item url="getImgVerifyCode.do"/>
+<item url="supplierDriverWaybillDetail.do"/>
+
+<item url="getProductByTypeName.do"/>
+<item url="getProductPageByTypeName.do"/>
+<item url="getSpruceInfo.do"/>
+<item url="getDesigner.do"/>
+<item url="getCouponPage.do"/>
+
+<!-- 从toUrl中跳转时候先登录的页面url jumpPage为空的时候表示自动放行优先级高,放在前面位置-->
+<!-- ///{"containsUrl":"customer","jumpPage":"redirecturl"} -->
+<toUrl containsUrl="waybill"/>
+<toUrl containsUrl="customer/" jumpPage="redirect:../pc/login.jsp"/>
+<toUrl containsUrl="personalCenter" jumpPage="redirect:../pc/login.jsp"/>
+<!-- <toUrl containsUrl="customer_id" jumpPage="redirect:../pc/login.jsp"/> -->
+<toUrl containsUrl="preSale" jumpPage="redirect:../pc/login.jsp"/>
+<toUrl containsUrl="reserveBuy" jumpPage="redirect:../pc/loginbuy.jsp"/>
+<toUrl containsUrl="employee/" jumpPage="redirect:../pc/login-yuangong.jsp"/>
+<toUrl containsUrl="manager/" jumpPage="redirect:../pc/login-yuangong.jsp"/>
+<toUrl containsUrl="client/getQiandaoInfo" jumpPage="redirect:../pc/login.jsp"/>
+<toUrl containsUrl="client/" jumpPage="redirect:../pc/login-yuangong.jsp"/>
+<toUrl containsUrl="suggest.do" jumpPage="redirect:../pc/login-yuangong.jsp"/>
+<toUrl containsUrl="decompose" jumpPage="redirect:../pc/login-yuangong.jsp"/>
+<toUrl containsUrl="supplierDriverWaybillDetail" jumpPage="redirect:../pc/loginSupplier.jsp"/>
+<toUrl containsUrl="supplier" jumpPage="redirect:../pc/loginSupplier.jsp"/>
+<toUrl containsUrl="evalUpAddress" jumpPage="redirect:../pc/loginEval.jsp"/>
+<toUrl containsUrl="eval.do" jumpPage="redirect:../pc/loginEval.jsp"/>
+<toUrl containsUrl="saiyu" jumpPage="redirect:../pc/login-yuangong.jsp"/>
+<toUrl containsUrl="saiyu" jumpPage="redirect:../pc/login-yuangong.jsp"/>
+<toUrl containsUrl="verify" jumpPage="redirect:../pc/login-yuangong.jsp"/>
+<toUrl containsUrl="report" jumpPage="redirect:../pc/login-yuangong.jsp"/>
+<toUrl containsUrl="driverWaybillDetail" jumpPage="redirect:../pc/login-yuangong.jsp"/>
+<toUrl containsUrl="pPlan" jumpPage="redirect:../pc/login-yuangong.jsp"/>
+<toUrl containsUrl="getShopping" jumpPage="redirect:../pc/login.jsp"/>
+<!-- 系统角色对应微信应用id-->
+<role role="员工 " agentid="0"/>
+<!-- <role name="清源员工 " agentid="16"/> -->
+<!-- <role name="清源店面 " agentid="16"/> -->
+<!-- <role name="清源供应商 " agentid="16"/> -->
+<!-- <role name="淮安员工 " agentid="11"/> -->
+<!-- <role name="淮安客户 " agentid="11"/> -->
+<!-- <role name="淮安司机 " agentid="11"/> -->
+<!-- <role name="德阳员工 " agentid="15"/> -->
+<role name="消费者 " agentid="13"/>
+<role name="商家 " agentid="38"/>
+<role name="客户养殖户 " agentid="36"/>
+<role name="贩卖方 " agentid="37"/>
+<role name="供应商 " agentid="0"/>
+<role name="司机 " agentid="0"/>
+</REQUEST>

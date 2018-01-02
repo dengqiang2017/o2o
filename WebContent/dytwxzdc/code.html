@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="U-XA-Compatible" content="IE-edge">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <title>邀请客户注册</title>
+    <link rel="stylesheet" href="../pcxy/css/bootstrap.css">
+    <link rel="stylesheet" href="css/code.css?ver=001">
+    <link rel="stylesheet" href="../css/popUpBox.css">
+    <script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+	    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script type="text/javascript" src="../pc/js/weixin/zepto.min.js"></script>
+	<script type="text/javascript" src="../pc/js/weixin/weixinShare.js"></script>
+    <script src="../js/popUpBox.js"></script>
+    <script src="twysjs/code.js?ver=001"></script>
+</head>
+<body>
+<div class="header">
+    <a class="glyphicon glyphicon-chevron-left header_a pull-left" href="dataedition.html?ver=898413"></a> 邀请注册
+</div>
+<div class="body">
+       <h4 style="margin-top: 0;font-weight: bold;text-align: center;">打开微信扫一扫,立即注册!</h4>
+	   <div id="sellbuy" style="display: none;">
+	   <div class="check">
+           <ul style="margin-bottom: 0">
+               <li style="border-right:1px solid #dddddd" class="active">养殖户注册
+               </li>
+               <li>贩卖方注册</li>
+               <div class="clearfix"></div>
+           </ul>
+       </div>
+       <div class="box">
+           <div class="code-box">
+               <img  src="" id="qrcode_sell" class="img-responsive center-block">
+           </div>
+           <div class="code-box">
+               <img  src="" id="qrcode_buy" class="img-responsive center-block">
+           </div>
+       </div>
+	   </div> 
+    <div class="code-box">
+        <img  src="" id="qrcode" class="img-responsive center-block">
+    </div>
+</div>
+<script>
+    $('.code-box').eq(0).show();
+    $('.check>ul>li').click(function(){
+        $('.check>ul>li').removeClass('active');
+        $(this).addClass('active');
+        var n = $('.check>ul>li').index(this);
+        $('.code-box').hide();
+        $('.code-box').eq(n).show();
+    })
+</script>
+</body>
+</html>

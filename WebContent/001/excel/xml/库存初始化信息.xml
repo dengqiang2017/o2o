@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<REQUEST>  
+<itembegin index="3" sheetName="库存初始化-勿改此页名"/>
+<item mainfiledName="store_struct_id"        index="0"  excelChineseName="库房编码" />
+<!-- 库房名称 -->
+<item mainfiledName="item_id"                index="2"  excelChineseName="产品编码" />
+<!-- 产品名称 -->
+<item mainfiledName="oh"                     index="4"  excelChineseName="期初数"/>
+<item mainfiledName="i_price"                index="5"  excelChineseName="成本单价"/>
+<item mainfiledName="i_Amount"               index="6"  excelChineseName="库存金额"/>
+<item mainfiledName="finacial_y"             index="7"  excelChineseName="核算年"/>
+<item mainfiledName="finacial_m"             index="8"  excelChineseName="核算月"/>
+<item mainfiledName="mainten_clerk_id"       index="9"  excelChineseName="维护员工编码"/>
+<!-- 维护员工名称 -->
+<item mainfiledName="maintenance_datetime"   index="11" excelChineseName="维护时间"/>
+<item mainfiledName="PH"                     index="12" excelChineseName="排产编号"/>
+</REQUEST>

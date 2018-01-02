@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <title>编辑协同步骤</title>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../pcxy/css/bootstrap.css?ver=431478">
+    <link rel="stylesheet" href="../pcxy/css/global.css?ver=431478">
+    <link rel="stylesheet" href="../css/popUpBox.css?ver=431478">
+    <script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+    <script type="text/javascript" src="../js_lib/jquery.cookie.js"></script>
+    <script src="../pcxy/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/common.js?ver=431478"></script>
+    <script type="text/javascript" src="../js/popUpBox.js?ver=431478"></script>
+    <!--<link rel="stylesheet" href="../pcxy/css/product.css">-->
+    <link rel="stylesheet" href="css/approval_editing.css"/>
+    <link rel="stylesheet" href="diangong/css/freightElectrician.css"/>
+    <!--<script src="../js/o2otree.js"></script>-->
+    <!--<script type="text/javascript" src="../pc/js/definition/processDetail.js"></script>-->
+    <script src="/cms/pc/js/edit.js"></script>
+</head>
+<body>
+<div class="bg"></div>
+<!--<div class="header">-->
+<div class="header header-title">
+    <a class="header-back" href="approvalProcess_client.html">
+        <span class="glyphicon glyphicon-menu-left"></span>
+    </a> 
+</div>
+    <ol class="breadcrumb">
+        <li><span class="glyphicon glyphicon-triangle-right"></span><a href="login.html">客户</a></li>
+        <li><span class="glyphicon glyphicon-triangle-right"></span><a href="approvalProcess_company.html">定义协同流程</a></li>
+        <li class="active"><span class="glyphicon glyphicon-triangle-right"></span>编辑协同流程</li>
+    </ol>
+    <div class="header-title">编辑协同流程
+        <a href="approvalProcess_client.html" class="header-back"><span class="glyphicon glyphicon-menu-left"></span></a>
+    </div>
+<!--</div>-->
+
+<div class="container">
+    <form>
+        <div class="form-group col-sm-6 col-sm-offset-3" style="text-align: center;">
+            <label class="radio-inline">
+                <input checked type="radio" name="inlineRadioOptions" value="协同人" data-approval="approval_man"> 客户
+            </label>
+            <label class="radio-inline">
+                <input checked type="radio" name="inlineRadioOptions" value="协同人" data-approval="approval_man"> 员工
+            </label>
+            <label style="padding: 0 20px">|</label>
+            <label class="radio-inline">
+                <input checked type="radio" name="inlineRadioOptions" value="协同人" data-approval="approval_man"> 协同人
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="inlineRadioOptions" value="协同角色" data-approval="approval_role"> 协同角色
+            </label>
+        </div>
+        <div class="form-group col-sm-6 col-sm-offset-3 " id="approval_man">
+            <label for="approval_name">协同人：</label>
+<!--             <form class="form-inline"> -->
+                <div class="form-group">
+                    <div class="input-group">
+                        <span id="clerk_name" class="debug01 form-control input-sm"  aria-describedby="basic-addon2" ></span>
+                        <span class="input-group-addon input-group-btn">
+                            <input id="clerk_id" name="clerk_id" type="hidden" value="DE001">
+                            <button class="btn btn-sm" type="button" style="color: #FFFFFF;" data-target="#myModal" data-toggle="modal">浏览</button>
+                        </span>
+                    </div>
+                </div>
+<!--             </form> -->
+        </div>
+        <div class="form-group col-sm-6 col-sm-offset-3" id="approval_role" style="display: none;">
+            <label for="approval_name">协同角色：</label>
+            <select class="form-control input-lg" id="headship" name="headship" style="margin-top: 10px;">
+                <option value="出纳">出纳</option>
+                <option value="财务">财务</option>
+                <option value="经理">经理</option>
+            </select>
+        </div>
+        <div class="form-group col-sm-6 col-sm-offset-3 ">
+            <label for="approval_name">协同部门：</label>
+<!--             <form class="form-inline"> -->
+                <div class="form-group ">
+                    <div class="input-group approval_name">
+                        <span id="dept_name" class="debug02 form-control input-sm approval_name_span1"  aria-describedby="basic-addon2" ></span>
+                        <span class="input-group-addon input-group-btn approval_name_span2">
+                            <input id="deptId" type="hidden" name="dept_id" value="DE001">
+                            <button class="btn btn-sm approval_name_span2 " type="button" style="color: #FFFFFF;" data-target="#myModal" data-toggle="modal">浏览</button>
+                        </span>
+                    </div>
+                </div>
+<!--             </form> -->
+        </div>
+        <div class="form-group-lg col-sm-6 col-sm-offset-3">
+            <label for="step">协同步骤：</label>
+            <input type="tel" data-number="num" name="approval_step" id="approval_step" class="form-control" value="5"/>
+        </div>
+        <div class="form-group-lg col-sm-6 col-sm-offset-3">
+            <label for="step">是否推送最终消息结果：</label>
+            <select class="form-control input-lg">
+                <option value="是">是</option>
+                <option value="否">否</option>
+            </select>
+        </div>
+        <div class="form-group-lg col-sm-6 col-sm-offset-3">
+            <label for="step">是否跳过：</label>
+            <select name="if_skip" id="ifSkip" class="form-control">
+                <option value="否">否</option>
+                <option value="是">是</option>
+            </select>
+        </div>
+        <button id="saveprocess" class="btn btn-primary col-xs-5 col-sm-2 col-sm-offset-3" style="margin-top: 20px;margin-bottom: 30px;">确定</button>
+        <button id="closeDiv" class="btn btn-primary col-xs-5 col-xs-offset-1 col-sm-2" style="margin-top: 20px;margin-bottom: 30px;">取消</button>
+    </form>
+</div>
+<!--<div class="modal-cover-first"></div>-->
+<div aria-labelledby="myModalLabel" class="modal-first modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog" role="document" >
+        <div class="modal-content" >
+            <!--敬请期待！-->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title">员工选择</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-inline m-t-b">
+                    <div class="form-group">
+                        <label for="recipient-name" class="control-label">名称</label> <input type="text" class="form-control" id="recipient-name">
+                    </div>
+                    <button type="button" class="btn btn-primary" id="findtree">搜索</button>
+                    <button type="button" class="btn btn-primary" id="selectClient">确定</button>
+                    <button type="button" id="closeTree" class="btn btn-default" style="color: #000;">取消</button>
+                </form>
+                <input type="hidden" id="select_customer_id">
+
+                <div class="tabs-content" style="height: 400px; display: block;">
+                    <div class="table" style="height: 360px; overflow-y: scroll;">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>员工名称</th>
+                                <th>联系电话</th>
+                                <th>部门</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <tr>
+                                <td><input type="hidden" value="E000092">邵燕</td>
+                                <td>13540040136</td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td><input type="hidden" value="E000093">沈雨霏</td>
+                                <td>18140112060</td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td><input type="hidden" value="E000094">王紫蓉</td>
+                                <td>13558748675</td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td><input type="hidden" value="E000095">马霞</td>
+                                <td>13708236261</td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td><input type="hidden" value="E000000">沈雨霏</td>
+                                <td>18140112050</td>
+                                <td>门市部</td>
+                            </tr>
+
+                            <tr>
+                                <td><input type="hidden" value="E000097">邵艳</td>
+                                <td>13540040136</td>
+                                <td>门市部</td>
+                            </tr>
+
+                            <tr>
+                                <td><input type="hidden" value="E000098">王紫蓉</td>
+                                <td>13558748675</td>
+                                <td>门市部</td>
+                            </tr>
+
+                            <tr>
+                                <td><input type="hidden" value="E000099">马霞</td>
+                                <td>13708236261</td>
+                                <td>门市部</td>
+                            </tr>
+
+                            <tr>
+                                <td><input type="hidden" value="E000100">张零柯</td>
+                                <td>13808062714</td>
+                                <td>财务部</td>
+                            </tr>
+
+                            <tr>
+                                <td><input type="hidden" value="E000101">deng</td>
+                                <td>18224052021</td>
+                                <td>门市部</td>
+                            </tr>
+
+                            <tr>
+                                <td><input type="hidden" value="E000102">来超</td>
+                                <td>13086652206</td>
+                                <td>财务部</td>
+                            </tr>
+
+                            <tr>
+                                <td><input type="hidden" value="E000103">孙磊</td>
+                                <td>18684005271</td>
+                                <td>工程维修部</td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+</body>
+<script type="text/javascript">
+//    绑定事件click
+    $('input[name="inlineRadioOptions"]').bind('click',function(){
+        var a=$('input[name="inlineRadioOptions"]:checked').val();
+//        获取选中元素
+        var b=$('input[name="inlineRadioOptions"]:checked');
+        var bAttr=b.attr('data-approval');
+        //        隐藏显示项
+        var arr=$('div[id*="approval"]');
+        for(var i=0;i<arr.length;i++){
+            $(arr[i]).hide();
+        }
+//       显示选中项
+        $('#'+bAttr).show();
+    });
+$(function(){
+    $('.debug02')[0].style.width=$('.debug01').css('width');
+});
+</script>
+</html>

@@ -1,0 +1,263 @@
+*{
+    font-family: Microsoft YaHei;
+    font-size: 15px;
+}
+ul{
+    padding-left:0 ;
+}
+ul>li{
+    list-style: none;
+}
+
+/*-----------------header-------------------*/
+
+.header{
+    width: 100%;
+    background-color: #357BB1;
+    height: 44px;
+    text-align: center;
+    color:#ffffff;
+    position: fixed;
+    line-height: 44px;
+    top: 0;
+    left: 0;
+    z-index: 9;
+}
+.header-back{
+    position: fixed;
+    left: 10px;
+    top: 0;
+    line-height: 44px;
+}
+/*-----------------secition-------------------*/
+.secition{
+    background-color: #C8D8DE;
+    padding: 40px 0 10px 0;
+    margin-top: 25px;
+}
+.secition-one>ul>li{
+    padding: 5px 0;
+}
+.secition-two{
+    width: 100%;
+    background-color: #FFFFFF;
+    padding: 0 15px 0 15px;
+}
+.secition-two>form>ul>li{
+    padding: 25px 0;
+}
+.secition-two-a{
+    width: 40%;
+    height: 30px;
+    background-color: #357AB1;
+    float: left;
+    text-align: center;
+    line-height: 30px;
+    color: #FFFFFF;
+}
+.secition-two-b{
+    width: 60%;
+    height: 30px;
+    float: right;
+    border: 1px solid #357AB1;
+    line-height: 30px;
+    text-indent: 10px;
+    outline: none;
+}
+.secition-two-b>input{
+    width: 94%;
+    height: 100%;
+    border: none;
+}
+.secition-two-bd{
+    width:100%;
+    height: 28px;
+    float: right;
+    border: none;
+    line-height: 30px;
+    outline: none;
+    text-align: center;
+}
+.secition-two-h{
+    width: 60%;
+    height: 30px;
+    float: right;
+    border: 1px solid #357AB1;
+    line-height: 30px;
+    outline: none;
+    text-align: center;
+    position: relative;
+}
+.secition-two-hleft{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 30px;
+    height: 100%;
+    text-align: center;
+    line-height: 25px;
+    padding: 0;
+    border: none;
+    background-color: #FFFFFF;
+    border-right: 1px solid #007cc2;
+}
+.secition-two-hright{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 30px;
+    height: 100%;
+    text-align: center;
+    line-height: 25px;
+    padding: 0;
+    border: none;
+    background-color: #FFFFFF;
+    border-left: 1px solid #007cc2;
+}
+.sm{
+    position: relative;
+}
+.smg{
+    width: 60px;
+    height: 100%;
+    text-align: center;
+    line-height: 20px;
+    color: #FFFFFF;
+    background-color:#357AB1;
+    position: absolute;
+    right: 0px;
+    border: none;
+}
+.secition-two-c{
+    text-align: center;
+    color: #FFFFFF;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #357AB1;
+    z-index: 8;
+    height: 60px;
+    line-height: 60px;
+}
+.paigong{
+    width: 50%;
+    height: 60px;
+    border: 1px solid #FFFFFF;
+    background-color: #357AB1;
+    float: left;
+    padding: 0;
+}
+.paigong:active{
+    background-color: #08699b;
+}
+.chakan{
+    width: 50%;
+    height: 60px;
+    border: 1px solid #FFFFFF;
+    background-color: #357AB1;
+    float: left;
+    padding: 0;
+}
+.chakan:active{
+    background-color: #08699b;
+}
+.fanhui:active{
+    background-color: #08699b;
+}
+.fanhui{
+    width: 33.3%;
+    height: 40px;
+    background-color: #357AB1;
+    float: left;
+    padding: 0;
+    border: 1px solid #FFFFFF;
+}
+.form-one{
+    background-color: #FFFFFF;
+    padding-bottom: 20px
+}
+.smga{
+    margin-top: 10px;
+    margin-bottom: 70px
+}
+.anliu{
+    width: 40px;
+    height: 40px;
+    margin-bottom: 70px;
+}
+.lol{
+    margin-bottom: 20px;
+}
+.cl{
+    width: 100%;
+    height: 10000px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: rgba(0,0,0,0.9);
+    display: block;
+    color: #FFFFFF;
+    z-index:1000;
+}
+.cl-1{
+    background-color: #FFFFFF;
+}
+.cl-2{
+    padding: 20px 5px 10px 5px;
+}
+.cl-2>ul>li{
+    color: #af0000;
+    text-align: left;
+    padding: 8px 0;
+}
+.cl-2-a{
+    width: 100%;
+    margin-top: 30px;
+    height: 50px;
+}
+.a1{
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    color: #af0000;
+    border: 1px solid #c1e2b3;
+    background-color: #FFFFFF;
+}
+.cl-2-a>ul>li{
+    float: left;
+    width: 30%;
+}
+.li-1{
+    margin-left: 15px;
+    margin-right: 15px;
+}
+.cl-3{
+    width: 50%;
+    height: 50px;
+    background-color: #FFFFFF;
+    border: 1px solid #000000;
+    text-align: center;
+    line-height: 50px;
+    color: #000000;
+    float: left;
+}
+.cl-3s{
+    width: 50%;
+    height: 50px;
+    background-color: #FFFFFF;
+    border: 1px solid #000000;
+    text-align: center;
+    line-height: 50px;
+    color: #000000;
+    float: left;
+}
+.cl-4{
+    width: 100%;
+    height: 50px;
+}
+.ul-mr{
+    margin-bottom: 30px;
+    border: 1px solid #000000;
+}

@@ -1,0 +1,75 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: Microsoft YaHei;
+    color: #000000;
+}
+ul>li{
+    list-style: none;
+}
+ul{
+    margin-bottom: 0;
+}
+body{
+    background-color: #EAEAEA;
+}
+html{
+    margin-top: -1px;
+}
+.copyright{
+    text-align: center;
+    color: #000;
+    margin-top: 10px;
+}
+.header{
+    background-color: #3BC299;
+    padding: 10px;
+    color: #ffffff;
+    font-size: 18px;
+    text-align: center;
+    position: relative;
+}
+.header>a{
+    color: #ffffff;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+.header>a:hover{
+    cursor: pointer;
+    text-decoration: none;
+}
+.body{
+    width: 90%;
+    margin: auto;
+    margin-top: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 15px;
+}
+.body>h4{
+    font-size: 21px;
+}
+.body>p{
+    text-align: right;
+}
+.ul_box>ul>li{
+    background-color: #D6D6D6;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.ul_box>ul>li>p{
+    font-size: 17px;
+}
+.btn_box{
+    width: 250px;
+    margin: auto;
+    margin-top:20px;
+}
+.btn_box>a{
+    width: 82px;  
+}
+.btn_box>button{
+    width: 82px;
+}

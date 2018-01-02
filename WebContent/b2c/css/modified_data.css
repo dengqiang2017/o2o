@@ -1,0 +1,19 @@
+.modified ul{padding: 10px 10px 0 10px;padding-top: 0}
+.modified li{cursor: pointer;border-bottom: 1px solid #dddddd;padding: 15px 0;display:-moz-box;display:-webkit-box;display:box;-moz-box-align:center;-webkit-box-align:center;-o-box-align:center;box-align:center;-moz-box-pack:justify;-webkit-box-pack:justify;-o-box-pack:justify;box-pack:justify;}
+.modified a{text-decoration: none}
+.modified-right{display:-moz-box;display:-webkit-box;display:box;-moz-box-align:center;-webkit-box-align:center;-o-box-align:center;box-align:center;-moz-box-pack:justify;-webkit-box-pack:justify;-o-box-pack:justify;box-pack:justify;}
+.left img{ width: 50px;border-radius: 100%;}
+.right img{width: 8px}
+.left{margin-right: 15px;font-size: 15px}
+.modified-left{font-size: 15px}
+.modified{background-color: #ffffff;margin-bottom: 241px}
+.amend_sex{border-radius: 3px;box-shadow: 0 5px 5px rgba(0,0,0,0.3);width: 90%;background-color: #ffffff;display: none;z-index: 10001;margin: auto}
+.amend_sex li{padding: 10px;cursor: pointer}
+.amend_sex li:not(:last-child){border-bottom: 1px solid #dddddd;font-size: 16px}
+@media (max-width: 759px){.side-cover{position: fixed;top: 0;left: 0;z-index: 10000;background: rgba(0,0,0,0.6);width: 100%;height: 100%;display:-moz-box;display:-webkit-box;display:box;-moz-box-align:center;-webkit-box-align:center;-o-box-align:center;box-align:center;-moz-box-pack:justify;-webkit-box-pack:justify;-o-box-pack:justify;box-pack:justify;} .name_input input{background-color: #ffffff;padding: 5px 0;border: none;border-bottom: 1px solid #F80000;width: 100%;outline: none;font-size: 16px}}
+@media (min-width: 760px){.side-cover{position: absolute;top: 0;left: 0;z-index: 10000;background: rgba(0,0,0,0.6);width: 100%;height: 100%;display:-moz-box;display:-webkit-box;display:box;-moz-box-align:center;-webkit-box-align:center;-o-box-align:center;box-align:center;-moz-box-pack:justify;-webkit-box-pack:justify;-o-box-pack:justify;box-pack:justify;} .name_input input{background-color: #EAEAEA;padding: 5px 0;border: none;border-bottom: 1px solid #F80000;width: 100%;outline: none;font-size: 16px}}
+
+.secition{padding: 10px 10px 10px 10px}
+.name_button button{background-color: #F80000;color: #ffffff;border-radius: 3px;width: 100%;margin-top: 20px;border: none;padding: 10px}
+.name_button button:hover{color: #ffffff}
+.eidt{color: #ffffff;background-color: #FE5201;padding: 10px 0;text-align: center}

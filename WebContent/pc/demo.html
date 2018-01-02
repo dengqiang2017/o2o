@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+<link rel="stylesheet" href="../pcxy/css/bootstrap.css?ver=389810">
+<link rel="stylesheet" href="../pcxy/css/global.css?ver=389810">
+<link rel="stylesheet" href="../css/popUpBox.css?ver=389810">
+<script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+<script type="text/javascript" src="../js/ajaxfileupload.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<!--<script type="text/javascript" src="../js/o2od.js"></script>-->
+<script type="text/javascript" src="../js/o2otree.js"></script>
+<script type="text/javascript" src="../js/popUpBox.js"></script>
+<script type="text/javascript" src="js/saiyu/tijianListData.js"></script>
+<title>客户体检表</title>
+    <style type="text/css">
+        th{
+            min-width: 100px;
+        }
+        td>img{
+        max-height: 200px;
+        max-width: 200px;
+        }
+        td>input{
+        max-width: 90px;
+        }
+        tr>td{
+        height: 100px;
+        }
+    </style>
+</head>
+<body>
+<div style="margin-bottom: 10px;margin-left: 20px">
+<button type="button" class="btn btn-primary" id="addtd">增加</button>
+<button type="button" class="btn btn-primary" id="allcheck">全选(客户操作)</button>
+<!-- <button type="button" class="btn btn-primary" id="saveData">保存数据</button> -->
+<button type="button" class="btn btn-primary">确认采购(客户操作)</button>
+<a href="login.html" target="_blank">请先登录后再进行操作</a>
+</div>
+<div class="table-responsive">
+<table class="table-bordered" width="200">
+<thead>
+<tr>
+<th rowspan="2">操作</th>
+<th rowspan="2">状态</th>
+<th rowspan="2" data-bm="bm">客户编码</th>
+<th rowspan="2" data-bm="bm">客户名称</th>
+<th colspan="2">灯具安装位置</th>
+<th rowspan="2">位置照片</th>
+<th rowspan="2">灯具照片</th>
+<th rowspan="2">灯具品牌</th>
+<th rowspan="2">灯具名称</th>
+<th rowspan="2">灯具型号</th>
+<th rowspan="2">数量(套)</th>
+<th rowspan="2">光源名称</th>
+<th rowspan="2">光源照片</th>
+<th rowspan="2">光源型号</th>
+<th rowspan="2">光源颜色</th>
+<th rowspan="2">数量/套（原配灯具）</th>
+<th rowspan="2">损坏数量</th>
+<th colspan="5">光源国际品牌1</th>
+<th colspan="5">光源国际品牌2</th>
+<th colspan="5">光源国内品牌1</th>
+<th colspan="5">光源国内品牌2</th>
+<th colspan="5">光源国内品牌3</th>
+<th rowspan="2">电器名称</th>
+<th rowspan="2">电器照片</th>
+<th rowspan="2">电器型号</th>
+<th rowspan="2">数量/套（原配灯具）</th>
+<th rowspan="2">损坏数量</th>
+<th colspan="5">电器国际品牌1</th>
+<th colspan="5">电器国际品牌2</th>
+<th colspan="5">电器国内品牌1</th>
+<th colspan="5">电器国内品牌2</th>
+<th colspan="5">电器国内品牌3</th>
+</tr>
+<tr>
+<th>大类</th>
+<th>小类</th>
+<th data-bm="bm">产品编码</th>
+<th>产品名称</th>
+<th>单价</th>
+<th>采购数量</th>
+<th data-bm="bm">可用库存</th>
+
+<th data-bm="bm">产品编码</th>
+<th>产品名称</th>
+<th>单价</th>
+<th>采购数量</th>
+<th data-bm="bm">可用库存</th>
+
+<th data-bm="bm">产品编码</th>
+<th>产品名称</th>
+<th>单价</th>
+<th>采购数量</th>
+<th data-bm="bm">可用库存</th>
+
+<th data-bm="bm">产品编码</th>
+<th>产品名称</th>
+<th>单价</th>
+<th>采购数量</th>
+<th data-bm="bm">可用库存</th>
+
+<th data-bm="bm">产品编码</th>
+<th>产品名称</th>
+<th>单价</th>
+<th>采购数量</th>
+<th data-bm="bm">可用库存</th>
+
+<th data-bm="bm">产品编码</th>
+<th>产品名称</th>
+<th>单价</th>
+<th>采购数量</th>
+<th data-bm="bm">可用库存</th>
+
+<th data-bm="bm">产品编码</th>
+<th>产品名称</th>
+<th>单价</th>
+<th>采购数量</th>
+<th data-bm="bm">可用库存</th>
+
+<th data-bm="bm">产品编码</th>
+<th>产品名称</th>
+<th>单价</th>
+<th>采购数量</th>
+<th data-bm="bm">可用库存</th>
+
+<th data-bm="bm">产品编码</th>
+<th>产品名称</th>
+<th>单价</th>
+<th>采购数量</th>
+<th data-bm="bm">可用库存</th>
+
+<th data-bm="bm">产品编码</th>
+<th>产品名称</th>
+<th>单价</th>
+<th>采购数量</th>
+<th data-bm="bm">可用库存</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><button type="button" class="btn btn-primary">保存</button><button type="button" class="btn btn-primary">删除</button></td>
+<td data-name="ivt_oper_listing" style="display: none;"></td>
+<td data-readonly="work_state">001</td>
+<td data-id="customer_id">001</td>
+<td data-client="corp_sim_name" style="position: relative;">002</td>
+<td data-name="position_big">003</td>
+<td data-name="position">004</td>
+<td data-imge="position_big_img" style="position: relative;"></td>
+<td data-imge="itemName_img" style="position: relative;">006img</td>
+<td data-name="item_brand">005</td>
+<td data-name="item_name">006</td>
+<td data-name="item_standard">007</td>
+<td data-name="item_num">008</td>
+<td data-name="item_name_g">009</td>
+<td data-imge="light_img" style="position: relative;">010img</td>
+<td data-name="item_standard_g">010</td>
+<td data-name="item_color_g">011</td>
+<td data-name="item_num_g">012</td>
+<td data-name-num="num_g">013</td>
+
+<td data-id="item_id_g_gj1">014</td>
+<td data-select="item_name_g_gj1" style="position: relative;">015</td>
+<td data-name="sd_unit_price_g_gj1">016</td>
+<td data-name="sd_oq_g_gj1">017</td>
+<td data-use="use_oq_g_gj1">18</td>
+
+<td data-id="item_id_g_gj2">19</td>
+<td data-select="item_name_g_gj2" style="position: relative;">20</td>
+<td data-name="sd_unit_price_g_gj2">21</td>
+<td data-name="sd_oq_g_gj2">22</td>
+<td data-use="use_oq_g_gj2">23</td>
+
+<td data-id="item_id_g_gn1">24</td>
+<td data-select="item_name_g_gn1" style="position: relative;">25</td>
+<td data-name="sd_unit_price_g_gn1">26</td>
+<td data-name="sd_oq_g_gn1">27</td>
+<td data-use="use_oq_g_gn1">28</td>
+
+<td data-id="item_id_g_gn2">29</td>
+<td data-select="item_name_g_gn2" style="position: relative;">30</td>
+<td data-name="sd_unit_price_g_gn2">31</td>
+<td data-name="sd_oq_g_gn2">32</td>
+<td data-use="use_oq_g_gn2">33</td>
+
+<td data-id="item_id_g_gn3">34</td>
+<td data-select="item_name_g_gn3" style="position: relative;">35</td>
+<td data-name="sd_unit_price_g_gn3">36</td>
+<td data-name="sd_oq_g_gn3">37</td>
+<td data-use="use_oq_g_gn3">38</td>
+
+<td data-name="item_name_d">39</td>
+<td data-imge="electrical_img" style="position: relative;">40img</td>
+<td data-name="item_standard_d">41</td>
+<td data-name="item_num_d">42</td>
+<td data-name-num="num_d">43</td>
+
+<td data-id="item_id_d_gj1">44</td>
+<td data-select="item_name_d_gj1" style="position: relative;">45</td>
+<td data-name="sd_unit_price_d_gj1">47</td>
+<td data-name="sd_oq_d_gj1">48</td>
+<td data-use="use_oq_d_gj1">49</td>
+
+<td data-id="item_id_d_gj2">50</td>
+<td data-select="item_name_d_gj2" style="position: relative;">51</td>
+<td data-name="sd_unit_price_d_gj2">52</td>
+<td data-name="sd_oq_d_gj2">53</td>
+<td data-use="use_oq_d_gj2">54</td>
+
+<td data-id="item_id_d_gn1">55</td>
+<td data-select="item_name_d_gn1" style="position: relative;">56</td>
+<td data-name="sd_unit_price_d_gn1">57</td>
+<td data-name="sd_oq_d_gn1">58</td>
+<td data-use="use_oq_d_gn1">59</td>
+
+<td data-id="item_id_d_gn2">61</td>
+<td data-select="item_name_d_gn2" style="position: relative;">62</td>
+<td data-name="sd_unit_price_d_gn2">63</td>
+<td data-name="sd_oq_d_gn2">64</td>
+<td data-use="use_oq_d_gn2">65</td>
+
+<td data-id="item_id_d_gn3">66</td>
+<td data-select="item_name_d_gn3" style="position: relative;">67</td>
+<td data-name="sd_unit_price_d_gn3">68</td>
+<td data-name="sd_oq_d_gn3">69</td>
+<td data-use="use_oq_d_gn3">70</td>
+</tr>
+</tbody>
+</table>
+</div>
+</body>
+</html>

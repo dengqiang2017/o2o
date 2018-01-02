@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <title>添加微信号</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            list-style: none;
+            text-decoration: none;
+            box-sizing: border-box;
+        }
+        html,body{
+            width: 100%;
+            background-color: #8DE0E9;
+        }
+        @media screen and (min-width: 1200px){
+            .container{
+                width: 61%;
+/*                 height: 500px; */
+                border: 1px solid #E8F4ED;
+                margin:0 auto;
+                margin-top: 50px;
+                border-radius: 5px;
+                color: #117722;
+                font-size: 20px;
+                font-family: '幼圆';
+                font-weight: bold;
+                background-color: rgba(255,255,255,1);
+                box-shadow:2px 2px 5px ;
+            }
+            .tel_num,.tel_num_ipt,.wei_num,.wei_num_ipt,.wei_help{
+                display: inline-block;
+            }
+            .wei_1,.wei_2,.wei_title,.wei_button{
+                width: 80%;
+                margin:0 auto;
+                line-height: 50px;
+                margin-top: 35px;
+            }
+            .wei_title{
+                margin-top: 50px;
+                color: #e4393c;
+            }
+            .tel_num,.wei_num{
+                width: 20%;
+                background-image: url('images/signp01.png');
+                background-repeat: no-repeat;
+                display: inline-block;
+                width: 18px;
+                height: 18px;
+            }
+            .wei_num{
+                background-image: url(images/weixin.png);
+            }
+            .tel_num_ipt,.wei_num_ipt{
+                height: 35px;
+                width: 45%;
+                line-height: 30px;
+                outline: none;
+                border: none;
+                border-bottom: 1px solid #cccccc;
+                padding-left: 3px;
+                font-size: 20px;
+                padding-left: 15px;
+            }
+            .wei_button>input:first-child{
+                width: 2%;
+                opacity: 0;
+            }
+            .login,.reset{
+                height: 43px;
+                width: 22%;
+                background-color: #e4393c;
+                border:none;
+                border-radius: 0.4em;
+                font-size: 18px;
+                font-weight: bold;
+                color: #ffffff;
+            }
+            .reset{
+                background-color: #007cc2;
+            }
+            .wei_help{
+                font-size: 15px;
+                font-weight: normal;
+                margin-left: 15px;
+            }
+        }
+        @media screen and (max-width: 1199px) and (min-width: 768px){
+            .container{
+                width: 80%;
+                height: 500px;
+                border: 1px solid #E8F4ED;
+                margin:0 auto;
+                margin-top: 50px;
+                border-radius: 5px;
+                color: #117722;
+                font-size: 20px;
+                font-family: '幼圆';
+                font-weight: bold;
+                background-color: rgba(255,255,255,1);
+                box-shadow:2px 2px 5px ;
+            }
+            .tel_num,.tel_num_ipt,.wei_num,.wei_num_ipt,.wei_help{
+                display: inline-block;
+            }
+            .wei_1,.wei_2,.wei_title,.wei_button{
+                width: 80%;
+                margin:0 auto;
+                line-height: 50px;
+                margin-top: 30px;
+            }
+            .wei_title{
+                margin-top: 50px;
+                color: #e4393c;
+            }
+            .tel_num,.wei_num{
+                width: 20%;
+                background-image: url('images/signp01.png');
+                background-repeat: no-repeat;
+                display: inline-block;
+                width: 18px;
+                height: 18px;
+            }
+            .wei_num{
+                background-image: url(images/weixin.png);
+            }
+            .tel_num_ipt,.wei_num_ipt{
+                height: 35px;
+                width: 50%;
+                line-height: 30px;
+                outline: none;
+                border: none;
+                border-bottom: 1px solid #cccccc;
+                padding-left: 3px;
+                font-size: 18px;
+                padding-left: 10px;;
+            }
+            .wei_button>input:first-child{
+                display: none;
+            }
+            .login,.reset{
+                height: 40px;
+                width: 30%;
+                background-color: #e4393c;
+                border:none;
+                border-radius: 0.4em;
+                font-size: 15px;
+                font-weight: bold;
+                color: #ffffff;
+            }
+            .reset{
+                background-color: #007cc2;
+            }
+            .wei_help{
+                font-size: 15px;
+                font-weight: normal;
+                margin-left: 20px;
+            }
+        }
+        @media screen and (max-width: 767px){
+            .container{
+                width: 90%;
+                height: 500px;
+                border: 1px solid #E8F4ED;
+                margin:0 auto;
+                margin-top: 30px;
+                border-radius: 5px;
+                color: #117722;
+                font-size: 20px;
+                font-family: '幼圆';
+                font-weight: bold;
+                background-color: rgba(255,255,255,1);
+                box-shadow:2px 2px 5px ;
+            }
+            .tel_num,.tel_num_ipt,.wei_num,.wei_num_ipt,.wei_help{
+                display: inline-block;
+            }
+            .wei_1,.wei_2,.wei_title,.wei_button{
+                width: 80%;
+                margin:0 auto;
+                line-height: 50px;
+                margin-top: 20px;
+            }
+            .wei_title{
+                margin-top: 50px;
+                color: #e4393c;
+            }
+            .tel_num,.wei_num{
+                width: 20%;
+                background-image: url('images/signp01.png');
+                background-repeat: no-repeat;
+                display: inline-block;
+                width: 18px;
+                height: 18px;
+            }
+            .wei_num{
+                background-image: url(images/weixin.png);
+            }
+            .tel_num_ipt,.wei_num_ipt{
+                height: 35px;
+                width: 61%;
+                line-height: 30px;
+                outline: none;
+                border: none;
+                border-bottom: 1px solid #cccccc;
+                padding-left: 3px;
+            }
+            .wei_button>input:first-child{
+                display: none;
+            }
+            .login,.reset{
+                height: 39px;
+                width: 33%;
+                background-color: #e4393c;
+                border:none;
+                border-radius: 0.4em;
+                font-size: 15px;
+                font-weight: bold;
+                color: #ffffff;
+            }
+            .reset{
+                background-color: #007cc2;
+            }
+            .wei_help{
+                font-size: 15px;
+                font-weight: normal;
+                padding-left: 10px;
+            }
+        }
+
+    </style>
+<link rel="stylesheet" href="../css/popUpBox.css">
+<script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+<script type="text/javascript" src="../js_lib/jquery.cookie.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../js/popUpBox.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="wei_title">你尚未绑定微信号,为了系统安全和微信互动,诚邀你完善信息:</div>
+        <div class="wei_1">
+            <span class="tel_num"></span>
+            <input class="tel_num_ipt" placeholder="请输入手机号" type="text"/>
+        </div>
+        <div class="wei_2">
+            <span class="wei_num"></span>
+            <input class="wei_num_ipt" placeholder="请输入微信号" type="text" data-num="n">
+            <span class="wei_help"><a href="addWeixin_Help.html">忘记微信号?</a></span>
+        </div>
+        <div class="wei_button">
+            <input type="text"/>
+            <input type="button" value="提 交" class="login"/>
+            <input type="button" value="返 回" class="reset" onclick="javascript:history.go(-1);"/>
+        </div>
+        <div class="wei_2">
+    	<div>手机号已经与微信号绑定,请长按二维码关注</div>
+		<div class="qr-code">
+			<img src="../pcxy/image/qr-code.jpg" height="258" width="258" alt="">
+			<a href="index.html">返回首页</a>
+		</div>
+	</div>
+    </div>
+    <script type="text/javascript">
+    var param=window.location.href.split("?")[1];
+    if (param) {
+    	var phone=param.split("|")[0];
+    	var type=param.split("|")[1];
+		$(".tel_num_ipt").val(phone);
+		$(".tel_num_ipt").attr("disabled","disabled");
+		$(".login").click(function(){
+			var wei_num_ipt=$(".wei_num_ipt").val();
+			if (wei_num_ipt&&wei_num_ipt!="") {
+				$.post("../user/addWeixin.do",{
+					"phone":phone,
+					"type":type,
+					"weixin":wei_num_ipt
+				},function(data){
+					if(data.succes){
+						pop_up_box.showMsg("提交成功",function(){
+							if(type.indexOf("supplier")>0){
+								window.location.href="../supplier.do";
+							}else if(type.indexOf("employee")>0){
+								window.location.href="../employee.do";
+							}else if(type.indexOf("drive")){
+								window.location.href="index.html";
+							}else if(type.indexOf("eval")){
+								window.location.href="../saiyu/eval.do";
+							}else{
+								if(window.location.href.indexOf("cdsydq")>0){
+								window.location.href="../saiyu/personalCenter.do";
+								}else{
+								window.location.href="product.html";
+								}
+							}
+						});
+					}else{
+						pop_up_box.showMsg("提交失败,"+data.msg);
+					}
+				});
+			}
+		});
+	}
+    </script>
+</body>
+</html>

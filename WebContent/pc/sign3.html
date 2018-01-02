@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+<title>O2O附近</title>
+<style type="text/css">
+*{
+    margin:0px;
+    padding:0px;
+}
+body, button, input, select, textarea {
+    font: 12px/16px Verdana, Helvetica, Arial, sans-serif;
+}
+</style>
+<script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp"></script>
+<script type="text/javascript">
+var init = function() {
+var center = new qq.maps.LatLng(30.694260,104.01430);  
+var map = new qq.maps.Map(document.getElementById("container"), {  
+    center: center,  
+    zoom: 16  
+});  
+var infoWin = new qq.maps.InfoWindow({
+    map: map  
+});  
+infoWin.open();
+infoWin.setContent('客户名称');
+infoWin.setPosition(map.getCenter());
+  //添加定时器
+//     setTimeout(function(){
+//         var marker=new qq.maps.Marker({
+//             position:center,
+// 			animation:qq.maps.MarkerAnimation.DROP,
+//             map:map
+//         });
+//     },1000); 
+
+var anchor = new qq.maps.Point(6, 6),
+size = new qq.maps.Size(24, 24),
+origin = new qq.maps.Point(0, 0),
+icon = new qq.maps.MarkerImage('images/center.gif', size, origin, anchor);
+var marker = new qq.maps.Marker({
+    icon: icon,
+    map: map,
+    position:map.getCenter()});
+qq.maps.event.addListener(marker, 'click', function() {
+    infoWin.open(); 
+}); 
+  
+    var latlngs = [
+                   new qq.maps.LatLng(30.694260,104.01430), 
+                   new qq.maps.LatLng(30.694721,104.01553), 
+                   new qq.maps.LatLng(30.693170,104.01398), 
+                   new qq.maps.LatLng(30.691294,104.01398) 
+               ]; 
+    var dianinfo=[
+               	 "西城天下<br>蜀汉路347号",
+                  "张货运<br>蜀汉路347号西城天下家乐福1楼",
+                  "李货运<br>蜀汉路347号羊西家乐福内   ",
+                  "王货运<br>蜀汉路347号西城天下家乐福2楼"
+                  ];
+    for(var i = 0;i < latlngs.length; i++) {
+             (function(n){
+	   var info = new qq.maps.InfoWindow({
+	       map: map  
+	   });  
+       var marker = new qq.maps.Marker({
+           position: latlngs[n], 
+           animation:qq.maps.MarkerAnimation.DROP,
+           map: map 
+       }); 
+    	   info.open(); 
+    	   info.setContent(dianinfo[i]); 
+    	   info.setPosition(latlngs[n]); 
+       qq.maps.event.addListener(marker, 'click', function() {
+    	   info.open(); 
+       }); 
+   })(i); 
+  }  
+}
+
+// setTimeout(function(){
+// 	init();
+// },3000);
+</script>
+
+</head>
+<body onload="init();">
+<div class="bdsharebuttonbox">
+	<a href="#" class="bds_more" data-cmd="more"></a><a href="#"
+		class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#"
+		class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#"
+		class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#"
+		class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#"
+		class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+</div>
+<script>
+	window._bd_share_config = {
+		"common" : {
+			"bdSnsKey" : {},
+			"bdText" : "牵引互联",
+			"bdMini" : "2",
+			"bdMiniList" : false,
+			"bdPic" : "http://www.my-tw.com/p1/images/banner-img.png",
+			"bdStyle" : "0",
+			"bdSize" : "32"
+		},
+		"share" : {}
+	};
+	with (document)
+		0[(getElementsByTagName('head')[0] || body)
+				.appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='
+				+ ~(-new Date() / 36e5)];
+</script>
+<div style="width:803px;height:600px" id="container"></div>
+</body>
+</html>

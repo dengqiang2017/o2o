@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="U-XA-Compatible" content="IE-edge">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <title>德阳通威小猪动车-售卖方</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/fanshou.css">
+</head>
+<body>
+<div class="header">
+    <a onclick="javascript:history.back();" class="pull-left">返回</a>售卖方
+</div>
+<div class="body01">
+    <div class="box">
+        <ul>
+            <li>
+                <div class="left">
+                    起始日期
+                    <input type="date" id="d4311"
+                           class="form-control input-sm Wdate"
+                           onfocus="WdatePicker({dateFmt:'yyyy-MM-dd',maxDate:'#F{$dp.$D(\'d4312\')||\'2020-10-01\'}'})" name="beginDate">
+                </div>
+            </li>
+            <li>
+                <div class="center">
+                    ——
+                </div>
+            </li>
+            <li>
+                <div class="right">
+                    结束日期
+                    <input type="date" id="d4312" class="form-control input-sm Wdate"
+                           onfocus="WdatePicker({dateFmt:'yyyy-MM-dd',minDate:'#F{$dp.$D(\'d4311\')}',maxDate:'2020-10-01'})" name="endDate">
+                </div>
+            </li>
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<div class="qh">
+    <ul>
+        <li>
+            <div class="body02 active">
+                <ul>
+                    <li>
+                        <div class="li01">
+                            <div class="aa">
+                                <span id="name">张三</span>
+                            </div>
+                            <div class="aa" style="color: #999">
+                                均价:<span id="jiage" style="color: #999">80</span>元/头
+                            </div>
+                            <div class="aa" style="color: #999">
+                                供应:<span id="gongy" style="color: #999">100</span>头
+                            </div>
+                            <div class="aa">
+                                <button type="button" class="btn btn-success">添加</button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="li02">
+                            <div class="aa" style="color: #666">
+                                2016.08.06
+                            </div>
+                            <div class="aa" style="color: #999">
+                                挂价:<span id="guajia" style="color: #999">80</span>元/头
+                            </div>
+                            <div class="aa" style="color: #999">
+                                供应:<span id="gongy" style="color: #999">50</span>头
+                            </div>
+                            <div class="aa">
+                                <button type="button" class="btn btn-danger xg">修改</button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="li02">
+                            <div class="aa" style="color: #666">
+                                2016.08.07
+                            </div>
+                            <div class="aa" style="color: #999">
+                                挂价:<span id="guajia" style="color: #999">80</span>元/头
+                            </div>
+                            <div class="aa" style="color: #999">
+                                供应:<span id="gongy" style="color: #999">50</span>头
+                            </div>
+                            <div class="aa">
+                                <button type="button" class="btn btn-danger xg">修改</button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li>
+            <div class="body02">
+                <ul>
+                    <li>
+                        <div class="li01">
+                            <div class="aa">
+                                <span id="name">李四</span>
+                            </div>
+                            <div class="aa" style="color: #999">
+                                均价:<span id="jiage" style="color: #999">80</span>元/头
+                            </div>
+                            <div class="aa" style="color: #999">
+                                供应:<span id="gongy" style="color: #999">100</span>头
+                            </div>
+                            <div class="aa">
+                                <button type="button" class="btn btn-success">添加</button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="li02">
+                            <div class="aa" style="color: #666">
+                                2016.08.06
+                            </div>
+                            <div class="aa" style="color: #999">
+                                挂价:<span id="guajia" style="color: #999">80</span>元/头
+                            </div>
+                            <div class="aa" style="color: #999">
+                                供应:<span id="gongy" style="color: #999">50</span>头
+                            </div>
+                            <div class="aa">
+                                <button type="button" class="btn btn-danger xg">修改</button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="li02">
+                            <div class="aa" style="color: #666">
+                                2016.08.07
+                            </div>
+                            <div class="aa" style="color: #999">
+                                挂价:<span id="guajia" style="color: #999">80</span>元/头
+                            </div>
+                            <div class="aa" style="color: #999">
+                                供应:<span id="gongy" style="color: #999">50</span>头
+                            </div>
+                            <div class="aa">
+                                <button type="button" class="btn btn-danger xg">修改</button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li>
+            <div class="body02">
+                <ul>
+                    <li>
+                        <div class="li01">
+                            <div class="aa">
+                                <span id="name">王五</span>
+                            </div>
+                            <div class="aa" style="color: #999">
+                                均价:<span id="jiage" style="color: #999">80</span>元/头
+                            </div>
+                            <div class="aa" style="color: #999">
+                                供应:<span id="gongy" style="color: #999">100</span>头
+                            </div>
+                            <div class="aa">
+                                <button type="button" class="btn btn-success">添加</button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="li02">
+                            <div class="aa" style="color: #666">
+                                2016.08.06
+                            </div>
+                            <div class="aa" style="color: #999">
+                                挂价:<span id="guajia" style="color: #999">80</span>元/头
+                            </div>
+                            <div class="aa" style="color: #999">
+                                供应:<span id="gongy" style="color: #999">50</span>头
+                            </div>
+                            <div class="aa">
+                                <button type="button" class="btn btn-danger xg">修改</button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="li02">
+                            <div class="aa" style="color: #666">
+                                2016.08.07
+                            </div>
+                            <div class="aa" style="color: #999">
+                                挂价:<span id="guajia" style="color: #999">80</span>元/头
+                            </div>
+                            <div class="aa" style="color: #999">
+                                供应:<span id="gongy" style="color: #999">50</span>头
+                            </div>
+                            <div class="aa">
+                                <button type="button" class="btn btn-danger xg">修改</button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+</div>
+
+
+
+<div class="modal" id="mymodal">
+    <div class="modal-dialog">
+        <div class="modal-content" style="margin-top: 30px">
+            <div class="mol_height">
+                <div class="pull-left">2016.08.07</div>
+                <div class="pull-right qx">取消</div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="mol_body">
+                <h3>张三</h3>
+                <ul>
+                    <li>挂价：<input type="number">元/斤</li>
+                    <li>供应：50头</li>
+                </ul>
+                <button type="button" class="btn center-block" style="background-color: #72BD58;color: #ffffff;width: 100px;margin: 20px auto">确定</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<script src="js/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="../datepicker/WdatePicker.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script>
+    $('.left').click(function(){
+        $('.left input').css({'opacity':'1'})
+    });
+    $('.right').click(function(){
+        $('.right input').css({'opacity':'1'})
+    });
+    $(".li02>.aa>.xg").click(function(){
+        $("#mymodal").modal("toggle");
+    });
+    $(".qx").click(function(){
+        $("#mymodal").modal("hide");
+    });
+    $('.qh>ul>li>.body02').click(function(){
+        $('.qh>ul>li>.body02').removeClass('active');
+        $(this).addClass('active');
+    });
+</script>
+</body>
+</html>

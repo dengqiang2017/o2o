@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">  
+<meta http-equiv="expires" content="0">
+<title>斯特佳</title>
+<link href="css/popUpBox.css">
+<script type="text/javascript" src="js_lib/jquery.11.js"></script>
+<script type="text/javascript" src="js_lib/jquery.cookie.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/popUpBox.js"></script>
+<style type="text/css">
+#cop{
+display: none;
+}
+</style>
+</head>
+<body>
+<div>页面自动跳转中......</div>
+<script type="text/javascript">
+<!--
+var id=getQueryString("id");
+var com_id=getQueryString("com_id");
+if(!com_id){
+	com_id="001";
+}
+var code=getQueryString("code");
+var DeviceId="";
+var userid="";
+if(!code){
+	if(is_weixin()){
+		window.location.href="login/getCodeUrl.do?url="+window.location.href+"&com_id="+com_id;
+	}else{
+		$.get("stjMuenu.json",function(data){
+			$.each(data,function(i,n){
+			 if(n.id==id){
+				 $.post("login/ganzhi.do",{
+					 "id":id,
+					 "name":n.name,
+					 "com_id":n.com_id,
+					 "headship":"客服",
+					 "url":"../pc/ganzhiRecord.html?id="+id,
+					 "title":"客户浏览访问通知",
+					 "desc":"有客户使用电脑浏览了【"+n.name+"】,请注意后续跟进!"
+				 },function(data){
+				 	window.location.href=n.url;
+				 });
+			 }
+			});
+		});
+	}
+}else{
+	$.get("login/getuserinfo.do",{
+		"com_id":com_id,
+		"code":code
+	},function(data){
+		if(data.UserId){
+			userid=data.UserId;
+			if(!userid){
+				userid=data.OpenId;
+			}
+		}
+		if(!userid){
+			userid="";
+		}
+		if(data.DeviceId){
+			DeviceId=data.DeviceId;
+		}
+		$.get("stjMuenu.json",function(data){
+			$.each(data,function(i,n){
+			 if(n.id==id){
+				 $.post("login/ganzhi.do",{
+					 "id":id,
+					 "name":n.name,
+					 "com_id":n.com_id,
+					 "headship":"客服",
+					 "userid":userid,
+					 "DeviceId":DeviceId,
+					 "url":"../ganzhiRecord.html?id="+id,
+					 "title":"客户浏览访问通知",
+					 "desc":userid+"客户【@customerName】浏览了【"+n.name+"】,请注意后续跟进!"
+				 },function(data){
+				 		window.location.href=n.url;
+				 });
+			 }
+			});
+		});
+	});
+}
+//-->
+</script>
+</body>
+</html>

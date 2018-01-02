@@ -1,0 +1,188 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: Microsoft YaHei;
+    color: #000000;
+}
+ul>li{
+    list-style: none;
+}
+ul{
+    margin-bottom: 0;
+}
+.header{
+    background-color: #6BD0B0;
+    padding: 10px;
+    color: #ffffff;
+    font-size: 18px;
+    text-align: center;
+    position: relative;
+}
+.header>a{
+    color: #ffffff;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+.header>a:hover{
+    cursor: pointer;
+    text-decoration: none;
+}
+.body01{
+    padding: 10px;
+    background-color: #DEDEDE;
+}
+.body01>button{
+    font-size: 18px;
+    border-radius: 20px;
+}
+.body01>button>img{
+    width: 20px;
+    margin-right: 10px;
+    margin-bottom: 3px;
+}
+.box01{
+    background-color: #EAEAEA;
+    padding: 5px;
+}
+.box02{
+    background-color: #3BC299;
+    padding: 10px;
+}
+.box02>.pull-left{
+    color: #ffffff;
+    margin-top: 4px;
+}
+.box02>.pull-right{
+    color: #ffffff;
+    font-size: 18px;
+}
+.box03{
+    padding: 15px;
+    border-bottom: 1px solid #dddddd;
+}
+.box03>ul>li{
+    border-right: 1px solid #dddddd;
+    float: left;
+    width: 50%;
+}
+.top{
+    font-size: 18px;
+    color: #666;
+}
+.top>span{
+    color: #666;
+    margin: auto 25px;
+}
+.bottom{
+    font-size: 18px;
+    color: #666;
+}
+.bottom>span{
+    color: #666;
+    margin: auto 25px;
+}
+.fix{
+    border: 1px solid #000;
+    padding: 5px 15px;
+    position: relative;
+}
+.pos{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: #ACACAC;
+}
+.pos>span{
+    color: #ACACAC;
+}
+.box04{
+    width: 90%;
+    margin: auto;
+    margin-top: 20px;
+}
+.fix>h4{
+    color: #3BC299;
+    font-size: 20px;
+    margin-top: 0;
+}
+.fix>p{
+    font-size: 16px;
+}
+.fix>p>input{
+    width: 30px;
+    height: 22px;
+}
+.footer{
+    background-color: #6BD0B0;
+    color: #ffffff;
+    padding: 10px;
+    font-size: 18px;
+}
+.footer>.pull-left{
+    color: #ffffff;
+}
+.footer>.pull-left>span{
+    color: #ffffff;
+    font-size: 18px;
+}
+.footer>.pull-right{
+    color: #ffffff;
+}
+.footer>.pull-right>span{
+    color: #ffffff;
+    font-size: 18px;
+}
+.body02{
+    margin-bottom: 50px;
+}
+.ps{
+    color: #3BC299
+}
+.ps>span{
+    color: #3BC299
+}
+@media (min-width: 300px)and (max-width: 350px){
+    .top {
+        font-size: 13px;
+        color: #666;
+    }
+    .bottom {
+        font-size: 13px;
+        color: #666;
+    }
+    .fix>h4 {
+        color: #3BC299;
+        font-size: 16px;
+        margin-top: 0;
+    }
+    .margin{
+        margin-bottom: 5px;
+    }
+    .pos {
+        position: absolute;
+        right: 21px;
+        top: 10px;
+        font-size: 12px;
+        color: #ACACAC;
+    }
+    .pos>span{
+        color: #ACACAC;
+    }
+    .pos2 {
+        position: absolute;
+        right: 6px;
+        top: 3px;
+        font-size: 12px;
+        color: #3BC299;
+    }
+    .fix>p {
+        font-size: 13px;
+    }
+    .ps{
+        color: #3BC299
+    }
+    .ps>span{
+        color: #3BC299
+    }
+}

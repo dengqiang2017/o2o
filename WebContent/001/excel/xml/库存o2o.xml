@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<REQUEST>  
+<itembegin index="3" sheetName="库存-勿改此页名"/>
+<item mainfiledName="store_struct_id"           index="0"  excelChineseName="仓位编码" />
+<item mainfiledName="store_struct_name"         index="1"  excelChineseName="仓位名称" />
+<item mainfiledName="item_id"                   index="2"  excelChineseName="产品编码" />
+<!-- <item mainfiledName="item_name"            index="3"  excelChineseName="产品名称" /> -->
+<item mainfiledName="if_lotnum_mng"             index="4"  excelChineseName="是否区分批号" />
+<item mainfiledName="single_piece_id"           index="5"  excelChineseName="单位件数" />
+<item mainfiledName="lot_number"                index="6"  excelChineseName="批号" />
+<item mainfiledName="oh"                        index="7"  excelChineseName="期初数" />
+<item mainfiledName="i_price"                   index="8"  excelChineseName="结余的成本单价" />
+<item mainfiledName="accn_ivt"                  index="9"  excelChineseName="当前的实际 【库存数】" />
+<item mainfiledName="use_oq"                    index="10"  excelChineseName="可用库存数" />
+<item mainfiledName="item_code"                 index="11"  excelChineseName="BOM设计项目编码" />
+<item mainfiledName="customer_id"               index="12"  excelChineseName="订单式客户内码" />
+<item mainfiledName="ivt_oper_listing"          index="13"  excelChineseName="生产入库单号" />
+<item mainfiledName="mps_id"                    index="15"  excelChineseName="销售订单单号" />
+<item mainfiledName="auto_paigong_id"           index="16"  excelChineseName="生产计划单的单号" />
+<item mainfiledName="S_N"                       index="17"  excelChineseName="生产入库【批次号】" />
+<item mainfiledName="item_type"                 index="18"  excelChineseName="个性化录入的型号" />
+<item mainfiledName="item_color"                index="19"  excelChineseName="个性化录入的颜色" />
+<item mainfiledName="class_card"                index="20"  excelChineseName="个性化录入的产地品牌" />
+<item mainfiledName="if_anomaly"                index="21"  excelChineseName="个性化录入的是否异型" />
+<item mainfiledName="c_memo"                    index="22"  excelChineseName="特殊制造要求" />
+<item mainfiledName="memo_color"                index="23"  excelChineseName="特殊配色或面料要求" />
+<item mainfiledName="memo_other"                index="24"  excelChineseName="其它制造要求" />
+<item mainfiledName="item_struct"               index="25"  excelChineseName="个性化录入的产品的内部结构" />
+</REQUEST>                                            

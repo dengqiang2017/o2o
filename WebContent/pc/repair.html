@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="U-XA-Compatible" content="IE-edge">
+<!--     <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+    <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../pcxy/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../pcxy/css/global.css">
+    <link rel="stylesheet" type="text/css" href="css/repair.css">
+    <script src="../js_lib/jquery-1.11.3.js"></script>
+    <script src="../pcxy/js/bootstrap.js"></script>
+    <style type="text/css">
+    html,body{
+    width: 100%;
+    height: 100%;
+    }
+    </style>
+</head>
+<body>
+       <!------------------------header------------------------->
+       <div class="header">
+		<ol class="breadcrumb" style="height: 100%;line-height: inherit;">
+		<li style="height: 100%;float: left;margin-top: -10px;"><img  style="height: 100%" src="image/logo.png" ><span style="font-size: 36px;">牵引互联</span></li>
+			<li><a style="color: white;font-size: 24px;line-height:20px">照明报修</a></li>
+		</ol>
+		<div class="header-title">
+			<a style="color: white;">照明报修</a>
+			<a class="header-back"><span class="glyphicon glyphicon-menu-left" style="color: white;"></span></a>
+		</div>
+		<div class="dht pull-right">
+        <img  src="repair-images/icon01.png"></div>
+<!-- 		<div class="header-logo"></div> -->
+		<div class="zz">
+            <ul>
+                <li>基础资料维护</li>
+                <li>照明报修</li>
+                <li>我的订单</li>
+                <li>对账单</li>
+                <li>我的协同</li>
+            </ul>
+        </div>
+        <div class="zz2">
+            <ul>
+                <li>基础资料维护</li>
+                <li>照明报修</li>
+            </ul>
+        </div>
+	</div>
+            <!------------------------section------------------------->
+       <div class="con">
+           <div class="smg"></div>
+           <div class="med">
+           <ul>
+           <li>基础资料维护<div class="li-r"><span class="glyphicon glyphicon glyphicon-triangle-bottom"></span></div></li>
+           <li>照明维修<div class="li-r"><span class="glyphicon glyphicon glyphicon-triangle-bottom"></span></div></li>
+           <li>我的订单<div class="li-r"><span class="glyphicon glyphicon glyphicon-triangle-bottom"></span></div></li>
+           <li>对账单<div class="li-r"><span class="glyphicon glyphicon glyphicon-triangle-bottom"></span></div></li>
+           <li>我的协同<div class="li-r"><span class="glyphicon glyphicon glyphicon-triangle-bottom"></span></div></li>
+           <li>回到首页</li>
+           </ul>
+           </div>
+           <div class="medzz">
+               <ul>
+                   <li>基础资料维护</li>
+                   <li>照明报修</li>
+                   <li>我的订单</li>
+                   <li>对账单</li>
+                   <li>我的协同</li>
+               </ul>
+           </div>
+           <div class="medzz2">
+               <ul>
+                   <li>基础资料维护</li>
+                   <li>照明报修</li>
+               </ul>
+           </div>
+           <div class="section-1">您好:<a> href="javaScript:void(0);">${sessionScope.customerInfo.clerk_name}</a>&emsp;用户中心->照明报修</div>
+               <div class="container tbd">
+                   <form>
+                       <input type="hidden" name="ivt_oper_listing" value="${requestScope.ivt_oper_listing}">
+                       <div id="item">
+                           <div class="item">
+                           <div class="row" >
+                       <div class="col-xs-6 col-md-3 col-md-offset-1">
+                           <div class="bhk">
+                               <div class="section-rowa">
+                                   <img class="img0 ct" src="repair-images/weizhi.png">
+                               </div>
+                               <h6 class="h6-1">损坏位置</h6>
+                           </div>
+                           <div class="bhk">
+                               <div class="section-img">
+                                   <img class=" img0" src="repair-images/camero.png"   alt="">
+                                   <input type="hidden" name="positionImg" id="filePath">
+                                   <div class="form-group">
+                                       <input type="file" class="ct input-upload" name="bigImg" accept=".jpeg,.jpg,.png,.gif" id="bigImg" onchange="imgUpload(this,'bigImg');">
+                                   </div>
+                               </div>
+                               <h6 class="h6-1">上传照片</h6>
+                           </div>
+                       </div>
+                       <div class="col-xs-6 col-md-6" style="margin-top: 20px">
+                           <div class="form-group">
+                               <div class="input-group">
+                                   <input type="text" class="form-control input-sm text-center" name="position_big" placeholder="必须输入或者选择" value="过道">
+								<span class="input-group-btn">
+							        <button id="a" class="btn btn-primary btn-sm dj" type="button">浏览</button>
+							    </span>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+
+                   <div class="row lie1">
+                       <div class="col-md-1 hidden-xs"></div>
+                       <div class="col-xs-6 col-md-3">
+                           <div class="bhk">
+                               <div class="section-rowa">
+                                   <img class="img0 ct" src="repair-images/leixing.png">
+                               </div>
+                               <h6 class="h6-1">损坏类型</h6>
+                           </div>
+                           <div class="bhk">
+                               <div class="section-img">
+                                   <img class=" img0" src="repair-images/camero.png"   alt="">
+                                   <input type="hidden" name="typeImg" id="filePath">
+                                   <div class="form-group">
+                                       <input type="file" class="ct input-upload" name="item_name" accept=".jpeg,.jpg,.png,.gif" id="positionImg" onchange="imgUpload(this,'bigImg');">
+                                   </div>
+                               </div>
+                               <h6 class="h6-1">上传照片</h6>
+                           </div>
+                       </div>
+                       <div class="col-xs-6" style="margin-top: 20px">
+                           <div class="form-group">
+                               <div class="input-group">
+                                   <input type="text" class="form-control input-sm text-center" name="position_big" placeholder="必须输入或者选择" value="镇流器">
+								<span class="input-group-btn">
+							        <button id="a" class="btn btn-primary btn-sm dj3" type="button">浏览</button>
+							    </span>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                               <div class="row lie1">
+                                   <div class="col-md-1 hidden-xs"></div>
+                                   <div class="col-xs-3 col-md-1 ">
+                                       <div class="bhk">
+                                           <div class="section-rowa">
+                                               <img class="img0 ct" src="repair-images/louceng.png">
+                                           </div>
+                                           <h6 class="h6-1">损坏楼层</h6>
+                                       </div>
+                                   </div>
+                                   <div class="col-xs-3 col-md-2"></div>
+                                   <div class="col-xs-6 col-md-6" style="text-align: center;margin-left: -15px;">
+                                       <div class="pro-num-I"><span class="sub">-</span><input type="text" id="pronum" name="num" data-num="num"  value="16"><span class="add">+</span></div>
+                                   </div>
+                               </div>
+                   <div class="row lie2" >
+                       <div class="col-md-1 hidden-xs"></div>
+                       <div class="col-xs-6 col-md-1">
+                           <div class="bhk">
+                               <div class="section-rowa">
+                                   <img class="img0 ct" src="repair-images/shuliang.png">
+                               </div>
+                               <h6 class="h6-1">损坏数量</h6>
+                           </div>
+                       </div>
+                       <div class="col-md-2 hidden-xs"></div>
+                       <div class="col-xs-6 col-md-6" style="text-align: center;margin-left: -15px;">
+                           <div class="pro-num-I"><span class="sub">-</span><input type="text" id="pronum" name="num" data-num="num"  value="28"><span class="add">+</span></div>
+                       </div>
+                   </div>
+                           </div>
+                           </div>
+                   </form>
+                   <button type="button" class="btn btn-lg btn-primary center-block" id="add"><span class="glyphicon glyphicon glyphicon-plus"></span></button>
+                   <a href="process/process1.html"><button class="section-zj2" id="save" type="button">提交</button></a>
+                   <div class="fg"></div>
+                   <!--<div style="text-align: center;">蜀ICP备11015949号-1  版权所有©1998～2030牵引软件</div>-->
+               </div>
+           <div class="container tbd">
+               <form>
+                   <input type="hidden" name="ivt_oper_listing" value="${requestScope.ivt_oper_listing}">
+                   <div id="item">
+                       <div class="item">
+                           <div class="row" >
+                               <div class="col-xs-6 col-md-3 col-md-offset-1">
+                                   <div class="bhk">
+                                       <div class="section-rowa">
+                                           <img class="img0 ct" src="repair-images/weizhi.png">
+                                       </div>
+                                       <h6 class="h6-1">损坏位置</h6>
+                                   </div>
+                                   <div class="bhk">
+                                       <div class="section-img">
+                                           <img class=" img0" src="repair-images/camero.png"   alt="">
+                                           <input type="hidden" name="positionImg" id="filePath">
+                                           <div class="form-group">
+                                               <input type="file" class="ct input-upload" name="bigImg" accept=".jpeg,.jpg,.png,.gif" id="bigImg" onchange="imgUpload(this,'bigImg');">
+                                           </div>
+                                       </div>
+                                       <h6 class="h6-1">上传照片</h6>
+                                   </div>
+                               </div>
+                               <div class="col-xs-6 col-md-6" style="margin-top: 20px">
+                                   <div class="form-group">
+                                       <div class="input-group">
+                                           <input type="text" class="form-control input-sm text-center" name="position_big" placeholder="必须输入或者选择" value="过道">
+								<span class="input-group-btn">
+							        <button id="a" class="btn btn-primary btn-sm dj" type="button">浏览</button>
+							    </span>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+
+                           <div class="row lie1">
+                               <div class="col-md-1 hidden-xs"></div>
+                               <div class="col-xs-6 col-md-3">
+                                   <div class="bhk">
+                                       <div class="section-rowa">
+                                           <img class="img0 ct" src="repair-images/leixing.png">
+                                       </div>
+                                       <h6 class="h6-1">损坏类型</h6>
+                                   </div>
+                                   <div class="bhk">
+                                       <div class="section-img">
+                                           <img class=" img0" src="repair-images/camero.png"   alt="">
+                                           <input type="hidden" name="typeImg" id="filePath">
+                                           <div class="form-group">
+                                               <input type="file" class="ct input-upload" name="item_name" accept=".jpeg,.jpg,.png,.gif" id="positionImg" onchange="imgUpload(this,'bigImg');">
+                                           </div>
+                                       </div>
+                                       <h6 class="h6-1">上传照片</h6>
+                                   </div>
+                               </div>
+                               <div class="col-xs-6" style="margin-top: 20px">
+                                   <div class="form-group">
+                                       <div class="input-group">
+                                           <input type="text" class="form-control input-sm text-center" name="position_big" placeholder="必须输入或者选择" value="镇流器">
+								<span class="input-group-btn">
+							        <button id="a" class="btn btn-primary btn-sm dj3" type="button">浏览</button>
+							    </span>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="row lie1">
+                               <div class="col-md-1 hidden-xs"></div>
+                               <div class="col-xs-3 col-md-1 ">
+                                   <div class="bhk">
+                                       <div class="section-rowa">
+                                           <img class="img0 ct" src="repair-images/louceng.png">
+                                       </div>
+                                       <h6 class="h6-1">损坏楼层</h6>
+                                   </div>
+                               </div>
+                               <div class="col-xs-3 col-md-2"></div>
+                               <div class="col-xs-6 col-md-6" style="text-align: center;margin-left: -15px;">
+                                   <div class="pro-num-I"><span class="sub">-</span><input type="text" id="pronum" name="num" data-num="num"  value="16"><span class="add">+</span></div>
+                               </div>
+                           </div>
+                           <div class="row lie2" >
+                               <div class="col-md-1 hidden-xs"></div>
+                               <div class="col-xs-6 col-md-1">
+                                   <div class="bhk">
+                                       <div class="section-rowa">
+                                           <img class="img0 ct" src="repair-images/shuliang.png">
+                                       </div>
+                                       <h6 class="h6-1">损坏数量</h6>
+                                   </div>
+                               </div>
+                               <div class="col-md-2 hidden-xs"></div>
+                               <div class="col-xs-6 col-md-6" style="text-align: center;margin-left: -15px;">
+                                   <div class="pro-num-I"><span class="sub">-</span><input type="text" id="pronum" name="num" data-num="num"  value="28"><span class="add">+</span></div>
+                               </div>
+                           </div>
+              			 <button type="button" class="btn btn-lg btn-primary center-block" id="add"><span class="glyphicon glyphicon glyphicon-plus"></span></button>
+               			<div class="fg"></div>
+                       </div>
+                   </div>
+               </form>
+               <a href="process/process1.html"><button class="section-zj2" id="save" type="button">提交</button></a>
+           </div>
+
+       </div>
+       <div class="zz3">
+           <div class="form-group">
+               <div class="input-group">
+                   <input type="text" placeholder="请输入搜索关键词" id="clientkeyname" maxlength="50" class="form-control input-sm"> <span class="input-group-btn">
+				<button id="findclient" type="button" class="btn btn-danger btn-sm">搜索</button>
+			</span>
+               </div>
+           </div>
+           <div class="hide-table">
+               <ul class="hide-title">
+                   <li class="col-xs-12">损坏位置</li>
+               </ul>
+               <div><ul class="hide-msg">
+                   <li class="col-xs-12">过道</li>
+               </ul>
+               </div>
+           </div>
+           <div style="display: none;">
+               <button type="button">点击加载更多</button>
+           </div>
+       </div>
+       <div class="zz5">
+           <div class="form-group">
+               <div class="input-group">
+                   <input type="text" placeholder="请输入搜索关键词" id="clientkeyname" maxlength="50" class="form-control input-sm"> <span class="input-group-btn">
+				<button id="findclient" type="button" class="btn btn-danger btn-sm">搜索</button>
+			</span>
+               </div>
+           </div>
+           <div class="hide-table">
+               <ul class="hide-title">
+                   <li class="col-xs-12">损坏位置</li>
+               </ul>
+               <div><ul class="hide-msg">
+                   <li class="col-xs-12">过道</li>
+               </ul>
+               </div>
+           </div>
+           <div style="display: none;">
+               <button type="button">点击加载更多</button>
+           </div>
+       </div>
+       <div class="cover"></div>
+<script>
+
+    $(function(){
+        $(".dht").click(function(){
+            $(".dht").toggleClass("dht2");
+        });
+    });
+
+    $('.li-r').click(function(){
+        $('.medzz').toggle('slow');
+    });
+    $('.li-r').click(function(){
+        $('.medzz2').hide();
+    });
+    $('.medzz>ul>li').eq(1).click(function(){
+        $('.medzz2').toggle('slow')
+    });
+    $('.dht').click(function(){
+        $('.zz').toggle('slow');
+    });
+    $('.dht').click(function(){
+        $('.zz2').hide();
+    });
+    $('.zz>ul>li').eq(1).click(function(){
+        $('.zz2').toggle('slow')
+    });
+    $('.dj').click(function(){
+        $('.zz3').toggle('slow');
+        $('.zz5').hide();
+        $('.cover').show();
+    });
+    $('.cover').click(function(){
+        $('.cover').hide();
+        $('.zz5').hide();
+        $('.zz3').hide();
+    });
+    $('.dj3').click(function(){
+        $('.zz5').toggle('slow');
+        $('.zz3').hide();
+        $('.cover').show();
+    });
+</script>
+</body>
+</html>

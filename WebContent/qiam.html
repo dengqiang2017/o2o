@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+<title>手写签名</title>
+<style type="text/css">
+html,body,canvas{
+width:768px;
+height:1080px;
+}
+</style>
+<script type="text/javascript" src="js_lib/jquery.11.js"></script>
+<script type="text/javascript" src="jSignature/jSignature.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#signature").jSignature();
+    });
+    function importImg(sig)
+    {
+    	sig.children("img.imported").remove();
+    	$("<img class='imported'></img").attr("src",sig.jSignature('getData')).appendTo(sig);
+    }
+    function postimg(){
+    	var mycanvas = document.getElementsByClassName("jSignature")[0];  
+    	var imaged    = mycanvas.toDataURL("image/png");  
+    	$.post("upload/qianming.do",{"imgStr":imaged},function(data){
+    		console.debug(data);
+    	});
+    }
+</script>
+</head>
+<body>
+<div id="signature"></div>
+<button type="button" onclick="$('#signature').jSignature('clear')">clear</button>
+<button onclick="importImg($('#signature'))" type="button">Import Data to Image</button>
+<button type="button" onclick="postimg();">上传签名图片</button>
+
+</body>
+</html>

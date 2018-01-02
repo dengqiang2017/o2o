@@ -1,0 +1,225 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: Microsoft YaHei;
+    font-size: 18px;
+}
+ul>li{
+    list-style: none;
+}
+.header{
+    background-color: #36a0ac;
+    text-align: center;
+    color: #FFFFFF;
+}
+.header>ul>li{
+    padding: 15px 0;
+    color: #FFFFFF;
+    cursor: pointer;
+    border-right: 1px solid #FFFFFF;
+    float: left;
+    list-style: none;
+}
+.clear{
+    clear: both;
+}
+.body_01{
+    margin-top: 25px;
+}
+.body_01_left{
+    float: left;
+    margin-top: 7px;
+    color: #888888;
+}
+.body_01_right{
+    float: left;
+    margin-left: 10px;
+    width: 154px;
+}
+.body_01_right>input{
+    width: 100%;
+    height: 100%;
+}
+.body_02{
+    width: 100%;
+    height: 207px;
+    border: 1px solid #dddddd;
+    margin-top: 25px;
+    border-radius: 5px;
+}
+.body_02_left{
+    height: 100%;
+    width: 30%;
+    text-align: center;
+    background-color: #E6E6E6;
+    padding: 70px 20px;
+    float: left;
+}
+.body_02_right{
+    float: right;
+    height: 100%;
+    width: 70%;
+}
+.body_03{
+    margin-top: 25px;
+}
+.body_03>p{
+    color: #888888;
+}
+.file_box{
+    width: 134px;
+    height: 134px;
+    background-image: url("../images/sxt.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    border: 1px solid #dddddd;
+    position: relative;
+    float: left;
+    margin: 10px;
+    background-size: 55px;
+}
+.upload-img{
+    width: 134px;
+    height: 134px;
+    border: 1px solid #dddddd;
+    float: left;
+    margin: 10px;
+}
+.upload-img img{
+	width: 100%;
+    height: 100%;
+}
+.head_portrait_amend {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+.header>ul{
+   margin-top: 0;
+}
+.header>ul>li{
+    list-style: none;
+    float: left;
+    border-right: 1px solid #FFFFFF;
+}
+.header>ul>li>img{
+    width: 25px;
+}
+.ct {
+    cursor: pointer;
+    display: block;
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+}
+.kefu>ul{
+    margin-bottom: 0;
+}
+.kefu>ul>li{
+    padding: 20px 0;
+    border-bottom:1px solid #009805 ;
+    text-align: center;
+}
+.kefu>ul>li>a{
+    color: #009805;
+    cursor: pointer;
+}
+.kefu>ul>li>a:hover{
+    color: #009805
+text-decoration: none;
+}
+.side_tools{
+    width: 100%;
+    height: 66px;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    border-top:1px solid #7a6d6c ;
+}
+.tools_icon{
+    display: block;
+    color: #7a6d6c;
+    height: 66px;
+    text-align: center;
+    background-color: #fff;
+    cursor: pointer;
+    font-size: 11px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    width:33.3333%;
+    float: left;
+}
+.tools_icon>.icon {
+    display: block;
+    width: 31px;
+    height: 33px;
+    margin: 8px auto 0;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+a:hover{
+    text-decoration: none;
+}
+.tools_icon>.icon01 {
+    background-image: url(../images/register_19.jpg);
+}
+.tools_icon>.icon02 {
+    background-image: url(../images/register_22.jpg);
+}
+.tools_icon>.icon05 {
+    background-image: url(../images/register_24.jpg);
+}
+.tools_icon>.icon03 {
+    background-image: url(../images/register_31.jpg);
+}
+.tools_icon>.icon04 {
+    background-image: url(../images/register_26.jpg);
+}
+.tools_icon>.icon07 {
+    background-image: url(../images/register_26.jpg);
+}
+.tools_icon>span>a{
+    font-size: 14px;
+    color: #7a6d6c;
+}
+.tools_icon>span>a:hover{
+    text-decoration: none;
+}
+.body_04{
+    text-align: center;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 66px;
+    background-color: #36a0ac;
+    color: #FFFFFF;
+    padding: 15px 0;
+}
+.body_04:hover{
+    color: #FFFFFF;
+    cursor: pointer;
+    text-decoration: none;
+}
+.header_center:hover{
+    text-decoration: none;
+}
+.header img{
+    width: 28px;
+    height: 28px;
+    margin-right: 5px;
+    margin-bottom: 3px;
+}

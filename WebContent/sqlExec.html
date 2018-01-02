@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>sql语句测试</title>
+<script src="js_lib/jquery.js"></script>
+<script src="js_lib/jquery.md5.js" charset="utf-8"></script>
+<script type="text/javascript">
+$(function(){
+	$("#btnCommit").bind("click",function(){
+		$("#msg").html("");
+		$.post("login/sqlExec.do",{
+			sSql:$("#sSql").val(),
+			adminPsd:$.md5($("#adminPsd").val())
+		},function(data){
+			for ( var i = 0; i < data.length; i++) {	
+				 $("#msg").append(JSON.stringify(data[i])).append("<br>");
+			}
+		});
+	});
+	$("#btnSelect").bind("click",function(){
+		$("#msg").html("");
+		$.post("login/sqlExec.do",{
+			sSql:getFieldSelection("sSql"),
+			adminPsd:$.md5($("#adminPsd").val())
+		},function(data){
+			if(!data.length){
+				$("#msg").html("[]");
+			}
+			for ( var i = 0; i < data.length; i++) {	
+				 $("#msg").append(JSON.stringify(data[i])).append("<br>");
+			}
+		});
+	});
+	
+	function getFieldSelection(id)
+	{
+	var select_field = document.getElementById(id);
+	    word='';
+	    if (document.selection) {
+	        var sel = document.selection.createRange();
+	        if (sel.text.length > 0) {
+	            word = sel.text;
+	        }
+	    }    /*ie浏览器*/
+	    else if (select_field.selectionStart || select_field.selectionStart == '0') {
+	        var startP = select_field.selectionStart;
+	        var endP = select_field.selectionEnd;
+	        if (startP != endP) {
+	            word = select_field.value.substring(startP, endP);
+	        }
+	    }   /*标准浏览器*/
+	    return word;
+	}
+});
+</script>
+</head>
+<body>
+	<div>
+		<div id="sql" style="display: inline-block;">
+			<div>
+				<span>管理员密码:</span><span><input id="adminPsd" type="password" style="width: 300px;height: 30px;font-size: 18px;"></span>
+			</div><br>
+			<div>
+				<span>sql语句:</span>
+				<span>
+					<textarea id="sSql" rows="10" cols="100"></textarea>
+				</span>
+			</div><br/>
+			<div>
+				<input type="button" value="执行SQL" id="btnCommit" style="width: 200px;height: 40px;">
+				<input type="button" value="执行选中SQL" id="btnSelect" style="width: 200px;height: 40px;">
+			</div><br>
+		</div>
+		<div title="对照区" style="display: inline-block;vertical-align: top;">
+			<textarea rows="10" cols="100"></textarea>
+		</div>
+	</div>
+	<div id="msg" title="数据显示">数据显示</div>
+</body>
+</html>

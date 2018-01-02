@@ -1,0 +1,149 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: Microsoft YaHei;
+    font-size: 17px;
+}
+body{
+    background-color: #EEF3FA;
+}
+.header{
+    background-color: #5CA04B;
+    padding: 10px;
+    text-align: center;
+    color: #FFFFFF;
+    font-weight: 600;
+    position: fixed;
+}
+.header_a{
+    position: absolute;
+    left: 7px;
+    top: 15px;
+    cursor: pointer;
+    color: #FFFFFF;
+}
+.header_a:hover{
+    color: #FFFFFF;
+    text-decoration:none
+}
+.mylocationk{
+    margin-bottom: 15px;
+    margin-top: 45px;
+}
+.mylocation{
+    border-bottom:1px solid #dddddd;
+    padding: 20px;
+    background-color: #FFFFFF;
+}
+.mylocation_left{
+    float: left;
+}
+
+.myorder_up{
+    float: right;
+    width: 27px;
+    height: 19px;
+    background-image: url("../images/up.png");
+    cursor: pointer;
+}
+.myorder_down{
+    float: right;
+    width: 27px;
+    height: 19px;
+    background-image: url("../images/down.png");
+    cursor: pointer;
+}
+.clear{
+    clear: both;
+}
+.mylocation_list{
+    background-color: #FFFFFF;
+}
+.list01{
+    margin-bottom: 15px;
+}
+.list03_left{
+    float: left;
+    position: absolute;
+    left: 0;
+    top: 45px;
+}
+.list03_left>img{
+    width: 25px;
+    height: 25px;
+}
+.list04_left_img{
+    width: 25px;
+    height: 25px;
+    background-image: url("../images/unchecked.png");
+    background-size: cover;
+    float: left;
+}
+.list03_left_img{
+    width: 25px;
+    height: 25px;
+    background-image: url("../images/Check.png");
+    background-size: cover;
+    float: left;
+}
+.list03_left_span{
+    float: left;
+    margin-left: 5px;
+}
+.list03_right{
+    float: right;
+}
+.list04_left{
+    float: left;
+    position: absolute;
+    left: 0;
+    top: 60px;
+}
+
+.list04_left_span{
+    float: left;
+    margin-left: 5px;
+}
+.cargo_list{
+    border-bottom:1px solid #dddddd;
+    padding: 10px;
+    background-color: #FFFFFF;
+}
+.cargo_list_left{
+    float: left;
+}
+.cargo_list01{
+    border: 1px solid #006603;
+    padding: 10px;
+    background-color: #FFFFFF;
+}
+.list_a_img>img{
+    height:150px;
+    width: 90px;
+}
+.list_a_details>ul>li{
+    list-style: none;
+    margin-bottom: 33px;
+}
+.driver_footer{
+    background-color: #5CA04B;
+    text-align: center;
+    height: 60px;
+    line-height: 60px;
+    color: #FFFFFF;
+    width: 100%;
+}
+.driver_footer:hover{
+    color: #FFFFFF;
+    text-decoration:none
+}
+.list_b{
+    margin-left: 20px;
+}
+ul>li{
+    list-style: none;
+}gin-left: 20px;
+}
+ul>li{
+    list-style: none;
+}

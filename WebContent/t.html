@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">  
+<meta http-equiv="expires" content="0">
+<title></title>
+<link rel="stylesheet" href="../pcxy/css/bootstrap.css">
+<style type="text/css">
+.div{
+overflow: scroll;
+width: 3070px;
+}
+.divthead{
+overflow: hidden;
+width: 3070px;
+display: none;
+}
+.hoverdiv{
+display: none !important;
+}
+.thead{
+
+/* display: none; */
+
+}
+</style>
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top divthead">
+<table class="table table-bordered table-hover thead">
+</table></div>
+
+<div class="div">
+
+<table class="table table-bordered table-hover">
+<thead><tr>
+<th rowspan="2">操作</th>
+<th rowspan="2" width="100">状态 </th>
+
+<th>灯具安装大类</th>
+<th>灯具安装小类</th>
+<th>位置照片</th>
+<th>灯具照片</th>
+<th>灯具品牌</th>
+<th>灯具名称</th>
+<th>灯具型号</th>
+<th>数量(套)</th>
+<th>光源照片</th>
+<th>光源型号</th>
+<th>光源名称</th>
+<th>光源颜色</th>
+<th>数量/套（原配灯具）</th>
+<th style="color: red;">损坏数量</th>
+<th data-bm="bm">推荐产品编码</th>
+<th>推荐产品名称</th>
+<th>推荐产品单价</th>
+<th>推荐采购数量</th>
+<th data-bm="bm">可用库存</th>
+
+<th rowspan="2">电器照片</th>
+<th rowspan="2">电器名称</th>
+<th rowspan="2">电器型号</th>
+<th rowspan="2">数量/套（原配灯具）</th>
+<th rowspan="2" style="color: red;">损坏数量</th>
+<th data-bm="bm">推荐产品编码</th>
+<th>推荐产品名称</th>
+<th>推荐产品单价</th>
+<th>推荐采购数量</th>
+<th data-bm="bm">可用库存</th>
+<th rowspan="2" data-bm="bm">客户名称</th>
+<th rowspan="2" data-bm="bm">客户编码</th>
+<th rowspan="2">体检数据编码</th>
+<th rowspan="2" data-id="seeds_id">id</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style=" white-space: pre-wrap;"><button type="button" class="btn btn-primary">保存</button><button type="button" class="btn btn-primary">删除</button></td>
+<td data-name="ivt_oper_listing" style="display: none;  white-space: pre-wrap;">TJ000002</td>
+<td data-name="bx_oper_listing" style="display: none;  white-space: pre-wrap;"></td>
+<td data-readonly="work_state" style=" white-space: pre-wrap;">运行中</td>
+<td data-name="position_big" style=" white-space: pre-wrap;">过道</td>
+<td data-name="position" style=" white-space: pre-wrap;">走廊</td>
+<td data-imge="position_big_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/position_big_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="position_big_img" name="position_big_img" onclick="imgUpload(this,$(this).parent(),&quot;position_big_img&quot;,&quot;position_big_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-imge="itemName_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/itemName_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="itemName_img" name="itemName_img" onclick="imgUpload(this,$(this).parent(),&quot;itemName_img&quot;,&quot;itemName_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_brand" style=" white-space: pre-wrap;"></td>
+<td data-name="item_name" style=" white-space: pre-wrap;"></td>
+<td data-name="item_standard" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-imge="light_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/light_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="light_img" name="light_img" onclick="imgUpload(this,$(this).parent(),&quot;light_img&quot;,&quot;light_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_standard_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_name_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_color_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num_g" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-name-num="damage_num_g" style="color: red;  white-space: pre-wrap;"></td>
+<td data-id="item_id_g_gj1" style=" white-space: pre-wrap;"></td>
+<td data-select="item_name_g_gj1" style="position: relative;  white-space: pre-wrap;"><span></span><button type="button" class="btn btn-primary" onclick="selectproduct(this);">推荐产品</button></td>
+<td data-name="sd_unit_price_g_gj1" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-name="sd_oq_g_gj1" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-use="use_oq_g_gj1" style=" white-space: pre-wrap;"></td>
+<td data-imge="electrical_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/electrical_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="electrical_img" name="electrical_img" onclick="imgUpload(this,$(this).parent(),&quot;electrical_img&quot;,&quot;electrical_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_name_d" style=" white-space: pre-wrap;"></td>
+<td data-name="item_standard_d" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num_d" style=" white-space: pre-wrap;"></td>
+<td data-name-num="damage_num_d" style="color: red;  white-space: pre-wrap;"></td>
+<td data-id="item_id_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-select="item_name_d_gj1" style="position: relative;  white-space: pre-wrap;"><span></span><button type="button" class="btn btn-primary" onclick="selectproduct(this);">推荐产品</button></td>
+<td data-name="sd_unit_price_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-name="sd_oq_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-use="use_oq_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-client="corp_sim_name" style="position: relative;  white-space: pre-wrap;">成都赛宇张零柯</td>
+<td data-id="customer_id" style=" white-space: pre-wrap;"><span>CS1C003141</span></td>
+<td data-name="sd_order_id" style=" white-space: pre-wrap;">TJ000002</td>
+<td data-id="seeds_id" style=" white-space: pre-wrap;"><span>2</span></td>
+</tr>
+<tr>
+<td style=" white-space: pre-wrap;"><button type="button" class="btn btn-primary">保存</button><button type="button" class="btn btn-primary">删除</button></td>
+<td data-name="ivt_oper_listing" style="display: none;  white-space: pre-wrap;">TJ000002</td>
+<td data-name="bx_oper_listing" style="display: none;  white-space: pre-wrap;"></td>
+<td data-readonly="work_state" style=" white-space: pre-wrap;">运行中</td>
+<td data-name="position_big" style=" white-space: pre-wrap;">过道</td>
+<td data-name="position" style=" white-space: pre-wrap;">走廊</td>
+<td data-imge="position_big_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/position_big_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="position_big_img" name="position_big_img" onclick="imgUpload(this,$(this).parent(),&quot;position_big_img&quot;,&quot;position_big_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-imge="itemName_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/itemName_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="itemName_img" name="itemName_img" onclick="imgUpload(this,$(this).parent(),&quot;itemName_img&quot;,&quot;itemName_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_brand" style=" white-space: pre-wrap;"></td>
+<td data-name="item_name" style=" white-space: pre-wrap;"></td>
+<td data-name="item_standard" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-imge="light_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/light_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="light_img" name="light_img" onclick="imgUpload(this,$(this).parent(),&quot;light_img&quot;,&quot;light_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_standard_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_name_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_color_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num_g" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-name-num="damage_num_g" style="color: red;  white-space: pre-wrap;"></td>
+<td data-id="item_id_g_gj1" style=" white-space: pre-wrap;"></td>
+<td data-select="item_name_g_gj1" style="position: relative;  white-space: pre-wrap;"><span></span><button type="button" class="btn btn-primary" onclick="selectproduct(this);">推荐产品</button></td>
+<td data-name="sd_unit_price_g_gj1" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-name="sd_oq_g_gj1" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-use="use_oq_g_gj1" style=" white-space: pre-wrap;"></td>
+<td data-imge="electrical_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/electrical_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="electrical_img" name="electrical_img" onclick="imgUpload(this,$(this).parent(),&quot;electrical_img&quot;,&quot;electrical_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_name_d" style=" white-space: pre-wrap;"></td>
+<td data-name="item_standard_d" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num_d" style=" white-space: pre-wrap;"></td>
+<td data-name-num="damage_num_d" style="color: red;  white-space: pre-wrap;"></td>
+<td data-id="item_id_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-select="item_name_d_gj1" style="position: relative;  white-space: pre-wrap;"><span></span><button type="button" class="btn btn-primary" onclick="selectproduct(this);">推荐产品</button></td>
+<td data-name="sd_unit_price_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-name="sd_oq_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-use="use_oq_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-client="corp_sim_name" style="position: relative;  white-space: pre-wrap;">成都赛宇张零柯</td>
+<td data-id="customer_id" style=" white-space: pre-wrap;"><span>CS1C003141</span></td>
+<td data-name="sd_order_id" style=" white-space: pre-wrap;">TJ000002</td>
+<td data-id="seeds_id" style=" white-space: pre-wrap;"><span>2</span></td>
+</tr>
+<tr>
+<td style=" white-space: pre-wrap;"><button type="button" class="btn btn-primary">保存</button><button type="button" class="btn btn-primary">删除</button></td>
+<td data-name="ivt_oper_listing" style="display: none;  white-space: pre-wrap;">TJ000002</td>
+<td data-name="bx_oper_listing" style="display: none;  white-space: pre-wrap;"></td>
+<td data-readonly="work_state" style=" white-space: pre-wrap;">运行中</td>
+<td data-name="position_big" style=" white-space: pre-wrap;">过道</td>
+<td data-name="position" style=" white-space: pre-wrap;">走廊</td>
+<td data-imge="position_big_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/position_big_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="position_big_img" name="position_big_img" onclick="imgUpload(this,$(this).parent(),&quot;position_big_img&quot;,&quot;position_big_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-imge="itemName_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/itemName_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="itemName_img" name="itemName_img" onclick="imgUpload(this,$(this).parent(),&quot;itemName_img&quot;,&quot;itemName_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_brand" style=" white-space: pre-wrap;"></td>
+<td data-name="item_name" style=" white-space: pre-wrap;"></td>
+<td data-name="item_standard" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-imge="light_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/light_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="light_img" name="light_img" onclick="imgUpload(this,$(this).parent(),&quot;light_img&quot;,&quot;light_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_standard_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_name_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_color_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num_g" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-name-num="damage_num_g" style="color: red;  white-space: pre-wrap;"></td>
+<td data-id="item_id_g_gj1" style=" white-space: pre-wrap;"></td>
+<td data-select="item_name_g_gj1" style="position: relative;  white-space: pre-wrap;"><span></span><button type="button" class="btn btn-primary" onclick="selectproduct(this);">推荐产品</button></td>
+<td data-name="sd_unit_price_g_gj1" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-name="sd_oq_g_gj1" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-use="use_oq_g_gj1" style=" white-space: pre-wrap;"></td>
+<td data-imge="electrical_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/electrical_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="electrical_img" name="electrical_img" onclick="imgUpload(this,$(this).parent(),&quot;electrical_img&quot;,&quot;electrical_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_name_d" style=" white-space: pre-wrap;"></td>
+<td data-name="item_standard_d" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num_d" style=" white-space: pre-wrap;"></td>
+<td data-name-num="damage_num_d" style="color: red;  white-space: pre-wrap;"></td>
+<td data-id="item_id_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-select="item_name_d_gj1" style="position: relative;  white-space: pre-wrap;"><span></span><button type="button" class="btn btn-primary" onclick="selectproduct(this);">推荐产品</button></td>
+<td data-name="sd_unit_price_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-name="sd_oq_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-use="use_oq_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-client="corp_sim_name" style="position: relative;  white-space: pre-wrap;">成都赛宇张零柯</td>
+<td data-id="customer_id" style=" white-space: pre-wrap;"><span>CS1C003141</span></td>
+<td data-name="sd_order_id" style=" white-space: pre-wrap;">TJ000002</td>
+<td data-id="seeds_id" style=" white-space: pre-wrap;"><span>2</span></td>
+</tr>
+<tr>
+<td style=" white-space: pre-wrap;"><button type="button" class="btn btn-primary">保存</button><button type="button" class="btn btn-primary">删除</button></td>
+<td data-name="ivt_oper_listing" style="display: none;  white-space: pre-wrap;">TJ000002</td>
+<td data-name="bx_oper_listing" style="display: none;  white-space: pre-wrap;"></td>
+<td data-readonly="work_state" style=" white-space: pre-wrap;">运行中</td>
+<td data-name="position_big" style=" white-space: pre-wrap;">过道</td>
+<td data-name="position" style=" white-space: pre-wrap;">走廊</td>
+<td data-imge="position_big_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/position_big_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="position_big_img" name="position_big_img" onclick="imgUpload(this,$(this).parent(),&quot;position_big_img&quot;,&quot;position_big_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-imge="itemName_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/itemName_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="itemName_img" name="itemName_img" onclick="imgUpload(this,$(this).parent(),&quot;itemName_img&quot;,&quot;itemName_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_brand" style=" white-space: pre-wrap;"></td>
+<td data-name="item_name" style=" white-space: pre-wrap;"></td>
+<td data-name="item_standard" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-imge="light_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/light_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="light_img" name="light_img" onclick="imgUpload(this,$(this).parent(),&quot;light_img&quot;,&quot;light_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_standard_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_name_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_color_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num_g" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-name-num="damage_num_g" style="color: red;  white-space: pre-wrap;"></td>
+<td data-id="item_id_g_gj1" style=" white-space: pre-wrap;"></td>
+<td data-select="item_name_g_gj1" style="position: relative;  white-space: pre-wrap;"><span></span><button type="button" class="btn btn-primary" onclick="selectproduct(this);">推荐产品</button></td>
+<td data-name="sd_unit_price_g_gj1" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-name="sd_oq_g_gj1" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-use="use_oq_g_gj1" style=" white-space: pre-wrap;"></td>
+<td data-imge="electrical_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/electrical_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="electrical_img" name="electrical_img" onclick="imgUpload(this,$(this).parent(),&quot;electrical_img&quot;,&quot;electrical_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_name_d" style=" white-space: pre-wrap;"></td>
+<td data-name="item_standard_d" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num_d" style=" white-space: pre-wrap;"></td>
+<td data-name-num="damage_num_d" style="color: red;  white-space: pre-wrap;"></td>
+<td data-id="item_id_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-select="item_name_d_gj1" style="position: relative;  white-space: pre-wrap;"><span></span><button type="button" class="btn btn-primary" onclick="selectproduct(this);">推荐产品</button></td>
+<td data-name="sd_unit_price_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-name="sd_oq_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-use="use_oq_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-client="corp_sim_name" style="position: relative;  white-space: pre-wrap;">成都赛宇张零柯</td>
+<td data-id="customer_id" style=" white-space: pre-wrap;"><span>CS1C003141</span></td>
+<td data-name="sd_order_id" style=" white-space: pre-wrap;">TJ000002</td>
+<td data-id="seeds_id" style=" white-space: pre-wrap;"><span>2</span></td>
+</tr>
+<tr>
+<td style=" white-space: pre-wrap;"><button type="button" class="btn btn-primary">保存</button><button type="button" class="btn btn-primary">删除</button></td>
+<td data-name="ivt_oper_listing" style="display: none;  white-space: pre-wrap;">TJ000002</td>
+<td data-name="bx_oper_listing" style="display: none;  white-space: pre-wrap;"></td>
+<td data-readonly="work_state" style=" white-space: pre-wrap;">运行中</td>
+<td data-name="position_big" style=" white-space: pre-wrap;">过道</td>
+<td data-name="position" style=" white-space: pre-wrap;">走廊</td>
+<td data-imge="position_big_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/position_big_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="position_big_img" name="position_big_img" onclick="imgUpload(this,$(this).parent(),&quot;position_big_img&quot;,&quot;position_big_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-imge="itemName_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/itemName_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="itemName_img" name="itemName_img" onclick="imgUpload(this,$(this).parent(),&quot;itemName_img&quot;,&quot;itemName_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_brand" style=" white-space: pre-wrap;"></td>
+<td data-name="item_name" style=" white-space: pre-wrap;"></td>
+<td data-name="item_standard" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-imge="light_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/light_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="light_img" name="light_img" onclick="imgUpload(this,$(this).parent(),&quot;light_img&quot;,&quot;light_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_standard_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_name_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_color_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num_g" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-name-num="damage_num_g" style="color: red;  white-space: pre-wrap;"></td>
+<td data-id="item_id_g_gj1" style=" white-space: pre-wrap;"></td>
+<td data-select="item_name_g_gj1" style="position: relative;  white-space: pre-wrap;"><span></span><button type="button" class="btn btn-primary" onclick="selectproduct(this);">推荐产品</button></td>
+<td data-name="sd_unit_price_g_gj1" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-name="sd_oq_g_gj1" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-use="use_oq_g_gj1" style=" white-space: pre-wrap;"></td>
+<td data-imge="electrical_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/electrical_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="electrical_img" name="electrical_img" onclick="imgUpload(this,$(this).parent(),&quot;electrical_img&quot;,&quot;electrical_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_name_d" style=" white-space: pre-wrap;"></td>
+<td data-name="item_standard_d" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num_d" style=" white-space: pre-wrap;"></td>
+<td data-name-num="damage_num_d" style="color: red;  white-space: pre-wrap;"></td>
+<td data-id="item_id_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-select="item_name_d_gj1" style="position: relative;  white-space: pre-wrap;"><span></span><button type="button" class="btn btn-primary" onclick="selectproduct(this);">推荐产品</button></td>
+<td data-name="sd_unit_price_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-name="sd_oq_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-use="use_oq_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-client="corp_sim_name" style="position: relative;  white-space: pre-wrap;">成都赛宇张零柯</td>
+<td data-id="customer_id" style=" white-space: pre-wrap;"><span>CS1C003141</span></td>
+<td data-name="sd_order_id" style=" white-space: pre-wrap;">TJ000002</td>
+<td data-id="seeds_id" style=" white-space: pre-wrap;"><span>2</span></td>
+</tr>
+<tr>
+<td style=" white-space: pre-wrap;"><button type="button" class="btn btn-primary">保存</button><button type="button" class="btn btn-primary">删除</button></td>
+<td data-name="ivt_oper_listing" style="display: none;  white-space: pre-wrap;">TJ000002</td>
+<td data-name="bx_oper_listing" style="display: none;  white-space: pre-wrap;"></td>
+<td data-readonly="work_state" style=" white-space: pre-wrap;">运行中</td>
+<td data-name="position_big" style=" white-space: pre-wrap;">过道</td>
+<td data-name="position" style=" white-space: pre-wrap;">走廊</td>
+<td data-imge="position_big_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/position_big_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="position_big_img" name="position_big_img" onclick="imgUpload(this,$(this).parent(),&quot;position_big_img&quot;,&quot;position_big_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-imge="itemName_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/itemName_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="itemName_img" name="itemName_img" onclick="imgUpload(this,$(this).parent(),&quot;itemName_img&quot;,&quot;itemName_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_brand" style=" white-space: pre-wrap;"></td>
+<td data-name="item_name" style=" white-space: pre-wrap;"></td>
+<td data-name="item_standard" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-imge="light_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/light_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="light_img" name="light_img" onclick="imgUpload(this,$(this).parent(),&quot;light_img&quot;,&quot;light_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_standard_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_name_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_color_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num_g" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-name-num="damage_num_g" style="color: red;  white-space: pre-wrap;"></td>
+<td data-id="item_id_g_gj1" style=" white-space: pre-wrap;"></td>
+<td data-select="item_name_g_gj1" style="position: relative;  white-space: pre-wrap;"><span></span><button type="button" class="btn btn-primary" onclick="selectproduct(this);">推荐产品</button></td>
+<td data-name="sd_unit_price_g_gj1" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-name="sd_oq_g_gj1" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-use="use_oq_g_gj1" style=" white-space: pre-wrap;"></td>
+<td data-imge="electrical_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/electrical_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="electrical_img" name="electrical_img" onclick="imgUpload(this,$(this).parent(),&quot;electrical_img&quot;,&quot;electrical_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_name_d" style=" white-space: pre-wrap;"></td>
+<td data-name="item_standard_d" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num_d" style=" white-space: pre-wrap;"></td>
+<td data-name-num="damage_num_d" style="color: red;  white-space: pre-wrap;"></td>
+<td data-id="item_id_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-select="item_name_d_gj1" style="position: relative;  white-space: pre-wrap;"><span></span><button type="button" class="btn btn-primary" onclick="selectproduct(this);">推荐产品</button></td>
+<td data-name="sd_unit_price_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-name="sd_oq_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-use="use_oq_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-client="corp_sim_name" style="position: relative;  white-space: pre-wrap;">成都赛宇张零柯</td>
+<td data-id="customer_id" style=" white-space: pre-wrap;"><span>CS1C003141</span></td>
+<td data-name="sd_order_id" style=" white-space: pre-wrap;">TJ000002</td>
+<td data-id="seeds_id" style=" white-space: pre-wrap;"><span>2</span></td>
+</tr>
+<tr>
+<td style=" white-space: pre-wrap;"><button type="button" class="btn btn-primary">保存</button><button type="button" class="btn btn-primary">删除</button></td>
+<td data-name="ivt_oper_listing" style="display: none;  white-space: pre-wrap;">TJ000002</td>
+<td data-name="bx_oper_listing" style="display: none;  white-space: pre-wrap;"></td>
+<td data-readonly="work_state" style=" white-space: pre-wrap;">运行中</td>
+<td data-name="position_big" style=" white-space: pre-wrap;">过道</td>
+<td data-name="position" style=" white-space: pre-wrap;">走廊</td>
+<td data-imge="position_big_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/position_big_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="position_big_img" name="position_big_img" onclick="imgUpload(this,$(this).parent(),&quot;position_big_img&quot;,&quot;position_big_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-imge="itemName_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/itemName_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="itemName_img" name="itemName_img" onclick="imgUpload(this,$(this).parent(),&quot;itemName_img&quot;,&quot;itemName_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_brand" style=" white-space: pre-wrap;"></td>
+<td data-name="item_name" style=" white-space: pre-wrap;"></td>
+<td data-name="item_standard" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-imge="light_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/light_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="light_img" name="light_img" onclick="imgUpload(this,$(this).parent(),&quot;light_img&quot;,&quot;light_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_standard_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_name_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_color_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num_g" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-name-num="damage_num_g" style="color: red;  white-space: pre-wrap;"></td>
+<td data-id="item_id_g_gj1" style=" white-space: pre-wrap;"></td>
+<td data-select="item_name_g_gj1" style="position: relative;  white-space: pre-wrap;"><span></span><button type="button" class="btn btn-primary" onclick="selectproduct(this);">推荐产品</button></td>
+<td data-name="sd_unit_price_g_gj1" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-name="sd_oq_g_gj1" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-use="use_oq_g_gj1" style=" white-space: pre-wrap;"></td>
+<td data-imge="electrical_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/electrical_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="electrical_img" name="electrical_img" onclick="imgUpload(this,$(this).parent(),&quot;electrical_img&quot;,&quot;electrical_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_name_d" style=" white-space: pre-wrap;"></td>
+<td data-name="item_standard_d" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num_d" style=" white-space: pre-wrap;"></td>
+<td data-name-num="damage_num_d" style="color: red;  white-space: pre-wrap;"></td>
+<td data-id="item_id_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-select="item_name_d_gj1" style="position: relative;  white-space: pre-wrap;"><span></span><button type="button" class="btn btn-primary" onclick="selectproduct(this);">推荐产品</button></td>
+<td data-name="sd_unit_price_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-name="sd_oq_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-use="use_oq_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-client="corp_sim_name" style="position: relative;  white-space: pre-wrap;">成都赛宇张零柯</td>
+<td data-id="customer_id" style=" white-space: pre-wrap;"><span>CS1C003141</span></td>
+<td data-name="sd_order_id" style=" white-space: pre-wrap;">TJ000002</td>
+<td data-id="seeds_id" style=" white-space: pre-wrap;"><span>2</span></td>
+</tr>
+<tr>
+<td style=" white-space: pre-wrap;"><button type="button" class="btn btn-primary">保存</button><button type="button" class="btn btn-primary">删除</button></td>
+<td data-name="ivt_oper_listing" style="display: none;  white-space: pre-wrap;">TJ000002</td>
+<td data-name="bx_oper_listing" style="display: none;  white-space: pre-wrap;"></td>
+<td data-readonly="work_state" style=" white-space: pre-wrap;">运行中</td>
+<td data-name="position_big" style=" white-space: pre-wrap;">过道</td>
+<td data-name="position" style=" white-space: pre-wrap;">走廊</td>
+<td data-imge="position_big_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/position_big_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="position_big_img" name="position_big_img" onclick="imgUpload(this,$(this).parent(),&quot;position_big_img&quot;,&quot;position_big_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-imge="itemName_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/itemName_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="itemName_img" name="itemName_img" onclick="imgUpload(this,$(this).parent(),&quot;itemName_img&quot;,&quot;itemName_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_brand" style=" white-space: pre-wrap;"></td>
+<td data-name="item_name" style=" white-space: pre-wrap;"></td>
+<td data-name="item_standard" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-imge="light_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/light_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="light_img" name="light_img" onclick="imgUpload(this,$(this).parent(),&quot;light_img&quot;,&quot;light_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_standard_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_name_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_color_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num_g" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-name-num="damage_num_g" style="color: red;  white-space: pre-wrap;"></td>
+<td data-id="item_id_g_gj1" style=" white-space: pre-wrap;"></td>
+<td data-select="item_name_g_gj1" style="position: relative;  white-space: pre-wrap;"><span></span><button type="button" class="btn btn-primary" onclick="selectproduct(this);">推荐产品</button></td>
+<td data-name="sd_unit_price_g_gj1" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-name="sd_oq_g_gj1" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-use="use_oq_g_gj1" style=" white-space: pre-wrap;"></td>
+<td data-imge="electrical_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/electrical_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="electrical_img" name="electrical_img" onclick="imgUpload(this,$(this).parent(),&quot;electrical_img&quot;,&quot;electrical_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_name_d" style=" white-space: pre-wrap;"></td>
+<td data-name="item_standard_d" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num_d" style=" white-space: pre-wrap;"></td>
+<td data-name-num="damage_num_d" style="color: red;  white-space: pre-wrap;"></td>
+<td data-id="item_id_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-select="item_name_d_gj1" style="position: relative;  white-space: pre-wrap;"><span></span><button type="button" class="btn btn-primary" onclick="selectproduct(this);">推荐产品</button></td>
+<td data-name="sd_unit_price_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-name="sd_oq_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-use="use_oq_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-client="corp_sim_name" style="position: relative;  white-space: pre-wrap;">成都赛宇张零柯</td>
+<td data-id="customer_id" style=" white-space: pre-wrap;"><span>CS1C003141</span></td>
+<td data-name="sd_order_id" style=" white-space: pre-wrap;">TJ000002</td>
+<td data-id="seeds_id" style=" white-space: pre-wrap;"><span>2</span></td>
+</tr>
+<tr>
+<td style=" white-space: pre-wrap;"><button type="button" class="btn btn-primary">保存</button><button type="button" class="btn btn-primary">删除</button></td>
+<td data-name="ivt_oper_listing" style="display: none;  white-space: pre-wrap;">TJ000002</td>
+<td data-name="bx_oper_listing" style="display: none;  white-space: pre-wrap;"></td>
+<td data-readonly="work_state" style=" white-space: pre-wrap;">运行中</td>
+<td data-name="position_big" style=" white-space: pre-wrap;">过道</td>
+<td data-name="position" style=" white-space: pre-wrap;">走廊</td>
+<td data-imge="position_big_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/position_big_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="position_big_img" name="position_big_img" onclick="imgUpload(this,$(this).parent(),&quot;position_big_img&quot;,&quot;position_big_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-imge="itemName_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/itemName_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="itemName_img" name="itemName_img" onclick="imgUpload(this,$(this).parent(),&quot;itemName_img&quot;,&quot;itemName_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_brand" style=" white-space: pre-wrap;"></td>
+<td data-name="item_name" style=" white-space: pre-wrap;"></td>
+<td data-name="item_standard" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-imge="light_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/light_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="light_img" name="light_img" onclick="imgUpload(this,$(this).parent(),&quot;light_img&quot;,&quot;light_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_standard_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_name_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_color_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num_g" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-name-num="damage_num_g" style="color: red;  white-space: pre-wrap;"></td>
+<td data-id="item_id_g_gj1" style=" white-space: pre-wrap;"></td>
+<td data-select="item_name_g_gj1" style="position: relative;  white-space: pre-wrap;"><span></span><button type="button" class="btn btn-primary" onclick="selectproduct(this);">推荐产品</button></td>
+<td data-name="sd_unit_price_g_gj1" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-name="sd_oq_g_gj1" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-use="use_oq_g_gj1" style=" white-space: pre-wrap;"></td>
+<td data-imge="electrical_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/electrical_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="electrical_img" name="electrical_img" onclick="imgUpload(this,$(this).parent(),&quot;electrical_img&quot;,&quot;electrical_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_name_d" style=" white-space: pre-wrap;"></td>
+<td data-name="item_standard_d" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num_d" style=" white-space: pre-wrap;"></td>
+<td data-name-num="damage_num_d" style="color: red;  white-space: pre-wrap;"></td>
+<td data-id="item_id_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-select="item_name_d_gj1" style="position: relative;  white-space: pre-wrap;"><span></span><button type="button" class="btn btn-primary" onclick="selectproduct(this);">推荐产品</button></td>
+<td data-name="sd_unit_price_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-name="sd_oq_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-use="use_oq_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-client="corp_sim_name" style="position: relative;  white-space: pre-wrap;">成都赛宇张零柯</td>
+<td data-id="customer_id" style=" white-space: pre-wrap;"><span>CS1C003141</span></td>
+<td data-name="sd_order_id" style=" white-space: pre-wrap;">TJ000002</td>
+<td data-id="seeds_id" style=" white-space: pre-wrap;"><span>2</span></td>
+</tr>
+<tr>
+<td style=" white-space: pre-wrap;"><button type="button" class="btn btn-primary">保存</button><button type="button" class="btn btn-primary">删除</button></td>
+<td data-name="ivt_oper_listing" style="display: none;  white-space: pre-wrap;">TJ000002</td>
+<td data-name="bx_oper_listing" style="display: none;  white-space: pre-wrap;"></td>
+<td data-readonly="work_state" style=" white-space: pre-wrap;">运行中</td>
+<td data-name="position_big" style=" white-space: pre-wrap;">过道</td>
+<td data-name="position" style=" white-space: pre-wrap;">走廊</td>
+<td data-imge="position_big_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/position_big_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="position_big_img" name="position_big_img" onclick="imgUpload(this,$(this).parent(),&quot;position_big_img&quot;,&quot;position_big_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-imge="itemName_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/itemName_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="itemName_img" name="itemName_img" onclick="imgUpload(this,$(this).parent(),&quot;itemName_img&quot;,&quot;itemName_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_brand" style=" white-space: pre-wrap;"></td>
+<td data-name="item_name" style=" white-space: pre-wrap;"></td>
+<td data-name="item_standard" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-imge="light_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/light_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="light_img" name="light_img" onclick="imgUpload(this,$(this).parent(),&quot;light_img&quot;,&quot;light_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_standard_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_name_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_color_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num_g" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-name-num="damage_num_g" style="color: red;  white-space: pre-wrap;"></td>
+<td data-id="item_id_g_gj1" style=" white-space: pre-wrap;"></td>
+<td data-select="item_name_g_gj1" style="position: relative;  white-space: pre-wrap;"><span></span><button type="button" class="btn btn-primary" onclick="selectproduct(this);">推荐产品</button></td>
+<td data-name="sd_unit_price_g_gj1" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-name="sd_oq_g_gj1" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-use="use_oq_g_gj1" style=" white-space: pre-wrap;"></td>
+<td data-imge="electrical_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/electrical_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="electrical_img" name="electrical_img" onclick="imgUpload(this,$(this).parent(),&quot;electrical_img&quot;,&quot;electrical_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_name_d" style=" white-space: pre-wrap;"></td>
+<td data-name="item_standard_d" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num_d" style=" white-space: pre-wrap;"></td>
+<td data-name-num="damage_num_d" style="color: red;  white-space: pre-wrap;"></td>
+<td data-id="item_id_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-select="item_name_d_gj1" style="position: relative;  white-space: pre-wrap;"><span></span><button type="button" class="btn btn-primary" onclick="selectproduct(this);">推荐产品</button></td>
+<td data-name="sd_unit_price_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-name="sd_oq_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-use="use_oq_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-client="corp_sim_name" style="position: relative;  white-space: pre-wrap;">成都赛宇张零柯</td>
+<td data-id="customer_id" style=" white-space: pre-wrap;"><span>CS1C003141</span></td>
+<td data-name="sd_order_id" style=" white-space: pre-wrap;">TJ000002</td>
+<td data-id="seeds_id" style=" white-space: pre-wrap;"><span>2</span></td>
+</tr>
+<tr>
+<td style=" white-space: pre-wrap;"><button type="button" class="btn btn-primary">保存</button><button type="button" class="btn btn-primary">删除</button></td>
+<td data-name="ivt_oper_listing" style="display: none;  white-space: pre-wrap;">TJ000002</td>
+<td data-name="bx_oper_listing" style="display: none;  white-space: pre-wrap;"></td>
+<td data-readonly="work_state" style=" white-space: pre-wrap;">运行中</td>
+<td data-name="position_big" style=" white-space: pre-wrap;">过道</td>
+<td data-name="position" style=" white-space: pre-wrap;">走廊</td>
+<td data-imge="position_big_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/position_big_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="position_big_img" name="position_big_img" onclick="imgUpload(this,$(this).parent(),&quot;position_big_img&quot;,&quot;position_big_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-imge="itemName_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/itemName_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="itemName_img" name="itemName_img" onclick="imgUpload(this,$(this).parent(),&quot;itemName_img&quot;,&quot;itemName_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_brand" style=" white-space: pre-wrap;"></td>
+<td data-name="item_name" style=" white-space: pre-wrap;"></td>
+<td data-name="item_standard" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-imge="light_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/light_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="light_img" name="light_img" onclick="imgUpload(this,$(this).parent(),&quot;light_img&quot;,&quot;light_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_standard_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_name_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_color_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num_g" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-name-num="damage_num_g" style="color: red;  white-space: pre-wrap;"></td>
+<td data-id="item_id_g_gj1" style=" white-space: pre-wrap;"></td>
+<td data-select="item_name_g_gj1" style="position: relative;  white-space: pre-wrap;"><span></span><button type="button" class="btn btn-primary" onclick="selectproduct(this);">推荐产品</button></td>
+<td data-name="sd_unit_price_g_gj1" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-name="sd_oq_g_gj1" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-use="use_oq_g_gj1" style=" white-space: pre-wrap;"></td>
+<td data-imge="electrical_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/electrical_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="electrical_img" name="electrical_img" onclick="imgUpload(this,$(this).parent(),&quot;electrical_img&quot;,&quot;electrical_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_name_d" style=" white-space: pre-wrap;"></td>
+<td data-name="item_standard_d" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num_d" style=" white-space: pre-wrap;"></td>
+<td data-name-num="damage_num_d" style="color: red;  white-space: pre-wrap;"></td>
+<td data-id="item_id_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-select="item_name_d_gj1" style="position: relative;  white-space: pre-wrap;"><span></span><button type="button" class="btn btn-primary" onclick="selectproduct(this);">推荐产品</button></td>
+<td data-name="sd_unit_price_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-name="sd_oq_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-use="use_oq_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-client="corp_sim_name" style="position: relative;  white-space: pre-wrap;">成都赛宇张零柯</td>
+<td data-id="customer_id" style=" white-space: pre-wrap;"><span>CS1C003141</span></td>
+<td data-name="sd_order_id" style=" white-space: pre-wrap;">TJ000002</td>
+<td data-id="seeds_id" style=" white-space: pre-wrap;"><span>2</span></td>
+</tr>
+<tr>
+<td style=" white-space: pre-wrap;"><button type="button" class="btn btn-primary">保存</button><button type="button" class="btn btn-primary">删除</button></td>
+<td data-name="ivt_oper_listing" style="display: none;  white-space: pre-wrap;">TJ000002</td>
+<td data-name="bx_oper_listing" style="display: none;  white-space: pre-wrap;"></td>
+<td data-readonly="work_state" style=" white-space: pre-wrap;">运行中</td>
+<td data-name="position_big" style=" white-space: pre-wrap;">过道</td>
+<td data-name="position" style=" white-space: pre-wrap;">走廊</td>
+<td data-imge="position_big_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/position_big_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="position_big_img" name="position_big_img" onclick="imgUpload(this,$(this).parent(),&quot;position_big_img&quot;,&quot;position_big_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-imge="itemName_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/itemName_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="itemName_img" name="itemName_img" onclick="imgUpload(this,$(this).parent(),&quot;itemName_img&quot;,&quot;itemName_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_brand" style=" white-space: pre-wrap;"></td>
+<td data-name="item_name" style=" white-space: pre-wrap;"></td>
+<td data-name="item_standard" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-imge="light_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/light_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="light_img" name="light_img" onclick="imgUpload(this,$(this).parent(),&quot;light_img&quot;,&quot;light_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_standard_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_name_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_color_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num_g" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-name-num="damage_num_g" style="color: red;  white-space: pre-wrap;"></td>
+<td data-id="item_id_g_gj1" style=" white-space: pre-wrap;"></td>
+<td data-select="item_name_g_gj1" style="position: relative;  white-space: pre-wrap;"><span></span><button type="button" class="btn btn-primary" onclick="selectproduct(this);">推荐产品</button></td>
+<td data-name="sd_unit_price_g_gj1" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-name="sd_oq_g_gj1" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-use="use_oq_g_gj1" style=" white-space: pre-wrap;"></td>
+<td data-imge="electrical_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/electrical_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="electrical_img" name="electrical_img" onclick="imgUpload(this,$(this).parent(),&quot;electrical_img&quot;,&quot;electrical_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_name_d" style=" white-space: pre-wrap;"></td>
+<td data-name="item_standard_d" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num_d" style=" white-space: pre-wrap;"></td>
+<td data-name-num="damage_num_d" style="color: red;  white-space: pre-wrap;"></td>
+<td data-id="item_id_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-select="item_name_d_gj1" style="position: relative;  white-space: pre-wrap;"><span></span><button type="button" class="btn btn-primary" onclick="selectproduct(this);">推荐产品</button></td>
+<td data-name="sd_unit_price_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-name="sd_oq_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-use="use_oq_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-client="corp_sim_name" style="position: relative;  white-space: pre-wrap;">成都赛宇张零柯</td>
+<td data-id="customer_id" style=" white-space: pre-wrap;"><span>CS1C003141</span></td>
+<td data-name="sd_order_id" style=" white-space: pre-wrap;">TJ000002</td>
+<td data-id="seeds_id" style=" white-space: pre-wrap;"><span>2</span></td>
+</tr>
+<tr>
+<td style=" white-space: pre-wrap;"><button type="button" class="btn btn-primary">保存</button><button type="button" class="btn btn-primary">删除</button></td>
+<td data-name="ivt_oper_listing" style="display: none;  white-space: pre-wrap;">TJ000002</td>
+<td data-name="bx_oper_listing" style="display: none;  white-space: pre-wrap;"></td>
+<td data-readonly="work_state" style=" white-space: pre-wrap;">运行中</td>
+<td data-name="position_big" style=" white-space: pre-wrap;">过道</td>
+<td data-name="position" style=" white-space: pre-wrap;">走廊</td>
+<td data-imge="position_big_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/position_big_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="position_big_img" name="position_big_img" onclick="imgUpload(this,$(this).parent(),&quot;position_big_img&quot;,&quot;position_big_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-imge="itemName_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/itemName_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="itemName_img" name="itemName_img" onclick="imgUpload(this,$(this).parent(),&quot;itemName_img&quot;,&quot;itemName_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_brand" style=" white-space: pre-wrap;"></td>
+<td data-name="item_name" style=" white-space: pre-wrap;"></td>
+<td data-name="item_standard" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-imge="light_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/light_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="light_img" name="light_img" onclick="imgUpload(this,$(this).parent(),&quot;light_img&quot;,&quot;light_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_standard_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_name_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_color_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num_g" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-name-num="damage_num_g" style="color: red;  white-space: pre-wrap;"></td>
+<td data-id="item_id_g_gj1" style=" white-space: pre-wrap;"></td>
+<td data-select="item_name_g_gj1" style="position: relative;  white-space: pre-wrap;"><span></span><button type="button" class="btn btn-primary" onclick="selectproduct(this);">推荐产品</button></td>
+<td data-name="sd_unit_price_g_gj1" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-name="sd_oq_g_gj1" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-use="use_oq_g_gj1" style=" white-space: pre-wrap;"></td>
+<td data-imge="electrical_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/electrical_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="electrical_img" name="electrical_img" onclick="imgUpload(this,$(this).parent(),&quot;electrical_img&quot;,&quot;electrical_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_name_d" style=" white-space: pre-wrap;"></td>
+<td data-name="item_standard_d" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num_d" style=" white-space: pre-wrap;"></td>
+<td data-name-num="damage_num_d" style="color: red;  white-space: pre-wrap;"></td>
+<td data-id="item_id_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-select="item_name_d_gj1" style="position: relative;  white-space: pre-wrap;"><span></span><button type="button" class="btn btn-primary" onclick="selectproduct(this);">推荐产品</button></td>
+<td data-name="sd_unit_price_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-name="sd_oq_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-use="use_oq_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-client="corp_sim_name" style="position: relative;  white-space: pre-wrap;">成都赛宇张零柯</td>
+<td data-id="customer_id" style=" white-space: pre-wrap;"><span>CS1C003141</span></td>
+<td data-name="sd_order_id" style=" white-space: pre-wrap;">TJ000002</td>
+<td data-id="seeds_id" style=" white-space: pre-wrap;"><span>2</span></td>
+</tr>
+<tr>
+<td style=" white-space: pre-wrap;"><button type="button" class="btn btn-primary">保存</button><button type="button" class="btn btn-primary">删除</button></td>
+<td data-name="ivt_oper_listing" style="display: none;  white-space: pre-wrap;">TJ000002</td>
+<td data-name="bx_oper_listing" style="display: none;  white-space: pre-wrap;"></td>
+<td data-readonly="work_state" style=" white-space: pre-wrap;">运行中</td>
+<td data-name="position_big" style=" white-space: pre-wrap;">过道</td>
+<td data-name="position" style=" white-space: pre-wrap;">走廊</td>
+<td data-imge="position_big_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/position_big_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="position_big_img" name="position_big_img" onclick="imgUpload(this,$(this).parent(),&quot;position_big_img&quot;,&quot;position_big_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-imge="itemName_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/itemName_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="itemName_img" name="itemName_img" onclick="imgUpload(this,$(this).parent(),&quot;itemName_img&quot;,&quot;itemName_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_brand" style=" white-space: pre-wrap;"></td>
+<td data-name="item_name" style=" white-space: pre-wrap;"></td>
+<td data-name="item_standard" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-imge="light_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/light_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="light_img" name="light_img" onclick="imgUpload(this,$(this).parent(),&quot;light_img&quot;,&quot;light_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_standard_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_name_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_color_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num_g" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-name-num="damage_num_g" style="color: red;  white-space: pre-wrap;"></td>
+<td data-id="item_id_g_gj1" style=" white-space: pre-wrap;"></td>
+<td data-select="item_name_g_gj1" style="position: relative;  white-space: pre-wrap;"><span></span><button type="button" class="btn btn-primary" onclick="selectproduct(this);">推荐产品</button></td>
+<td data-name="sd_unit_price_g_gj1" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-name="sd_oq_g_gj1" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-use="use_oq_g_gj1" style=" white-space: pre-wrap;"></td>
+<td data-imge="electrical_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/electrical_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="electrical_img" name="electrical_img" onclick="imgUpload(this,$(this).parent(),&quot;electrical_img&quot;,&quot;electrical_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_name_d" style=" white-space: pre-wrap;"></td>
+<td data-name="item_standard_d" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num_d" style=" white-space: pre-wrap;"></td>
+<td data-name-num="damage_num_d" style="color: red;  white-space: pre-wrap;"></td>
+<td data-id="item_id_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-select="item_name_d_gj1" style="position: relative;  white-space: pre-wrap;"><span></span><button type="button" class="btn btn-primary" onclick="selectproduct(this);">推荐产品</button></td>
+<td data-name="sd_unit_price_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-name="sd_oq_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-use="use_oq_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-client="corp_sim_name" style="position: relative;  white-space: pre-wrap;">成都赛宇张零柯</td>
+<td data-id="customer_id" style=" white-space: pre-wrap;"><span>CS1C003141</span></td>
+<td data-name="sd_order_id" style=" white-space: pre-wrap;">TJ000002</td>
+<td data-id="seeds_id" style=" white-space: pre-wrap;"><span>2</span></td>
+</tr>
+<tr>
+<td style=" white-space: pre-wrap;"><button type="button" class="btn btn-primary">保存</button><button type="button" class="btn btn-primary">删除</button></td>
+<td data-name="ivt_oper_listing" style="display: none;  white-space: pre-wrap;">TJ000002</td>
+<td data-name="bx_oper_listing" style="display: none;  white-space: pre-wrap;"></td>
+<td data-readonly="work_state" style=" white-space: pre-wrap;">运行中</td>
+<td data-name="position_big" style=" white-space: pre-wrap;">过道</td>
+<td data-name="position" style=" white-space: pre-wrap;">走廊</td>
+<td data-imge="position_big_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/position_big_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="position_big_img" name="position_big_img" onclick="imgUpload(this,$(this).parent(),&quot;position_big_img&quot;,&quot;position_big_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-imge="itemName_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/itemName_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="itemName_img" name="itemName_img" onclick="imgUpload(this,$(this).parent(),&quot;itemName_img&quot;,&quot;itemName_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_brand" style=" white-space: pre-wrap;"></td>
+<td data-name="item_name" style=" white-space: pre-wrap;"></td>
+<td data-name="item_standard" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-imge="light_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/light_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="light_img" name="light_img" onclick="imgUpload(this,$(this).parent(),&quot;light_img&quot;,&quot;light_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_standard_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_name_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_color_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num_g" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-name-num="damage_num_g" style="color: red;  white-space: pre-wrap;"></td>
+<td data-id="item_id_g_gj1" style=" white-space: pre-wrap;"></td>
+<td data-select="item_name_g_gj1" style="position: relative;  white-space: pre-wrap;"><span></span><button type="button" class="btn btn-primary" onclick="selectproduct(this);">推荐产品</button></td>
+<td data-name="sd_unit_price_g_gj1" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-name="sd_oq_g_gj1" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-use="use_oq_g_gj1" style=" white-space: pre-wrap;"></td>
+<td data-imge="electrical_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/electrical_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="electrical_img" name="electrical_img" onclick="imgUpload(this,$(this).parent(),&quot;electrical_img&quot;,&quot;electrical_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_name_d" style=" white-space: pre-wrap;"></td>
+<td data-name="item_standard_d" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num_d" style=" white-space: pre-wrap;"></td>
+<td data-name-num="damage_num_d" style="color: red;  white-space: pre-wrap;"></td>
+<td data-id="item_id_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-select="item_name_d_gj1" style="position: relative;  white-space: pre-wrap;"><span></span><button type="button" class="btn btn-primary" onclick="selectproduct(this);">推荐产品</button></td>
+<td data-name="sd_unit_price_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-name="sd_oq_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-use="use_oq_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-client="corp_sim_name" style="position: relative;  white-space: pre-wrap;">成都赛宇张零柯</td>
+<td data-id="customer_id" style=" white-space: pre-wrap;"><span>CS1C003141</span></td>
+<td data-name="sd_order_id" style=" white-space: pre-wrap;">TJ000002</td>
+<td data-id="seeds_id" style=" white-space: pre-wrap;"><span>2</span></td>
+</tr>
+<tr>
+<td style=" white-space: pre-wrap;"><button type="button" class="btn btn-primary">保存</button><button type="button" class="btn btn-primary">删除</button></td>
+<td data-name="ivt_oper_listing" style="display: none;  white-space: pre-wrap;">TJ000002</td>
+<td data-name="bx_oper_listing" style="display: none;  white-space: pre-wrap;"></td>
+<td data-readonly="work_state" style=" white-space: pre-wrap;">运行中</td>
+<td data-name="position_big" style=" white-space: pre-wrap;">过道</td>
+<td data-name="position" style=" white-space: pre-wrap;">走廊</td>
+<td data-imge="position_big_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/position_big_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="position_big_img" name="position_big_img" onclick="imgUpload(this,$(this).parent(),&quot;position_big_img&quot;,&quot;position_big_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-imge="itemName_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/itemName_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="itemName_img" name="itemName_img" onclick="imgUpload(this,$(this).parent(),&quot;itemName_img&quot;,&quot;itemName_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_brand" style=" white-space: pre-wrap;"></td>
+<td data-name="item_name" style=" white-space: pre-wrap;"></td>
+<td data-name="item_standard" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-imge="light_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/light_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="light_img" name="light_img" onclick="imgUpload(this,$(this).parent(),&quot;light_img&quot;,&quot;light_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_standard_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_name_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_color_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num_g" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-name-num="damage_num_g" style="color: red;  white-space: pre-wrap;"></td>
+<td data-id="item_id_g_gj1" style=" white-space: pre-wrap;"></td>
+<td data-select="item_name_g_gj1" style="position: relative;  white-space: pre-wrap;"><span></span><button type="button" class="btn btn-primary" onclick="selectproduct(this);">推荐产品</button></td>
+<td data-name="sd_unit_price_g_gj1" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-name="sd_oq_g_gj1" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-use="use_oq_g_gj1" style=" white-space: pre-wrap;"></td>
+<td data-imge="electrical_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/electrical_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="electrical_img" name="electrical_img" onclick="imgUpload(this,$(this).parent(),&quot;electrical_img&quot;,&quot;electrical_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_name_d" style=" white-space: pre-wrap;"></td>
+<td data-name="item_standard_d" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num_d" style=" white-space: pre-wrap;"></td>
+<td data-name-num="damage_num_d" style="color: red;  white-space: pre-wrap;"></td>
+<td data-id="item_id_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-select="item_name_d_gj1" style="position: relative;  white-space: pre-wrap;"><span></span><button type="button" class="btn btn-primary" onclick="selectproduct(this);">推荐产品</button></td>
+<td data-name="sd_unit_price_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-name="sd_oq_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-use="use_oq_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-client="corp_sim_name" style="position: relative;  white-space: pre-wrap;">成都赛宇张零柯</td>
+<td data-id="customer_id" style=" white-space: pre-wrap;"><span>CS1C003141</span></td>
+<td data-name="sd_order_id" style=" white-space: pre-wrap;">TJ000002</td>
+<td data-id="seeds_id" style=" white-space: pre-wrap;"><span>2</span></td>
+</tr>
+<tr>
+<td style=" white-space: pre-wrap;"><button type="button" class="btn btn-primary">保存</button><button type="button" class="btn btn-primary">删除</button></td>
+<td data-name="ivt_oper_listing" style="display: none;  white-space: pre-wrap;">TJ000002</td>
+<td data-name="bx_oper_listing" style="display: none;  white-space: pre-wrap;"></td>
+<td data-readonly="work_state" style=" white-space: pre-wrap;">运行中</td>
+<td data-name="position_big" style=" white-space: pre-wrap;">过道</td>
+<td data-name="position" style=" white-space: pre-wrap;">走廊</td>
+<td data-imge="position_big_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/position_big_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="position_big_img" name="position_big_img" onclick="imgUpload(this,$(this).parent(),&quot;position_big_img&quot;,&quot;position_big_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-imge="itemName_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/itemName_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="itemName_img" name="itemName_img" onclick="imgUpload(this,$(this).parent(),&quot;itemName_img&quot;,&quot;itemName_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_brand" style=" white-space: pre-wrap;"></td>
+<td data-name="item_name" style=" white-space: pre-wrap;"></td>
+<td data-name="item_standard" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-imge="light_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/light_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="light_img" name="light_img" onclick="imgUpload(this,$(this).parent(),&quot;light_img&quot;,&quot;light_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_standard_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_name_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_color_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num_g" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-name-num="damage_num_g" style="color: red;  white-space: pre-wrap;"></td>
+<td data-id="item_id_g_gj1" style=" white-space: pre-wrap;"></td>
+<td data-select="item_name_g_gj1" style="position: relative;  white-space: pre-wrap;"><span></span><button type="button" class="btn btn-primary" onclick="selectproduct(this);">推荐产品</button></td>
+<td data-name="sd_unit_price_g_gj1" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-name="sd_oq_g_gj1" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-use="use_oq_g_gj1" style=" white-space: pre-wrap;"></td>
+<td data-imge="electrical_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/electrical_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="electrical_img" name="electrical_img" onclick="imgUpload(this,$(this).parent(),&quot;electrical_img&quot;,&quot;electrical_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_name_d" style=" white-space: pre-wrap;"></td>
+<td data-name="item_standard_d" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num_d" style=" white-space: pre-wrap;"></td>
+<td data-name-num="damage_num_d" style="color: red;  white-space: pre-wrap;"></td>
+<td data-id="item_id_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-select="item_name_d_gj1" style="position: relative;  white-space: pre-wrap;"><span></span><button type="button" class="btn btn-primary" onclick="selectproduct(this);">推荐产品</button></td>
+<td data-name="sd_unit_price_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-name="sd_oq_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-use="use_oq_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-client="corp_sim_name" style="position: relative;  white-space: pre-wrap;">成都赛宇张零柯</td>
+<td data-id="customer_id" style=" white-space: pre-wrap;"><span>CS1C003141</span></td>
+<td data-name="sd_order_id" style=" white-space: pre-wrap;">TJ000002</td>
+<td data-id="seeds_id" style=" white-space: pre-wrap;"><span>2</span></td>
+</tr>
+<tr>
+<td style=" white-space: pre-wrap;"><button type="button" class="btn btn-primary">保存</button><button type="button" class="btn btn-primary">删除</button></td>
+<td data-name="ivt_oper_listing" style="display: none;  white-space: pre-wrap;">TJ000002</td>
+<td data-name="bx_oper_listing" style="display: none;  white-space: pre-wrap;"></td>
+<td data-readonly="work_state" style=" white-space: pre-wrap;">运行中</td>
+<td data-name="position_big" style=" white-space: pre-wrap;">过道</td>
+<td data-name="position" style=" white-space: pre-wrap;">走廊</td>
+<td data-imge="position_big_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/position_big_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="position_big_img" name="position_big_img" onclick="imgUpload(this,$(this).parent(),&quot;position_big_img&quot;,&quot;position_big_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-imge="itemName_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/itemName_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="itemName_img" name="itemName_img" onclick="imgUpload(this,$(this).parent(),&quot;itemName_img&quot;,&quot;itemName_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_brand" style=" white-space: pre-wrap;"></td>
+<td data-name="item_name" style=" white-space: pre-wrap;"></td>
+<td data-name="item_standard" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-imge="light_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/light_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="light_img" name="light_img" onclick="imgUpload(this,$(this).parent(),&quot;light_img&quot;,&quot;light_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_standard_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_name_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_color_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num_g" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-name-num="damage_num_g" style="color: red;  white-space: pre-wrap;"></td>
+<td data-id="item_id_g_gj1" style=" white-space: pre-wrap;"></td>
+<td data-select="item_name_g_gj1" style="position: relative;  white-space: pre-wrap;"><span></span><button type="button" class="btn btn-primary" onclick="selectproduct(this);">推荐产品</button></td>
+<td data-name="sd_unit_price_g_gj1" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-name="sd_oq_g_gj1" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-use="use_oq_g_gj1" style=" white-space: pre-wrap;"></td>
+<td data-imge="electrical_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/electrical_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="electrical_img" name="electrical_img" onclick="imgUpload(this,$(this).parent(),&quot;electrical_img&quot;,&quot;electrical_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_name_d" style=" white-space: pre-wrap;"></td>
+<td data-name="item_standard_d" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num_d" style=" white-space: pre-wrap;"></td>
+<td data-name-num="damage_num_d" style="color: red;  white-space: pre-wrap;"></td>
+<td data-id="item_id_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-select="item_name_d_gj1" style="position: relative;  white-space: pre-wrap;"><span></span><button type="button" class="btn btn-primary" onclick="selectproduct(this);">推荐产品</button></td>
+<td data-name="sd_unit_price_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-name="sd_oq_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-use="use_oq_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-client="corp_sim_name" style="position: relative;  white-space: pre-wrap;">成都赛宇张零柯</td>
+<td data-id="customer_id" style=" white-space: pre-wrap;"><span>CS1C003141</span></td>
+<td data-name="sd_order_id" style=" white-space: pre-wrap;">TJ000002</td>
+<td data-id="seeds_id" style=" white-space: pre-wrap;"><span>2</span></td>
+</tr>
+<tr>
+<td style=" white-space: pre-wrap;"><button type="button" class="btn btn-primary">保存</button><button type="button" class="btn btn-primary">删除</button></td>
+<td data-name="ivt_oper_listing" style="display: none;  white-space: pre-wrap;">TJ000002</td>
+<td data-name="bx_oper_listing" style="display: none;  white-space: pre-wrap;"></td>
+<td data-readonly="work_state" style=" white-space: pre-wrap;">运行中</td>
+<td data-name="position_big" style=" white-space: pre-wrap;">过道</td>
+<td data-name="position" style=" white-space: pre-wrap;">走廊</td>
+<td data-imge="position_big_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/position_big_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="position_big_img" name="position_big_img" onclick="imgUpload(this,$(this).parent(),&quot;position_big_img&quot;,&quot;position_big_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-imge="itemName_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/itemName_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="itemName_img" name="itemName_img" onclick="imgUpload(this,$(this).parent(),&quot;itemName_img&quot;,&quot;itemName_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_brand" style=" white-space: pre-wrap;"></td>
+<td data-name="item_name" style=" white-space: pre-wrap;"></td>
+<td data-name="item_standard" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-imge="light_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/light_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="light_img" name="light_img" onclick="imgUpload(this,$(this).parent(),&quot;light_img&quot;,&quot;light_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_standard_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_name_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_color_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num_g" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-name-num="damage_num_g" style="color: red;  white-space: pre-wrap;"></td>
+<td data-id="item_id_g_gj1" style=" white-space: pre-wrap;"></td>
+<td data-select="item_name_g_gj1" style="position: relative;  white-space: pre-wrap;"><span></span><button type="button" class="btn btn-primary" onclick="selectproduct(this);">推荐产品</button></td>
+<td data-name="sd_unit_price_g_gj1" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-name="sd_oq_g_gj1" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-use="use_oq_g_gj1" style=" white-space: pre-wrap;"></td>
+<td data-imge="electrical_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/electrical_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="electrical_img" name="electrical_img" onclick="imgUpload(this,$(this).parent(),&quot;electrical_img&quot;,&quot;electrical_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_name_d" style=" white-space: pre-wrap;"></td>
+<td data-name="item_standard_d" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num_d" style=" white-space: pre-wrap;"></td>
+<td data-name-num="damage_num_d" style="color: red;  white-space: pre-wrap;"></td>
+<td data-id="item_id_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-select="item_name_d_gj1" style="position: relative;  white-space: pre-wrap;"><span></span><button type="button" class="btn btn-primary" onclick="selectproduct(this);">推荐产品</button></td>
+<td data-name="sd_unit_price_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-name="sd_oq_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-use="use_oq_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-client="corp_sim_name" style="position: relative;  white-space: pre-wrap;">成都赛宇张零柯</td>
+<td data-id="customer_id" style=" white-space: pre-wrap;"><span>CS1C003141</span></td>
+<td data-name="sd_order_id" style=" white-space: pre-wrap;">TJ000002</td>
+<td data-id="seeds_id" style=" white-space: pre-wrap;"><span>2</span></td>
+</tr>
+<tr>
+<td style=" white-space: pre-wrap;"><button type="button" class="btn btn-primary">保存</button><button type="button" class="btn btn-primary">删除</button></td>
+<td data-name="ivt_oper_listing" style="display: none;  white-space: pre-wrap;">TJ000002</td>
+<td data-name="bx_oper_listing" style="display: none;  white-space: pre-wrap;"></td>
+<td data-readonly="work_state" style=" white-space: pre-wrap;">运行中</td>
+<td data-name="position_big" style=" white-space: pre-wrap;">过道</td>
+<td data-name="position" style=" white-space: pre-wrap;">走廊</td>
+<td data-imge="position_big_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/position_big_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="position_big_img" name="position_big_img" onclick="imgUpload(this,$(this).parent(),&quot;position_big_img&quot;,&quot;position_big_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-imge="itemName_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/itemName_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="itemName_img" name="itemName_img" onclick="imgUpload(this,$(this).parent(),&quot;itemName_img&quot;,&quot;itemName_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_brand" style=" white-space: pre-wrap;"></td>
+<td data-name="item_name" style=" white-space: pre-wrap;"></td>
+<td data-name="item_standard" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-imge="light_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/light_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="light_img" name="light_img" onclick="imgUpload(this,$(this).parent(),&quot;light_img&quot;,&quot;light_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_standard_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_name_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_color_g" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num_g" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-name-num="damage_num_g" style="color: red;  white-space: pre-wrap;"></td>
+<td data-id="item_id_g_gj1" style=" white-space: pre-wrap;"></td>
+<td data-select="item_name_g_gj1" style="position: relative;  white-space: pre-wrap;"><span></span><button type="button" class="btn btn-primary" onclick="selectproduct(this);">推荐产品</button></td>
+<td data-name="sd_unit_price_g_gj1" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-name="sd_oq_g_gj1" data-nm="num" style=" white-space: pre-wrap;"></td>
+<td data-use="use_oq_g_gj1" style=" white-space: pre-wrap;"></td>
+<td data-imge="electrical_img" style="position: relative;  white-space: pre-wrap;"><div style="display: inline-block;"><button type="button" class="btn btn-primary kantu" onclick="tijian.showImg(&quot;../001/tijianimg/TJ000002/electrical_img.jpg&quot;,1)">看图</button></div><div class="hoverdiv" style="display: inline-block;"><input type="text" id="electrical_img" name="electrical_img" onclick="imgUpload(this,$(this).parent(),&quot;electrical_img&quot;,&quot;electrical_img&quot;)" style="opacity:0;left: 0;top: 0;width: 100%;height: 100%;position: absolute;cursor: pointer;">上传图片</div></td>
+<td data-name="item_name_d" style=" white-space: pre-wrap;"></td>
+<td data-name="item_standard_d" style=" white-space: pre-wrap;"></td>
+<td data-name="item_num_d" style=" white-space: pre-wrap;"></td>
+<td data-name-num="damage_num_d" style="color: red;  white-space: pre-wrap;"></td>
+<td data-id="item_id_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-select="item_name_d_gj1" style="position: relative;  white-space: pre-wrap;"><span></span><button type="button" class="btn btn-primary" onclick="selectproduct(this);">推荐产品</button></td>
+<td data-name="sd_unit_price_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-name="sd_oq_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-use="use_oq_d_gj1" style=" white-space: pre-wrap;"></td>
+<td data-client="corp_sim_name" style="position: relative;  white-space: pre-wrap;">成都赛宇张零柯</td>
+<td data-id="customer_id" style=" white-space: pre-wrap;"><span>CS1C003141</span></td>
+<td data-name="sd_order_id" style=" white-space: pre-wrap;">TJ000002</td>
+<td data-id="seeds_id" style=" white-space: pre-wrap;"><span>2</span></td>
+</tr>
+</tbody>
+</table></div>
+<script type="text/javascript" src="js_lib/jquery.11.js"></script>
+<script type="text/javascript">
+<!--
+$(".divthead").css("height",$("thead:eq(0)").height()+"px");
+$("table:eq(0)").html("<thead>"+$("thead").html()+"<thead>");
+$(window).scroll(function () {
+    //$(window).scrollTop()这个方法是当前滚动条滚动的距离
+    //$(window).height()获取当前窗体的高度
+    //$(document).height()获取当前文档的高度
+    var bot = 50; //bot是底部距离的高度
+    if($(window).scrollTop()==0){
+    	$(".divthead").hide();
+    }else{
+    	$(".divthead").show();
+    }
+    $(".divthead").css("left",($(document).scrollLeft()*-1)+"px");
+    if ((bot + $(window).scrollTop()) >= ($(document).height() - $(window).height())) {
+       //当底部基本距离+滚动的高度〉=文档的高度-窗体的高度时；
+        //我们需要去异步加载数据了
+    }
+});
+-->
+</script>
+</body>
+</html>

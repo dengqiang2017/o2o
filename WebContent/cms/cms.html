@@ -1,0 +1,41 @@
+  <div role="complementary" id="xuanxian">
+  <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" style="z-index: 99999;">
+<div class="panel panel-primary" style="z-index: 99999; position: absolute;float: right;width: 160px;">
+<div class="panel-heading">
+    <h3 class="panel-title" style="text-align: center;">操作项</h3>
+  </div>
+<div class="panel-body">
+	<div class="form-group">
+	<label>颜色</label>
+	<input class="form-control" type="color">
+	</div>
+	<div class="form-group">
+	<label>字体大小</label>
+	<input class="form-control" data-num="num" id="fontsize" type="number">
+	</div>
+	<div class="form-group">
+	<label>字体</label>
+	<label>
+	<input name="fontweight" value="bold" type="radio">加粗
+	</label>
+	<label>
+	<input name="fontweight" value="normal" type="radio">正常
+	</label>
+	</div>
+	<div style="line-height: 45px;">
+<button type="button" class="btn btn-primary" onclick="cmsjs.setTitle();">设置页面标题</button>
+<button type="button" class="btn btn-primary" onclick="cmsjs.setDesc();">设置页面描述</button>
+<button type="button" class="btn btn-primary" onclick="cmsjs.setGjc();">设置页面关键词</button>
+<button type="button" class="btn btn-primary" onclick="cmsjs.setBanner();">设置轮播图片</button>
+<!-- <button type="button" class="btn btn-primary" id="banner_a" onclick="cmsjs.setBanner();">设置轮播图片</button> -->
+<button type="button" class="btn btn-primary" onclick="cmsjs.savehtml();">保存页面内容</button>
+<button class="btn btn-danger" id="deltemp">注销本套官网</button>
+<a href="/employee.do" class="btn btn-primary">返回管理平台首页</a>
+<div style="word-break:break-all;line-height: 30px;color: red;">
+	操作提示:请编辑部分内容后先保存然后再操作,防止网络连接失败导致数据丢失!
+</div>
+</div>
+</div>
+</div>
+  </nav>
+  </div>

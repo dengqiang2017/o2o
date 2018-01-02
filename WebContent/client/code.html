@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="U-XA-Compatible" content="IE-edge">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <title>邀请客户注册</title>
+    <link rel="stylesheet" href="../pcxy/css/bootstrap.css">
+    <link rel="stylesheet" href="css/code.css">
+    <link rel="stylesheet" href="../css/popUpBox.css">
+    <script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+	<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script type="text/javascript" src="../pc/js/weixin/zepto.min.js"></script>
+    <script type="text/javascript" src="../js/popUpBox.js"></script>
+    <script type="text/javascript" src="../js/public.js"></script>
+	<script type="text/javascript" src="../pc/js/weixin/weixinShare.js"></script>
+</head>
+<body>
+<div class="header">
+    <a class="glyphicon glyphicon-chevron-left header_a pull-left" id="upage"></a> 邀请注册
+</div>
+<div class="body">
+       <h4 style="margin-top: 0;font-weight: bold;text-align: center;">打开微信扫一扫,立即注册!</h4>
+    <div class="code-box">
+        <img  src="" id="qrcode" class="img-responsive center-block">
+    </div>
+</div>
+<script type="text/javascript">
+<!--
+var com_id=common.getQueryString("com_id");
+var clerk_id=common.getQueryString("clerk_id");
+var lian="";
+var url=window.location.href.split("?")[0];
+if(window.location.href.indexOf("?")>0){
+	lian="&";
+}else{
+	lian="?";
+}
+$("#qrcode").error(function(){
+	$("#qrcode").unbind("error");
+	pop_up_box.loadWait();
+	$.get('../employee/generateRegisterQRCode.do',{
+		"logo":"pc/image/logo.png",
+		"width":300,
+		"height":300,
+		"image_width":90,
+		"image_height":90
+	},function(dataimg){
+// 		pop_up_box.loadWaitClose();
+		pop_up_box.dataHandling("生成中....");
+		if (dataimg.success) {
+//				window.location.href=url+"?com_id="+$.trim(data.com_id)+"&clerk_id="+$.trim(data.clerk_id)+"&ver="+Math.random();
+		setTimeout(function(){
+		pop_up_box.loadWaitClose();
+			$("#qrcode").attr("src",dataimg.msg);
+			share();
+		}, 5000);		
+		}
+	});
+});
+if (com_id&&clerk_id) {
+	$("#qrcode").parent().show();
+	$("#qrcode").attr("src","../"+com_id+"/register/"+clerk_id+"/register.jpg?ver="+Math.random());
+	share();
+	$.get("../employee/getEmployee.do",function(data){
+		pop_up_box.loadWaitClose();
+		if(data.clerk_id){
+			$("#upage").attr("href","../employee.do");
+		}else{
+			$("#upage").click(function(){
+				history.go(-1);
+			});
+		}
+	});
+}else{
+	pop_up_box.loadWait();
+	$.get("../employee/getEmployee.do",function(data){
+		pop_up_box.loadWaitClose();
+		if(data.clerk_id){
+// 			$("#qrcode").attr("src","../"+data.com_id+"/register/"+data.clerk_id+"/register.jpg?ver="+Math.random());
+			window.location.href=url+"?com_id="+$.trim(data.com_id)+"&clerk_id="+$.trim(data.clerk_id)+"&ver="+Math.random();
+		}
+	});
+}
+function share(){
+weixinShare.init('邀请注册','邀请客户注册',document.getElementById("qrcode").src);
+}
+//-->
+</script>
+</body>
+</html>

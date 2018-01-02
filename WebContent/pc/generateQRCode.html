@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+<meta charset="UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="viewport"
+	content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+<meta name="description" content="用户可以根据自己的实际情况,自定义二维码宽高,自主上传二维码中显示的图片,自主定义生成二维码的内容">
+<meta name="keywords" content="二维码生成,二维码自定义生成,二维码带图片">
+<meta name="renderer" content="webkit">
+<meta name="force-rendering" content="webkit">
+<title>二维码生成工具-牵引互联</title>
+<link rel="stylesheet" href="../pcxy/css/bootstrap.css?ver=132512">
+<link rel="stylesheet" href="../css/popUpBox.css">
+<link rel="stylesheet" href="../pc/css/printerweima.css">
+<script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+<script type="text/javascript" src="../js_lib/jquery.cookie.js"></script>
+<script type="text/javascript" src="../js_lib/jquery.jqprint.js"></script>
+<script type="text/javascript" src="../js_lib/jquery-migrate-1.1.0.js"></script>
+<script type="text/javascript" src="../js/popUpBox.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../js/ajaxfileupload.js"></script>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="../pc/js/weixin/zepto.min.js"></script>
+<script type="text/javascript" src="../pc/js/weixin/weixinShare.js"></script>
+<script type="text/javascript">
+<!--
+if(!IsPC()){
+	window.location.href="generateQRCodePhone.html";
+}
+//-->
+</script>
+<style type="text/css">
+	/*-----conmment-----*/
+	*{font-family:'Microsoft YaHei',Arial,Helvetica,sans-serif;font-size: 18px;color: #000000;padding: 0;margin: 0}
+	a{text-decoration: none}
+	a:hover{text-decoration: none}
+	ul{margin-bottom: 0}
+	ul>li{list-style: none}
+	body{padding-top: 0 !important;padding-bottom: 0 !important;}
+	.bgT{background-color: #017AA5;position: fixed;left: 0;top: 0;right: 0;bottom: 0;z-index: -1}
+    .header {background-color: #FFFFFF;height: 90px;border-bottom: 1px solid #dddddd}
+	.center {width: 1140px;margin: auto;padding: 20px 0;text-align: center;position: relative;line-height: 53px;font-size: 23px;}
+	.center img {width: 160px;}
+	.secition_title{color: #0091E1;font-size: 25px;text-align: center;font-weight: bold}
+	.left{width: 60%;float: left}
+	.left li{margin-bottom: 20px}
+	.right{width: 40%;float: left}
+	.right li{margin-bottom:30px;}
+	.right>ul>li>div{float: left}
+	.word{float: left;margin-right: 50px;width: 184px}
+	.operate{float: left;width: 300px}
+	.operate input{width: 100%;}
+	.center-left{position: absolute;top:26px}
+	.pro-num-K{width: 300px;display: inline-block;height: 32px;border: 1px solid #999;border-radius: 2px;box-shadow: 0 0 2px rgba(0,0,0,0.1) inset;padding: 5px;position: relative;}
+    .add{width: 30px;height: 100%;right: 0;top: 0;text-align: center;line-height: 30px;border-left: 1px solid #999;position: absolute;cursor: pointer;display: block;}
+    .sub{width: 30px;height: 100%;left: 0;top: 0;text-align: center;line-height: 30px;border-right: 1px solid #999;position: absolute;cursor: pointer;display: block;}
+	.pro-num-K input{padding: 0 30px;width: 100%;height: 100%;border: none;text-align: center;}
+	.right_pic{width: 180px;height: 180px}
+	#printdiv{width: 300px;height: 300px;border: 1px solid; }
+	.printitem{width:100%;height: 100%}
+	#printdiv img{width:100%;height: 100%}
+	.right_span{position: relative;margin-top: 147px;}
+	.right_word{margin-right: 50px}
+	.right_pic{margin-right: 50px}
+	.head_portrait_amend {position: absolute;left: 0;top: 0;right: 0;bottom: 0;}
+	.head_portrait_amend>.ct {position: absolute;left: 0;top: 0;width: 100%;height: 100%;opacity: 0;}
+	.secition{margin-top: 30px}
+	.right_span input{position: absolute;left: 0;top: 0;width: 100%;height: 100%;opacity: 0;}
+	.secition_footer{width: 466px;margin: 30px auto;}
+	#cop{text-align: center;font-size: 14px;color: #999}
+	.secition_footer button:nth-child(1){background-color: #1A7576;border-radius: 0;width: 200px;margin-right: 50px}
+	.secition_footer button:nth-child(2){background-color: #ffffff;border-radius: 0;color: #1A7576;border: 1px solid #1A7576;width: 200px}
+</style>
+</head>
+<body>
+     <div class="header">
+		 <div class="center clearfix">
+			 <div class="center-left">
+				 <a href="index.html"><img class="img-responsive" src="images/logo.png"></a>
+			 </div>
+			 二维码生成工具
+		 </div>
+	 </div>
+	 <div class="secition container">
+		 <div class="secition_contant clearfix">
+			 <div class="left">
+				 <ul>
+					 <li class="clearfix">
+						 <div class="word">二维码的宽度</div>
+						 <div class="operate">
+							 <div class="pro-num-K">
+								 <span class="add">+</span> <span class="sub">-</span> <input
+									 type="tel" class="num" data-number="n" value="200" id="wd"
+									 placeholder="二维码的宽度"
+									 style="text-align: center; height: 100%; outline: none; border: none">
+							 </div>
+						 </div>
+					 </li>
+					 <li class="clearfix">
+						 <div class="word">二维码的高度</div>
+						 <div class="operate">
+							 <div class="pro-num-K">
+								 <span class="add">+</span> <span class="sub">-</span> <input
+									 type="tel" class="num" data-number="n" value="200" id="hd"
+									 placeholder="二维码的高度"
+									 style="text-align: center; height: 100%; outline: none; border: none">
+							 </div>
+						 </div>
+					 </li>
+					 <li class="clearfix">
+						 <div class="word">二维码中logo的宽度</div>
+						 <div class="operate">
+							 <div class="pro-num-K">
+								 <span class="add">+</span> <span class="sub">-</span> <input
+									 type="tel" class="num" data-number="n" value="50" id="imgwd"
+									 placeholder="二维码中logo的宽度"
+									 style="text-align: center; height: 100%; outline: none; border: none">
+							 </div>
+						 </div>
+					 </li>
+					 <li class="clearfix">
+						 <div class="word">二维码中logo的高度</div>
+						 <div class="operate">
+							 <div class="pro-num-K">
+								 <span class="add">+</span> <span class="sub">-</span> <input
+									 type="tel" class="num" data-number="n" value="50" id="imghd"
+									 placeholder="二维码中logo的高度"
+									 style="text-align: center; height: 100%; outline: none; border: none">
+							 </div>
+						 </div>
+					 </li>
+					 <li class="clearfix">
+						 <div class="word">logo路径</div>
+						 <div class="operate">
+							 <input type="text" id="logo" placeholder="为空时使用系统logo,反之使用指定图片" class="form-control">
+						 </div>
+					 </li>
+					 <li class="clearfix">
+						 <div class="word">打印页面高度</div>
+						 <div class="operate">
+							 <div class="pro-num-K">
+								 <span class="add">+</span> <span class="sub">-</span> <input
+									 type="tel" class="num" data-number="n" value="240" id="imgymhd"
+									 placeholder="打印页面高度"
+									 style="text-align: center; height: 100%; outline: none; border: none">
+							 </div>
+						 </div>
+					 </li>
+					 <li class="clearfix">
+						 <div class="word">打印页面左边距</div>
+						 <div class="operate">
+							 <div class="pro-num-K">
+								 <span class="add">+</span> <span class="sub">-</span> <input
+									 type="tel" class="num" data-number="n" value="0" id="imgymwd"
+									 placeholder="打印页面高度"
+									 style="text-align: center; height: 100%; outline: none; border: none">
+							 </div>
+						 </div>
+					 </li>
+					 <li class="clearfix">
+						 <div class="word">需要生成的二维码内容</div>
+						 <div class="operate">
+						<textarea id="qrURL" rows="7" placeholder="需要生成的二维码内容" class="form-control"></textarea>
+						 </div>
+					 </li>
+				 </ul>
+			 </div>
+			 <div class="right">
+				 <ul>
+					 <li class="clearfix">
+						 <div class="right_word">LOGO</div>
+						 <div class="right_pic">
+							 <img id="logoimg" src="image/logo.png" style="width: 100%;height: 100%">
+						 </div>
+						 <div class="right_span">
+							 <a class="head_portrait_amend" style="display: none;" id="scxq"></a>
+							 <button type="button" class="btn btn-primary" style="margin-right: 0">更换</button>
+							 <a class="head_portrait_amend" id="upload-btn">
+								 <input type="hidden" name="typeImg" id="filePath">
+								 <input type="file" class="ct input-upload" accept="image/*" name="imgFile" id="imgFile" onchange="imgUpload(this);">
+							 </a>
+						 </div>
+					 </li>
+					 <li class="clearfix">
+						 <div class="right_word" style="margin-right: 66px">预览</div>
+						 <div id="printdiv">
+							 <div class="printitem">
+							 <img src="" style="margin: 0px;" id="qrcode">
+								 </div>
+						 </div>
+					</li>
+				 </ul>
+			 </div>
+		 </div>
+		 <div class="secition_footer center-block">
+			 <button class="btn btn-primary btn-lg" id="getrem">生成二维码</button>
+			 <button class="btn btn-primary btn-lg" id="beginprint">打印二维码</button>
+		 </div>
+		 <div style="display: none;">
+		 1.用截图工具比如QQ快捷键截图另存，再上传新图片
+		 </div>
+	 </div>
+</body>
+<script type="text/javascript" src="../pc/js/generateQRCode.js"></script>
+</html>

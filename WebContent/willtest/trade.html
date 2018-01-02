@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="U-XA-Compatible" content="IE-edge">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+        <meta name="description" content="威尔检测技术股份有限公司是一家专业从事饲料、食品、农产品及环境监测的第三方权威检测机构。威尔检测严格遵守《检验和校准实验室能力认可准则》运行，先后通过CNAS实验室认可、CMA计量认证、CMAF食品检验机构资质认定、CATL农产品质量安全检测机构评审">
+	<meta name="keywords" content="检测,饲料,食品,农产品,环境监测,CNAS实验室,CMA计量认证,CMAF食品检验机构,CATL农产品质量安全检测">
+    <title>威尔检测-行业资讯</title>
+    <link rel="stylesheet" href="../pcxy/css/bootstrap.css">
+    <link rel="stylesheet" href="css/trade.css">
+    <link rel="stylesheet" href="css/popUpBox.css">
+    <link rel="stylesheet" href="css/header.css">
+    <style type="text/css">
+    @media ( max-width : 771px) {
+    .container{
+    width: 100%;padding: 0;
+    }
+    .title{font-size: 14px;}
+    .left01{width: 75px !important;}
+     #content {
+display:block;/*内联对象需加*/
+width:31em;font-size:12px;
+word-break:keep-all;/* 不换行 */
+white-space:nowrap;/* 不换行 */
+overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+}
+ #contentHtml img{width: 100%;}
+    }
+    @media ( min-width : 771px) {
+    .container{margin-top: 110px;}
+    #content {
+display:block;/*内联对象需加*/
+width:31em;
+word-break:keep-all;/* 不换行 */
+white-space:nowrap;/* 不换行 */
+overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+}
+    }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div id="list">
+        <div>
+           <div class="col-xs-4 col-md-4 col-lg-2">
+               <div class="left01 center-block">
+                   <p style="margin-top: 11px;" class="marbottom" id="yearmoth">2016-08</p>
+                   <p style="font-size: 33px" id="day">08</p>
+               </div>
+               <p class="fontsize" style="text-align: center;margin-top: 10px;color: #989898;display: none;">点击：161/次</p>
+           </div>
+           <div class="col-xs-8 col-md-8 col-lg-10">
+               <h3 style="margin-top: 0" class="title"></h3>
+               <div id="content"></div>
+           </div>
+           <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="col-lg-4" style="display: none;">
+        <div class="right">
+        <div class="right02">
+            <ul>
+                <li>
+                    <div class="imgk"></div>
+                    <p>这里是标题</p>
+                </li>
+                <li>
+                    <div class="imgk"></div>
+                    <p>这里是标题</p>
+                </li>
+            </ul>
+        </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<!-- 分页 -->
+<div class="cut" style="display: none">
+      <button type="button" class="btn up" style="background-color: #7EC5BD;float: left;color: #ffffff">上一页</button>
+    <div class="cut_box">
+        <ul>
+            <li class="active2">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li style="margin-right: 0">6</li>
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+    <button type="button" class="btn down" style="background-color: #7EC5BD;color: #ffffff">下一页</button>
+    <div class="clearfix"></div>
+</div>
+<div class="modal fade" id="mymodal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-box">
+                  <div>
+                  <h3 style="margin-top: 0;font-size: 22px;font-weight: 400;float: left;width: 92%;" id="title"></h3>
+                  <span class="glyphicon glyphicon-remove" style="float: right;font-size: 20px;"></span>
+                  <div class="clearfix"></div>
+                  </div>
+                  <div class="fg"></div>
+                  <p style="font-size: 14px;" >发布时间：<span id="releaseTime"></span> &nbsp;&nbsp;&nbsp;发布人：<span id="publisher"></span></p>
+                  <div id="contentHtml">
+                  </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+<!-- <script type="text/javascript" src="../js_lib/jquery.lightSlider.min.js"></script> -->
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../js/public.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/popUpBox.js"></script>
+<script type="text/javascript" src="../js/weixin/zepto.min.js"></script>
+<script type="text/javascript" src="../js/weixin/weixinShare.js"></script>
+<script type="text/javascript" src="../js/ajaxfileupload.js"></script>
+<script type="text/javascript" src="js/header.js"></script>
+<script type="text/javascript" src="js/trade.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+/*-----conmment-----*/
+.navbar{font-family:'Microsoft YaHei',Arial,Helvetica,sans-serif;font-size: 18px;color: #000000;padding: 0;margin: 0}
+a{text-decoration: none}
+a:hover{text-decoration: none}
+ul{margin-bottom: 0}
+ul>li{list-style: none}
+body{padding-top: 0 !important;padding-bottom: 0 !important;}
+.bgT{background-color: #017AA5;position: fixed;left: 0;top: 0;right: 0;bottom: 0;z-index: -1}
+
+/*---------header--------*/
+.header{padding: 10px;color: #FFFFFF;text-align: center;background-color: #006766;}
+.header-phone{padding: 10px;color: #FFFFFF;text-align: center;background-color: #006766;}
+.header a{color: #FFFFFF;cursor: pointer}
+.header-phone a{color: #FFFFFF;cursor: pointer}
+.header_left{position: absolute;left: 10px;top:10px;}
+.header_right{position: absolute;right: 10px;top:10px;}
+
+/*--------footer---------*/
+.footer{text-align: center;padding: 5px;background-color: #FFFFFF;border-top:1px solid #dddddd;}
+.footer-phone{text-align: center;padding: 5px;background-color: #FFFFFF;border-top:1px solid #dddddd;left: 0;bottom:0;width: 100%;}
+.footer span{display: block;color: #656565;margin: auto;font-size: 20px}
+.footer span:nth-child(2){font-size: 14px}
+.footer a{text-decoration: none}
+.footer a:hover{text-decoration: none}
+.active{color: #177475 !important;}
+.footer-phone span{display: block;color: #656565;margin: auto}
+.footer-phone span:nth-child(2){font-size: 14px}
+#cop{
+	display: none;
+}
+#item_color{
+	font-size: 13px;
+}

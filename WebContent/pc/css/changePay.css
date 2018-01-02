@@ -1,0 +1,348 @@
+body{
+    font-family: arial,"Microsoft YaHei";
+    font-size: 12px;
+    color: #000;
+    text-align: left;
+    line-height: 150%;
+}
+*{
+    padding: 0;
+    margin: 0;
+}
+a {
+    text-decoration: none;
+    color: #666;
+    outline: none;
+}
+
+li{
+    list-style: none;
+}
+/*页面头部*/
+
+.header-simple {
+    margin: 0 0 20px 0;
+    border-bottom: 2px solid #222;
+}
+.screen990 {
+    width: 990px;
+    margin: 0 auto;
+}
+.clear {
+    zoom: 1;
+}
+
+.clear:after {
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+    overflow: hidden;
+    clear: both;
+}
+.header-simple .logo {
+    padding: 13px 0;
+}
+.left {
+    float: left;
+}
+.right {
+    float: right;
+}
+.header-simple .simple-items {
+    padding: 19px 0;
+}
+.header-simple .simple-items li {
+    padding: 0 10px 0 10px;
+    height: 28px;
+    line-height: 28px;
+}
+.header-simple .simple-items li.my-yoho {
+    width: 54px;
+    z-index: 1;
+}
+/*标题部分开始*/
+
+.cartnew-title {
+    width: 990px;
+    height: 52px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+.cartnew-title .step4 {
+    background-position: 0 -96px;
+}
+.cartnew-title h2 {
+    height: 32px;
+    width: 200px;
+    overflow: hidden;
+    text-indent: -3000px;
+    background: url(http://static.yohobuy.com/images/cart_logo.gif) no-repeat;
+    float: left;
+}
+.cartnew-title ul {
+    width: 446px;
+    height: 30px;
+    background: url(http://static.yohobuy.com/images/cartnew_flow.png) no-repeat top right;
+    float: right;
+}
+.cartnew-title li {
+    width: 176px;
+    height: 30px;
+    text-align: center;
+    color: #999;
+    float: left;
+}
+.cartnew-title li span {
+    display: block;
+    height: 15px;
+    padding: 15px 0px 0px 0px;
+    line-height: 15px;
+}
+.cartnew-title .end {
+    width: 94px;
+    text-align: right;
+}
+.cartnew-title .end .act {
+    background: url(http://static.yohobuy.com/images/cart_flow_black.gif) no-repeat top right;
+}
+/*标题结束*/
+
+.cartnew-main {
+    width: 990px;
+    zoom: 1;
+    margin: 0 auto;
+}
+.cartnew-pay {
+    border-top: 2px #000 solid;
+    padding: 20px;
+}
+.cartnew-pay h2 {
+    height: 40px;
+    padding: 0px 0px 0px 30px;
+    line-height: 40px;
+    color: #000;
+    font-size: 20px;
+    font-family: Arial,helvetica,sans-serif;
+    background: url(http://static.yohobuy.com/images/i_ok.png) no-repeat 0px 11px;
+}
+.cartnew-pay h3 {
+    height: 40px;
+    line-height: 40px;
+    font-weight: normal;
+    color: #666;
+    font-size: 12px;
+}
+.cartnew-pay h3 strong {
+    color: #E8044F;
+    font-size: 14px;
+}
+.cartnew-pay h4 {
+    height: 30px;
+    line-height: 30px;
+    color: #000;
+    font-size: 14px;
+}
+.yohopaywrapper {
+    width: 980px;
+    margin: 25px auto;
+    overflow: hidden;
+    border-top: 2px solid #d9d9d9;
+    padding-top: 19px;
+}
+.yohopaytitle {
+    margin-bottom: 27px;
+    overflow: hidden;
+}
+.yohopaytitle .word {
+    display: block;
+    float: left;
+    line-height: 32px;
+    font-size: 16px;
+    margin-right: 10px;
+}
+.yohopaytitle .paytypeimg {
+    float: left;
+}
+.yohopaytitle .paytypeimg img {
+    vertical-align: middle;
+    height: 30px;
+}
+img {
+    border: 0;
+    vertical-align: middle;
+    outline: none;
+}
+.yohopaycontent {
+    width: 100%;
+    overflow: hidden;
+}
+.paytypenavlist {
+    box-sizing: border-box;
+    width: 100%;
+    height: 40px;
+    padding-left: 40px;
+    border-bottom: 1px solid #d9d9d9;
+    margin-bottom: 34px;
+}
+.paytypenavlist .paytypenavitem {
+    cursor: pointer;
+    background-color: #ededed;
+    float: left;
+    height: 100%;
+    line-height: 40px;
+    padding-left: 13px;
+    padding-right: 13px;
+    margin-right: 18px;
+}
+.paytypenavlist .paytypenavitem.acttab {
+    border-top: 1px solid #d9d9d9;
+    border-left: 1px solid #d9d9d9;
+    border-right: 1px solid #d9d9d9;
+    background-color: #fff !important;
+}
+.paytypenavlist .paytypenavitem {
+    cursor: pointer;
+    background-color: #ededed;
+    float: left;
+    height: 100%;
+    line-height: 40px;
+    padding-left: 13px;
+    padding-right: 13px;
+    margin-right: 18px;
+}
+.yohopaytypelist {
+    width: 100%;
+    display: none;
+}
+.yohopaytypelist .yohopaydetail {
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid #d9d9d9;
+    width: 210px;
+    height: 53px;
+    line-height: 48px;
+    float: left;
+    margin-right: 45px;
+    margin-bottom: 31px;
+    text-align: center;
+}
+.choosedtag {
+    position: absolute;
+    display: none;
+    right: 0;
+    top: 0;
+    background-image: url("/images/pay/icon/choosed.png");
+    background-repeat: no-repeat;
+    width: 21px;
+    height: 21px;
+}
+.yohopaytypelist .yohopaydetail img {
+    vertical-align: middle;
+}
+.show {
+    display: block !important;
+}
+.yohopaytypelist .yohopaydetail.choosetype {
+    border: 2px solid #e12000;
+}
+.yohopaytypelist .yohopaydetail {
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid #d9d9d9;
+    width: 210px;
+    height: 53px;
+    line-height: 48px;
+    float: left;
+    margin-right: 45px;
+    margin-bottom: 31px;
+    text-align: center;
+}
+.choosedtag {
+    position: absolute;
+    display: none;
+    right: 0;
+    top: 0;
+    background-image: url("/images/pay/icon/choosed.png");
+    background-repeat: no-repeat;
+    width: 21px;
+    height: 21px;
+}
+.yohopaytypelist .yohopaydetail {
+    line-height: 48px;
+    text-align: center;
+}
+.yohopaybtnwrapper {
+    width: 100%;
+    border-top: 1px solid #d9d9d9;
+    padding-top: 31px;
+}
+.yohopaybtnwrapper .yohopaybtn {
+    outline: none;
+    background-image: url("/images/pay/icon/arrow.png");
+    background-repeat: no-repeat;
+    background-position: 191px center;
+    float: right;
+    width: 230px;
+    height: 40px;
+    line-height: 40px;
+    background-color: #da0040;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    font-weight: bold;
+    font-family: arial,"Microsoft YaHei" ! important;
+}
+.yohopaytypelist .yohopaydetail:hover {
+    border: 1px solid #e12000;
+}
+
+@media(max-width: 770px) {
+    .cartnew-title {
+        width:100%;
+        height: 52px;
+        overflow: hidden;
+        margin: 0 auto;
+    }
+    .cartnew-main {
+        width: 100%;
+        zoom: 1;
+        margin: 0 auto;
+    }
+    .cartnew-pay h3 {
+        height: 120px;
+        line-height: 40px;
+        font-weight: normal;
+        color: #666;
+        font-size: 12px;
+        margin-top: 30px;
+    }
+    .cartnew-pay h4 {
+        height: 60px;
+        line-height: 30px;
+        color: #000;
+        font-size: 14px;
+    }
+    .yohopaywrapper {
+        width: 100%;
+        margin: 25px auto;
+        overflow: hidden;
+        border-top: 2px solid #d9d9d9;
+        padding-top: 19px;
+    }
+    .yohopaytypelist .yohopaydetail {
+        box-sizing: border-box;
+        overflow: hidden;
+        position: relative;
+        border: 1px solid #d9d9d9;
+        width: 150px;
+        height: 53px;
+        line-height: 48px;
+        float: left;
+        margin-right: 45px;
+        margin-bottom: 31px;
+        text-align: center;
+    }
+}

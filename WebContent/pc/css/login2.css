@@ -1,0 +1,103 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: Microsoft YaHei;
+    font-size: 20px;
+}
+.header{
+    padding-top:50px ;
+    padding-bottom: 20px;
+    position: relative;
+}
+.logo>img{
+    width: 180px;
+    height: 180px;
+}
+.main{
+    width: 80%;
+    margin: auto;
+}
+.input_style{
+    border: 1px solid #dddddd;
+    padding: 7px;
+    border-radius: 5px;
+    color: #5BA04E;
+    overflow: hidden;
+}
+.label_border{
+    margin-bottom: 0;
+    border-right:1px solid #dddddd;
+    text-align: center;
+    width: 26%;
+    font-size: 14px;
+}
+.label_border>img{
+    height: 28px;
+}
+.input{
+    border: none;
+    outline: none;
+    color:#999999 ;
+    font-size: 17px;
+}
+.clear{
+    clear: both;
+}
+.coded_lock{
+    padding: 10px 0;
+}
+.coded_lock_left{
+    float: left;
+}
+.coded_lock_right{
+    float: right;
+}
+.btn_size{
+    background-color: #5CA04B;
+    color: #FFFFFF;
+    border-radius: 3px;
+    font-size: 20px;
+    margin-top: 60px;
+}
+.btn_size:hover{
+    color: #FFFFFF;
+}
+.btn_size2{
+    background-color: #FFFFFF;
+    border-radius: 3px;
+    font-size: 20px;
+    border: 1px solid #9d9d9d;
+    color: #9d9d9d;
+}
+.btn_size2:hover{
+    color: #9d9d9d;
+}
+
+.coded_checked{
+    float: left;
+    background-image: url("../images/02_checked.png");
+    width: 25px;
+    height: 25px;
+    background-size: 100% 100%;
+}
+.pro-check{
+    float: left;
+    height: 25px;
+    width: 25px;
+    background: url(../../pc/images/06_unchecked_l.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.a_style{
+    color: #006603;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    cursor: pointer;
+}
+.a_style:hover{
+    text-decoration: none;
+}
+.coded_lock_right>a{
+    text-decoration: none;
+}

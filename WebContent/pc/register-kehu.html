@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <title>客户注册</title>
+    <link href="../pcxy/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="../pcxy/css/global.css">
+    <link rel="stylesheet" href="../pcxy/css/lr.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<link rel="stylesheet" href="../css/popUpBox.css">
+<script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+ <script src="../pcxy/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js_lib/jquery.cookie.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../js/popUpBox.js"></script> 
+<script type="text/javascript" src="js/password.js"></script>
+<script type="text/javascript" src="js/register.js"></script>
+  </head>
+  <body>
+    <div class="bg"></div>
+    <div class="jumbotron myjumbotron">
+      <div class="container">
+        <div class="col-sm-4">
+          <div class="login-img"><img src="image/logo.png" alt="">
+            <h3  class="yysname"></h3>
+          </div>
+        </div>
+
+        <input type="hidden" value="customer" id="regType">
+        
+        <div class="col-sm-8">
+          <h2 class="col-sm-offset-3">客户注册</h2>
+          <form action='#' class='form-horizontal' role='form'>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">运营商</label>
+              <div class="col-sm-9">
+                <select class="form-control"> 
+                  <option>体验牵引</option> 
+                  <option>通威股份</option> 
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">账号</label>
+              <div class="col-sm-9">
+                <input type="tel" class="form-control" placeholder="请输入您的手机号" name="user_id" maxlength="11" data-number="num">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">密码</label>
+              <div class="col-sm-9">
+                <input type="password" class="form-control" placeholder="6-16位，由数字、字母和标点符号组成" name="user_password" maxlength="20">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">重复密码</label>
+              <div class="col-sm-9">
+                <input type="password" class="form-control" placeholder="请重复输入密码" name="confirmPwd" maxlength="20">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">验证码</label>
+              <div class="col-sm-9">
+                <div class="input-group">
+                  <input type="text" class="form-control" maxlength="6" name="verificationCode" disabled="disabled">
+                  <span class="input-group-btn">
+                        <button class="btn btn-success"  id="get_code" type="button">获取验证码</button>
+                    </span>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-9 col-sm-offset-3">
+                <div class="pull-left form-group">
+                  <div class="from-group">
+                    <input type="checkbox" id="check" checked="checked">
+                    <label for="check">我已阅读并同意<a href="#" style="color:#fff; text-decoration:underline;">《<span class="yysname"></span>用户协议》</a></label>
+                  </div>
+                </div>
+                <div class="pull-right"><a href="#"style="color:#fff;">忘记密码?</a></div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-9 col-sm-offset-3 lr-tips">
+                <span class="tips-red" id="msg"></span>
+              </div>
+            </div>
+          </form>
+          <p style="text-align:center;">
+            <a class="btn btn-style1" id="registerBtn">注册</a>
+            <a class="btn btn-style1" href="login-kehu.html">已有账号，立即登录</a>
+            <a class="btn btn-style1" href="index.html" role="button">返回入口</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

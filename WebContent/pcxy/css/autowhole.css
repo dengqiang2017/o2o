@@ -1,0 +1,28 @@
+.auto_hidden {
+    width:204px;
+    border: 1px solid #ccc;
+    position:absolute;
+    display:none;
+}
+.auto_show {
+    width:204px;
+    border: 1px solid #ccc;
+    position:absolute;
+    z-index:9999; /* 设置对象的层叠顺序 */
+    display:block;
+    line-height: 24px;
+    padding: 5px;
+    background-color: #fff;
+}
+.auto_onmouseover{
+    color:#fff;
+    background-color:#337ab7;
+    width:100%;
+    margin-bottom: 2px;
+}
+.auto_onmouseout{
+    color:#555;
+    width:100%;
+    background-color:#fff;
+    margin-bottom: 2px;
+}

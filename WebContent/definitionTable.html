@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>动态定义字段</title>
+<link href="pcxy/css/bootstrap.css" rel="stylesheet"/>
+<script type="text/javascript" src="js_lib/jquery.11.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<style type="text/css">
+input,select{
+height: 25px;
+font-size: 14px;
+}
+th{
+text-align: center;
+}
+</style>
+</head>
+<body>
+<div>
+<label>资料维护选择</label>
+<select>
+<option value="ctl00301">产品维护</option>
+<option value="ctl00801">员工维护</option>
+<option value="sdf00504">客户维护</option>
+<option value="ctl00504">供应商维护</option>
+<option value="sdf00504_saiyu">司机维护</option>
+</select>
+<button type="button" class="btn btn-success">保存编辑</button>
+</div>
+<div style="background-color: aqua;">
+<table>
+<thead>
+<tr>
+<th width="150px;">操作</th>
+<th width="140px;">是否使用</th>
+<th>输入类型</th>
+<th>字段名称</th>
+<th>字段别名</th>
+<th>中文名称</th>
+<th>文本模式</th>
+<th width="100px;">输入长度</th>
+<th>下拉模式</th>
+<th>浏览模式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<button type="button">上移</button>
+<button type="button">下移</button>
+<button type="button">增加</button>
+</td>
+<td><label><input type="checkbox">列表</label><label><input type="checkbox">编辑页面</label></td>
+<td>
+<div>
+<select name="type">
+<option value=""></option>
+<option value="text">文本模式</option>
+<option value="select">下拉模式</option>
+<option value="liulan">浏览模式</option>
+<option value="fenge">分隔模式</option>
+</select>
+</div>
+<script type="text/javascript">
+<!--
+$("select[name='type']").change(function(){
+	var txt=$(this).val();
+		$(this).parents("tr").find("td").hide();
+		$("th").hide();
+	if(txt=="fenge"){
+		$("th:eq(0)").show();
+		$("th:eq(1)").show();
+		$("th:eq(2)").show();
+		$(this).parents("tr").find("td:eq(0)").show();
+		$(this).parents("tr").find("td:eq(1)").show();
+		$(this).parents("tr").find("td:eq(2)").show();
+		$("th:eq(5)").show();
+		$(this).parents("tr").find("td:eq(5)").show();
+	}else if(txt=="text"){ 
+		for (var i = 0; i < 8; i++) {
+		$("th").eq(i).show();
+		$(this).parents("tr").find("td").eq(i).show();
+		}
+	}else if(txt=="select"){
+		for (var i = 0; i < 9; i++) {
+			if(i!=6&&i!=7){
+				$("th").eq(i).show();
+				$(this).parents("tr").find("td").eq(i).show();
+			}
+		}
+	}else if(txt=="liulan"){
+		for (var i = 0; i < 10; i++) {
+			if(i!=6&&i!=7&&i!=8){
+		$("th").eq(i).show();
+		$(this).parents("tr").find("td").eq(i).show();
+			}
+		}
+	}else{
+		$("th").show();
+		$(this).parents("tr").find("td").show();
+	}
+});
+//-->
+</script>
+</td>
+<td><span id="filed">item_sim_name</span></td>
+<td><input type="text" placeholder="字段别名" maxlength="10"></td>
+<td><input type="text" placeholder="列表显示中文名称" maxlength="20"></td>
+<td>
+<div>
+<select name="dataNumber">
+<option value="">文本</option>
+<option value="num">整数</option>
+<option value="fu">整数加负数</option>
+<option value="num2">带小数</option>
+<option value="zimu">字母加数字</option>
+</select>
+</div>
+</td>
+<td><input type="tel" placeholder="长度" maxlength="4" data-num="num" style="width: 50px;"></td>
+<td>
+<div>
+<div>
+<span style="display: none;">下拉每项option</span>
+<!-- <input type="text" maxlength="20" name="optionName"><input type="text" maxlength="20" name="optionVal"><button type="button">增加</button><button type="button">删除</button> -->
+<ul>
+<li>
+<div>
+<label>下拉项中value值
+<input type="text" maxlength="20" name="optionName" placeholder="option中value值">
+</label>
+</div>
+<div>
+<label>下拉项中显示值
+<input type="text" maxlength="20" name="optionVal" placeholder="option标签显示值">
+</label>
+</div>
+<button type="button">上移</button>
+<button type="button">增加</button>
+<button type="button">删除</button>
+</li>
+</ul>
+</div>
+</div>
+</td>
+<td>
+<div>
+<div>
+<span>显示名称的id</span><input type="text" data-number="zimu" name="showNameId">
+</div>
+<div>
+<span>对应字段的id</span><input type="text" data-number="zimu" name="filedId">
+</div>
+<div>
+<span>浏览按钮的id</span><input type="text" data-number="zimu" name="btnId">
+</div>
+</div>
+</td>
+</tr> 
+</tbody>
+</table>
+</div>
+<br>
+</body>
+</html>

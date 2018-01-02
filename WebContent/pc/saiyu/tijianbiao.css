@@ -1,0 +1,140 @@
+@CHARSET "UTF-8";
+th{
+    min-width: 100px;
+ }
+ td>img{
+ max-height: 200px;
+ max-width: 200px;
+ }
+ td>input{
+ max-width: 90px;
+ }
+ tr>td{
+ height: 100px;
+ }
+ .hoverdiv:hover{
+ color: #fff;
+ background-color: #286090;
+   border-color: #204d74;
+}
+.hoverdiv{
+    position: relative;width: 100px;height: 35px;background-color: #337AB7;color: #FFFFFF;line-height: 35px;border-radius: 5px
+}
+   @media screen and (max-width:770px){
+        .btn0{
+            display: block;  margin-bottom: 10px;
+        }
+       .img-ku{
+           margin: 25%;
+		   margin-top: 190px;
+       }
+	   .img-ku img{
+		   width: 200px;
+		   height: 200px;
+	   }
+    }
+@media screen and (max-width:770px)and (min-width:770px){
+    .btn0{
+        display: block;  margin-bottom: 10px;
+    }
+    .img-ku{
+        margin-left: 35%;
+		margin-top: 320px;
+    }
+	.img-ku img{
+		width: 250px;
+		height: 250px;
+	}
+}
+    @media screen and (min-width:770px){
+        .box-ctn{
+            display: block;
+        }
+        .btn0{
+            display:none;
+        }
+        /*.img-ku{*/
+            /*margin: 45%;*/
+			/*margin-top: 320px;*/
+        /*}*/
+		.img-ku img{
+			width: 300px;
+			height: 300px;
+		}
+    }
+
+
+.image-zhezhao{
+	   position:fixed;
+	   left:0;
+	   top:0;
+	   right:0;
+	   bottom: 0;
+	   background-color:#333333;
+	   z-index:999;
+	}
+	.img-left{
+	background-image: url(../images/arrow-left.png);
+	background-repeat: no-repeat;
+	background-position: left;
+	float: left;
+	width: 23px;
+	height: 98px;
+	color: white;
+	position: relative;
+	top: 400px;
+	cursor: pointer;
+	}
+	.img-right{
+	background-image: url(../images/arrow-right.png);
+	background-repeat: no-repeat;
+	background-position: right;
+	float: right;
+	width: 23px;
+	height: 98px;
+	color: white;
+	position: relative;
+	top: 400px;
+	cursor: pointer;
+	}
+	.gb{
+	opacity: 0.7;
+	cursor: pointer;
+	position: absolute;
+	top: 25px;
+	right: 25px;
+	background: url(../images/close.png) no-repeat center center;
+	width: 35px;
+	height: 35px;
+	z-index: 999;
+	}
+	.gb:hover{
+	opacity: 1;
+	}
+	
+	
+#box{
+   height:600px;  
+   width:auto;  
+   overflow-y:auto;/** 必须，否则当表格数据过多时，不会产生滚动条，而是自动延长该div的高度 */  
+  position:relative;/** 必须，若不设置，拷贝得来的表头将相对于其设置该属性为该值的父节点（或间接父节点）定位，如果没有，则相对于body */  
+}
+table,tr,td,th{
+    border:1px solid #ccd;  
+    border-collapse:collapse;  
+}
+table{
+    width:100%;  
+}
+td{
+    height:24px;  
+    width:100px;/** 固定单元格宽度，防止分离表头后，表头与数据行错位（缺点） */  
+  line-height:24px;  
+  padding:3px 5px;  
+  word-break:break-all;/** 设置当文本过长时换行 */  
+}
+th{
+    height:24px;  
+    width:300px;/** 不管是固定像素或是百分比，应与对应数据列的宽度一致 */  
+    line-height:24px;  
+}

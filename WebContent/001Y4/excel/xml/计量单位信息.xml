@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<REQUEST>  
+<itembegin index="3" sheetName="计量单位-勿改此页名"/>
+<item mainfiledName="sort_id"        index="0"  excelChineseName="计量单位编码" />
+<item mainfiledName="unit_name"      index="1"  excelChineseName="计量单位名称" />
+</REQUEST>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="U-XA-Compatible" content="IE-edge">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+	<title>牵引互联-二维码</title>
+	<link rel="stylesheet" href="../pcxy/css/signup.css">
+	<link rel="stylesheet" href="../pcxy/css/bootstrap.css">
+	<script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+	<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script type="text/javascript" src="../pc/js/weixin/zepto.min.js"></script>
+	<script type="text/javascript" src="../pc/js/weixin/weixinShare.js"></script>
+</head>
+<body>
+	<div class="header">
+		<h4>请长按二维码或使用微信扫一扫关注！</h4>
+	</div>
+	<div class="main">
+		<div class="qr-code">
+			<img src="../pcxy/image/qr-code.jpg" onerror="this.src='../pcxy/image/qr-code.jpg'" height="258" width="258" alt="">
+<!-- 			<a class="btn btn-danger center-block" style="color: #FFFFFF;margin-top: 60px;width: 150px" href="index.html">返回首页</a> -->
+		</div>
+	</div>
+<script type="text/javascript">
+<!--
+function getQueryString(key) {
+    var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)", "i");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) {
+    	return unescape(r[2]); 
+    }
+    return null;
+}
+	var com_id=getQueryString("com_id");
+	if(com_id&&com_id!="001"){
+		$(".qr-code>img").attr("src",com_id+"/image/qr-code.jpg");
+	}
+	weixinShare.init('牵引互联-二维码','牵引互联-二维码,请长按二维码关注');
+//-->
+</script>
+</body>
+</html>

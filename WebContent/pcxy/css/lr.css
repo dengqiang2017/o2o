@@ -1,0 +1,43 @@
+.lr-tips a{
+	color: #fff;
+	font-weight: bold;
+}
+
+.lr-tips span{
+	color: #cf000f;
+}
+.login-img{
+	text-align: center;
+	color: #323232;
+	margin-top: 50px;
+}
+
+.login-img img{
+	margin: auto;
+}
+
+@media screen and (max-width: 768px){
+	.login-img{
+		margin-top: 0;
+	}
+	.login-img img{
+		width: 80px;
+		height: 80px;
+	}
+
+	.login-img h3{
+		font-size: 14px;
+		font-weight: bold;
+	}
+}
+
+@media screen and (min-width: 768px){
+	.login-img img{
+		width: 120px;
+		height: 120px;
+	}
+
+	.login-img h3{
+		font-size: 24px;
+	}
+}

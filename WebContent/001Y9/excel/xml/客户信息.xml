@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<REQUEST>  
+<itembegin index="3" sheetName="客户-勿改此页名"/>
+<item mainfiledName="corp_name"                index="0"  excelChineseName="客户全称" />
+<item mainfiledName="corp_sim_name"            index="1"  excelChineseName="客户简称"/>
+<item mainfiledName="easy_id"                  index="2"  excelChineseName="记忆码"/>
+<item mainfiledName="working_status"           index="3" excelChineseName="使用状态"/>
+<item mainfiledName="customer_id"              index="4"  excelChineseName="客户内码"/>
+<item mainfiledName="self_id"                  index="5"  excelChineseName="客户外码"/>
+<item mainfiledName="user_id"                  index="6"  excelChineseName="用户账号"/>
+<item mainfiledName="user_password"            index="7"  excelChineseName="用户密码"/>
+<item mainfiledName="weixinID"                 index="8" excelChineseName="微信通讯录账号"/>
+<item mainfiledName="upper_customer_id"        index="9" excelChineseName="上级客户编码"/>
+<!-- <item mainfiledName="upper_customer_id"   index="10" excelChineseName="上级客户编码"/> -->
+<item mainfiledName="tel_no"                   index="11"  excelChineseName="联系电话"/>
+<item mainfiledName="clerk_id"                 index="12" excelChineseName="所属销售员"/>
+<!-- <item mainfiledName="clerk_id"            index="13" excelChineseName="所属销售员"/> -->
+<item mainfiledName="clerk_idaccountapprover"  index="14" excelChineseName="款项审批人编码"/>
+<!-- <item mainfiledName=" "                   index="15" excelChineseName="款项审批人编码"/> -->
+<item mainfiledName="ifusecredit"              index="16" excelChineseName="是否打欠条"/>
+<item mainfiledName="fhdz"                     index="17" excelChineseName="发货地址"/>
+<item mainfiledName="addr1"                    index="18" excelChineseName="地址"/>
+<item mainfiledName="working_range"            index="19" excelChineseName="经营范围"/>
+<item mainfiledName="qq"                       index="20"  excelChineseName="QQ"/>
+<item mainfiledName="weixin"                   index="21" excelChineseName="微信"/>
+<item mainfiledName="weibo"                    index="22" excelChineseName="微博"/>
+<item mainfiledName="corp_reps"                index="23" excelChineseName="联系人"/>
+<item mainfiledName="movtel"                   index="24" excelChineseName="手机号"/>
+<item mainfiledName="dept_id"                  index="25" excelChineseName="所属部门编码"/>
+<!-- <item mainfiledName="dept_id"             index="26" excelChineseName="所属部门编码"/> -->
+<item mainfiledName="regionalism_id"           index="27" excelChineseName="所属行政区域编码"/>
+<!-- <item mainfiledName="regionalism_id"      index="28" excelChineseName="所属行政区域编码"/> -->
+<item mainfiledName="ifusedeposit"             index="29" excelChineseName="是否使用预存款"/>
+<item mainfiledName="price_type"               index="30" excelChineseName="是否使用单价"/>
+<item mainfiledName="customer_third_type"      index="31" excelChineseName="销售级别"/>
+<item mainfiledName="customer_type"            index="32" excelChineseName="客户大类"/>
+<item mainfiledName="ditch_type"               index="33" excelChineseName="渠道类型"/>
+<item mainfiledName="ceo"                      index="34" excelChineseName="老板姓名"/>
+<item mainfiledName="hy_style"                 index="35" excelChineseName="货运方式"/>
+<item mainfiledName="schedule_days"            index="36" excelChineseName="平均进货天数"/>
+<item mainfiledName="market_type"              index="37" excelChineseName="市场类型"/>
+<item mainfiledName="zip"                      index="38" excelChineseName="邮编"/>
+<item mainfiledName="fax_no"                   index="39" excelChineseName="传真"/>
+<item mainfiledName="tax_no"                   index="40" excelChineseName="税号"/>
+<item mainfiledName="bank_id"                  index="41" excelChineseName="开户银行"/>
+<item mainfiledName="bank_accounts"            index="42" excelChineseName="银行账号"/>
+<item mainfiledName="hys"                      index="43" excelChineseName="运营商"/>
+<item mainfiledName="kar_driver"               index="44" excelChineseName="司机名"/>
+<item mainfiledName="kar_driver_msg_mobile"    index="45" excelChineseName="司机手机"/>
+<item mainfiledName="hys_tel"                  index="46" excelChineseName="货运商电话"/>
+<item mainfiledName="hys_mobile"               index="47" excelChineseName="货运商手机"/>
+<item mainfiledName="hys_msg_mobile"           index="48" excelChineseName="货运商接收短息手机"/>
+<item mainfiledName="c_source"                 index="49" excelChineseName="客户来源"/>
+<item mainfiledName="license_type"             index="50"  excelChineseName="注册类型"/>
+</REQUEST>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>评价</title>
+    <meta http-equiv="U-XA-Compatible" content="IE-edge">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" href="../pcxy/css/bootstrap.css">
+    <!--<link rel="stylesheet" href="../pcxy/css/global.css">-->
+        <link rel="stylesheet" type="text/css" href="../pc/saiyu/tijianbiao.css">
+    <link rel="stylesheet" href="../css/popUpBox.css">
+    <script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+    <script src="../pcxy/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/popUpBox.js"></script>
+    <script type="text/javascript" src="../js/ajaxfileupload.js"></script>
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="../pc/js/weixin/fileupload.js"></script>
+    <link rel="stylesheet" href="css/evaluate.css">
+     <script type="text/javascript">
+     <!--
+    var math=Math.random();
+    document.write("<script src='../js/common.js?ver="+math+"'><\/script>");
+    document.write("<script src='huaianjs/evaluation.js?ver="+math+"'><\/script>");
+    //-->
+    </script>
+</head>
+<body>
+        <div class="container" style="padding-left: 0;padding-right: 0">
+            <!-- header-->
+            <div class="header">
+                <a class="header_a" onclick="javascript:history.go(-1);">返回</a>
+                评价
+            </div>
+            <!-- body-->
+            <div class="body_top">
+                <div class="body_top_textarea">
+                    <input type="hidden" id="orderNo" >
+                    <textarea rows="7" placeholder="说点什么吧" id="yijian"></textarea>
+                    <div class="body_top_position">
+                        <div id="showpingjia">
+
+                        </div>
+                        <div class="position_left">
+                            <input type="hidden" name="typeImg" id="filePath"> <input type="file" class="ct input-upload"
+							name="pingjia" id="pingjia" onchange="imgUpload(this,'pingjia');"
+							style="width: 100%; height: 100%; cursor: pointer; position: absolute; left: 0; top: 0; opacity: 0;">
+						<input type="button" id="scpz" class="ct input-upload" style="width: 100%; height: 100%;cursor: pointer; position: absolute; left: 0; top: 0; opacity: 0; display: none;">
+                        </div>
+                        <div class="position_right">
+                            添加照片、视频<br>
+                            <span style="color: #FE4848">（上传照片加十五字好评可获得现金抵购卷哦！）</span>
+                        </div>
+
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="evaluate">
+                <ul>
+                    <li id="spzl">
+                        <div style="margin-top:3px;float:left">商品质量：</div>
+                        <div style="float:left;margin-left:10px"><div class="star" style="width:30px;height:30px;float:left;margin-left: 5px"><img src="../pc/images/star.png" class="endranslate"></div><div class="star" style="width:30px;height:30px;float:left;margin-left: 5px"><img src="../pc/images/star.png" class="endranslate"></div><div class="star" style="width:30px;height:30px;float:left;margin-left: 5px"><img src="../pc/images/star.png" class="endranslate"></div><div class="star" style="width:30px;height:30px;float:left;margin-left: 5px"><img src="../pc/images/star.png" class="endranslate"></div><div class="star" style="width:30px;height:30px;float:left;margin-left: 5px"><img src="../pc/images/star.png" class="endranslate"></div></div>
+                        <div class="clear"></div>
+                    </li>
+                    <li id="fwtd">
+                        <div style="margin-top:3px;float:left">服务态度：</div>
+                        <div style="float:left;margin-left:10px"><div class="star" style="width:30px;height:30px;float:left;margin-left: 5px"><img src="../pc/images/star.png" class="endranslate"></div><div class="star" style="width:30px;height:30px;float:left;margin-left: 5px"><img src="../pc/images/star.png" class="endranslate"></div><div class="star" style="width:30px;height:30px;float:left;margin-left: 5px"><img src="../pc/images/star.png" class="endranslate"></div><div class="star" style="width:30px;height:30px;float:left;margin-left: 5px"><img src="../pc/images/star.png" class="endranslate"></div><div class="star" style="width:30px;height:30px;float:left;margin-left: 5px"><img src="../pc/images/star.png" class="endranslate"></div></div>
+                        <div class="clear"></div>
+                    </li>
+                    <li id="wlsd">
+                        <div style="margin-top:3px;float:left">物流速度：</div>
+                        <div style="float:left;margin-left:10px"><div class="star" style="width:30px;height:30px;float:left;margin-left: 5px"><img src="../pc/images/star.png" class="endranslate"></div><div class="star" style="width:30px;height:30px;float:left;margin-left: 5px"><img src="../pc/images/star.png" class="endranslate"></div><div class="star" style="width:30px;height:30px;float:left;margin-left: 5px"><img src="../pc/images/star.png" class="endranslate"></div><div class="star" style="width:30px;height:30px;float:left;margin-left: 5px"><img src="../pc/images/star.png" class="endranslate"></div><div class="star" style="width:30px;height:30px;float:left;margin-left: 5px"><img src="../pc/images/star.png" class="endranslate"></div></div>
+                        <div class="clear"></div>
+                    </li>
+                </ul>
+            </div>
+            <!-- fotter-->
+
+                <a class="share_footer btn" style="border-radius: 0;font-size: 17px;margin-right: 0" id="postEval">
+                提交评价
+            </a>
+        </div>
+        <div class="image-zhezhao" style="display:none">
+   <div style="width: 5%;float: left">
+        <div class="img-left"></div>
+   </div>
+    <div style="width: 90%;float: left;height: 100%;">
+        <div class="img-ku" style="float:left;">
+            <div id="imshow">
+            </div>
+        </div>
+    </div>
+    <div style="width: 5%;float: left">
+        <div class="img-right"></div>
+        </div>
+    <div class="gb" id="closeimgshow"></div>
+</div>
+</body>
+</html>

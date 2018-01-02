@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<REQUEST>  
+<itembegin index="3" sheetName="体检表-勿改此页名"/>
+<item mainfiledName="customer_id" compute="customer_id" tableName="Sdf00504"
+queryName="self_id" datatype="txt"     index="0" isnullval="CS1_ERROR" or="customer_id"   excelChineseName="客户编码" />
+<!-- <item mainfiledName="corp_name"        index="1"  excelChineseName="客户名称"/> -->
+<item mainfiledName="sd_order_id"      index="2"  excelChineseName="体检数据外码"/>
+<item mainfiledName="item_id"          index="3" compute="item_id" tableName="ctl03001" queryName="peijian_id" or="item_id" excelChineseName="产品编码"/>
+<!-- <item mainfiledName="item_id_name"     index="4"  excelChineseName="产品名称"/> -->
+<item mainfiledName="position_big"     index="5"  excelChineseName="位置大类名称"/>
+<item mainfiledName="position"         index="6"  excelChineseName="位置小类名称"/>
+<item mainfiledName="item_brand"       index="7"  excelChineseName="品牌"/>
+<item mainfiledName="item_name"        index="8"  excelChineseName="名称"/>
+<item mainfiledName="item_standard"    index="9"  excelChineseName="规格"/>
+<item mainfiledName="item_color"       index="10"  excelChineseName="颜色"/>
+<item mainfiledName="item_num"         index="11"  excelChineseName="原配数量"/>
+<item mainfiledName="c_memo"           index="12"  excelChineseName="备注"/>
+</REQUEST>

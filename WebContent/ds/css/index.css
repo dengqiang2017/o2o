@@ -1,0 +1,183 @@
+.swiper-pagination-bullet-active{background-color: #FFFFFF !important;}
+.swiper-container img{width: 100%}
+.swiper-container2 img{width: 100%}
+.swiper-slide{width: 100% !important;}
+.swiper-inputbox{position: absolute;top:10px;left: 0;width: 100%;z-index:10}
+.input-group{width: 80%;background-color: rgba(255,255,255,0.6);border-radius: 10px;}
+.input-group>input{width: 75%;float: left;background-color: rgba(255,255,255,0) !important;border: none;outline: none;height: 33px;line-height: 40px}
+.input-group>label{width: 15%;float: left;margin-bottom: 0;margin-top: 6px;text-align: center;color: #fff;}
+.input-group>label>span{color: #FFFFFF}
+*[placeholder] {color: #FFFFFF !important;}
+::-webkit-input-placeholder {color: #FFFFFF !important;}
+.classify-box{width: 90%;display: table;text-align: center;display:-moz-box;display:-webkit-box;display:box;margin: auto}
+.classify-box>.box-flex{cursor: pointer;-moz-box-flex:1;-webkit-box-flex:1;box-flex:1;}
+.classify{    padding: 10px 0;
+    text-align: center;
+    background: #fff;}
+.case_title{padding: 10px;background-color: #EAEAEA;}
+.case_title .pull-left{color: #3DB0A9}
+.case_title .pull-right{width: 8px}
+.case_list{width: 100%;border: 1px solid #dddddd;padding-bottom: 10px;background-color: #FFFFFF}
+.sales_list{width: 100%;border: 1px solid #dddddd;padding-bottom: 10px;background-color: #FFFFFF}
+.case_listT{border: 1px solid #dddddd;padding-bottom: 10px;background-color: #FFFFFF}
+.stylist{border: 1px solid #dddddd;padding-bottom: 10px;background-color: #FFFFFF}
+.sales_list .case_list_box{text-align: center;position: relative;background-color: #FFFFFF;    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border:1px solid #dddddd;  }
+.case_list_box span{
+    padding: 5px 0;
+    font-size: 16px;
+}
+.stylist{
+    /*margin-bottom: 79px;*/
+}
+
+.case_list .case_list_box{text-align: center;position: relative;background-color: #FFFFFF;    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+border:1px solid #dddddd;  }
+.case_list_box span{
+    padding: 5px 0;
+    font-size: 16px;
+}
+.case_listT .case_list_boxT{text-align: center;position: relative;background-color: #FFFFFF;    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border:1px solid #dddddd; }
+.stylist_box{text-align: center;position: relative;background-color: #FFFFFF;    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border:1px solid #dddddd;
+    padding-bottom: 10px;
+}
+.case_list_box span{
+    padding: 5px 0;
+    font-size: 16px;
+}
+.word{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.word span{
+    display: block;
+    font-size: 14px;
+    text-align: left;
+    padding: 3px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.stylist_box img{
+    width: 70px;
+    height: 70px;
+    margin: 10px;
+    border-radius: 100%;
+}
+.stylist_box span{
+    display: block;
+    font-size: 16px;
+}
+.stylist_box span:nth-child(3){
+    color: #026666;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+}
+/*.case_list .col-xs-4 span{position: absolute;bottom: 0;left: 0;right: 0;background-color: rgba(0,0,0,0.6);text-align: center;color: #FFFFFF;font-size: 14px;overflow: hidden;text-overflow: ellipsis;  white-space: nowrap;  width: 100%;}*/
+/*.case_list .col-xs-4{padding-left: 5px !important;padding-right: 5px !important;cursor: pointer}*/
+.classify-box-img{width: 40px;height: 40px;border-radius: 100%;display:-moz-box;display:-webkit-box;display:box;-moz-box-align:center;-webkit-box-align:center;-o-box-align:center;box-align:center;}
+.classify-box-img img{width: 20px}
+.classify span{font-size: 14px;}
+.box-flex a{cursor: pointer}
+.box-flex a:hover{cursor: pointer}
+.customization-backcolor{background-color: #3EB0A8;}
+.home-backcolor{background-color: #FF8810;margin: auto}
+.fitment-backcolor{background-color: #E072E2;margin: auto}
+.classify-backcolor{background-color: #EB7C82;}
+/*.case_list .col-xs-4{display: inline-block !important;float: none !important;}*/
+.product-imgPH {position: relative;}
+.csPager {position: absolute;left: 0;bottom: 10px;right: 0;}
+.active a {background-color: #ffffff !important;}
+
+/*------PC------*/
+@media (max-width: 759px) {
+	.case_list img{width: 100%;height: 200px}
+	.showPC{display: none} .showPhone{display: block}   .iphone-bg{padding-bottom: 70px}}
+@media (min-width: 760px) {
+	.case_list img{width: 100%;height: 150px}
+    .stylist{
+        margin-bottom: 0 !important;
+    }
+    .showPC{display: box;display:-moz-box;display:-webkit-box;} .showPhone{display: none}   .case{margin-bottom: 0}}
+.contant::-webkit-scrollbar{width:5px;}
+.contant::-webkit-scrollbar-track{background-color:#bee1eb;}
+.contant::-webkit-scrollbar-thumb{background-color:#999999;}
+.contant::-webkit-scrollbar-thumb:hover {background-color:#9c3}
+.contant::-webkit-scrollbar-thumb:active {background-color:#00aff0}
+.contant{height: 507px;overflow-y: scroll !important;}
+.col-lg-4 p{
+	font-size: 14px;
+	text-align: center;
+	width: 100%;
+}
+/* 小屏幕（平板，大于等于 768px） */
+@media (max-width: 768px) {
+#rptitle {
+display:block;/*内联对象需加*/
+width:20em;
+word-break:keep-all;/* 不换行 */
+white-space:nowrap;/* 不换行 */
+overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+}
+}
+@media (min-width: 768px) {
+.case_list_box img,.pic img{
+    height: 150px;
+    width: 100%;
+}
+#fade li.active img {
+    display: block;
+    width: 100%;
+    height: 200px !important;
+}
+
+}
+
+/* 中等屏幕（桌面显示器，大于等于 992px） */
+@media (min-width: 992px) {
+.case_list_box img,.pic img{
+    height: 150px;
+    width: 100%;
+}
+.csAction > a{
+	background-color: red;
+}
+#fade li.active img {
+    display: block;
+    width: 100%;
+    height: 250px !important;
+}
+}
+
+/* 大屏幕（大桌面显示器，大于等于 1200px） */
+@media (min-width: 1200px) {
+.case_list_box img,.pic img{
+    height: 200px;
+    width: 100%;
+}
+.csAction > a{
+	background-color: red;
+}
+#fade li.active img {
+    display: block;
+    width: 100%;
+    height: 300px !important;
+}
+}
+.reping{
+	color: red;font-size: 10px;border:1px solid red;border-radius:5px;margin-left: 3px;padding: 3px;float: left;margin-bottom: 2px;
+}

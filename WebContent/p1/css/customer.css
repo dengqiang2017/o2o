@@ -1,0 +1,108 @@
+
+@media screen and (min-width: 1200px){
+	.customer_title{ 
+		font-size:36px; 
+		font-family:'方正中等线简体'; 
+		text-align:center; 
+		color:#da251c; 
+		background-image:url(../images/customer_title_bg.png); 
+		width:286px; 
+		height:148px; 
+		margin:auto; 
+		line-height:50px; 
+		padding-top:22px;
+	}
+	.customer_subtitle{ 
+		text-align:center; 
+		font-size:24px; 
+		font-family:'方正中等线简体'; 
+	}
+	.customer_img{ 
+		width:726px; 
+		margin:auto; 
+		padding:20px 0;
+	}
+	.customer_img img{
+		width:100%;
+	}
+	.customer_letter{ 
+		width:884px; 
+		margin:auto; 
+		padding:20px 0;
+	}
+	.customer_letter img{ 
+		width:100%;
+	}
+}
+
+@media screen and (max-width: 1199px) and (min-width: 768px){
+	.customer_title{ 
+		font-size:36px; 
+		font-family:'方正中等线简体'; 
+		text-align:center; 
+		color:#da251c; 
+		background-image:url(../images/customer_title_bg.png); 
+		width:286px; 
+		height:148px; 
+		margin:auto; 
+		line-height:50px; 
+		padding-top:22px;
+		margin-top: 10px;
+	}
+	.customer_subtitle{ 
+		text-align:center; 
+		font-size:24px; 
+		font-family:'方正中等线简体'; 
+	}
+	.customer_img{ 
+		width:726px; 
+		margin:auto; 
+		padding:20px 0;
+	}
+	.customer_img img{
+		width:100%;
+	}
+	.customer_letter{ 
+		width:100%; 
+		margin:auto; 
+		padding:20px 0;
+	}
+	.customer_letter img{ 
+		width:100%;
+	}
+}
+
+@media screen and (max-width: 767px){
+	.customer_title{ 
+		font-size:24px; 
+		font-family:'方正中等线简体'; 
+		text-align:center; 
+		color:#da251c; 
+		width:286px; 
+		margin:auto; 
+		line-height:30px; 
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+	.customer_subtitle{ 
+		text-align:center; 
+		font-size:18px; 
+		font-family:'方正中等线简体'; 
+	}
+	.customer_img{ 
+		width:100%; 
+		margin:auto; 
+		padding:10px 0;
+	}
+	.customer_img img{
+		width:100%;
+	}
+	.customer_letter{ 
+		width:100%; 
+		margin:auto; 
+		padding:5px 0;
+	}
+	.customer_letter img{ 
+		width:100%;
+	}
+}

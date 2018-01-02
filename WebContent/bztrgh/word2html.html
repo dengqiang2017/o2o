@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>word2html</title>
+    <script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+</head>
+<body>
+<form>
+<div>
+<label>Word文件名路径</label>
+<input name="fileName" value="temp/word/案例.doc">
+</div>
+<div>
+<label>html输出路径</label>
+<input name="outPutFile" value="pc/word/anli.html">
+</div>
+<div>
+<label>图片存储路径</label>
+<input name="imgPath" value="pc/word/img/">
+</div>
+<div>
+<label>图片相对路径前缀</label>
+<input name="imgprex" value="word/img/">
+</div>
+<div>
+<label>文件编码</label>
+<input name="utf" value="UTF-8">
+</div>
+<button type="button">提交</button>
+</form>
+<script type="text/javascript">
+<!-- 
+$("button").click(function(){
+	$.get("../login/convert2Html.do",$("form").serialize(),function(data){
+		alert(data.success);
+	});
+	
+});
+
+//-->
+</script>
+</body>
+</html>

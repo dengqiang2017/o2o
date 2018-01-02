@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="U-XA-Compatible" content="IE-edge">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>O2O运营及服务平台</title>
+    <link rel="stylesheet" type="text/css" href="../pcxy/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../pcxy/css/global.css">
+    <script src="../js_lib/jquery.11.js"></script>
+    <script src="../pcxy/js/bootstrap.js"></script>
+    <script src="../js/common.js"></script>
+    <link rel="stylesheet" href="../css/popUpBox.css">
+    <script type="text/javascript" src="../js/popUpBox.js"></script>
+    <link rel="stylesheet" href="wsxi.css">
+     <script type="text/javascript" src="../datepicker/WdatePicker.js"></script>
+</head>
+<body>
+    <div class="header">完善车牌及司机信息</div>
+    <div class="container" style="margin-top: 75px">
+        <div class="wsxx">
+            <div style="margin-bottom:5px;" class="form-group">
+                <label class="col-lg-2 text-right" style="line-height: 30px;padding-left: 0">司机姓名</label>
+                <div class="col-lg-10" style="line-height: 30px;padding-left: 0">
+                    <input type="text" class="form-control" maxlength="40">
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div style="margin-bottom:5px;" class="form-group">
+                <label class="col-lg-2 text-right" style="line-height: 30px;padding-left: 0">司机号码</label>
+                <div class="col-lg-10" style="line-height: 30px;padding-left: 0">
+                    <input type="tel" class="form-control"  maxlength="12">
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div style="margin-bottom:5px;" class="form-group">
+                <label class="col-lg-2 text-right" style="line-height: 30px;padding-left: 0">车牌号</label>
+                <div class="col-lg-10" style="line-height: 30px;padding-left: 0">
+                    <input type="text" class="form-control" maxlength="40">
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div style="margin-bottom:5px;" class="form-group">
+                <label class="col-lg-2 text-right" style="line-height: 30px;padding-left: 0">物流方式</label>
+                <div class="col-lg-10" style="line-height: 30px;padding-left: 0">
+                    <input type="text" class="form-control Wdate" id="tihuoDate" maxlength="40" onfocus="WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:true})">
+                </div>
+                <div class="clear"></div>
+            </div>
+                    <div style="margin-bottom:5px;" class="form-group">
+                        <label class="col-lg-2 text-right" style="line-height: 30px;padding-left: 0">预计提货时间</label>
+                        <div class="col-lg-10" style="line-height: 30px;padding-left: 0">
+                            <input type="date" class="form-control Wdate" id="tihuoDate" maxlength="40" onfocus="WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:true})">
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+            <div class="clear"></div>
+        </div>
+        <button type="button" class="btn btn-primary xs center-block" style="margin-bottom: 10px;margin-top: 10px">查看明细</button>
+
+        <div class="seciton">
+            <div class="secition01 col-xs-12 col-lg-4" style="padding-left: 0">
+                    <ul style="border:1px solid #ddd">
+                        <div class="pro-check"></div>
+                        <li>订单编号：NO.2016060100042XSKD</li>
+                        <li>客户姓名：15928592212</li>
+                        <li>发货地址：
+                        </li>
+                        <li>产品名称：双流国栋9.0E1中纤板</li>
+                        <li>规格：1件*120张</li>
+                        <li>型号：9.0E1中纤板</li>
+                        <li>数量：240.00张
+                            <span id="seeds_id" style="display: none;">199</span></li>
+                        <div style="clear:both"></div>
+                    </ul>
+            </div>
+            <div class="secition01 col-xs-12 col-lg-4" style="padding-left: 0">
+                <ul style="border:1px solid #ddd">
+                    <div class="pro-check"></div>
+                    <li>订单编号：NO.2016060100042XSKD</li>
+                    <li>客户姓名：15928592212</li>
+                    <li>发货地址：
+                    </li>
+                    <li>产品名称：双流国栋9.0E1中纤板</li>
+                    <li>规格：1件*120张</li>
+                    <li>型号：9.0E1中纤板</li>
+                    <li>数量：240.00张
+                        <span id="seeds_id" style="display: none;">199</span></li>
+                    <div style="clear:both"></div>
+                </ul>
+            </div>
+        </div>
+        <button type="button" class="btn btn-danger center-block" style="margin-bottom: 10px;margin-top: 10px">确认拉货</button>
+    </div>
+<script>
+    $('.xs').click(function(){
+        $('.seciton').toggle();
+        var t = $('.xs').text('查看明细');
+        if(t){
+            $('.xs').text('关闭明细');
+        }
+        else{
+            $('.xs').text('查看明细');
+        }
+    });
+</script>
+
+</body>
+</html>

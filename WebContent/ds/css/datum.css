@@ -1,0 +1,85 @@
+.header_portrait img{
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+}
+.iphone-bg{
+    padding-bottom: 62px;
+}
+.col-xs-8 li:not(:last-child){
+    margin-bottom: 15px;
+}
+.datum_header{
+/*     margin-top: 43px; */
+    padding: 10px 0;
+    display:-moz-box;display:-webkit-box;display:box;-moz-box-align:center;-webkit-box-align:center;-o-box-align:center;box-align:center;-moz-box-pack:justify;-webkit-box-pack:justify;-o-box-pack:justify;box-pack:justify;
+}
+.pic img{
+    width: 100%;
+    height: 150px;
+}
+.word_bottom{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.datum_list{
+    border-top: 1px solid #dddddd;
+}
+.box{
+    border: 1px solid #dddddd;
+}
+.word_top{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.datum_list .col-xs-6{
+   margin-top: 10px;
+}
+.word div{
+    font-size: 14px;
+}
+.iphone-bg{
+    background-color: #FFFFFF !important;
+}
+@media (min-width: 770px){
+    .datum_header{
+        margin-top: 0 !important;
+    }
+    .datum_list {
+        margin-bottom: 0 !important;
+        height: 313px;
+        overflow-y: scroll;
+        padding-bottom: 10px;
+    }
+}
+/* 小屏幕（平板，大于等于 768px） */
+@media ( max-width : 768px) {
+	.pic img {
+		width: 100%;
+		height: 120px
+	}
+}
+/* 小屏幕（平板，大于等于 768px） */
+@media ( min-width : 768px) {
+	.pic img {
+		width: 100%;
+		height: 120px
+	}
+}
+/* 中等屏幕（桌面显示器，大于等于 992px） */
+@media ( min-width : 992px) {
+	.pic img {
+		width: 100%;
+		height: 200px
+	}
+}
+
+/* 大屏幕（大桌面显示器，大于等于 1200px） */
+@media ( min-width : 1200px) {
+	.pic img {
+		width: 100%;
+		height: 200px
+	} 
+}

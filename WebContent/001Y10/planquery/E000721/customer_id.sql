@@ -1,0 +1,1 @@
+ and ( ltrim(rtrim(isnull(customer_id,''))) like 'CS1%')

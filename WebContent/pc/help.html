@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+<title>帮助中心</title>
+<link rel="stylesheet" href="../pcxy/css/bootstrap.css">
+<link rel="stylesheet" href="../pcxy/css/global.css?ver=100400">
+<link rel="stylesheet" href="../css/popUpBox.css?ver=100400">
+<style type="text/css">
+html body {
+	font-size: 18px;
+}
+ul>li {
+	list-style: none;
+}
+.smg>ul>li {
+	padding: 5px 0;
+	cursor: pointer;
+}
+.active {
+	background-color: #ddd;
+}
+.ts>img{
+	width: 100%;
+	margin-top: 65px;
+}
+.ts>video {
+	width: 100%;
+}
+
+.smg {
+	max-height: 600px;
+	overflow-y: auto;
+	width: 65%;
+}
+
+@media ( max-width : 770px) {
+	.ts {
+		margin-top: -110px;
+	}
+	.smg {
+		max-height: 319px;
+		overflow-y: scroll;
+		width: 100%;
+	}
+}
+</style>
+</head>
+<body>
+<div style="width: 1px;height: 1px;">
+    <img class="img-responsive center" src="pc/images/logo.png">
+</div>
+	<div class="container">
+		<div class="col-lg-6" style="margin-top: 12px">
+			<h2>文件列表</h2>
+			<div id="upload" style="display: none;"><a id="upload-btn" class="btn btn-primary btn-sm m-t-b">上传文件
+			<input type="file" name="imgFile" id="imgFile" onchange="imgUpload(this);">
+			</a></div>
+			<div class="smg">
+				<ul></ul>
+			</div>
+		</div>
+		<div class="col-lg-6 ts" style="margin-top: 12px"></div>
+	</div>
+ <div style="background-color: transparent; color: rgb(127, 127, 127); font-size: 14px;margin:0 auto;margin-top: 30px;text-align: center;width: 100%;" class="copyright textonly">
+     版权所有 © 1998－2100 牵引软件<a href="http://www.pulledup.cn/" target="_blank">牵引官网</a></div>
+<script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+<script type="text/javascript" src="../js/ajaxfileupload.js"></script>
+<script type="text/javascript" src="../js/popUpBox.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+	<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="../pc/js/weixin/zepto.min.js"></script>
+<script type="text/javascript" src="../pc/js/weixin/weixinShare.js"></script>
+<script type="text/javascript">
+<!--
+$.get("../login/getHelpFileList.do",function(data){
+	if(data&&data.length>0){
+	$.each(data,function(i,n){
+// 		if(i>=(data.length-2)){
+// 			return;
+// 		}
+		var li=$("<li>"+n+"&emsp;<a style='display: none;'>删除</a></li>");
+		$("ul").append(li);
+		li.click({"name":n},function(event){
+			$("ul li").removeClass("active");
+			$(this).addClass("active");
+			var name=event.data.name;
+			if(name.indexOf("mp4")>=0||name.indexOf("MP4")>=0){
+				$(".ts").html('<video  controls="controls" src="../help/'+name+'?ver='+Math.random()+'" height="400" width="480" preload="auto"></video>');
+			}else if(name.indexOf("txt")>=0||name.indexOf("log")>=0||name.indexOf("html")>=0){
+				$.get("../help/"+name,function(data){
+					$(".ts").html(data);
+				});
+			}else if(name.indexOf("jpg")>=0||name.indexOf("jpeg")>=0||name.indexOf("png")>=0){
+				$(".ts").html("<img src='../help/"+name+"?ver="+Math.random()+"'>");
+			}else{
+				window.location.href="../help/"+name+"?ver="+Math.random();
+			}
+		});
+		li.find("a").click({"name":"help/"+n},function(event){
+			if(confirm("是否删除该帮助文件!")){
+				var t=$(this).parent();
+				$.get("../upload/removeTemp.do",{
+					"imgUrl":event.data.name
+				},function(data){
+					if (data.success) {
+						pop_up_box.showMsg("删除成功!");
+						t.remove();
+					} else {
+						if (data.msg) {
+							pop_up_box.showMsg("删除错误!" + data.msg);
+						} else {
+							pop_up_box.showMsg("删除错误!");
+						}
+					}
+				});
+			}
+		});
+	});
+		if(data[data.length-1]=="删除文件"){
+			$("ul li").find("a").show();
+		}
+		if(data[data.length-2]=="上传文件"){
+			$("#upload").show();
+		}
+		var name=data[0];
+		if(name.indexOf("mp4")>=0||name.indexOf("MP4")>=0){
+			$("ul li:eq(0)").click();
+		}else if(name.indexOf("jpg")>=0||name.indexOf("jpeg")>=0||name.indexOf("png")>=0){
+			$("ul li:eq(0)").click();
+		}else if(name.indexOf("jpg")>=0||name.indexOf("jpeg")>=0||name.indexOf("png")>=0){
+			$("ul li:eq(0)").click();
+		}
+	}
+});
+function imgUpload(t){
+	ajaxUploadFile({
+		"uploadUrl":"../upload/uploadImageZs.do?fileName=imgFile&imgPath=help",
+		"msgId":"",
+		"fileId":"imgFile",
+		"msg":"",
+		"fid":"",
+		"uploadFileSize":100
+	},t,function(imgUrl){
+		pop_up_box.loadWaitClose();
+		imgUrl=imgUrl.substr(5,imgUrl.length);
+		var li=$("<li>"+imgUrl+"&emsp;<a>删除</a></li>");
+		$(".smg>ul").append(li);
+		li.click({"name":imgUrl},function(event){
+			$("ul li").removeClass("active");
+			$(this).addClass("active");
+			var name=event.data.name;
+			if(name.indexOf("mp4")>=0||name.indexOf("MP4")>=0){
+				$(".ts").html('<video  controls="controls" src="../help/'+name+'" height="400" width="480" preload="auto"></video>');
+			}else if(name.indexOf("txt")>=0||name.indexOf("log")>=0||name.indexOf("html")>=0){
+				$.get("../help/"+name,function(data){
+					$(".ts").html(data);
+				});
+			}else if(name.indexOf("jpg")>=0||name.indexOf("jpeg")>=0||name.indexOf("png")>=0){
+				$(".ts").html("<img src='../help/"+name+"'>");
+			}else{
+				window.location.href="../help/"+name;
+			}
+		});
+		li.find("a").click({"name":"help/"+imgUrl},function(event){
+			if(confirm("是否删除该帮助文件!")){
+				var t=$(this).parent();
+				$.get("../upload/removeTemp.do",{
+					"imgUrl":event.data.name
+				},function(data){
+					if (data.success) {
+						pop_up_box.showMsg("删除成功!");
+						t.remove();
+					} else {
+						if (data.msg) {
+							pop_up_box.showMsg("删除错误!" + data.msg);
+						} else {
+							pop_up_box.showMsg("删除错误!");
+						}
+					}
+				});
+			}
+		});
+	});
+}
+weixinShare.init('帮助文件','帮助文件-'+$(".active").text());
+//-->
+</script>
+
+</body></html>

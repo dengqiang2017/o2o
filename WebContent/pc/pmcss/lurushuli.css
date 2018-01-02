@@ -1,0 +1,31 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: Microsoft YaHei;
+}
+.clear{
+    clear: both;
+}
+ul>li{
+    list-style: none;
+}
+/*------------header------------*/
+.header>a{
+    left: 10px;
+    top: 20px;
+    position: absolute;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+.header>a:hover{
+    text-decoration: none;
+}
+.section{
+    background-color: #FFFFFF;
+    padding: 14px;
+    margin-top: 20px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+.section>ul>li{
+    margin-bottom: 10px;
+}

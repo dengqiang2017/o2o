@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<REQUEST>  
+<itembegin index="3" sheetName="期初应付-勿改此页名"/>
+<item mainfiledName="vendor_id"                   index="0"  excelChineseName="供应商编码" />
+<!-- <item mainfiledName="corp_name"              index="1"  excelChineseName="供应商名称" /> -->
+<item mainfiledName="clerk_id"                    index="2"  excelChineseName="采购员编码" />
+<!-- <item mainfiledName="clerk_id"               index="3"  excelChineseName="采购员工" /> -->
+<item mainfiledName="dept_id"                     index="4"  excelChineseName="采购部门编码" />
+<!-- <item mainfiledName="clerk_id"               index="5"  excelChineseName="采购部门" /> -->
+<item mainfiledName="beg_sum"                     index="6"  excelChineseName="应付金额" />
+<item mainfiledName="finacial_y"                  index="7"  excelChineseName="核算年" />
+<item mainfiledName="finacial_m"                  index="8"  excelChineseName="核算月" />
+<item mainfiledName="mainten_clerk_id"            index="9"  excelChineseName="维护员工编码" />
+<!-- <item mainfiledName="mainten_clerk_id"       index="10" excelChineseName="维护员" /> -->
+<item mainfiledName="mainten_datetime"            index="11" excelChineseName="维护时间" />
+</REQUEST>                                            

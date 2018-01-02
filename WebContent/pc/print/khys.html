@@ -1,0 +1,261 @@
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <title>牵引O2O营销服务平台</title>
+
+    <meta http-equiv="Pragma" content="no-cache">
+    <link rel="stylesheet" href="../../pcxy/css/bootstrap.css">
+    <link rel="stylesheet" href="../../pcxy/css/global.css">
+    <link rel="stylesheet" href="../../css/popUpBox.css">
+    <script type="text/javascript" src="../../js_lib/jquery.11.js"></script>
+    <script type="text/javascript" src="../../js_lib/jquery-ui.js"></script>
+    <script type="text/javascript" src="../../js_lib/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../../js_lib/jquery.jqprint.js"></script>
+	<script type="text/javascript" src="../../js_lib/jquery-migrate-1.1.0.js"></script>
+    <script src="../../pcxy/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../js/popUpBox.js"></script>
+    <script type="text/javascript" src="../../datepicker/WdatePicker.js"></script>
+    <script type="text/javascript" src="../../pc/js/employee/selClient.js"></script>
+    <script type="text/javascript">
+    <!--
+    var math=Math.random();
+    document.write("<script src='../../js/common.js?ver="+math+"'><\/script>");
+    document.write("<script src='../../js/o2otree.js?ver="+math+"'><\/script>");
+    document.write("<script src='../../js/o2od.js?ver="+math+"'><\/script>");
+    document.write("<script src='orderkhys.js?ver="+math+"'><\/script>");
+    //-->
+    </script>
+</head>
+<style>
+    @media(max-width: 770px){
+        .xsmargin{
+            margin-bottom:40px;
+        }
+        .img-ku img {
+            width: 200px;
+            height: auto;
+            margin-top: 100px;
+            margin-bottom: 20px;
+        }
+    }
+    @media(min-width: 770px){
+        .img-ku img {
+            width: 300px;
+            height: auto;
+            margin-top: 100px;
+            margin-bottom: 20px;
+        }
+    }
+    ul>li{
+        list-style:none;
+    }
+    ul{
+        padding-left:0
+    }
+    table img{
+        width: 50px;
+        height: 25px;
+    }
+    .image-zhezhao {
+        position: fixed;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #FFFFFF;
+        z-index: 999;
+    }
+    .gb {
+        opacity: 0.7;
+        cursor: pointer;
+        position: absolute;
+        top: 25px;
+        right: 25px;
+        background: url(../images/close.png) no-repeat center center;
+        z-index: 999;
+        font-size: 23px;
+    }
+</style>
+<body>
+<div class="bg"></div>
+<div class="header">
+    <ol class="breadcrumb">
+        <li><span class="glyphicon glyphicon-triangle-right"></span><a href="javascript:history.go(-1);">员工首页</a></li>
+        <li class="active"><span class="glyphicon glyphicon-triangle-right"></span>客户收货验收清单</li>
+    </ol>
+    <div class="header-title">员工-客户收货验收清单
+        <a href="javascript:history.go(-1);" class="header-back"><span class="glyphicon glyphicon-menu-left"></span></a>
+    </div>
+    <div class="header-logo"></div>
+</div>
+<div class="left-hide-ctn" style="">
+    <h4>客户信息</h4>
+    <div class="form-group">
+        <div class="input-group">
+            <input type="text" class="form-control input-sm" maxlength="50" id="clientkeyname" placeholder="请输入搜索关键词"> <span class="input-group-btn">
+				<button class="btn btn-danger btn-sm" type="button" id="findclient">搜索</button>
+			</span>
+        </div>
+    </div>
+    <div class="hide-table">
+    <ul class="hide-title">
+        <li class="col-xs-6">客户名称</li>
+        <li class="last col-xs-6">手机号</li>
+    </ul>
+    <div><ul class="hide-msg">
+        <li class="col-xs-6">我公司(虚拟)</li>
+        <li class="last col-xs-6"></li>
+        <li><input type="hidden" value="CS1" id="CS1"></li>
+    </ul></div>
+</div>
+<div class="ctn" style="display: none;">
+    <button class="btn btn_add_client" type="button">点击加载更多</button>
+</div>
+</div>
+<div class="cover" style=""></div>
+<div class="container">
+    <div class="row">
+        <div class="ctn">
+            <div class="ctn-fff box-ctn" style="min-height:750px;">
+                <div class="box-head">
+
+                    <button type="button" id="c-msg" class="btn btn-primary btn-sm m-t-b">客户信息</button>
+                    <button type="button" id="seekh" class="btn btn-primary btn-sm m-t-b">选择客户</button>
+                    <div class="sim-table" style="display: none;">
+                        <ul class="sim-title">
+                            <li class="col-xs-6">客户名称</li>
+                            <li class="last col-xs-6">手机号</li>
+                        </ul>
+                        <ul class="sim-msg">
+                            <li class="col-xs-6"></li>
+                            <li class="last col-xs-6"></li>
+                        </ul>
+                        <!-- 	<input type="hidden" id="customer_id"> -->
+                    </div> 
+                </div>
+                <div class="box-body">
+                    <!-- 分客户 -->
+                    <div class="tabs-content">
+                        <input type="hidden" id="emplHeadship" value="">
+                        <input type="hidden" id="emplclerk_name" value="001">
+                        <input type="hidden" id="isAutoFind" value="true">
+                        <div class="ctn">
+                            <div class="folding-btn m-t-b">
+                                <button type="button" class="btn btn-primary btn-folding btn-sm" id="expand">展开搜索</button>
+                            </div>
+
+
+                            <form id="gzform" style="clear:both;overflow:hidden;">
+                                <div class="col-sm-3 col-lg-2 m-t-b">
+                                    <div class="form-group">
+                                        <label for="">关键词</label>
+                                        <input type="text" class="form-control input-sm" name="searchKey" maxlength="20" placeholder="请输入关键词">
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 col-lg-2 m-t-b">
+                                    <div class="form-group">
+                                        <label for="">起始日期</label>
+                                        <input type="date" class="form-control input-sm Wdate" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" name="beginDate">
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 col-lg-2 m-t-b">
+                                    <div class="form-group">
+                                        <label for="">结束日期</label>
+                                        <input type="date" class="form-control input-sm Wdate" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" name="endDate">
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 col-lg-2 m-t-b">
+                                    <div class="form-group">
+                                        <label for="">状态</label>
+<!--                                         <input name="type" value="已结束"> -->
+                                        <select class="form-control input-sm" name="type">
+                                            <option value="已结束">已验收</option>
+                                            <option value="已发货">已发货未验收</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 m-t-b">
+                                    <button type="button" class="btn btn-primary btn-sm find">搜索</button>
+                                     <button type="button" class="btn btn-danger btn-sm print">打印</button>
+                                </div>
+                                <input type="hidden" name="customer_id" value="" id="customer_id">
+                                <input type="hidden" name="seeds" value="">
+                            </form> 
+                            <div class="dy_box" id="print">
+                            <div class="text-center">
+                                <h3>客户收货验收清单</h3>
+                            </div>
+                            <div style="margin-top: 10px;margin-bottom: 10px;font-size: 18px">
+                                <div class="col-xs-12 col-lg-3">
+                                    客户名称:<span id="corp_name"></span>
+                        </div>
+                        <div class="col-xs-12 col-lg-3">
+                            联系电话：<span id="telno"></span>
+                                </div>
+                                <div style="clear: both"></div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th data-name="date">验收日期</th>
+                                        <th data-name="ivt_oper_listing">单号</th>
+                                        <th data-name="item_sim_name">品名</th>
+                                        <th data-name="item_spec">规格</th>
+                                        <th data-name="item_type">型号</th>
+                                        <th data-name="sd_oq">数量</th>
+                                        <th data-name="sd_unit_price">单价</th>
+                                        <th data-name="je">金额</th>
+                                        <th data-name="qianming">验收签名</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                            </div>
+                            <div class="pull-right">
+                                <button type="button" class="btn btn-info btn-sm" id="onePage">首页</button>
+                                <button type="button" class="btn btn-info btn-sm" id="uppage">上一页</button>
+                                <button type="button" class="btn btn-info btn-sm" id="nextPage">下一页</button>
+                                <button type="button" class="btn btn-info btn-sm" id="endPage">末页</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="image-zhezhao" style="display:none">
+
+    <div class="img-ku">
+        <div id="imshow"></div>
+    </div>
+    <button class="btn btn-danger center-block" style="width:100px;" id="printqiamming">打印签名</button>
+
+    <span class="gb glyphicon glyphicon-remove" id="closeimgshow"></span>
+</div>
+
+<script type="text/javascript">
+<!--
+var cMsg=$(".sim-table");
+$("#c-msg").click(function(){
+    if(cMsg.is(":hidden")){
+        cMsg.show();
+    }else{
+        cMsg.hide();
+    }
+});
+//-->
+</script>
+</body>
+</html>
+
+    

@@ -1,0 +1,10 @@
+.secition{border-radius: 5px;background-color: #ffffff;box-shadow: 0 5px 5px rgba(0,0,0,0.3);margin-top: 20px;padding: 20px;position: relative}
+.margin-a{margin-bottom: 20px;width: 100px;background-color: #009899}
+.margin-a:hover{background-color: #009899}
+.glspan i{color:#009999;font-size: 15px;margin-right: 5px}
+.secition_body_title{background-color: #EAEAEA;padding: 10px}
+.secition_body_list>ul>li{padding: 10px;border-bottom:1px solid #dddddd;cursor: pointer }
+.active{color: #009899}
+#cop{text-align: center;color: #CCCCCC}
+@media (max-width: 759px){.secition_header .pull-left{font-size: 15px;margin-top: 13px;float: none} .secition_header .pull-right{float: none}  .input-group{float: none} .glspan{float: none;margin-left: 0}   .secition_body{height: 467px;overflow-y: scroll;margin-top: 10px;position: relative;width: 99%;} .location{position: absolute;top: 112px;right: 6px}  .location li{font-size: 13px;text-align: center;}}
+@media (min-width: 760px){.secition_header .pull-left{font-size: 15px;margin-top: 13px;}  .input-group{width: 268px;float: left} .glspan{float: left;margin-left: 50px}   .secition_body{height: 600px;overflow-y: scroll;margin-top: 10px;position: relative;width: 99%;} .location{position: absolute;top: 118px;right: 10px}  .location li{font-size: 15px;text-align: center;cursor: pointer}}

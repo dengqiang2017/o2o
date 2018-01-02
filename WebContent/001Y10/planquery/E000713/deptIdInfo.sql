@@ -1,0 +1,1 @@
+ and ( ltrim(rtrim(isnull(dept_id,''))) like 'DE000478%')

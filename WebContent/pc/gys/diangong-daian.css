@@ -1,0 +1,29 @@
+.container-one{
+    width: 80%;
+    margin: auto;
+    margin-top: 40px;
+}
+.btn-position{
+    margin-top: 25px;
+}
+.center-row{
+    border: 1px solid #077FBC;
+    border-radius: 5px;
+    padding: 10px;
+    font-weight: bold;
+    line-height: 30px;
+    margin-bottom: 20px;
+}
+.center-row>div{
+    font-size: 18px;
+}
+@media(max-width: 770px){
+    .container-one{
+        width: 100%;
+        margin: auto;
+        margin-top: 20px;
+    }
+    .center-row>div{
+        font-size: 12px;
+    }
+}

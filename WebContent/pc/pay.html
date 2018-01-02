@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>订单支付</title>
+    <meta http-equiv="U-XA-Compatible" content="IE-edge">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" href="../pcxy/css/global.css">
+    <link rel="stylesheet" href="../pcxy/css/bootstrap.css">
+    <link rel="stylesheet" href="../css/popUpBox.css">
+    <link rel="stylesheet" href="css/pay.css">
+    <script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+    <script type="text/javascript" src="../js_lib/jquery.cookie.js"></script>
+    <script src="../pcxy/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/common.js"></script>
+    <script type="text/javascript" src="../js/popUpBox.js"></script>
+    <script src="../js/o2od.js"></script>
+    <script type="text/javascript">
+    <!--
+    document.write("<script src='huaianjs/pay.js'><\/script>");
+    //-->
+</script>
+</head>
+<body>
+<div class="container" style="padding-right: 0;padding-left: 0">
+<!---------------header-------------->
+<div class="header">
+    <a class="glyphicon glyphicon-chevron-left header_a" onclick="javascript:history.go(-1);"></a>
+    淮安通威
+</div>
+<!--------------body---------------->
+<div class="body">
+    <ul>
+        <li class="li_style">订单金额：¥<span style="font-size: 30px" id="amount"></span></li>
+        <li style="margin-top: 20px">
+            <div style="float: left;width: 35%;text-align: center">订单编号：</div>
+            <div style="float: left;width: 65%;word-wrap:break-word;"><span id="orderNo"></span></div>
+            <div class="clear"></div>
+        </li>
+        <li style="margin-top: 20px">
+            <div style="float: left;margin-top: 10px;width: 35%;text-align: center">收货地址：</div>
+            <div class="site" style="width: 65%">
+                <textarea name="FHDZ" readonly></textarea>
+            </div>
+            <div class="clear"></div>
+        </li>
+<!--         <li style="margin-top: 30px"> -->
+<!--             <a class="amend" style="float: right;color: #006603;text-decoration: none;">修改收货地址</a> -->
+<!--             <div class="clear"></div> -->
+<!--         </li> -->
+        <li style="margin-top: 30px">
+            <div style="float: left;width: 25%;margin-top: 10px">
+                <img style="margin-top:10px" class="center-block img_size" src="images/04yuan_checked.png">
+            </div>
+            <div style="float: left;width: 75%;margin-top: 10px">
+            <div class="pos">
+                <img src="images/yinhang_butten.png">
+                <span>线下pos刷卡</span>
+            </div>
+                </div>
+            <div class="clear"></div>
+        </li>
+        <li>
+        <a class="btn btn_style center-block" id="nowpay">立即支付</a>
+        </li>
+    </ul>
+</div>
+</div>
+<div id="copy_bottom"></div>
+</body>
+</html>

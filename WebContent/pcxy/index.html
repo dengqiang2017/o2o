@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport"
+          content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">  
+    <link rel="stylesheet" href="js_lib/bootstrap.css">
+    <link rel="stylesheet" href="css/global.css"/>
+	<link rel="stylesheet" href="css/index01.css"/>
+    <script src="js_lib/jquery.11.js"></script>
+    <script src="js_lib/bootstrap.min.js"></script> 
+    <script src="js/head.js"></script> 
+	<script src="/cms/pc/js/edit.js"></script>
+    <title>牵引互联</title>
+    <style>
+        .banner_div{
+            width: 100%;
+            height: 670px;
+            position: relative;
+        }
+		.banner>div>img{
+			width: 100%;
+		}
+       .banner{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            transition: all 0.5s;
+			opacity: 1;
+        }
+        .lefth{
+            width: 50px;
+            height: 100px;
+            position: absolute;
+            left: 20px;
+            top:300px;
+            background-image: url("images/arrow_left.png");
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 100% 100%;
+            z-index: 10;
+        }
+        .righth{
+            width: 50px;
+            height: 100px;
+            position: absolute;
+            right: 20px;
+            top:300px;
+            background-image: url("images/arrow_right.png");
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 100% 100%;
+            z-index: 10;
+        }
+        @media (max-width: 770px) {
+         .banner_div{
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+            .banner>div>img {
+                width: 100%;
+                height: 250px;
+            }
+            .lefth{
+                width: 30px;
+                height: 50px;
+                position: absolute;
+                left: 10px;
+                top:100px;
+                background-image: url("images/arrow_left.png");
+                background-repeat: no-repeat;
+                background-position: center center;
+                background-size: 100% 100%;
+                z-index: 10;
+            }
+            .righth{
+                width: 30px;
+                height: 50px;
+                position: absolute;
+                right: 10px;
+                top:100px;
+                background-image: url("images/arrow_right.png");
+                background-repeat: no-repeat;
+                background-position: center center;
+                background-size: 100% 100%;
+                z-index: 10;
+            }
+            .banner{
+                width: 100%;
+                height: 250px;
+                position: relative;
+            }
+        } 
+
+    </style>
+</head>
+<body>
+    <header></header>
+    <section>
+        <div class="banner_div banner_ctn">
+            <a class="banner">
+                <img src="images/baner1.jpg">
+            </a>
+            <a class="banner">
+                <img src="images/baner2.jpg">
+            </a>
+            <a class="banner">
+                <img src="images/baner3.jpg">
+            </a>
+            <div class="lefth" ></div>
+            <div class="righth"  ></div>
+        </div>
+            <div class="slogan row">
+                <div class="row">
+                    <p  class="textonly col-xs-9 col-xs-offset-2 col-md-6 col-md-offset-3">赛宇电器 您的照明专业顾问</p>
+                </div>
+                <div class="row imgonly">
+                    <img src="images/direction.png" alt="" class="col-xs-3 col-xs-offset-5 col-md-offset-5 col-md-2"/>
+                </div>
+            </div>
+            <div class="points row">
+			<div class="left img_02 col-xs-12 col-md-8 imgonly" style="padding-right: 0px;">
+                <img class="left img_02 col-xs-12 col-md-8" style="padding-right: 0px;" src="images/images01.jpg"/>
+				</div>
+                <div class="right col-xs-12 col-md-4" >
+                    <div class="row" id="precise">
+                        <h2 class="textonly col-xs-3 col-md-12">精准</h2>
+                        <span class="firstspan col-xs-1" style="padding-right: 0px;"></span>
+                        <h4 class="textonly col-xs-8 col-md-12">赛宇电器,客户照明专业顾问</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="points row">
+			<div class="left img_02 col-xs-12 col-md-8 imgonly" style="padding-right: 0px;">
+			<img class="left img_02 col-xs-12 col-md-8"  style="padding-right: 0px;" src="images/images02.jpg"/>
+			</div>
+                <div class="right col-xs-12 col-md-4">
+                    <div class="row" id="professional">
+                        <h2 class="textonly col-xs-3 col-md-12" >专业</h2>
+                        <span class="col-xs-1" style="padding-right: 0px;"></span>
+                        <h4 class="textonly col-xs-8 col-md-12" >连续10年被评为欧司朗国内西南地区优秀的特约经销供应商</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="points row ">
+			<div class="left img_02 col-xs-12 col-md-8 imgonly" style="padding-right: 0px;">
+                <img class="left img_02 col-xs-12 col-md-8"  style="padding-right: 0px;" src="images/images03.jpg"/>
+				</div>
+                <div class="right col-xs-12 col-md-4">
+                    <div class="row" id="comprehensive">
+                        <h2 class="textonly col-xs-3 col-md-12" >全面</h2>
+                        <span class="col-xs-1" style="padding-right: 0px;"></span>
+                        <h4 class="textonly col-xs-8 col-md-12">我们有能力向客户提供优惠的价格、快速的供货、专业的服务及良好的品质保证。</h4>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <img class="to_top" src="images/back_top.png"/>
+    <div class="side_tools logo_container"></div>
+    <footer class="footer"></footer>
+</body>
+<script>  
+var n=0;
+$(".banner").hide();
+$(".banner:eq(0)").show();
+$(".lefth").click(function() {
+			if (n > 0) {
+				n = n - 1;
+			} else {
+				n = $(".banner").length - 1;
+			}
+			$(".banner").hide();
+			$(".banner:eq(" + n + ")").show();
+			$(".ctrl_btn").removeClass("activeB");
+			$(".ctrl_btn:eq(" + n + ")").addClass("activeB");
+		})
+		$(".righth").click(function() {
+			if (n < $(".banner").length - 1) {
+				n = n + 1;
+			} else {
+				n = 0;
+			}
+			$(".banner").hide();
+			$(".banner:eq(" + n + ")").show();
+			$(".ctrl_btn").removeClass("activeB");
+			$(".ctrl_btn:eq(" + n + ")").addClass("activeB");
+		});
+
+var timer = setInterval(auto, 5000);
+		function auto() {
+			if (n < $(".banner").length - 1) {
+				n = n + 1;
+			} else {
+				n = 0;
+			}
+			$(".banner").hide();
+			$(".banner:eq(" + n + ")").show();
+			$(".ctrl_btn").removeClass("activeB");
+			$(".ctrl_btn:eq(" + n + ")").addClass("activeB");
+		};
+
+</script>
+</html>

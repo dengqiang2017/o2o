@@ -1,0 +1,68 @@
+.banner span{color: #ffffff;font-size: 14px}
+.head_portrait{width: 100px;height: 100px;border-radius: 100%;background-size: cover;margin: auto;position: relative;}
+.banner #user_logo{width: 100px;height: 100px;border-radius: 100%;}
+.a_position {position: absolute;right: 0;bottom: 0;}
+.head_portrait_amend {position: relative;right: 0;bottom: 0;cursor: pointer;}
+.head_portrait_amend>img {width: 40px;height: 40px;}
+.ct {cursor: pointer;display: block;position: absolute;z-index: 2;width: 40px;height: 40px;left: 0;opacity: 0;}
+.head_portrait_amend>img {width: 40px;height: 40px;}
+.look_all_left{margin-right: 10px;float: left;color: #999999;margin-top: 2px}
+.look_all_right img{width: 8px;}
+.look_all_right{float: left}
+.order_title{padding: 10px;border-bottom: 1px solid #dddddd;background-color: #ffffff}
+.order_classify{text-align: center;padding: 10px 0;border-bottom: 8px solid #EEEEF6;background-color: #ffffff}
+.order_classify a{font-size: 14px;color: #000000}
+.order_classify span{display: block;margin: auto;font-size: 29px;color: #999999}
+.order_classify span:nth-child(2){font-size: 15px;}
+.active span{color: #1A7576}
+.word_product .col-xs-4 {padding-left: 5px;padding-right: 5px;}
+.word_product .col-xs-8 {padding-left: 5px;padding-right: 5px;}
+.product {display: block;}
+.product_title {font-size: 13px;}
+.product_color {font-size: 13px;margin-top: 10px;}
+.product_bottom {margin-top: 10px;}
+.cost {font-size: 13px;color: #C60505;font-weight: bold;}
+.number {font-size: 13px;}
+.word_product{padding: 10px;position: relative}
+.word_product .col-xs-12:not(:last-child){border-top:1px solid #dddddd;border-bottom:1px solid #dddddd}
+.word_product .col-xs-4{margin-bottom: 10px}
+.word_product .col-xs-8{margin-bottom: 10px}
+.btn-center{float: right;margin: 5px auto;}
+.order_list li:not(:nth-child(1)){display: none}
+.order_classify a{text-decoration: none}
+.check{color: #333 !important;border-color: #333 !important;}
+.word_product img{width: 100%;height: 74px}
+.order_classify .col-xs-4{cursor: pointer}
+/*------PC------*/
+@media (max-width: 759px) {.banner {margin-top: 45px;position:relative;padding: 30px 0;width: 100%;background-image: url("../images/banner.jpg");background-repeat: no-repeat;background-size: cover;text-align: center;color: #FFFFFF;font-size: 30px;} .showPC{display: none} .showPhone{display: block} .order_list{margin-bottom: 49px} .edit{position: absolute;right: 10px;top: 10px;color: #ffffff;font-size: 15px;} 
+.btn-center button{outline:none;background-color: #ffffff;border-radius:5px;border-color:#277C7C;color: #277C7C;padding: 4px;font-size: 14px} .edit:hover{color: #ffffff}}
+@media (min-width: 760px) {.banner {margin-top: 0;position:relative;padding: 30px 0;width: 100%;background-image: url("../images/banner.jpg");background-repeat: no-repeat;background-size: cover;text-align: center;color: #FFFFFF;font-size: 30px;} .showPC{display: box;display:-moz-box;display:-webkit-box;} .showPhone{display: none} .order_list{margin-bottom: 40px;background-color: #ffffff}  .order_title div{font-size: 15px} .edit{position: absolute;right: 10px;top: 10px;color: #ffffff;font-size: 15px;}
+.btn-center button{outline:none;background-color: #ffffff;border-radius:5px;border-color:#277C7C;color:#277C7C;padding: 4px;font-size: 12px} .edit:hover{color: #ffffff}}
+.contant{height: 462px;overflow-y: scroll}
+.contant::-webkit-scrollbar{width:5px;}
+.contant::-webkit-scrollbar-track{background-color:#bee1eb;}
+.contant::-webkit-scrollbar-thumb{background-color:#999999;}
+.contant::-webkit-scrollbar-thumb:hover {background-color:#9c3}
+.contant::-webkit-scrollbar-thumb:active {background-color:#00aff0}
+.btn-center button{
+display: none;
+}
+.btn-center a{
+display: none;
+}
+#price,#sd_oq{
+	font-size: 13px;
+	color: red;
+}
+#item_color{
+	font-size: 13px;
+	color: #000000;
+}
+.text-overflow {
+display:inline-block;/* 内联对象需加 */
+width:15em;
+word-break:keep-all;/* 不换行 */
+white-space:nowrap;/* 不换行 */
+overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+}

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<REQUEST>  
+<!-- 设置从多少行开始  默认从0开始-->
+<!-- 在以下配置的与Excel对应,代码中是从0开始,Excel中从1开始,注意两者的对应顺序 -->
+<!-- sheetName-Excel中sheet的名称;index-表示从多少行开始导入数据 -->
+<itembegin index="4" sheetName="库存调拨单导入-勿改此页名"/>
+<!-- 存储字段名:filedName 计算字段名称:compute -->
+<!-- mainfiledName-该数据存到主表中 ;index-数据在Excel中多少列,比如0对应Excel中的第一列;compute-计算结果的字段,取其数据;
+     tableName-查询的数据表名;queryName-sql查询数据字段;or-查询时的第二个或者查询字段名;excelChineseName-该数据列的中文名称,用于在出现错误时以中文进行提示-->
+<!-- datatype-数据来源类型,主要是外码是长整数会造成数据存储出现异常;isnullval-当根据内外码都查不出数据时的默认值-->
+
+<!-- <item mainfiledName="ivt_oper_listing"      index="0"  filedName="ivt_oper_listing" excelChineseName="调拨单号 自动生成" /> -->
+	 <item mainfiledName="sd_order_id"           index="1"  filedName="sd_order_id" excelChineseName="调拨单号 手工生成"/>
+	 <item mainfiledName="store_date"            index="2"  excelChineseName="调拨日期" />
+	 <item filedName="row_num"                   index="3"  excelChineseName="订单行编号"/>
+	 <item mainfiledName="clerk_id"              index="4"  compute="clerk_id" tableName="ctl00801" queryName="clerk_id" or="self_id" excelChineseName="责任人编码"/>
+<!-- <item mainfiledName="clerk_id"              index="5"  compute="clerk_id" tableName="ctl00801" queryName="clerk_id" or="self_id" excelChineseName="责任人"/> -->
+	 <item mainfiledName="dept_id"               index="6"  compute="dept_id"  tableName="Ctl00701" queryName="dept_id"  or="sort_id" excelChineseName="责任部门编码"/>
+<!-- <item mainfiledName="dept_id"               index="7"  compute="dept_id"  tableName="Ctl00701" queryName="dept_id"  or="sort_id" excelChineseName="责任部门"/> -->
+	 <item filedName="item_id"                   index="8"  excelChineseName="产品编码内码"/>
+	 <item filedName="peijian_id"                index="9"  excelChineseName="产品编码外码"/>
+<!-- <item filedName="item_id"                   index="10" excelChineseName="产品名称"/> -->
+     <item filedName="lot_number"                index="11" excelChineseName="规格"/>
+	 <item filedName="item_type"                 index="12" excelChineseName="型号"/>
+	 <item filedName="item_color"                index="13" excelChineseName="颜色"/>
+	 <item filedName="item_struct"               index="14" excelChineseName="结构"/>
+	 <item filedName="class_card"                index="15" excelChineseName="品牌"/>
+	 <item filedName="pack_unit"                 index="16" excelChineseName="包装单位"/>
+	 <item filedName="pack_num"                  index="17" excelChineseName="包装数量"/>
+	 <item filedName="unit_id"                   index="18" excelChineseName="基本单位"/>
+	 <item filedName="oddment_num"               index="19" excelChineseName="零头数"/>
+	 <item filedName="oper_qty"                  index="20" excelChineseName="总数量"/>
+	 <item filedName="oper_price"                index="21" excelChineseName="单价"/>
+	 <item filedName="plan_price"                index="22" excelChineseName="金额"/>
+	 <item mainfiledName="i_factacceptsum"       index="23" excelChineseName="确认金额"/>
+	 <item filedName="store_struct_id"           index="24" excelChineseName="调出仓库编码"/>
+<!-- <item filedName="store_struct_id"           index="25" excelChineseName="调出仓库"/> -->
+	 <item filedName="corpstorestruct_id"        index="26" excelChineseName="调入仓库编码"/>
+<!-- <item filedName="corpstorestruct_id"        index="27" excelChineseName="调入仓库"/> -->
+	 <item filedName="PH"                        index="28" excelChineseName="排产编码PH"/>
+	 <item mainfiledName="finacial_y"            index="29" excelChineseName="核算年"/>
+	 <item mainfiledName="finacial_m"            index="30" excelChineseName="核算月"/>
+	 <item mainfiledName="ivt_oper_id"           index="31" excelChineseName="操作类型"/>
+	 <item mainfiledName="ivt_whyoper_id"        index="32" excelChineseName="操作原因"/>
+	 <item mainfiledName="store_date"            index="33" excelChineseName="存储日期"/>
+	 <item filedName="shipping_unit_id"          index="34" excelChineseName="产品类型"/>
+<!-- <item filedName="PH"                        index="35" excelChineseName="排产编码PH"/> -->
+	 <item mainfiledName="comfirm_flag"          value="N"/>
+</REQUEST>

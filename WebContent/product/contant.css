@@ -1,0 +1,16 @@
+/*-----conmment-----*/
+#detailpage .navbar{font-family:'Microsoft YaHei',Arial,Helvetica,sans-serif;font-size: 18px;color: #000000;padding: 0;margin: 0}
+#detailpage a{text-decoration: none}
+#detailpage a:hover{text-decoration: none}
+#detailpage ul{margin-bottom: 0}
+#detailpage ul>li{list-style: none}
+/* #detailpage body{padding-top: 0 !important;padding-bottom: 0 !important;} */
+#detailpage .bgT{background-color: #017AA5;position: fixed;left: 0;top: 0;right: 0;bottom: 0;z-index: -1}
+
+/*---------header--------*/
+#detailpage .header{padding: 10px;color: #FFFFFF;text-align: center;background-color: #006766;}
+#detailpage .header-phone{padding: 10px;color: #FFFFFF;text-align: center;background-color: #006766;}
+#detailpage .header a{color: #FFFFFF;cursor: pointer}
+#detailpage .header-phone a{color: #FFFFFF;cursor: pointer}
+#detailpage .header_left{position: absolute;left: 10px;top:10px;}
+#detailpage .header_right{position: absolute;right: 10px;top:10px;}

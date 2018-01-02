@@ -1,0 +1,253 @@
+
+
+body{
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.bg{
+  width: 100%;
+  height: 100%;
+  background-image:url(../image/bg.png); 
+  background-repeat: no-repeat;
+  background-size:100% 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: -1;
+}
+
+*{
+  font-family: '微软雅黑';
+}
+
+a:link,a:visited{
+  text-decoration: none;
+  outline: none;
+}
+
+.nav-head{
+  height: 30px;
+  line-height: 30px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.header{
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 15px;
+  right: 15px;
+}
+
+.header .breadcrumb{
+  border-radius: 0;
+  height: 50px;
+  line-height: 30px;
+  background-color: #f4faff;
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+}
+
+
+.ctn-fff{
+	width: 100%;
+	background-color: #f4faff;
+	padding: 20px;
+	box-shadow: 0 0 5px rgba(0,0,0,0.3);
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.tree {
+  min-height:20px;
+  margin-bottom:10px;
+  margin-top:10px;
+  background-color:#fbfbfb;
+  border:1px solid #999;
+  -webkit-border-radius:4px;
+  -moz-border-radius:4px;
+  border-radius:4px;
+  -webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+.tree li {
+  list-style-type:none;
+  margin:0;
+  margin-left: -15px;
+  padding:10px 5px 0 5px;
+  position:relative;
+}
+.tree li::before, .tree li::after {
+  content:'';
+  left:-20px;
+  position:absolute;
+  right:auto
+}
+.tree li::before {
+  border-left:1px solid #999;
+  bottom:50px;
+  height:100%;
+  top:0;
+  width:1px
+}
+.tree li::after {
+  border-top:1px solid #999;
+  height:20px;
+  top:25px;
+  width:25px
+}
+.tree li span {
+  -moz-border-radius:3px;
+  -webkit-border-radius:3px;
+  border:1px solid #999;
+  border-radius:3px;
+  display:inline-block;
+  padding:0 5px;
+  text-decoration:none;
+  cursor: pointer;
+}
+.tree li.parent_li>span {
+  cursor:pointer
+}
+.tree>ul>li::before, .tree>ul>li::after {
+  border:0
+}
+.tree li:last-child::before {
+  height:30px
+}
+.tree li span:hover {
+  background:#4b77be;
+  border:1px solid #999;
+  color:#fff;
+}
+
+.tree li .activeT{
+  background:#4b77be;
+  color:#fff;
+}
+
+.box-ctn{
+  overflow: hidden;
+  position: relative;
+  margin: 10px 0;
+}
+
+.box-head{
+  overflow: hidden;
+}
+
+.box-body{
+  overflow: hidden;
+}
+
+.box-footer{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 13px 20px;
+  border-top: 1px solid #4b77be;
+}
+
+thead{
+  background-color: #4b77be;
+  color: #fff;
+}
+
+thead th{
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+}
+
+.activeTable,tbody tr:hover{
+  background-color: #c5eff7;
+}
+
+
+.footer{
+  position: fixed;
+  left: 15px;
+  right: 15px;
+  bottom: 0;
+  height: 50px;
+  line-height: 50px;
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+  text-indent: 10px;
+  font-weight: bold;
+}
+
+.footer span{
+  display: block;
+  color: #4b77be;
+  float: right;
+  height: 50px;
+  line-height: 50px;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.exit-btn{
+  position: fixed;
+  right: 15px;
+  top: 6px;
+  z-index: 99999;
+}
+
+.m-t-b{
+  margin: 2px 0;
+}
+
+.btn-style1{
+  color: #fff;
+  background: none;
+  border-color: #fff;
+  border-radius: 1.5em;
+  padding: 8px 20px;
+  margin-top: 10px;
+  margin-right:10px; 
+  font-weight: bold;
+}
+
+.btn-style1:hover,
+.btn-style1:focus,
+.btn-style1.focus,
+.btn-style1:active,
+.btn-style1.active,
+.open > .dropdown-toggle.btn-default {
+  color: #19b5fe;
+  background-color: #fff;
+  border-color: #fff;
+}
+
+.myjumbotron{
+  margin-top:9%; 
+  background-color: #19b5fe;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  color: #fff;
+  position: relative;
+}
+
+.footer .btn-gp{
+  display: block;
+  position: absolute;
+  right: 50%;
+  top: 0px;
+}
+
+.tabs-content{
+  margin-top: 10px;
+}
+.modal-cover{
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 999;
+}

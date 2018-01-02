@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <meta http-equiv="U-XA-Compatible" content="IE-edge">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" href="../pcxy/css/bootstrap.css">
+    <link rel="stylesheet" href="../pcxy/css/autowhole.css?ver=001">
+    <link rel="stylesheet" href="../css/popUpBox.css">
+    <script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+    <script type="text/javascript" src="../js_lib/jquery.cookie.js"></script>
+    <script src="../pcxy/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/common.js?ver=0013"></script>
+    <script type="text/javascript" src="../js/popUpBox.js?ver=0013"></script>
+    <script src="../js/o2od.js?ver=001"></script>
+    <script src="../pc/js/employee/findparms.js"></script>
+    <script type="text/javascript" src="../pc/js/autoComplete.js"></script>
+    <script type="text/javascript" src="../datepicker/WdatePicker.js"></script>
+    <script type="text/javascript" src="../pc/js/employee/productpage.js?ver=0013"></script>
+    <script type="text/javascript" src="../pc/js/employee/ordercompro.js?ver=0015"></script>
+    <script type="text/javascript" src="../pc/js/customer/order.js?ver=0013"></script>
+    <script type="text/javascript" src="js/password.js?ver=004"></script>
+	<script type="text/javascript" src="js/register.js?ver=005"></script>
+    <link rel="stylesheet" href="css/register.css">
+</head>
+<body>
+     <div class="header">
+         <a class="a_style" style="
+">取消</a>
+         注册</div>
+     <div class="body">
+         <form action="#" class="form-horizontal" role="form">
+             <div class="form-group">
+                 <div class="input_style">
+                    <label class=" control-label label_style">姓名：</label>
+                     <input class="input" name="corp_name" placeholder="请填写真实姓名" style="width: 60%">
+                   <div class="clear"></div>
+                 </div>
+             </div>
+             <div class="form-group" style="margin-top: 30px;position: relative">
+                 <div class="input_style">
+                     <input type="hidden" value="customer" id="regType">
+                     <input type="hidden" value="customer" id="erweima">
+                     <select class="form-control" style="display: none;"></select>
+                     <label class="control-label label_border">
+                        <img src="images/iPhone-4_logo.png">
+                     </label>
+                         <input style="width: 60%;margin-left: 12px;" class="input" placeholder="11位手机号码" type="text" name="user_id" maxlength="11" data-number="num">
+                     <div class="clear"></div>
+                 </div>
+                 <div class="get_carge" style="position: absolute;right: -70px;top:0">
+                     <div class="input_img" id="get_code" style="cursor: pointer">
+                         <img class="center-block" src="images/email_butten.png">
+                     </div>
+                     <span>获取验证码</span>
+                 </div>
+             </div>
+             <div class="form-group" style="margin-top: 30px;position: relative">
+                 <div class="input_style">
+                     <label class="control-label label_border">
+                         <img src="images/email-open_logo.png">
+                     </label>
+                     <input style="width: 60%;margin-left: 12px;" class="input" placeholder="手机验证码" type="text" name="verificationCode" maxlength="6">
+                     <div class="clear"></div>
+                 </div>
+             </div>
+             <div class="form-group" style="margin-top: 30px;position: relative">
+                 <div class="input_style">
+                     <label class="control-label label_border">
+                         <img src="images/locked_logo.png">
+                     </label>
+                     <input style="width: 60%;margin-left: 12px;" class="input" placeholder="6-32位密码" type="password" name="user_password" maxlength="20">
+                     <div class="clear"></div>
+                 </div>
+             </div>
+             <div class="form-group" style="margin-top: 30px;position: relative">
+                 <div class="input_style">
+                     <label class="control-label label_border">
+                         <img src="images/queren.png">
+                     </label>
+                     <input style="width: 60%;margin-left: 12px;" class="input" placeholder="再次输入密码" type="password" name="confirmPwd" maxlength="20">
+                     <div class="clear"></div>
+                 </div>
+             </div>
+             <div class="form-group" style="margin-top: 30px">
+                 <h5 class="h4_color">收货地址</h5>
+                 <textarea class="textarea_style" name="FHDZ" rows="3" placeholder="请填写准确收货地址"></textarea>
+             </div>
+         </form>
+         <button class="btn center-block btn_style" id="registerBtn">确认注册并登陆</button>
+     </div>
+</body>
+</html>

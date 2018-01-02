@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>对账单</title>
+    <meta http-equiv="U-XA-Compatible" content="IE-edge">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" href="../pcxy/css/bootstrap.css">
+    <link rel="stylesheet" href="../css/popUpBox.css">
+    <script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+    <script src="../pcxy/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/popUpBox.js"></script>
+    <script type="text/javascript" src="../js/ajaxfileupload.js"></script>
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="../pc/js/weixin/fileupload.js"></script>
+    <link rel="stylesheet" href="css/statement.css">
+    <link rel="stylesheet" href="../pc/css/uploadPingz.css">
+</head>
+<body>
+<div id=listpage>
+<!-- 头部-->
+<div class="navbar-fixed-top header " style="font-size: 18px">对账单<a class="glyphicon glyphicon-menu-left a_position" onclick="javascript:history.go(-1);" style=""></a>
+    <a id=query style="position: absolute;right: 12px;top: 6px;">
+        <img src="images/Search.png" style="width: 20px">
+    </a>
+</div>
+<!-- 定位跳转-->
+<div class="orient" style="margin-top: 44px;">
+    <div class="orient_01"><a href="personal_center.html" style="text-decoration: none;">个人中心</a></div> <span style="color: #999999;font-size: 16px;">>></span> <div class="orient_02">对账单</div>
+</div>
+<!--statement-->
+<div id="item" style="display: none;">
+<div class="statement_box">
+    <div class="statement">
+        <div class="statement_01">
+            <div class="statement_01_left">
+                业务类型 ：<span id="openbill_type"></span>
+            </div>
+            <div class="statement_01_right">
+                结余金额：<span id="surplus_sum"></span>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="statement_02">
+            <div class="statement_02_left">
+                单号<span id="sd_order_id"></span>
+            </div>
+            <div class="statement_02_right">
+                <span id="openbill_date"></span>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="details" style="display: none;">
+            <div class="order_02" id="demandInfo"></div>
+            <div class="order_03" id="imgs"></div>
+        </div>
+        <div class="look">
+            <div class="center-block" style="width: 120px">
+                <div class="arrows"></div>
+                <div style="float:left;">查看详情</div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+</div>
+
+<div class="statementk">
+</div>
+<div class="verify">
+    <div class="verify_01">应付金额：<span id=surplus_sum></span>元：</div>
+    <div class="verify_02">
+        <ul>
+<!--             <li>微信支付</li> -->
+            <li>线下支付</li>
+        </ul>
+    </div>
+<!--     <a class="reap_05 btn" style="width:100%;border-radius: 0;font-size: 16px;color: #FFFFFF;background-color: #E03430;padding: 15px">确认支付</a> -->
+</div>
+<!--------统计---------->
+<div class="body_03">
+    <ul>
+        <li>总金额:<br><span id="zje" style="color: #E0342F;font-size: 16px">¥<span>0</span>元</span></li>
+        <li>实付款:<br><span id="sfk" style="color: #E0342F;font-size: 16px">¥<span>0</span>元</span></li>
+        <li>应付款:<br><span id="yfk" style="color: #E0342F;font-size: 16px">¥<span>0</span>元</span></li>
+        <div style="clear: both"></div>
+    </ul>
+    <button type="button" class="body_04">立即支付</button>
+</div>
+<!-------立即支付------------>
+
+<!-- 底部导航-->
+ <div id="copy_bottom" style="margin-bottom: 150px"></div>
+     <div class="logo_container"></div>
+<!-- -->
+<div class="closed" style="width: 100%;height: 100%;position: fixed;left: 0;top: 0;display: none"></div>
+</div>
+</body>
+<script type="text/javascript">
+<!--
+var math=Math.random();
+var url=window.location.href;
+if(url.indexOf("?")<0){
+	window.location.href=url+"?ver="+math;
+}
+document.write("<script src='../js/common.js?ver="+math+"'><\/script>");
+document.write("<script src='cms/js/head.js?ver="+math+"'><\/script>");
+document.write("<script src='../pc/js/customer/uploadPingz.js?ver="+math+"'><\/script>");
+document.write("<script src='trghjs/statement.js?ver="+math+"'><\/script>");
+$('.body_04').click(function(){
+    $('.verify').slideToggle();
+    $('.closed').show();
+});
+$('.closed').click(function(){
+    $('.verify').hide();
+    $('.closed').hide();
+});
+//-->
+</script>
+</html>

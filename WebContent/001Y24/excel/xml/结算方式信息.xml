@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<REQUEST>  
+<itembegin index="3" sheetName="结算方式-勿改此页名"/>
+<item mainfiledName="sort_id"                   index="0"  excelChineseName="结算方式内码" />
+<item mainfiledName="settlement_type_id"        index="1"  excelChineseName="结算方式外码" />
+<item mainfiledName="settlement_sim_name"       index="2"  excelChineseName="结算方式名称"/>
+<item mainfiledName="easy_id"                   index="3"  excelChineseName="记忆码"/>
+<item mainfiledName="upper_settlement_id"       index="4"  excelChineseName="上级结算方式编码"/>
+<!-- 上级结算方式名称 -->
+<item mainfiledName="cheque_flag"               index="6"  excelChineseName="账户性质"/>
+<item mainfiledName="i_Amount"                  index="7"  excelChineseName="期初金额"/>
+<item mainfiledName="c_fullname"                index="8"  excelChineseName="户头全称"/>
+<item mainfiledName="c_accounts"                index="9"  excelChineseName="账号"/>
+<item mainfiledName="c_province"                index="10" excelChineseName="省份"/>
+<item mainfiledName="c_city"                    index="11" excelChineseName="城市"/>
+<item mainfiledName="c_backname"                index="12" excelChineseName="银行名称"/>
+<item mainfiledName="dept_id"                   index="13" excelChineseName="所属部门编码"/>
+<!-- 所属部门名称 -->
+<item mainfiledName="mainten_clerk_id"          index="15" excelChineseName="维护人员编码"/>
+<!-- 维护员工名称 -->
+<item mainfiledName="maintenance_datetime"      index="17" excelChineseName="维护时间"/>
+</REQUEST>

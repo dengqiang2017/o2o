@@ -1,0 +1,38 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: Microsoft YaHei;
+    color: #000000;
+}
+ul>li{
+    list-style: none;
+}
+ul{
+    margin-bottom: 0;
+}
+.header{
+    background-color: #3BC299;
+    padding: 10px;
+    color: #ffffff;
+    font-size: 18px;
+    text-align: center;
+    position: relative;
+}
+.header>a{
+    color: #ffffff;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+.header>a:hover{
+    cursor: pointer;
+    text-decoration: none;
+}
+.center>img{
+    width: 200px;
+    margin-top: 50px;
+}
+.center>h1{
+    text-align: center;
+    color: #3BC299;
+}

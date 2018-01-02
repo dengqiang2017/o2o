@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,user-scalable=no, initial-scale=1">
+<title>支持响应式触屏手机端的jQuery图片相册展示特效代码 - JS代码网</title>
+
+<style type="text/css">
+*{margin:0;padding:0;list-style-type:none;}
+#auto-loop img{border:0;display: ;}
+body{font:12px/180% Arial, Helvetica, sans-serif, "新宋体";}
+/* gallery */
+.gallery{width:214px;margin:40px auto 0 auto;}
+.gallery li{display:block;float:left;height:100px;margin-bottom:6px;margin-right:6px;width:100px;}
+.gallery li{height:100px;width:100px;}
+.gallery li img{max-width:100px;}
+</style>
+<!--必要样式-->
+<!-- <link rel="stylesheet" type="text/css" href="css/lightGallery.css" /> -->
+<!-- <script type="text/javascript" src="js_lib/jquery.11.js"></script> -->
+<!-- <script type="text/javascript" src="js/lightGallery.min.js"></script> -->
+<script type="text/javascript">
+// $(document).ready(function() {
+// 	$("#auto-loop").lightGallery({
+// 		loop:true,
+// 		auto:false
+// 	});
+// });
+</script>
+</head>
+<body>
+<!-- <embed src="//imgcache.qq.com/tencentvideo_v1/playerv3/TencentPlayer.swf?vid=g0396t1rhun"></embed> -->
+<!-- <video src="http://61.128.150.142/vhot2.qqvideo.tc.qq.com/g0396t1rhun.m701.mp4"></video> -->
+<video style="background-color:#000;width:100%;height:100%" preload="auto" controls="controls" data-role="txp_video_tag" src="http://61.128.150.142/vhot2.qqvideo.tc.qq.com/g0396t1rhun.m701.mp4?sdtfrom=v3010&amp;guid=127f867b0fa67722a02ae2123692a440&amp;vkey=CB5145A230CA89E08B34A441F1D4B9CF6B1A36ACD511A1149F3DB7BCF14022A8AEC31FFD9C87E0FFF484C48F3178276AC701F6280FC3A8A048AA5E2F2900234D121B2DCE89D1E4FB912D483E9DB6A138563D61821A1DBB6E"></video>
+<!-- <ul id="auto-loop" class="gallery"> -->
+<!-- 	<li data-src="http://www.js-css.cn/jscode/album/album14/img/img1.jpg"><img src="http://www.js-css.cn/jscode/album/album14/img/img1.jpg"></img></li> -->
+<!-- 	<li data-src="http://www.js-css.cn/jscode/album/album14/img/img2.jpg"><img src="http://www.js-css.cn/jscode/album/album14/img/img2.jpg"></img></li> -->
+<!-- 	<li data-src="http://www.js-css.cn/jscode/album/album14/img/img3.jpg"><img src="http://www.js-css.cn/jscode/album/album14/img/img3.jpg"></img></li> -->
+<!-- 	<li data-src="http://www.js-css.cn/jscode/album/album14/img/img4.jpg"><img src="http://www.js-css.cn/jscode/album/album14/img/img4.jpg"></img></li> -->
+<!-- </ul> -->
+<script type="text/javascript" src="/js_lib/jquery.11.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.1.0.js"></script>
+<script type="text/javascript">
+$.get("/employee/getSignature.do", {
+	"timeStamp" : new Date().getTime()+"",
+	"url" : window.location.href
+}, function(data) {
+	try{
+		wx.config({
+			debug : false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+			appId : data.split(",")[2], // 必填，企业号的唯一标识，此处填写企业号corpid
+			timestamp : data.split(",")[1], // 必填，生成签名的时间戳
+			nonceStr : data.split(",")[3], // 必填，生成签名的随机串
+			signature : data.split(",")[0],// 必填，签名，见附录1
+			jsApiList : ["hideOptionMenu","hideAllNonBaseMenuItem","showMenuItems"]
+		// 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+		});
+	} catch (e) {}
+	wx.ready(function() {
+// 		wx.hideOptionMenu();
+		wx.hideAllNonBaseMenuItem();
+// 		wx.showMenuItems({
+// 		    menuList: ["menuItem:refresh","menuItem:setFont"] // 要显示的菜单项，所有menu项见附录3
+// 		});
+	});
+});
+</script>
+</body>
+</html>

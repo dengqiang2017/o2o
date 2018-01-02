@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<REQUEST>  
+<itembegin index="4" sheetName="库房-勿改此页名"/>
+<item mainfiledName="sort_id"                index="0"  excelChineseName="库房内码" />
+<item mainfiledName="store_struct_id"        index="1"  excelChineseName="库房外码" />
+<item mainfiledName="store_struct_name"      index="2"  excelChineseName="库房名称"/>
+<item mainfiledName="easy_id"                index="3"  excelChineseName="记忆码"/>
+<item mainfiledName="store_struct_type"      index="4"  excelChineseName="库房类别"/>
+<item mainfiledName="upper_storestruct"      index="5"  excelChineseName="上级库房编码"/>
+<item mainfiledName="dept_id"                index="7"  excelChineseName="部门编码"/>
+<item mainfiledName="clerk_id"               index="9"  excelChineseName="责任人编码"/>
+<item mainfiledName="regionalism_id"         index="11" excelChineseName="行政区划编码"/>
+<item mainfiledName="customer_id"            index="13" excelChineseName="所属客户编码"/>
+<item mainfiledName="addr"                   index="15" excelChineseName="地址"/>
+<item mainfiledName="safety_class"           index="16" excelChineseName="是否是 Pos仓位"/>
+<item mainfiledName="counting_style"         index="17" excelChineseName="默认调入"/>
+<item mainfiledName="mainten_clerk_id"       index="18" excelChineseName="维护员工"/>
+<item mainfiledName="maintenance_datetime"   index="20" excelChineseName="维护时间"/>
+</REQUEST>

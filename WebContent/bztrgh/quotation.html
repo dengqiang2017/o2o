@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>员工-报价单</title>
+    <meta http-equiv="U-XA-Compatible" content="IE-edge">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" href="css/quotation.css?ver=001">
+    <link rel="stylesheet" href="../pcxy/css/bootstrap.css">
+    <link rel="stylesheet" href="../css/popUpBox.css?ver=001">
+    <script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+    <script type="text/javascript" src="../js_lib/jquery.cookie.js"></script>
+    <link rel="stylesheet" href="css/swiper-3.3.1.min.css">
+    <script type="text/javascript" src="trghjs/swiper-3.3.1.min.js"></script>
+    <script src="../pcxy/js/bootstrap.min.js"></script>
+
+    <style>
+        #cop{
+            margin-bottom: 73px !important;
+        }
+    .swiper-container {
+        width: 100%;
+        height: 100px;
+    }
+    .swiper-slide>img{
+        width: 100px;
+        height: 100px;
+        padding: 10px;
+    }
+</style>
+</head>
+<body style="background-color: #E6E6E6;">
+<div id=listpage>
+<!---------------公用部分--------------------->
+<!-- 头部-->
+<div class="header" style="font-size: 18px">报价单<a class="glyphicon glyphicon-menu-left a_position" href="../employee.do" style=""></a>
+    <a id=query style="position: absolute;right: 12px;top: 6px;">
+        <img src="images/Search.png" style="width: 20px">
+    </a></div>
+
+<!-- 定位跳转-->
+<div class="orient">
+    <div class="orient_01"><a href="../employee.do">员工后台</a></div> <span style="color: #999999;font-size: 16px;">>></span> <div class="orient_02">报价单</div>
+</div>
+<!---------------公用部分--------------------->
+
+<!-- 待支付订单展示-->
+     <div class="orderbox">
+     </div>
+     <div id="item" style="display: none">
+    <div class="orderbox01">
+        <div class="order_01">
+            <div class="pull-left" style="color: #666666;">
+                订单编号：<span id="orderNo"></span>
+            </div>
+            <div class="pull-left" style="color: #666666;">
+                客户名称：<span id="corp_name"></span>
+              <span id="customer_id" style="display: none;"></span>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="order_02"  id="demandInfo">
+        </div>
+        <div class="swiper-container">
+                 <div class="swiper-wrapper">
+            </div>
+        </div>
+        <div class="order_04">
+            <div class="pull-left" style="margin-top: 7px">
+                要求交货时间：<span  id="deliveryDate"></span>
+            </div>
+            <div class="pull-right" style="margin-top: 4px">
+                金额:<input type="tel" placeholder="请录入价格" id="sum_si" data-number="num2">
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    </div>
+<a class="pay btn" style="border-radius: 0;padding: 18px 0;font-size: 18px;color: #FFFFFF;" id="qrbjia">确定</a>
+<!-- 底部导航--><div class="logo_container"></div>
+</div>
+<script type="text/javascript">
+<!-- 
+var math=Math.random();
+document.write("<script src='../js/popUpBox.js?ver="+math+"'><\/script>");
+document.write("<script src='../js/common.js?ver="+math+"'><\/script>");
+document.write("<script src='trghjs/quotation.js?ver="+math+"'><\/script>");
+//-->
+</script>
+</body>
+</html>

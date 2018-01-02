@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>生产计划</title>
+    <meta http-equiv="U-XA-Compatible" content="IE-edge">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" href="../pcxy/css/bootstrap.css">
+    <link rel="stylesheet" href="../pcxy/css/global.css">
+    <link rel="stylesheet" href="../css/popUpBox.css">
+    <link rel="stylesheet" href="css/tree.css">
+    <link rel="stylesheet" href="css/quotation.css">
+	<link rel="stylesheet" href="css/swiper-3.3.1.min.css">
+    <script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+	<script type="text/javascript" src="trghjs/swiper-3.3.1.min.js"></script>
+    <script type="text/javascript" src="../js_lib/jquery.cookie.js"></script>
+    <script src="../pcxy/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../datepicker/WdatePicker.js"></script>
+    <script type="text/javascript" src="../js/common.js"></script>
+    <script type="text/javascript" src="../js/popUpBox.js"></script>
+    <script type="text/javascript" src="../js/o2otree.js"></script>
+</head>
+<style>
+	.swiper-container {
+		width: 100%;
+		height: 100px;
+	}
+	.swiper-slide>img{
+		width: 100px;
+		height: 100px;
+		padding: 10px;
+	}
+</style>
+<body>
+
+<!---------------公用部分--------------------->
+<!-- 头部-->
+<div class="header" style="font-size: 18px">生产计划<a class="glyphicon glyphicon-menu-left a_position" href="../employee.do"></a></div>
+
+<!-- 定位跳转-->
+<div class="orient" style="background-color: #E6E6E6;margin-top: 45px">
+    <div class="orient_01"><a href="../employee.do">员工后台</a></div> <span style="color: #999999;font-size: 16px;">>></span> <div class="orient_02">生产计划</div>
+</div>
+<!---------------公用部分--------------------->
+<div class="container" style="background-color: #ffffff;box-shadow: 0 0 5px rgba(0,0,0,0.3);margin-top: 20px;">
+<div class="box-head" style="border-bottom: none">
+          	<ul style="margin-top:10px;" class="nav nav-tabs">
+            	<li class="active"><a>下计划</a></li>
+            	<li><a>已下计划</a></li>
+          	</ul>
+          	<div class="form filter">
+          	</div>
+        </div>
+<!-- 待支付订单展示-->
+<div class="box-body">
+<div class="tabs-content">
+<div class="ctn" style="margin-bottom: 20px">
+<div>
+	<div class="row" style="margin-left: 0;margin-right: 0">
+<div class="col-sm-4 col-lg-3 m-t-b">
+<!-- 查询所属部分 -->
+	<div class="form-group">
+		<label for="">输入关键词</label>
+		<div class="input-group">
+ 			<input type="text" class="form-control input-sm" id="searchKey" maxlength="40" placeholder="请输入搜索关键词">
+ 			<span class="input-group-btn">
+   			<button class="btn btn-success btn-sm find" type="button">搜索</button>
+ 			</span>
+		</div>
+	</div>
+</div>
+	</div>
+          	</div>
+     <div class="orderbox ctn">
+     </div>
+</div>
+</div>
+<div class="tabs-content" style="display: none;">
+<div class="ctn">
+	<div class="col-lg-3 col-sm-4 m-t-b">
+		<div class="form-group">
+			<label>生产车间</label>
+			<div class="input-group">
+				<span id="dept_name" aria-describedby="basic-addon2" class="form-control input-sm"></span>
+					
+				<span class="input-group-btn">
+					<input type="hidden" id="deptId" name="dept_id">
+					<button type="button" class="btn btn-default btn-sm">X</button>
+					<button type="button" class="btn btn-success btn-sm">浏览</button>
+				</span>
+			</div>
+		</div>
+	</div>
+            	<div class="col-sm-4 col-lg-3 m-t-b">
+              		<div class="form-group">
+                		<label for="">计划日期</label>
+                		<input type="date" name="send_date" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd',maxDate:'#F{$dp.$D(\'d4312\')||\'2020-10-01\'}',isShowClear:true})" class="form-control input-sm Wdate" id="d4311" >
+              		</div>
+            	</div>
+            	<div class="col-sm-4 col-lg-3 m-t-b">
+              		<div class="form-group">
+                		<label for="">计划交货日期</label>
+                		<input type="date" name="plan_end_date" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd',minDate:'#F{$dp.$D(\'d4311\')}',maxDate:'2020-10-01',isShowClear:true})" class="form-control input-sm Wdate" id="d4312" >
+              		</div>
+            	</div>
+<div class="col-sm-4 col-lg-3 m-t-b">
+	<div class="form-group">
+		<label for="">输入关键词</label>
+		<div class="input-group">
+ 			<input type="text" class="form-control input-sm" id="searchKey" maxlength="40">
+ 			<span class="input-group-btn">
+   			<button class="btn btn-success btn-sm find" type="button">搜索</button>
+ 			</span>
+		</div>
+	</div>
+</div>
+          	</div>
+	<div class="orderbox ctn">
+     </div>
+</div>
+</div>
+	</div>
+     <div id="item" style="display: none">
+		 <div class="col-lg-4 col-sm-4">
+    <div class="orderbox01" style="height: 245px">
+		<div style="position: relative">
+			<div class="pro-check" style="cursor: pointer;position: absolute;width: 30px;right: 0px;top: 10px;"></div>
+			<div class="order_01">
+            <div class="pull-left" style="color: #666666;">
+                订单号：<span id="orderNo"></span>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div id="item_id" style="display: none;"></div>
+        <div id="customer_id" style="display: none;"></div>
+        <div class="order_01"  id="corp_name"></div>
+        <div class="order_02"  id="demandInfo"></div>
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+			</div>
+		</div>
+    </div>
+	</div>
+		 </div>
+    </div>
+    <div id="scjhitem" style="display: none">
+    <div class="col-lg-4 col-sm-4">
+    <div class="orderbox01">
+		<div style="position: relative">
+			<div class="order_01">
+	            <div class="pull-left" style="color: #666666;">
+	              	 计划单号：<span id="orderNo"></span>
+	            </div>
+	            <div class="pull-left">
+	              	  订单单号：<span id="auto_mps_id"></span>
+	            </div>
+	            <div class="pull-left">
+	              	 计划时间：<span id="send_date"></span>
+	            </div>
+	            <div class="pull-left">
+	              	 计划交货时间：<span id="plan_end_date"></span>
+	            </div>
+	            <div class="pull-left">
+	              	 排产编号：<span id="PH"></span>
+	            </div>
+	            <div class="pull-left">
+	              	 生产车间：<span id="dept_name"></span>
+	            </div>
+	            <div class="pull-left">
+	              	 客户名称：<span id="corp_name"></span>
+	            </div>
+            <div class="clear"></div>
+        </div>
+        <div id="item_id" style="display: none;"></div>
+        <div class="order_02"  id="demandInfo"></div>
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+			</div>
+		</div>
+    </div>
+	</div>
+	</div>
+    </div>
+<div class="pay btn" style="border-radius: 0;padding: 18px 0;font-size: 18px;color: #FFFFFF;">
+	<div style="position: absolute;right: 10px;top:20px;line-height: 30px"><div class="pro-check" style="float:right;width: 100px;">全选</div></div><button type="button" class="btn btn-danger tijiao" style="width: 100px" id="save">提交</button>
+</div>
+<div style="height: 100px"></div>
+<!-- 底部导航--><div class="logo_container"></div>
+<script type="text/javascript">
+<!-- 
+document.write("<script src='trghjs/tailorPmplan.js'><\/script>");
+//-->
+</script>
+<div class="verify">
+<!-- <span>生产计划输入部分</span> -->
+<div class="row" style="margin-left: 0;margin-right: 0">
+	<div class="col-sm-4 col-lg-3 m-t-b">
+		<div class="form-group">
+			<label for="">生产计划单号</label>
+			<input type="text" id="sd_order_id" class="form-control input-sm" placeholder="不填时使用系统生产">
+		</div>
+	</div>
+	<div class="col-sm-4 col-lg-3 m-t-b">
+		<div class="form-group">
+			<label for="">排产编号</label>
+			<input type="text" id="PH" class="form-control input-sm" placeholder="不填时使用系统生成">
+		</div>
+	</div>
+	<div class="col-sm-4 col-lg-3 m-t-b">
+		<div class="form-group">
+			<label for="">批次号</label>
+			<input type="text" id="batch_mark" class="form-control input-sm">
+		</div>
+	</div>
+	<div class="col-lg-3 col-sm-4 m-t-b">
+		<div class="form-group">
+			<label>生产车间</label>
+			<div class="input-group">
+				<span id="dept_name" aria-describedby="basic-addon2" class="form-control input-sm"></span>
+
+					<span class="input-group-btn">
+						<input type="hidden" id="deptId" name="dept_id">
+						<button type="button" class="btn btn-default btn-sm">X</button>
+						<button type="button" class="btn btn-success btn-sm select">浏览</button>
+					</span>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-4 col-lg-3 m-t-b">
+		<div class="form-group">
+			<label for="">计划日期</label>
+			<input type="date" name="send_date" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd',maxDate:'#F{$dp.$D(\'d4312\')||\'2020-10-01\'}',isShowClear:false})" class="form-control input-sm Wdate" id="d4311" >
+		</div>
+	</div>
+	<div class="col-sm-4 col-lg-3 m-t-b">
+		<div class="form-group">
+			<label for="">计划交货日期</label>
+			<input type="date" name="plan_end_date" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd',minDate:'#F{$dp.$D(\'d4311\')}',maxDate:'2020-10-01',isShowClear:false})" class="form-control input-sm Wdate" id="d4312" >
+		</div>
+	</div>
+</div>
+	<button class="btn btn-danger" style="width: 100%;border-radius: 0;height: 40px;margin-top: 10px;">提交</button>
+</div>
+<div class="close" style="position: fixed;left: 0;top: 0;right:0;bottom:0;width: 100%;height: 100%;background-color: #000;opacity: 0.8;display: none;z-index: 999"></div>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="U-XA-Compatible" content="IE-edge">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <title>微信封面消息图片设置</title>
+    <link rel="stylesheet" href="../pcxy/css/bootstrap.css">
+    <link rel="stylesheet" href="../css/popUpBox.css">
+</head>
+<style>
+    /*-----conmment-----*/
+    *{font-family:'Microsoft YaHei',Arial,Helvetica,sans-serif;font-size: 18px;color: #000000;padding: 0;margin: 0}
+    a{text-decoration: none}
+    a:hover{text-decoration: none}
+    ul{margin-bottom: 0}
+    ul>li{list-style: none}
+
+    /*-----header-----*/
+    .header{padding: 10px;background-color: #f4faff;}
+
+    /*-----section-----*/
+    .box{padding: 10px;border-radius: 5px;background-color: #f4faff;box-shadow: 0 0 5px rgba(0,0,0,0.3);margin-top: 15px}
+    .box>ul>li{margin: 10px;}
+    .ui-box{width: 100px;margin: 10px;display: inline-block;position: relative}
+    .ui-box>span{position: absolute;top: 0;right: 0;cursor: pointer}
+    .ui-box>img{width: 100%}
+    .box>ul>li>button{position: relative}
+    .box>ul>li>button>input{position: absolute;left: 0;top: 0;right: 0;bottom: 0;opacity: 0}
+    .footer {position: fixed;left: 0;right: 0;bottom: 0;height: 50px;line-height: 50px;background-color: #fff;border-top: 1px solid #ccc;box-shadow: 0 0 5px rgba(0,0,0,0.3);font-weight: bold;z-index: 999;}
+    .btn-gp{width: 134px}
+    .modal-body>ul>li{float: left;margin-right: 10px}
+    .checkbox>label>input{margin-top: 6px}
+    .active{border: 2px solid #0000ff}
+    .bg{position: fixed;left: 0;right: 0;top: 0;bottom: 0;background-image: url("../images/bg.jpg");background-repeat: no-repeat;background-size: cover;z-index: -1}
+    .ui-btn{width: 231px}
+    .ui-btn>button{position: relative}
+    .ui-btn>button>input{position: absolute;left: 0;top: 0;right: 0;bottom: 0;opacity: 0}
+    .input{margin-top: 10px;height: 31px}
+    .input>input{height: 100%}
+    .box>h3>span{color: #009899;}
+    #upload-btn>input {display: block;position: absolute;z-index: 2;width: 100%;height: 100%;left: 0;top: 0;opacity: 0;filter: alpha(opacity=0);cursor: pointer;
+    }
+</style>
+<body>
+<div class="bg"></div>
+<div class="section">
+    <div class="container">
+        <div class="box">
+            <h3>微信消息图片设置<span>（消息图片,建议尺寸640*320）</span></h3>
+            <ul>
+                <li>
+                </li>
+            </ul>
+            <div class="ui-btn center-block">
+                <a id="upload-btn" class="btn btn-primary btn-sm m-t-b" style="height: 32px;margin-right: 10px;position: relative">上传图片
+                    <input type="file" name="imgFile" id="imgFile" onchange="imgUpload(this);">
+                    <input type="hidden" id="filepath">
+                </a>
+                <button type="button" id="scpz" class="btn btn-primary btn-sm m-t-b" style="display: none;">上传图片</button>
+                <button class="btn btn-info" style="height: 32px;margin-right: 10px" onclick="javascript:saveWeixinImg();">保存</button>
+                <a  onclick="javascript:history.go(-1);" class="btn btn-primary" style="height: 32px;margin-right: 10px">返回</a>
+            </div>
+        </div>
+    </div>
+    <div id="item" style="display: none">
+        <div class="showimg ui-box">
+            <img src="../weixinimg/msg.png"  onclick="javascript:showImg(this)" style="width: 100px;height: 110px">
+            <div class="input">
+                <input type="text" class="form-control" maxlength="20">
+            </div>
+            <span class="glyphicon glyphicon-remove" onclick="$(this).parents('.ui-box').remove();"></span>
+        </div>
+    </div>
+</div>
+<script src="../js_lib/jquery.11.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js_lib/jquery-ui.js"></script>
+<script src="../js/ajaxfileupload.js"></script>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="../pc/js/weixin/fileupload.js"></script>
+<script src="../js/popUpBox.js"></script>
+<script type="text/javascript">
+<!--
+	$(".box>ul>li").sortable();
+    $('.ui-sortable').html("");
+    $.get('../manager/getJSONArrayByFile.do',{
+    	"path":"weixinImg.json"
+    },function(data){
+    	if(data&&data.length>0){
+	        $.each(data,function(i,n){
+	            var item = $($('#item').html());
+	            $('.ui-sortable').append(item);
+	            item.find("img").attr("src",".."+n.imgName);
+	            item.find("input").val(n.title);
+	        });
+    	}
+    });
+function saveWeixinImg(){
+	var imgs=$('.box>ul>li').find(".ui-box");
+	   if(imgs&&imgs.length>0){
+	   var jsons=[];
+	   for (var i = 0; i < imgs.length; i++) {
+		var img=$(imgs[i]);
+		jsons.push(JSON.stringify({"imgName":img.find("img").attr("src").replace("..",""),"title":img.find("input").val()}));
+	   }
+	   pop_up_box.postWait();
+	   $.post("../manager/saveJSONArrayFile.do",{
+		   "path":"weixinImg.json",
+		   "jsons":"["+jsons.join(",")+"]"
+	   },function(data){
+		   pop_up_box.loadWaitClose();
+		 if (data.success) {
+			pop_up_box.toast("保存成功!",1000);
+		} else {
+			if (data.msg) {
+				pop_up_box.showMsg("保存错误!" + data.msg);
+			} else {
+				pop_up_box.showMsg("保存错误!");
+			}
+		}
+	   });
+	   }else{
+		   pop_up_box.showMsg("请先上传图片!");
+	   }
+}
+function addImg(imgurl){
+	var item = $($('#item').html());
+    $('.ui-sortable').append(item);
+    item.find("img").attr("src","../"+imgurl);
+    saveWeixinImg();
+}
+if (is_weixin()) {
+	$("#scpz").show();
+	weixinfileup.init();
+	$('#scpz').unbind("click");
+	$("#scpz").click(function(){
+		weixinfileup.chooseImage(this,function(imgurl){
+			weixinfileup.uploadImage(imgurl,function(url){
+				var evalimgpath="/temp/eval"+Math.random()+".jpg";
+				$.get("../weixin/getImageToWeixin.do",{"url":url,"imgPath":"@com_id/weixinimg"},function(data){
+					if (data.success) {
+						pop_up_box.showMsg("上传成功!",function(){
+				            addImg(imgurl);
+						});
+					} else {
+						if (data.msg) {
+							pop_up_box.showMsg("上传错误!" + data.msg);
+						} else {
+							pop_up_box.showMsg("上传错误!");
+						}
+					}
+				});
+				
+			});
+		});
+	});
+}else{
+	$("#scpz").hide();
+	$("#pingjia").show();
+}
+function imgUpload(t){
+	ajaxUploadFile({
+		"uploadUrl":"../upload/uploadImageZs.do?fileName=imgFile&newWidth=320&quality=1f&imgPath=@com_id/weixinimg",
+		"msgId":"",
+		"fileId":"imgFile",
+		"msg":"",
+		"fid":"",
+		"uploadFileSize":10
+	},t,function(imgurl){
+		pop_up_box.loadWaitClose();
+		addImg(imgurl);
+	});
+}
+//-->
+</script>
+</body>
+</html>

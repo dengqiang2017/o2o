@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<REQUEST>  
+<itembegin index="3" sheetName="供应商-勿改此页名"/>
+<item mainfiledName="corp_name"                index="0"  excelChineseName="供应商全称" />
+<item mainfiledName="corp_sim_name"            index="1"  excelChineseName="供应商简称"/>
+<item mainfiledName="easy_id"                  index="2"  excelChineseName="记忆码"/>
+<item mainfiledName="corp_id"            	   index="3"  excelChineseName="供应商内码"/>
+<item mainfiledName="self_id"                  index="4"  excelChineseName="供应商外码"/>
+<item mainfiledName="user_id"                  index="5"  excelChineseName="用户账号"/>
+<item mainfiledName="user_password"            index="6"  excelChineseName="用户密码"/>
+<item mainfiledName="tel_no"                   index="7"  excelChineseName="联系电话"/>
+<item mainfiledName="qq"                       index="8"  excelChineseName="QQ"/>
+<item mainfiledName="weixin"                   index="9" excelChineseName="微信"/>
+<item mainfiledName="weixinID"                 index="10" excelChineseName="微信通讯录账号"/>
+<item mainfiledName="weibo"                    index="11" excelChineseName="微博"/>
+<item mainfiledName="addr1"                    index="12" excelChineseName="地址"/>
+<item mainfiledName="corp_reps"                index="13" excelChineseName="联系人"/>
+<item mainfiledName="movtel"                   index="14" excelChineseName="手机号"/>
+<item mainfiledName="regionalism_id"           index="15" excelChineseName="所属行政区域编码"/>
+<!-- <item mainfiledName="regionalism_id"      index="16" excelChineseName="所属行政区域"/> -->
+<item mainfiledName="ditch_type"               index="17" excelChineseName="渠道类型"/>
+<item mainfiledName="ceo"                      index="18" excelChineseName="老板姓名"/>
+<item mainfiledName="working_status"           index="19" excelChineseName="使用状态"/>
+<item mainfiledName="zip"                      index="20" excelChineseName="邮编"/>
+<item mainfiledName="fax_no"                   index="21" excelChineseName="传真"/>
+<item mainfiledName="tax_no"                   index="22" excelChineseName="税号"/>
+<item mainfiledName="bank_id"                  index="23" excelChineseName="开户银行"/>
+<item mainfiledName="bank_accounts"            index="24" excelChineseName="银行账号"/>
+<item mainfiledName="working_range"            index="25" excelChineseName="经营范围"/>
+<!-- <item mainfiledName="direct_upper_corp_id"        index="25" excelChineseName="上级供应商编码"/> -->
+</REQUEST>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>订单评价</title>
+    <meta http-equiv="U-XA-Compatible" content="IE-edge">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" href="../pcxy/css/bootstrap.css">
+    <link rel="stylesheet" href="../css/popUpBox.css">
+    <script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+    <script src="../pcxy/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/popUpBox.js"></script>
+    <script type="text/javascript" src="../js/ajaxfileupload.js"></script>
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="../pc/js/weixin/fileupload.js"></script>
+    <script type="text/javascript" src="trghjs/evaluation.js"></script>
+    <script src="cms/js/head.js"></script>
+    <link rel="stylesheet" href="css/comment.css">
+</head>
+<body>
+<!-- 头部-->
+<div class="header" style="font-size: 18px">订单评价<a class="glyphicon glyphicon-menu-left a_position" href="personal_center.html" style=""></a></div>
+<!-- 定位跳转-->
+<div class="orient">
+    <div class="orient_01"><a href="personal_center.html">个人中心</a></div> <span style="color: #999999;font-size: 16px;">>></span> <div class="orient_02"><a onclick="javascript:history.go(-1);">订单状态</a></div><span style="color: #999999;font-size: 16px;">>></span><div class="orient_03">订单评价</div>
+</div>
+<!--评论部分-->
+<div class="comment">
+    <input type="hidden" id="orderNo">
+    <textarea rows="6" placeholder="说点什么吧..." id="yijian"></textarea>
+    <div style="padding: 0 10px">
+        <span style="color: #8A8A8A;font-size: 17px;">晒图</span>
+    </div>
+    <div class="comment_position">
+        <div class="fire">
+            <input type="hidden" name="typeImg" id="filePath"> <input type="file" class="ct input-upload" name="pingjia" id="pingjia" onchange="imgUpload(this,'pingjia');" style="width: 100%; height: 100%; cursor: pointer; position: absolute; left: 0; top: 0; opacity: 0;">
+            <input type="button" id="scpz" class="ct input-upload" style="width: 100%; height: 100%; cursor: pointer; position: absolute; left: 0px; top: 0px; opacity: 0; display: none;">
+        </div>
+        <div id="showpingjia">
+
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div style="width: 100%;height: 15px;background-color: #F6F5F5;border: 1px solid #dddddd;display: none;"></div>
+</div>
+<!----------------厂家评分-------------->
+<div style="width: 90%;margin: auto;margin-top: 10px;font-size: 20px;color: #676767;">评分</div>
+<div class="evaluate">
+    <ul>
+        <li id="spzl">
+            <div style="margin-top:3px;float:left">商品质量：</div>
+            <div style="float:left;margin-left:10px"><div class="star" style="width:30px;height:30px;float:left;margin-left: 5px"><img src="../pc/images/xing2.png" class="endranslate"></div><div class="star" style="width:30px;height:30px;float:left;margin-left: 5px"><img src="../pc/images/xing2.png" class="endranslate"></div><div class="star" style="width:30px;height:30px;float:left;margin-left: 5px"><img src="../pc/images/xing2.png" class="endranslate"></div><div class="star" style="width:30px;height:30px;float:left;margin-left: 5px"><img src="../pc/images/xing2.png" class="endranslate"></div><div class="star" style="width:30px;height:30px;float:left;margin-left: 5px"><img src="../pc/images/xing2.png" class="endranslate"></div></div>
+            <div class="clear"></div>
+        </li>
+        <li id="fwtd">
+            <div style="margin-top:3px;float:left">服务态度：</div>
+            <div style="float:left;margin-left:10px"><div class="star" style="width:30px;height:30px;float:left;margin-left: 5px"><img src="../pc/images/xing2.png" class="endranslate"></div><div class="star" style="width:30px;height:30px;float:left;margin-left: 5px"><img src="../pc/images/xing2.png" class="endranslate"></div><div class="star" style="width:30px;height:30px;float:left;margin-left: 5px"><img src="../pc/images/xing2.png" class="endranslate"></div><div class="star" style="width:30px;height:30px;float:left;margin-left: 5px"><img src="../pc/images/xing2.png" class="endranslate"></div><div class="star" style="width:30px;height:30px;float:left;margin-left: 5px"><img src="../pc/images/xing2.png" class="endranslate"></div></div>
+            <div class="clear"></div>
+        </li>
+        <li id="wlsd">
+            <div style="margin-top:3px;float:left">物流速度：</div>
+            <div style="float:left;margin-left:10px"><div class="star" style="width:30px;height:30px;float:left;margin-left: 5px"><img src="../pc/images/xing2.png" class="endranslate"></div><div class="star" style="width:30px;height:30px;float:left;margin-left: 5px"><img src="../pc/images/xing2.png" class="endranslate"></div><div class="star" style="width:30px;height:30px;float:left;margin-left: 5px"><img src="../pc/images/xing2.png" class="endranslate"></div><div class="star" style="width:30px;height:30px;float:left;margin-left: 5px"><img src="../pc/images/xing2.png" class="endranslate"></div><div class="star" style="width:30px;height:30px;float:left;margin-left: 5px"><img src="../pc/images/xing2.png" class="endranslate"></div></div>
+            <div class="clear"></div>
+        </li>
+    </ul>
+    <div style="width: 100%;height: 15px;background-color: #F6F5F5;border: 1px solid #dddddd"></div>
+</div>
+<a class="btn" id="postEval" style="width: 100%;background-color: #35A0AD;color: #FFFFFF;cursor: pointer;border-radius: 0;font-size: 17px;padding: 17px 0;;position: fixed;left: 0;right: 0;bottom:66px ">提交评论</a>
+<div class="logo_container"></div>
+</body>
+</html>

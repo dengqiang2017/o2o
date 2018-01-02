@@ -1,0 +1,102 @@
+.stylist_box img{
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    border-radius: 100%;
+}
+.stylist_box span{
+    display: block;
+    font-size: 16px;
+}
+.stylist_box span:nth-child(3){
+    color: #026666;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+}
+.stylist_box{text-align: center;position: relative;background-color: #FFFFFF;    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-bottom: 10px;
+    border: 1px solid #ddd;
+}
+.stylisty_box .col-xs-6{
+    margin-top: 10px;
+}
+.stylisty_box .col-md-6{
+    margin-top: 10px;
+}
+.iphone-bg{
+    background-color: #FFFFFF !important;
+}
+.input-group {
+    width: 95%;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    padding: 7px 0;
+    border: 1px solid #ddd;
+}
+label img {
+    width: 17px;
+    margin-bottom: 2px;
+}
+.screen {
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    cursor: pointer;
+}
+.input-group label {
+    width: 15%;
+    float: left;
+    margin-bottom: 0;
+    text-align: center;
+    color: #fff;
+}
+.input-group input {
+    width: 75%;
+    float: left;
+    background-color: #FFFFFF !important;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    line-height: 25px;
+}
+body{
+    width: auto !important;
+    height: auto !important;
+}
+.stylisty_box::-webkit-scrollbar{width:5px;}
+.stylisty_box::-webkit-scrollbar-track{background-color:#bee1eb;}
+.stylisty_box::-webkit-scrollbar-thumb{background-color:#999999;}
+.stylisty_box::-webkit-scrollbar-thumb:hover {background-color:#9c3}
+.stylisty_box::-webkit-scrollbar-thumb:active {background-color:#00aff0}
+@media (min-width: 770px) {
+    .stylisty_box{
+        height: 416px;
+        overflow-y: scroll;
+        padding-bottom: 10px;
+    }
+    .search {
+        background-color: #FFFFFF;
+        padding: 5px 0;
+        width: 100%;
+        position: relative;
+        margin-top: 0;
+    }
+}
+@media (max-width: 769px){
+    .stylisty_box{
+        margin-bottom: 60px;
+        margin-top: 90px;
+    }
+    .search {
+        background-color: #FFFFFF;
+        padding: 5px 0;
+        width: 100%;
+        position: fixed;
+        top: 45px;
+        z-index: 10;
+    }
+}

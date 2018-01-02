@@ -1,0 +1,593 @@
+.ctn{
+	width: 100%;
+	overflow: hidden;
+	clear: both;
+}
+
+img{
+	display: block;
+	outline: none;
+	border: none;
+}
+.check-group{
+	overflow: hidden;
+	padding: 5px;
+}
+
+.check-group>input{
+	display: block;
+	float: left;
+	background-color: red;
+}
+
+.check-group>label{
+	float: left;
+	width: 92%;
+	line-height: 22px;
+	height: 44px;
+	overflow: hidden;
+}
+
+.p-value-gp{
+	overflow: hidden;
+	font-size: 12px;
+}
+
+.p-value-gp label{
+	display: block;
+	float: left;
+	width: 30%;
+	line-height: 30px;
+	font-weight: normal;
+	text-align: right;
+	overflow: hidden;
+	font-size: 12px;
+}
+
+.p-value-gp input{
+	display: block;
+	float: left;
+	width: 60%;
+	margin-left:5%;
+	border: 1px solid #999;
+	line-height: 12px;
+	height: 30px; 
+	padding: 4px;
+}
+
+.p-tips{
+	font-size: 12px;
+	color: #858585;
+	line-height: 32px;
+	text-align: right;
+}
+
+.p-ctn{
+	background-color: #fff;
+	box-shadow: 0 0 5px rgba(0,0,0,0.2);
+	margin: 10px 0;
+	border: 1px solid #ccc;
+	overflow: hidden;
+/*	height: 360px;*/
+}
+
+.p-img{
+	float: left;
+}
+
+.p-msg{
+	float: left;
+	height: 100%;
+	border-left: 1px solid #ccc;
+	position: relative;
+}
+
+@media screen and (min-width: 768px){
+	.p-img{
+		width: 30%;
+	}
+	.p-msg{
+		width: 70%;
+	}
+	.p-class{
+		width: 48%;
+		margin-right: 1%;
+		float: left;
+	}
+}
+
+@media screen and (max-width: 768px){
+	.p-img{
+		width: 40%;
+	}
+	.p-msg{
+		width: 60%;
+	}
+	.p-class{
+		width: 100%;
+	}
+}
+
+.p-img .pimg{
+	width: 100%;
+	height: auto;
+}
+.p-top{
+	overflow: hidden;
+	padding-left: 18px;
+	position: relative;
+}
+
+.p-middle{
+	overflow: hidden;
+	border-top: 1px solid #ccc;
+	padding: 5px;
+}
+
+.pimg-ctn img{
+	height: 100%;
+	max-width: 100%;
+}
+
+.pimg-ctn{
+	padding: 5px;
+	height: 100%;
+}
+
+.pmsg-ctn{
+	padding: 5px;
+	font-size: 12px;
+}
+
+.p-top>.pro-check{
+	display: block;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	z-index: 10;
+	width: 30px;
+	height: 30px;
+	background: url(../image/checkbox.png);
+}
+
+.p-top>.pro-checked{
+	background: url(../image/checkedbox.png);
+}
+
+.pro-check>.check{
+	opacity: 0;
+	filter: alpha(opacity=0);
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	display: block;
+	left: 0;
+	top: 0;
+}
+.pmsg-ctn span{
+	display: block;
+}
+
+@media screen and (min-width: 1170px){
+	.p-class{
+		height: 22px;
+		line-height: 22px;
+	}
+}
+
+
+@media screen and (max-width: 1170px){
+	.p-class{
+		height: 18px;
+		line-height: 18px;
+	}
+}
+
+.p-name{
+	line-height: 16px;
+	height: 32px;
+	overflow: hidden;
+	font-size: 14px;
+	font-weight: bold;
+	text-indent: 10px;
+}
+
+.p-class{
+	overflow: hidden;
+	color: #333;
+}
+
+.p-form{
+	overflow: hidden;
+	font-size: 12px;
+	height: 30px;
+	line-height: 30px;
+}
+
+.p-form label{
+	width: 20%;
+	display: block;
+	float: left;
+	text-align: right;
+	font-weight: normal;
+	height: 24px;
+	line-height: 24px;
+	color: #858585;
+	margin-right: 5%;
+}
+
+.p-form input{
+	width: 70%;
+	display: block;
+	float: left;
+	height: 24px;
+	margin-right: 1%;
+	border-radius: 3px;
+	border: 1px solid #999;
+	padding: 0 1px;
+}
+
+.p-form select{
+	width: 70%;
+	display: block;
+	float: left;
+	height: 24px;
+	border-radius: 3px;
+	border: 1px solid #999;
+	padding: 0;
+	margin-right: 1%;
+}
+
+.p-form .p-xs{
+	width: 32%;
+}
+
+.p-content{
+	width: 70%;
+	display: block;
+	float: left;
+	height: 24px;
+	line-height: 24px;
+	overflow: hidden;
+	margin-right: 1%;
+}
+
+.p-content-xs{
+	width: 32%;
+	display: block;
+	float: left;
+	height: 24px;
+	line-height: 24px;
+	overflow: hidden;
+	margin-right: 1%;
+}
+
+.p-xs-m{
+	display: block;
+	float: left;
+	height: 24px;
+	line-height: 24px;
+	margin-right: 1%;
+}
+
+.product-ctn{
+	overflow: hidden;
+	border: 1px solid #ccc;
+}
+
+.pro-img-lg img{
+	height: 100%;
+	max-width: 100%;
+	margin: auto;
+}
+
+.pro-img-lg{
+	margin-bottom: 10px;
+}
+
+.product-img{
+	padding: 10px;
+}
+
+.product-text{
+	padding: 10px;
+}
+
+.pro-img-xs img{
+	height: 100%;
+	float: left;
+	margin-right: 5px;
+	cursor: pointer;
+	border: 2px solid #ccc;
+}
+
+.pro-img-xs img:hover,.pro-img-xs .activeImg{
+	border-color: #af0000;
+}
+
+@media screen and (min-width: 1170px) {
+	.product-img{
+		width: 36%;
+		float: left;
+	}
+
+	.pro-img-lg{
+		height: 320px;
+	}
+
+	.product-text{
+		width: 60%;
+		float: left;
+		margin-right: 4%;
+	}
+	.pro-img-xs{
+		overflow: hidden;
+		width: 100%;
+		height: 70px;
+	}
+
+	.product-name{
+		font-size: 18px;
+		line-height: 30px;
+		height: 60px;
+		overflow: hidden;
+	}
+
+	.product-value{
+		height: 80px;
+		line-height: 80px;
+		background-color: #ffecdb;
+		font-size: 12px;
+		color: #646464;
+		text-indent: 2em;
+		margin:  10px 0;
+	}
+	.product-value span{
+		font-size: 24px;
+		color: #cf000f;
+		text-indent: 20px;
+		display: inline-block;
+	}
+
+	.pstyle{
+		line-height: 30px;
+		height: 30px;
+		overflow: hidden;
+	}
+}
+
+@media screen and (max-width: 1170px) and (min-width: 768px) {
+	.product-img{
+		width: 36%;
+		float: left;
+	}
+
+	.pro-img-lg{
+		height: 240px;
+	}
+
+	.product-text{
+		width: 60%;
+		float: left;
+		margin-right: 4%;
+	}
+	.pro-img-xs{
+		overflow: hidden;
+		width: 100%;
+		height: 50px;
+	}
+
+	.product-name{
+		font-size: 18px;
+		line-height: 30px;
+		height: 60px;
+		overflow: hidden;
+	}
+
+	.product-value{
+		height: 80px;
+		line-height: 80px;
+		background-color: #ffecdb;
+		font-size: 12px;
+		color: #646464;
+		text-indent: 2em;
+		margin: 10px 0;
+	}
+	.product-value span{
+		font-size: 24px;
+		color: #cf000f;
+		text-indent: 20px;
+		display: inline-block;
+	}
+	.pstyle{
+		line-height: 20px;
+		height: 20px;
+		overflow: hidden;
+	}
+	
+}
+
+@media screen and (max-width: 768px) and (min-width: 480px) {
+	.product-img{
+		width: 36%;
+		float: left;
+	}
+
+	.pro-img-lg{
+		height: 150px;
+	}
+
+	.product-text{
+		width: 60%;
+		float: left;
+		margin-right: 4%;
+	}
+	.pro-img-xs{
+		overflow: hidden;
+		width: 100%;
+		height: 30px;
+	}
+
+	.product-name{
+		font-size: 18px;
+		line-height: 30px;
+		height: 60px;
+		overflow: hidden;
+	}
+
+	.product-value{
+		height: 40px;
+		line-height: 40px;
+		background-color: #ffecdb;
+		font-size: 12px;
+		color: #646464;
+		text-indent: 2em;
+		margin: 10px 0;
+	}
+	.product-value span{
+		font-size: 20px;
+		color: #cf000f;
+		text-indent: 20px;
+		display: inline-block;
+	}
+
+	.pstyle{
+		line-height: 16px;
+		height: 16px;
+		overflow: hidden;
+	}
+	
+}
+
+@media screen and (max-width: 480px) {
+	.product-img{
+		width: 100%;
+	}
+
+	.product-text{
+		width: 100%;
+	}
+	.pro-img-xs{
+		display: none;
+	}
+
+	.product-name{
+		font-size: 14px;
+		line-height: 20px;
+		height: 40px;
+		overflow: hidden;
+	}
+
+	.product-value{
+		height: 20px;
+		line-height: 20px;
+		font-size: 12px;
+		color: #646464;
+		margin: 10px 0;
+	}
+	.product-value span{
+		font-size: 18px;
+		color: #cf000f;
+		text-indent: 10px;
+		display: inline-block;
+	}
+	.pstyle{
+		line-height: 20px;
+		height: 20px;
+		overflow: hidden;
+	}
+	
+}
+
+.pstyle-label{
+	width: 24%;
+	display: inline-block;
+	color: #858585;
+	font-size: 12px;
+	text-align: right;
+}
+
+.pstyle-content{
+	width: 70%;
+	display: inline-block;
+	margin-left: 5%;
+}
+
+.pstyle{
+	overflow: hidden;
+}
+
+.pro-num{
+	height: 40px;
+	padding: 10px 0;
+}
+
+.pro-num-L{
+	width: 24%;
+	display: inline-block;
+	color: #858585;
+	font-size: 12px;
+	text-align: right;
+}
+
+.pro-num-I{
+	width: 20%;
+	display: inline-block;
+	margin-left: 5%;
+	height: 32px;
+	border: 1px solid #999;
+	border-radius:2px;
+	box-shadow: 0 0 2px rgba(0,0,0,0.1) inset;
+	padding: 5px;
+}
+
+.pro-img{
+	width: 100%;
+}
+
+.pro-img img{
+	width: 100%;
+}
+
+.pro-para-gp{
+	overflow: hidden; 
+	line-height: 26px;
+	font-size: 14px;
+}
+
+.pro-para-label{
+	display: inline-block;
+	color: #858585;
+}
+
+.pro-para-content{
+	display: inline-block;
+	text-indent: 5px;
+}
+
+.pro-package-label{
+	display: inline-block;
+	color: #858585;
+}
+
+.pro-package-content{
+	display: inline-block;
+	text-indent: 5px;
+}
+
+.pro-img video{
+	margin: 10px auto;
+	display: block;
+}
+
+@media screen and (min-width: 768px){
+	.pro-img video{
+		width: 768px;
+	}
+}
+
+@media screen and (max-width: 768px){
+	.pro-img video{
+		width: 100%;
+	}
+}

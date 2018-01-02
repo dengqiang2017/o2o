@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<REQUEST>
+<itembegin index="3" sheetName="期初应收-勿改此页名"/>
+<!-- 存储字段名:filedName 计算字段名称:compute -->
+<item mainfiledName="customer_id"      index="0" compute="customer_id" tableName="Sdf00504" queryName="self_id" datatype="txt" isnullval="CS1_ERROR" or="customer_id" excelChineseName="客户编码"/>
+<!-- 客户名称 -->
+<item mainfiledName="oh_sum"           index="2" excelChineseName="数量"/>
+<item mainfiledName="dept_id"          index="3" compute="sort_id" tableName="Ctl00701" queryName="dept_id"  or="sort_id" excelChineseName="部门编码" />
+<!-- 部门名称 -->
+<item mainfiledName="clerk_id"         index="5" filedName="clerk_id"   compute="clerk_id" tableName="Ctl00801" queryName="self_id" or="clerk_id" excelChineseName="员工编码"/>
+<!-- 员工名称 -->
+<item mainfiledName="rcv_hw_no"        index="7" filedName="rcv_hw_no"  excelChineseName="结算方式编码"/>
+<!-- 结算方式名称 -->
+<item mainfiledName="initial_flag"     value="Y"/>
+<item mainfiledName="c_memo"           index="9" value="系统初始化"/>
+<item mainfiledName="ivt_oper_listing"         index="10"  excelChineseName="收款编码" />
+</REQUEST>

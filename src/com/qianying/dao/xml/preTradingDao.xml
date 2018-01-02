@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- xml文件 -->
+<mapper namespace="com.qianying.dao.interfaces.IPreTradingDAO">
+	<!-- <cache/> -->
+<!-- 	获取所有的产品 -->
+<select id="getProductByClassName" parameterType="hashMap" resultType="hashMap">
+select
+ltrim(rtrim(isnull(t1.item_id,''))) as item_id,
+ltrim(rtrim(isnull(t1.item_name,''))) as item_name,
+ltrim(rtrim(isnull(t1.item_sim_name,''))) as item_sim_name,
+ltrim(rtrim(isnull(t1.item_spec,''))) as item_spec,
+ltrim(rtrim(isnull(t1.item_unit,''))) as item_unit,
+ltrim(rtrim(isnull(t1.casing_unit,''))) as casing_unit,
+ltrim(rtrim(isnull(t2.sort_name,''))) as sort_name,t1.AZTS_free
+from ctl03001 t1 left join ctl03200 t2 on t1.com_id=t2.com_id and t1.type_id=t2.sort_id
+where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id} 
+and ltrim(rtrim(isnull(t1.item_status,'使用')))='使用'
+and ltrim(rtrim(isnull(t1.type_id,'')))=#{type_id}
+order by t1.i_weight
+</select>
+<!-- 	养殖户预购确认数据列表 -->
+<select id="preSaleConfirmListQuery" parameterType="hashMap" resultType="hashMap">
+	select t2.buyer_id,
+	ltrim(rtrim(isnull(t5.corp_name,''))) as corp_name,
+	ltrim(rtrim(isnull(t5.customer_id,''))) as customer_id,
+	ltrim(rtrim(isnull(t5.user_id,''))) as movtel,
+	t2.buyer_sd_oq as num,
+	<if test="customer_id!=null">
+	t2.buyer_sd_unit_price as price,
+	</if>
+	<if test="buyer_id!=null">
+	t2.sd_unit_price as price,
+	</if>
+	t2.item_id,t4.item_name,
+	convert(varchar(10),t2.cuohe_datetime,121) as time,t2.m_flag,t2.pre_trading_no,
+	ltrim(rtrim(isnull(t3.address,''))) as address,ltrim(rtrim(isnull(t3.latlng,''))) as latlng
+from sdd02030 t1 
+left join sdd02031 t2 on t1.com_id=t2.com_id and t1.ivt_oper_listing=t2.ivt_oper_listing
+left join t_Pre_Trading t3 on t2.com_id=t3.com_id and t2.item_id=t3.item_id and t2.pre_trading_no=t3.ivt_oper_listing
+left join Ctl03001 t4 on t2.com_id=t4.com_id and t2.item_id=t4.item_id
+<if test="customer_id!=null">
+left join Sdf00504 t5 on t2.com_id=t5.com_id and t2.buyer_id=t5.customer_id
+</if>
+<if test="buyer_id!=null">
+left join Sdf00504 t5 on t2.com_id=t5.com_id and t2.customer_id=t5.customer_id
+</if>
+where 
+ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id} 
+and ltrim(rtrim(isnull(t1.ivt_oper_listing,'')))=#{no} 
+<if test="customer_id!=null">
+and ltrim(rtrim(isnull(t2.customer_id,'')))=#{customer_id}
+</if>
+<if test="buyer_id!=null">
+and ltrim(rtrim(isnull(t2.buyer_id,'')))=#{buyer_id}
+</if>
+group by t2.buyer_id,t5.corp_name,t5.customer_id,t5.user_id,t2.buyer_sd_oq,
+<if test="customer_id!=null">
+t2.buyer_sd_unit_price,
+</if>
+<if test="buyer_id!=null">
+t2.sd_unit_price,
+</if>
+t2.item_id,t4.item_name ,t2.cuohe_datetime,t2.m_flag,t2.pre_trading_no,t3.address,t3.latlng
+</select>
+<!-- 预售方确认 -->
+<update id="preSaleConfirm" parameterType="hashMap" >
+	update sdd02031 set	m_flag=#{m_flag}
+	<if test="customer_id!=null">
+		,confirm_datetime=#{now}
+	</if>
+	<if test="buyer_id!=null">
+		,buyer_confirm_datetime=#{now}
+	</if>
+	where ltrim(rtrim(isnull(com_id,'')))=#{com_id}
+	and ltrim(rtrim(isnull(ivt_oper_listing,'')))=#{no}
+	<if test="customer_id!=null">
+		and ltrim(rtrim(isnull(customer_id,'')))=#{customer_id}
+	</if>
+	<if test="buyer_id!=null">
+		and ltrim(rtrim(isnull(buyer_id,'')))=#{buyer_id}
+	</if>
+	update sdd02031 set	m_flag=3
+	where ltrim(rtrim(isnull(com_id,'')))=#{com_id}
+	and ltrim(rtrim(isnull(ivt_oper_listing,'')))=#{no}
+	and not isnull(confirm_datetime,'')='' 
+	and not isnull(buyer_confirm_datetime,'')=''
+</update>
+<!-- 预售查询分页-begin -->
+<sql id="preTradingSql">
+select convert(varchar(10),t1.guajia_datetime,121) as time,
+isnull(t2.sd_oq,t1.sd_oq) as sd_oq,isnull(t2.sd_unit_price,t1.sd_unit_price) as price,
+t1.sd_unit_price as gua_price,t1.sd_oq as gua_num,
+t4.item_name,t4.item_spec as weight,
+t5.corp_name,t2.m_flag,t2.ivt_oper_listing as orderNo from t_Pre_Trading t1
+left join Ctl03001 t4 on t1.com_id=t4.com_id and t1.item_id=t4.item_id
+left join Sdf00504 t5 on t1.com_id=t5.com_id and t1.customer_id=t5.customer_id
+left join sdd02031 t2 on t1.com_id=t2.com_id and t1.item_id=t2.item_id  
+<if test="customer_id!=null">
+and t1.ivt_oper_listing=t2.pre_trading_no
+and t1.customer_id=t2.customer_id 
+</if>
+<if test="buyer_id!=null">
+and t1.ivt_oper_listing=t2.buyer_pre_trading_no
+and t1.customer_id=t2.buyer_id 
+</if>
+where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id}
+<if test="customer_id!=null">
+	and ltrim(rtrim(isnull(t1.customer_id,'')))=#{customer_id}
+</if>
+<if test="buyer_id!=null">
+	and ltrim(rtrim(isnull(t1.customer_id,'')))=#{buyer_id}
+</if>
+<if test="type_id!=null">
+and ltrim(rtrim(isnull(t4.type_id,''))) like #{type_id}
+</if>
+<if test="beginTime!=null">
+<![CDATA[
+and convert(varchar(23),t1.guajia_datetime,121)>=#{beginTime}
+]]>
+</if>
+<if test="endTime!=null">
+<![CDATA[
+and convert(varchar(23),t1.guajia_datetime,121)<=#{endTime}
+]]>
+</if>
+group by t2.sd_oq,t1.sd_oq,t2.sd_unit_price,t1.sd_unit_price,t1.guajia_datetime,t4.item_name,t4.item_spec,t5.corp_name,t2.m_flag,t2.ivt_oper_listing
+</sql>
+<select id="preTradingPageCount" parameterType="hashMap" resultType="Integer">
+select count(*) from (
+<include refid="preTradingSql"/>
+) as t1
+</select>
+<select id="preTradingPage" parameterType="hashMap" resultType="hashMap">
+declare @maxId int,@maxId2 int;
+		set @maxid=(
+		select max(idh) from (
+		select top ${page}
+		ROW_NUMBER() OVER (
+			ORDER BY t1.time desc,t1.orderNo desc,t1.item_name desc 
+			) as idh 
+	  	from  (
+<include refid="preTradingSql"/>
+) as t1
+  	) as t);
+       set @maxId2=@maxId;
+  	 <if test="page==1">
+			set @maxId=@maxId-1;
+	</if>
+	select top ${rows} t.* from (
+	select ROW_NUMBER() OVER (
+		ORDER BY t1.time desc,t1.orderNo desc,t1.item_name desc
+		) as idh, t1.*
+  	from   (
+<include refid="preTradingSql"/>
+) as t1
+  	) as t where  t.idh>@maxid
+</select>
+<!-- 预售查询分页-end -->
+<!-- 获取指定猪种的平均 养殖户挂价,数量和收购方挂价,数量 -->
+<select id="getPreAverageInfo" parameterType="hashMap" resultType="hashMap">
+	select t2.upper_customer_id,avg(t1.sd_unit_price) as junjia,SUM(t1.sd_oq) as num  from t_Pre_Trading t1 
+	left join Sdf00504 t2 on t1.com_id=t2.com_id and t1.customer_id=t2.customer_id
+	left join Ctl03001 t3 on t1.com_id=t3.com_id and t1.item_id=t3.item_id
+	where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id} 
+	and ltrim(rtrim(isnull(t3.type_id,''))) = #{type_id}
+	<if test="beginTime!=null">
+	<![CDATA[
+	and convert(varchar(23),t1.guajia_datetime,121)>=#{beginTime}
+	]]>
+	</if>
+	<if test="endTime!=null">
+	<![CDATA[
+	and convert(varchar(23),t1.guajia_datetime,121)<=#{endTime}
+	]]>
+	</if>
+	group by t2.upper_customer_id
+</select>
+<!-- 获取指定猪种下的预购方/预售方相关挂价信息 -->
+<select id="getPreCustomerInfo" parameterType="hashMap" resultType="hashMap">
+	select  t1.seeds_id,t1.sd_unit_price as guajia,
+	isnull(t1.sd_oq,0) as num,isnull(t1.jiaoyi_num,0) as jnum,
+	(isnull(t1.sd_oq,0)-isnull(t1.jiaoyi_num,0)) as gynum,
+	convert(varchar(10),t1.guajia_datetime,121) as time,
+	ltrim(rtrim(isnull(t1.ivt_oper_listing,''))) as ivt_oper_listing,
+	ltrim(rtrim(isnull(t1.item_id,''))) as item_id,
+	ltrim(rtrim(isnull(t1.customer_id,''))) as customer_id,
+	ltrim(rtrim(isnull(t2.corp_name,''))) as corp_name,
+	ltrim(rtrim(isnull(t2.user_id,''))) as tel,
+	ltrim(rtrim(isnull(t3.item_name,''))) as item_name,
+	ltrim(rtrim(isnull(t2.corp_sim_name,''))) as corp_sim_name,
+	ltrim(rtrim(isnull(t2.regionalism_id,''))) as xzqh
+	  from t_Pre_Trading t1 
+	left join Sdf00504 t2 on t1.com_id=t2.com_id and t1.customer_id=t2.customer_id
+	left join Ctl03001 t3 on t1.com_id=t3.com_id and t1.item_id=t3.item_id
+	where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id} 
+	and ltrim(rtrim(isnull(t1.customer_id,''))) like #{customer_id}
+	and (isnull(t1.sd_oq,0)-isnull(t1.jiaoyi_num,0))>0
+	<![CDATA[
+	and isnull(t1.jiaoyi_num,0)<isnull(t1.sd_oq,0)
+	]]>
+	<if test="type_id!=null">
+	and ltrim(rtrim(isnull(t3.type_id,''))) = #{type_id}
+	</if>
+	<if test="item_id!=null">
+	and ltrim(rtrim(isnull(t1.item_id,''))) = #{item_id}
+	</if>
+	<if test="beginTime!=null">
+	<![CDATA[
+	and convert(varchar(23),t1.guajia_datetime,121)>=#{beginTime}
+	]]>
+	</if>
+	<if test="endTime!=null">
+	<![CDATA[
+	and convert(varchar(23),t1.guajia_datetime,121)<=#{endTime}
+	]]>
+	</if>
+	order by t1.guajia_datetime desc,t2.corp_name 
+</select>
+<update id="updateYgfInfo" parameterType="net.sf.json.JSONObject">
+update t_Pre_Trading set 
+mainten_clerk_id=#{clerk_id},
+mainten_datetime=#{now},
+jiaoyi_num=isnull(jiaoyi_num,0)+#{num},selling_price=#{price} 
+where ltrim(rtrim(isnull(com_id,'')))=#{com_id} 
+and ltrim(rtrim(isnull(customer_id,'')))=#{customer_id}
+and ltrim(rtrim(isnull(ivt_oper_listing,'')))=#{ivt_oper_listing}
+and ltrim(rtrim(isnull(item_id,'')))=#{item_id}
+</update>
+<update id="updateYsfInfo" parameterType="net.sf.json.JSONObject">
+update t_Pre_Trading set mainten_clerk_id=#{clerk_id},mainten_datetime=#{now},
+jiaoyi_num=jiaoyi_num+#{num},selling_price=#{price} 
+where ltrim(rtrim(isnull(com_id,'')))=#{com_id} 
+and ltrim(rtrim(isnull(customer_id,'')))=#{customer_id}
+and ltrim(rtrim(isnull(item_id,'')))=#{item_id}
+and ltrim(rtrim(isnull(ivt_oper_listing,'')))=#{ivt_oper_listing}
+<!-- declare pre cursor local for -->
+<!-- select t1.seeds_id,isnull(t1.jiaoyi_num,0) as jnum, t1.sd_oq from t_Pre_Trading t1 -->
+<!-- where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id}  -->
+<!-- and ltrim(rtrim(isnull(t1.customer_id,'')))=#{customer_id} -->
+<!-- and ltrim(rtrim(isnull(t1.item_id,'')))=#{item_id} -->
+<!-- and ltrim(rtrim(isnull(ivt_oper_listing,'')))=#{ivt_oper_listing} -->
+<!-- order by t1.seeds_id; -->
+<!-- open pre; -->
+<!-- declare @seeds_id int ,@jnum int ,@sd_oq int; -->
+<!-- declare @znum int;set @znum=${num}; -->
+<!-- while @@FETCH_STATUS=0 -->
+<!-- begin -->
+<!-- fetch next from pre into @seeds_id,@jnum,@sd_oq   -->
+<!-- if @znum>0 -->
+<!-- begin -->
+<!-- declare @num int; -->
+<!-- if @sd_oq>=@znum -->
+<!-- begin -->
+<!-- 总数量小于等于总数量 -->
+<!-- update t_Pre_Trading set mainten_clerk_id='${clerk_id}',mainten_datetime='${now}', -->
+<!-- selling_price=${price},jiaoyi_num=jiaoyi_num+@znum where seeds_id=@seeds_id; -->
+<!-- 直接结束 -->
+<!-- set @znum=0; -->
+<!-- end -->
+<!-- else  -->
+<!-- begin -->
+<!-- set @num=@znum-@sd_oq; -->
+<!-- 总数量大于挂价数量时 -->
+<!-- update t_Pre_Trading set mainten_clerk_id='${clerk_id}',mainten_datetime='${now}', -->
+<!-- jiaoyi_num=jiaoyi_num+@sd_oq,selling_price=${price} where seeds_id=@seeds_id; -->
+<!-- set @znum=@num; -->
+<!-- end; -->
+<!-- end; -->
+<!-- end -->
+<!-- close pre -->
+<!-- deallocate pre -->
+</update>
+  <sql id="reserveBuyWhere">
+  where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id}
+  and ltrim(rtrim(isnull(t1.customer_id,'')))=#{customer_id}
+  </sql>
+  <select id="reserveBuyQueryCount" parameterType="hashMap" resultType="Integer">
+	select count(*) from sdd02030 t1 left join sdd02031  t2 on t1.com_id=t2.com_id and t1.ivt_oper_listing=t2.ivt_oper_listing
+left join t_Pre_Trading t3 on t2.com_id=t3.com_id and t2.item_id=t3.item_id
+	</select>
+	<select id="reserveBuyQuery" parameterType="hashMap" resultType="hashMap">
+	select * from sdd02030 t1 left join sdd02031  t2 on t1.com_id=t2.com_id and t1.ivt_oper_listing=t2.ivt_oper_listing
+left join t_Pre_Trading t3 on t2.com_id=t3.com_id and t2.item_id=t3.item_id
+	</select>
+
+  <sql id="platformHistorySql">
+  v_platformHistory t1
+  where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id}
+  <if test="type_id!=null">
+  and ltrim(rtrim(isnull(t1.type_id,''))) like #{type_id}
+  </if>
+  <if test="m_flag!=null">
+  and ltrim(rtrim(isnull(t1.m_flag,''))) = #{m_flag}
+  </if>
+  <if test="beginTime!=null">
+	<![CDATA[
+	and convert(varchar(23),t1.cuohe_datetime,121)>=#{beginTime}
+	]]>
+	</if>
+	<if test="endTime!=null">
+	<![CDATA[
+	and convert(varchar(23),t1.cuohe_datetime,121)<=#{endTime}
+	]]>
+	</if>
+  </sql>
+  <select id="platformHistoryCount" parameterType="hashMap" resultType="Integer">
+	select count(*) from <include refid="platformHistorySql"/>
+	</select>
+	<select id="platformHistoryPage" parameterType="hashMap" resultType="hashMap">
+	declare @maxId int,@maxId2 int;
+		set @maxid=(
+		select max(idh) from (
+		select top ${page}
+		ROW_NUMBER() OVER (
+			ORDER BY convert(varchar(23),t1.cuohe_datetime,121) desc,t1.item_name desc
+			) as idh 
+	  	from  
+	<include refid="platformHistorySql"/>
+  	) as t);
+       set @maxId2=@maxId;
+  	 <if test="page==1">
+			set @maxId=@maxId-1;
+	</if>
+	select top ${rows} t.* from (
+	select ROW_NUMBER() OVER (
+		ORDER BY convert(varchar(23),t1.cuohe_datetime,121) desc,t1.item_name desc
+		) as idh,t1.*
+  	from   
+	<include refid="platformHistorySql"/>
+  	) as t where  t.idh>@maxid
+	</select>
+
+</mapper>

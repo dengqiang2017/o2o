@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="U-XA-Compatible" content="IE-edge">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <title>客户咨询列表</title>
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/contant.css">
+    <style type="text/css">
+        .chat_list li{
+            padding: 10px;
+            border-bottom: 1px solid #dddddd;
+            display:-moz-box;display:-webkit-box;display:box;-moz-box-align:center;-webkit-box-align:center;-o-box-align:center;box-align:center;
+        }
+        .pic{
+            width: 50px;
+            height: 50px;
+        }
+        .pic img{
+            width: 100%;
+            height: 100%;
+            margin: auto;
+        }
+        .title-2{
+            float: left;
+        }
+        .header {
+            background-color: #333333;
+            height: 50px;
+            line-height: 50px;
+            padding-left: 15px;
+            color: #FFFFFF;
+        }
+        .chat_list{
+            margin-top: 50px;
+        }
+        .pull-left{
+            width: 80%;
+        }
+        .pull-right{
+            width: 20%;
+        }
+        .data{
+            font-size: 14px;
+            color: #D1D1D1;
+        }
+        .title-2{
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 100%;
+            color: #c6c6c6;
+            font-size: 16px;
+        }
+        .col-xs-3{
+            padding-left: 0;
+            padding-right: 0;
+            text-align: right;
+            width: 23%;
+        }
+        .col-xs-7{
+            padding-right: 0;
+            width: 60%;
+        }
+    </style>
+</head>
+<body>
+<div class="header clearfix navbar-fixed-top">
+    聊天列表
+</div>
+<div class="chat_list">
+<div id="item" style="display: none;">
+        <li class="clearfix">
+            <div class="col-xs-2" style="padding-left: 5px;padding-right: 5px">
+                <div class="pic center-block">
+                    <img src="images/portrait.png">
+                </div>
+            </div>
+            <div class="col-xs-7">
+                <div class="title-1" id="name">
+                </div>
+                <div class="title-2" id="context">
+                </div>
+            </div>
+            <div class="col-xs-3" style="margin-bottom: 30px;">
+                <div class="data" id="time"></div>
+            </div>
+        </li>
+</div>
+    <ul id="list">
+    </ul>
+</div>
+<script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+<script type="text/javascript" src="../js_lib/jquery.cookie.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../js/public.js?ver=0310"></script>
+<script type="text/javascript" src="js/chat_list.js"></script>
+</body>
+</html>

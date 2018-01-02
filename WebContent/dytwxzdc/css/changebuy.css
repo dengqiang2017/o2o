@@ -1,0 +1,139 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: Microsoft YaHei;
+    color: #000000;
+}
+ul>li{
+    list-style: none;
+}
+ul{
+    margin-bottom: 0;
+}
+html{
+    margin-top: -21px;
+}
+.header{
+    text-align: center;
+    background-color: #6BD0B0;
+    padding: 10px;
+    color: #ffffff;
+    position: relative;
+    font-size: 18px;
+}
+.copyright{
+    text-align: center;
+    color: #000;
+    margin-top: 10px;
+}
+.header>a{
+    color: #ffffff;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    cursor: pointer;
+}
+.header>a:hover{
+    color: #ffffff;
+    text-decoration: none;
+}
+.center{
+    width: 70%;
+    margin: auto;
+    margin-top: 20px;
+}
+.center01{
+    width: 100%;
+    padding: 5px 0;
+    border-radius: 5px;
+}
+.center01>label{
+    width: 20%;
+    float: left;
+    margin-bottom: 0;
+}
+.center01>label>img{
+    width: 18px;
+    margin-top: 4px;
+}
+.center01>input{
+    width: 80% !important;
+    float: left;
+    background-color: #E8E8E8;
+    border: none !important;
+    box-shadow: none !important;
+}
+.center02{
+    width: 100%;margin-top: 10px;
+}
+.center02>.pull-left{
+    width: 47%;
+}
+.center02>.pull-left>input{
+    background-color: #E8E8E8;
+    border: none !important;
+    box-shadow: none !important;
+    height: 44px;
+    text-indent: 13px;
+}
+.center02>.pull-right{
+    width: 47%;
+}
+.center02>.pull-right>button{
+    width: 100%;
+    background-color: #6BD0B0;
+    height: 44px;
+}
+.center03{
+    width: 100%;
+    border-radius: 5px;
+    margin-top: 40px;
+    padding: 5px 0;
+}
+.center03>label{
+    width: 20%;
+    float: left;
+    margin-bottom: 0;
+}
+.center03>label>img{
+    width: 18px;
+    margin-top: 4px;
+}
+.center03>input{
+    width: 80% !important;
+    float: left;
+    background-color: #E8E8E8;
+    border: none !important;
+    box-shadow: none !important;
+}
+.center04{
+    width: 100%;
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 5px 0;
+}
+.center04>label{
+    width: 20%;
+    float: left;
+    margin-bottom: 0;
+}
+.center04>label>img{
+    width: 18px;
+    margin-top: 4px;
+}
+.center04>input{
+    width: 80% !important;
+    float: left;
+    background-color: #E8E8E8;
+    border: none !important;
+    box-shadow: none !important;
+}
+.btn01{
+    background-color: #6BD0B0;
+    color: #ffffff;
+    margin-top: 100px;
+    font-size: 18px;
+}
+.btn01:hover{
+    color: #ffffff;
+}

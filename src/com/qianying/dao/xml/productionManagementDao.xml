@@ -1,0 +1,1156 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- xml文件 -->
+<mapper namespace="com.qianying.dao.interfaces.IProductionManagementDAO">
+<!-- 	<cache/> -->
+	<!-- 库存查询条件 -->
+    <sql id="initialWhere">
+    where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id} 
+    <if test="store_struct_id!=null">
+    and (t1.store_struct_id like #{store_struct_id} or t4.store_struct_name like #{store_struct_id})
+    </if>
+    <if test="ivt_num_detail">
+    and (t1.ivt_num_detail like #{ivt_num_detail})
+    </if>
+    <if test="type_id">
+    and (t5.sort_id like #{type_id} or t5.sort_name like #{type_id})
+    </if>
+    <if test="item_id">
+    and (t2.item_id like #{item_id} or t2.item_name like #{item_id})
+    </if>
+    <if test="item_spec">
+    and (t2.item_spec like #{item_spec})
+    </if>
+    <if test="item_type">
+    and (t2.item_type like #{item_type})
+    </if>
+    <if test="searchKey!=null">
+    and (
+	 ltrim(rtrim(isnull(t1.item_id,''))) like #{searchKey} or
+	 ltrim(rtrim(isnull(t1.ivt_num_detail,''))) like #{searchKey} or 
+	 ltrim(rtrim(isnull(t1.lot_number,''))) like #{searchKey} or
+	 ltrim(rtrim(isnull(t2.item_name,''))) like #{searchKey} or 
+	 ltrim(rtrim(isnull(t2.item_sim_name,''))) like #{searchKey} or
+<!-- 	 ltrim(rtrim(isnull(t3.corp_name,''))) like #{searchKey} or -->
+<!-- 	 ltrim(rtrim(isnull(t3.corp_sim_name,''))) like #{searchKey} or  -->
+	 ltrim(rtrim(isnull(t4.store_struct_name,''))) like #{searchKey}
+	 )
+	 </if>
+    </sql>
+    <!-- 库存查询条件总记录数 -->
+	<select id="initialMaintenanceCount" parameterType="hashMap" resultType="Integer">
+	select count(*) 
+	from IVTd01302 t1 
+	left join Ctl03001 t2 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t2.com_id,''))) and t2.item_id=t1.item_id
+<!--   	left join Sdf00504 t3 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t3.com_id,''))) and t1.customer_id=t3.customer_id -->
+  	left join ivt01001 t4 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t4.com_id,''))) and t1.store_struct_id=t4.sort_id
+  	left join Ctl03200 t5 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t5.com_id,''))) and t2.type_id = t5.sort_id
+	<include refid="initialWhere"/>
+	</select>
+	<!-- 库存查询 -->
+  	<select id="initialMaintenancePage" parameterType="hashMap" resultType="hashMap">
+  	select t1.*,ltrim(rtrim(isnull(t1.initial_flag,'N'))) as flag,
+  	t2.item_name,t2.item_sim_name,t4.store_struct_name,t6.clerk_name,t7.dept_name,
+  	t2.item_cost,t2.item_zeroSell,t2.item_spec,t2.item_type,t2.casing_unit,t2.item_unit,t2.pack_unit,t2.class_card,t5.sort_name as type_name
+  	from IVTd01300 t1
+  	left join Ctl03001 t2 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t2.com_id,''))) and t2.item_id=t1.item_id
+<!--   	left join Sdf00504 t3 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t3.com_id,''))) and t1.customer_id=t3.customer_id -->
+  	left join ivt01001 t4 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t4.com_id,''))) and t1.store_struct_id=t4.sort_id
+  	left join Ctl03200 t5 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t5.com_id,''))) and t2.type_id=t5.sort_id
+  	left join ctl00801 t6 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t6.com_id,''))) and t1.clerk_id=t6.clerk_id
+  	left join Ctl00701 t7 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t7.com_id,''))) and t1.dept_id=t7.sort_id
+	<include refid="initialWhere"/>
+  	</select>
+  	<select id="initialMaintenanceInfo" parameterType="hashMap" resultType="hashMap">
+	select t1.*,t2.item_name,t2.item_sim_name,t4.store_struct_name,t6.clerk_name,t7.dept_name, --t3.corp_name,t3.corp_sim_name,
+  	t2.item_cost,t2.item_zeroSell,t2.item_spec,t2.item_type,t2.casing_unit,t2.item_unit,t2.pack_unit,t2.class_card,t5.sort_name as type_name
+  	from IVTd01300 t1
+  	left join Ctl03001 t2 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t2.com_id,''))) and t2.item_id=t1.item_id
+<!--   	left join Sdf00504 t3 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t3.com_id,''))) and t1.customer_id=t3.customer_id -->
+  	left join ivt01001 t4 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t4.com_id,''))) and t1.store_struct_id=t4.sort_id
+  	left join Ctl03200 t5 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t5.com_id,''))) and t2.type_id=t5.sort_id
+  	left join ctl00801 t6 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t6.com_id,''))) and t1.clerk_id=t6.clerk_id
+  	left join Ctl00701 t7 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t7.com_id,''))) and t1.dept_id=t7.sort_id
+  	where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id} 
+  	and t1.ivt_num_detail=#{ivt_num_detail}
+</select>
+  	<sql id="receivableWhere">
+  	 where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id} 
+  	 <if test="seeds_id!=null">
+  	 and t1.seeds_id=#{seeds_id}
+  	 </if>
+  	 <if test="searchKey!=null">
+  	 and (
+	 ltrim(rtrim(isnull(t1.item_id,''))) like #{searchKey} or
+	 ltrim(rtrim(isnull(t1.ivt_oper_listing,''))) like #{searchKey} or 
+	 ltrim(rtrim(isnull(t1.customer_id,''))) like #{searchKey} or 
+	 ltrim(rtrim(isnull(t2.dept_sim_name,''))) like #{searchKey} or
+	 ltrim(rtrim(isnull(t2.dept_name,''))) like #{searchKey} or
+	 ltrim(rtrim(isnull(t3.clerk_name,''))) like #{searchKey} or
+	 ltrim(rtrim(isnull(t4.corp_name,''))) like #{searchKey} or
+	 ltrim(rtrim(isnull(t4.corp_sim_name,''))) like #{searchKey}
+	 )
+  	 </if>
+  	</sql>
+  	<select id="initialReceivablePage" parameterType="hashMap"  resultType="hashMap">
+  	select  t1.seeds_id,
+  	isnull(t1.oh_sum,0) as oh_sum,
+  	isnull(t1.initial_flag,'N') as initial_flag,
+  	isnull(t1.back_sum,0) as back_sum,
+  	ltrim(rtrim(isnull(t1.c_memo,''))) as c_memo,
+  	ltrim(rtrim(isnull(t1.ivt_oper_listing,''))) as ivt_oper_listing,
+  	ltrim(rtrim(isnull(t2.dept_name,''))) as dept_name,
+  	ltrim(rtrim(isnull(t2.dept_sim_name,''))) as dept_sim_name,
+  	ltrim(rtrim(isnull(t3.clerk_name,''))) as clerk_name,
+  	ltrim(rtrim(isnull(t4.corp_name,''))) as corp_name,
+  	ltrim(rtrim(isnull(t4.corp_sim_name,''))) as corp_sim_name,
+  	ltrim(rtrim(isnull(t5.settlement_sim_name,''))) as settlement_sim_name 
+  	from ARf02030 t1
+	left join Ctl00701 t2 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t2.com_id,''))) and ltrim(rtrim(isnull(t1.dept_id,'')))=    ltrim(rtrim(isnull(t2.sort_id,'')))
+	left join Ctl00801 t3 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t3.com_id,''))) and ltrim(rtrim(isnull(t1.clerk_id,'')))=   ltrim(rtrim(isnull(t3.clerk_id,'')))
+	left join Sdf00504 t4 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t4.com_id,''))) and ltrim(rtrim(isnull(t1.customer_id,'')))=ltrim(rtrim(isnull(t4.customer_id,'')))
+	left join ctl02107 t5 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t5.com_id,''))) and ltrim(rtrim(isnull(t1.rcv_hw_no,'')))=  ltrim(rtrim(isnull(t5.sort_id,'')))
+	<include refid="receivableWhere"/>
+  	</select>
+  	
+  	<select id="initialReceivableList" parameterType="hashMap" resultType="hashMap">
+	select  t1.seeds_id,
+  	isnull(t1.oh_sum,0) as oh_sum,
+  	isnull(t1.back_sum,0) as back_sum,
+  	ltrim(rtrim(isnull(t1.dept_id,''))) as dept_id,
+  	ltrim(rtrim(isnull(t1.clerk_id,''))) as clerk_id,
+  	ltrim(rtrim(isnull(t1.customer_id,''))) as customer_id,
+  	ltrim(rtrim(isnull(t1.rcv_hw_no,''))) as rcv_hw_no,
+  	ltrim(rtrim(isnull(t1.c_memo,''))) as c_memo,
+  	ltrim(rtrim(isnull(t2.dept_name,''))) as dept_name,
+  	ltrim(rtrim(isnull(t2.dept_sim_name,''))) as dept_sim_name,
+  	ltrim(rtrim(isnull(t3.clerk_name,''))) as clerk_name,
+  	ltrim(rtrim(isnull(t4.corp_name,''))) as corp_name,
+  	ltrim(rtrim(isnull(t4.corp_sim_name,''))) as corp_sim_name,
+  	ltrim(rtrim(isnull(t5.settlement_sim_name,''))) as settlement_sim_name 
+  	from ARf02030 t1
+	left join Ctl00701 t2 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t2.com_id,''))) and ltrim(rtrim(isnull(t1.dept_id,'')))=    ltrim(rtrim(isnull(t2.sort_id,'')))
+	left join Ctl00801 t3 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t3.com_id,''))) and ltrim(rtrim(isnull(t1.clerk_id,'')))=   ltrim(rtrim(isnull(t3.clerk_id,'')))
+	left join Sdf00504 t4 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t4.com_id,''))) and ltrim(rtrim(isnull(t1.customer_id,'')))=ltrim(rtrim(isnull(t4.customer_id,'')))
+	left join ctl02107 t5 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t5.com_id,''))) and ltrim(rtrim(isnull(t1.rcv_hw_no,'')))=  ltrim(rtrim(isnull(t5.sort_id,'')))
+	<include refid="receivableWhere"/>
+	</select> 
+  	<sql id="initialPayableWhere">
+  	 where t1.com_id=#{com_id} 
+  	 <if test="searchKey!=null">
+  	 and (
+<!-- 	 ltrim(rtrim(isnull(t1.item_id,''))) like #{searchKey} or -->
+<!-- 	 ltrim(rtrim(isnull(t1.ivt_oper_listing,''))) like #{searchKey} or  -->
+<!-- 	 ltrim(rtrim(isnull(t1.customer_id,''))) like #{searchKey} or  -->
+	 ltrim(rtrim(isnull(t2.dept_sim_name,''))) like #{searchKey} or
+	 ltrim(rtrim(isnull(t2.dept_name,''))) like #{searchKey} or
+	 ltrim(rtrim(isnull(t3.clerk_name,''))) like #{searchKey} or
+	 ltrim(rtrim(isnull(t4.corp_name,''))) like #{searchKey} or
+	 ltrim(rtrim(isnull(t4.corp_sim_name,''))) like #{searchKey}
+	 )
+  	 </if>
+  	 <if test="seeds_id!=null">
+  	 and t1.seeds_id=#{seeds_id}
+  	 </if>
+  	</sql>
+  	<select id="initialPayablePage" parameterType="hashMap"  resultType="hashMap">
+  	select t1.*,
+  	isnull(t1.beg_sum,0) as beg_sum,
+  	t2.dept_name,t2.dept_sim_name,t3.clerk_name,t4.corp_name,t4.corp_sim_name from 
+  	stfM0201 t1
+	left join Ctl00701 t2 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t2.com_id,''))) and t1.dept_id=t2.sort_id
+	left join Ctl00801 t3 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t3.com_id,''))) and t1.clerk_id=t3.clerk_id
+	left join Ctl00504 t4 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t4.com_id,''))) and t1.vendor_id=t4.corp_id
+	<include refid="initialPayableWhere"/>
+  	</select>
+  	
+  	<!-- 库存调拨查询条件 -->
+  	<sql id="inventoryAllocationWhere">
+  	where   dbo.IVTd01201.com_id = #{com_id}
+		    and dbo.IVTd01201.ivt_oper_listing = dbo.IVTd01202.ivt_oper_listing
+		    and t1.store_struct_id = dbo.IVTd01202.store_struct_id
+		    and t2.store_struct_id = dbo.IVTd01202.corpstorestruct_id
+			and (dbo.ctl03001.item_id = dbo.IVTd01202.item_id or dbo.ctl03001.item_id = dbo.IVTd01202.peijian_id)
+			and dbo.IVTd01201.ivt_oper_listing like '%KCDB%'
+			and dbo.IVTd01201.ivt_oper_id = '调拨'
+		<if test="beginDate != null">
+			and convert(varchar(23),dbo.IVTd01201.store_date,121) >= #{beginDate}
+		</if>
+		<if test="endDate != null">
+			<![CDATA[
+				and convert(varchar(23),dbo.IVTd01201.store_date,121) <= #{endDate}
+			]]>
+		</if>
+		<if test="searchKey != null">
+			and 
+				(
+				 	dbo.IVTd01201.ivt_oper_listing like #{searchKey} 
+     			 or dbo.IVTd01201.sd_order_id like #{searchKey}
+     			 or dbo.IVTd01201.dept_id like #{searchKey}
+     			 or dbo.Ctl00701.dept_name like #{searchKey}
+     			 or dbo.IVTd01201.clerk_id like #{searchKey}
+     			 or dbo.IVTd01202.item_id like #{searchKey}
+     			 or dbo.IVTd01202.peijian_id like #{searchKey}
+     			 or dbo.ctl03001.item_name like #{searchKey}
+     			 or dbo.IVTd01202.store_struct_id like #{searchKey}
+     			 or t1.store_struct_name like #{searchKey}
+     			 or dbo.IVTd01202.corpstorestruct_id like #{searchKey}
+     			 or t2.store_struct_name like #{searchKey}
+     			)
+		</if>
+  	</sql>
+  	<!-- 库存调拨总记录数 -->
+  	<select id="findInventoryAllocationCount" parameterType="hashMap" resultType="hashMap">
+  	select count(*)
+  	from dbo.ctl03001, dbo.Ivt01001 t1, dbo.Ivt01001 t2, dbo.IVTd01202, dbo.ivtd01201
+		left outer join dbo.Ctl00701 on ltrim(rtrim(isnull(dbo.Ctl00701.com_id,'')))=ltrim(rtrim(isnull(dbo.ivtd01201.com_id,''))) and 
+		dbo.Ctl00701.dept_id = dbo.ivtd01201.dept_id or dbo.Ctl00701.sort_id = dbo.ivtd01201.dept_id
+		left outer join dbo.Ctl00801 on ltrim(rtrim(isnull(dbo.Ctl00801.com_id,'')))=ltrim(rtrim(isnull(dbo.ivtd01201.com_id,''))) and 
+		dbo.Ctl00801.clerk_id = dbo.ivtd01201.clerk_id or dbo.Ctl00801.self_id = dbo.ivtd01201.clerk_id 
+		<include refid="inventoryAllocationWhere"/>
+  	</select>
+  	<!-- 查询库存调拨查询 -->
+  	<select id="findInventoryAllocationFindQuery" parameterType="hashMap" resultType="hashMap">
+		select 
+		    dbo.IVTd01201.com_id,
+       		dbo.IVTd01201.ivt_oper_listing,
+       		dbo.IVTd01201.sd_order_id,
+       		dbo.IVTd01201.finacial_y,
+       		dbo.IVTd01201.finacial_m,
+	   		dbo.IVTd01201.ivt_oper_id,
+	   		dbo.IVTd01201.ivt_whyoper_id,
+	   		convert(varchar(23),dbo.IVTd01201.store_date,23) as store_date,
+	   		dbo.IVTd01201.dept_id,
+	   		dbo.IVTd01201.regionalism_id,
+	   		dbo.IVTd01201.customer_id,
+	   		dbo.IVTd01201.clerk_id,
+	   		dbo.IVTd01201.corp_id,
+	   		dbo.IVTd01201.comfirm_flag,
+	   		dbo.IVTd01201.ivt_oper_cfm,
+	   		convert(varchar(23),dbo.IVTd01201.ivt_oper_cfm_time,23) as ivt_oper_cfm_time,
+	   		dbo.IVTd01201.mainten_clerk_id,
+	   		dbo.IVTd01201.maintenance_datetime,
+	   		dbo.IVTd01201.i_factacceptsum,
+	   		dbo.IVTd01202.row_num,
+	   		LTRIM(RTRIM(dbo.IVTd01202.item_id)) as item_id,
+	   		dbo.IVTd01202.lot_number,
+	   		dbo.IVTd01202.plan_price,
+	   		dbo.IVTd01202.oper_price,
+	   		dbo.IVTd01202.oper_qty,
+	   		dbo.IVTd01202.store_struct_id,
+	   		dbo.IVTd01202.corpstorestruct_id,
+	   		dbo.IVTd01202.peijian_id,
+	   		dbo.IVTd01202.oddment_num,
+	   		dbo.IVTd01202.PH,
+	   		dbo.IVTd01202.unit_id,
+	   		dbo.IVTd01202.shipping_unit_id,
+	   		dbo.IVTd01202.item_type,
+	   		dbo.IVTd01202.pack_unit,
+	   		dbo.IVTd01202.pack_num,
+	   		dbo.IVTd01202.item_color,
+	   		dbo.IVTd01202.item_struct,
+	   		dbo.IVTd01202.class_card,
+	   		dbo.ctl03001.item_name,
+	   		t1.store_struct_name as store_struct_id_name,
+	   		t2.store_struct_name as corpstorestruct_id_name,
+	   		dbo.Ctl00701.dept_name,
+	   		dbo.Ctl00801.clerk_name
+		from dbo.ctl03001, dbo.Ivt01001 t1, dbo.Ivt01001 t2, dbo.IVTd01202, dbo.ivtd01201
+		left outer join dbo.Ctl00701 on ltrim(rtrim(isnull(dbo.Ctl00701.com_id,'')))=ltrim(rtrim(isnull(dbo.ivtd01201.com_id,''))) and 
+		dbo.Ctl00701.dept_id = dbo.ivtd01201.dept_id or dbo.Ctl00701.sort_id = dbo.ivtd01201.dept_id
+		left outer join dbo.Ctl00801 on ltrim(rtrim(isnull(dbo.Ctl00801.com_id,'')))=ltrim(rtrim(isnull(dbo.ivtd01201.com_id,''))) and 
+		dbo.Ctl00801.clerk_id = dbo.ivtd01201.clerk_id or dbo.Ctl00801.self_id = dbo.ivtd01201.clerk_id 
+		<include refid="inventoryAllocationWhere"/>
+		order by dbo.IVTd01201.ivt_oper_listing asc, dbo.IVTd01202.row_num asc
+	</select>
+  	
+  	<select id="sp_baseinitStore" parameterType="hashMap">
+  		sp_baseinitStore
+  	  	<![CDATA[  
+	  	{call sp_baseinitStore(#{com_id, mode=IN},#{ivt_num_detail, mode=IN},
+	  	#{finacial_y, mode=IN},
+	  	#{finacial_m, mode=IN},
+	  	#{initial_flag, mode=IN})}
+  		]]> 
+  	</select>
+  	
+  	<!-- 库存初始化查询条件 -->
+  	<sql id="wareinitWhere">
+  	where t.com_id = #{com_id}
+		<if test="searchKey != null">
+			and 
+				(
+				 	t.ivt_num_detail like #{searchKey} 
+     			 or t.dept_id like #{searchKey}
+     			 or t.clerk_id like #{searchKey}
+     			 or t.item_id like #{searchKey}
+     			 or t.peijian_id like #{searchKey}
+     			 or t.store_struct_id like #{searchKey}
+     			)
+		</if>
+  	</sql>
+  	<!-- 库存初始化总记录数 -->
+  	<select id="wareinitCount" parameterType="hashMap" resultType="hashMap">
+  	    select count(*)
+		from IVTd01300 t
+		left outer join Ctl03001 t1 on ltrim(rtrim(isnull(t.com_id,'')))=ltrim(rtrim(isnull(t1.com_id,''))) and t1.item_id = t.item_id or t1.peijian_id = t.item_id
+		left outer join Ctl00701 t2 on ltrim(rtrim(isnull(t.com_id,'')))=ltrim(rtrim(isnull(t2.com_id,''))) and t2.dept_id = t.dept_id or t2.sort_id = t.dept_id
+		left outer join Ctl00801 t3 on ltrim(rtrim(isnull(t.com_id,'')))=ltrim(rtrim(isnull(t3.com_id,''))) and t3.clerk_id = t.clerk_id or t3.self_id = t.clerk_id
+		left outer join Ivt01001 t4 on ltrim(rtrim(isnull(t.com_id,'')))=ltrim(rtrim(isnull(t4.com_id,''))) and t4.store_struct_id = t.store_struct_id or t4.sort_id = t.store_struct_id
+		<include refid="inventoryAllocationWhere"/>
+  	</select>
+  	<!-- 库存初始化查询 -->
+  	<select id="wareinitPage" parameterType="hashMap" resultType="hashMap">
+		select t.*,
+        	t1.item_name,t1.item_spec,t1.item_type,t1.item_color,t1.item_unit,t1.casing_unit,t1.vendor_id,
+        	t2.dept_name,
+        	t3.clerk_name,
+        	t4.store_struct_name
+		from IVTd01300 t
+		left outer join Ctl03001 t1 on ltrim(rtrim(isnull(t.com_id,'')))=ltrim(rtrim(isnull(t1.com_id,''))) and t1.item_id = t.item_id or t1.peijian_id = t.item_id
+		left outer join Ctl00701 t2 on ltrim(rtrim(isnull(t.com_id,'')))=ltrim(rtrim(isnull(t2.com_id,''))) and t2.dept_id = t.dept_id or t2.sort_id = t.dept_id
+		left outer join Ctl00801 t3 on ltrim(rtrim(isnull(t.com_id,'')))=ltrim(rtrim(isnull(t3.com_id,''))) and t3.clerk_id = t.clerk_id or t3.self_id = t.clerk_id
+		left outer join Ivt01001 t4 on ltrim(rtrim(isnull(t.com_id,'')))=ltrim(rtrim(isnull(t4.com_id,''))) and t4.store_struct_id = t.store_struct_id or t4.sort_id = t.store_struct_id 
+		<include refid="wareinitWhere"/>
+		order by t.ivt_num_detail asc
+	</select>
+	
+	<!-- 分页查询状态为使用的所以产品信息 -->
+  	<sql id="productionWhere">
+  		where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id} and isnull(t1.item_status,'')=#{item_status}
+  		<if test="searchKey!=null">
+  		and (
+  			t1.item_name like #{searchKey} or
+  			t1.item_sim_name like #{searchKey} or
+  			t1.item_id like #{searchKey} or
+  			t1.peijian_id like #{searchKey} or
+  			t1.easy_id like #{searchKey}
+  		)
+  		</if> 
+  	</sql>
+  	<select id="getProductInfoCount" parameterType="hashMap" resultType="Integer">
+  		select COUNT(*) from Ctl03001 t1
+  		<include refid="productionWhere"/>
+  	</select>
+  	<select id="getProductInfoList" parameterType="hashMap" resultType="hashMap">
+  		declare @maxId int,@maxId2 int;
+		set @maxId=(select max(t.idh) from (
+			select top ${top1} ROW_NUMBER()
+			OVER
+			(
+				ORDER BY
+				t1.ID asc
+			) as idh from  Ctl03001 t1
+ 			<include refid="productionWhere"/> 
+ 		) as t);
+		<if test="top1==1">
+			set @maxId=@maxId-1;
+		</if>
+ 		select top ${top2} t.*
+		from 
+		(
+			select
+			ROW_NUMBER()
+			OVER
+			(
+				ORDER BY
+				t1.ID asc
+			) as idh, 
+			t1.*
+			from Ctl03001 t1
+			<include refid="productionWhere"/>
+		) t where t.idh>@maxId
+  	</select>
+  	
+  	<!--分页 查询状态不为待支付、支付中的销售开单信息 -->
+  	<sql id="orderWhere">
+  		where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id} 
+  		and t1.Status_OutStore not like '%待支付%'
+  		and t1.Status_OutStore not like '%支付中%'
+  		and t1.sd_order_direct     like '%发货%'
+  		<if test="searchKey!=null">
+  		and (
+  			t1.item_name like #{searchKey} or
+  			t1.item_sim_name like #{searchKey} or
+  			t1.item_id like #{searchKey} or
+  			t1.peijian_id like #{searchKey} or
+  			t1.easy_id like #{searchKey} or
+  			t1.ivt_oper_listing like #{searchKey} or
+  			t1.sd_order_id like #{searchKey}
+  		)
+  		</if> 
+  	</sql>
+  	<select id="getOrderInfoCount" parameterType="hashMap" resultType="Integer">
+  		select COUNT(*) from View_sdd02020_ctl03001 t1
+  		<include refid="orderWhere"/>
+  	</select>
+  	<select id="getOrderInfoList" parameterType="hashMap" resultType="hashMap">
+  		declare @maxId int,@maxId2 int;
+		set @maxId=(select max(t.idh) from (
+			select top ${top1} ROW_NUMBER()
+			OVER
+			(
+				ORDER BY
+				t1.seeds_id asc
+			) as idh from  View_sdd02020_ctl03001 t1
+ 			<include refid="orderWhere"/> 
+ 		) as t);
+		<if test="top1==1">
+			set @maxId=@maxId-1;
+		</if>
+ 		select top ${top2} t.*
+		from 
+		(
+			select
+			ROW_NUMBER()
+			OVER
+			(
+				ORDER BY
+				t1.seeds_id asc
+			) as idh, 
+			t1.*
+			from View_sdd02020_ctl03001 t1
+			<include refid="orderWhere"/>
+		) t where t.idh>@maxId
+  	</select>
+  	
+  	<!-- 获取PH数量 -->
+  	<select id="getPHNum" parameterType="hashMap" resultType="Integer">
+  		select count(*) from YieM02011 where PH = #{PH};
+  	</select>
+  	
+  	<!-- 通过com_id、ivt_oper_listing获取生成PH尾部信息 -->
+  	<select id="getPHTail" parameterType="hashMap" resultType="String">
+  		select right(cast(power(10,3) as varchar)+(count(*)+1),3) 
+  		from YieM02011 where com_id = #{com_id} and ivt_oper_listing = #{ivt_oper_listing};
+  	</select>
+  	
+  	<!-- 通过com_id、ivt_oper_listing获取YieM02010中记录数 -->
+  	<select id="getYieM02010Count" parameterType="hashMap" resultType="Integer">
+  		select count(*) from Yiem02010 where com_id = #{com_id} and ivt_oper_listing = #{ivt_oper_listing};
+  	</select>
+  	
+  	<!-- 分页查询已下生产计划 -->
+  	<sql id="productionPlanWhere">
+  		where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id}
+  		<if test="customer_id!=null">
+  		and t1.customer_id = #{customer_id} 
+  		</if>
+  		<if test="send_date!=null">
+  		and convert(varchar(10),t2.send_date,23)>=#{send_date} 
+  		</if> 
+  		<if test="plan_end_date!=null">
+  		<![CDATA[
+  		and convert(varchar(10),t2.plan_end_date,23)<=#{plan_end_date} 
+		]]>
+  		</if>
+  		<if test="c_memo!=null">
+  		and t2.c_memo like #{c_memo} 
+  		</if>
+  		<if test="dept_id!=null">
+  		and t1.dept_id=#{dept_id}
+  		</if>
+  		<if test="searchKey!=null">
+  		and (
+  			t1.ivt_oper_listing like #{searchKey} or
+  			t1.sd_order_id like #{searchKey} or
+  			t1.PH like #{searchKey} or
+  			t2.batch_mark like #{searchKey} or
+  			t3.item_name like #{searchKey} or
+  			t3.item_sim_name like #{searchKey} or
+  			t3.item_id like #{searchKey} or
+  			t3.peijian_id like #{searchKey} or
+  			t3.easy_id like #{searchKey}
+  		)
+  		</if> 
+  	</sql>
+  	<select id="getProductionPlanInfoCount" parameterType="hashMap" resultType="Integer">
+  		select count(*) from YieM02011 t1
+  		left outer join YieM02010 t2 on t1.com_id = t2.com_id and t1.ivt_oper_listing = t2.ivt_oper_listing
+		left outer join Ctl03001 t3 on t1.com_id = t3.com_id and (t1.item_id = t3.item_id or t1.item_id = t3.peijian_id)
+		left outer join sdf00504 t4 on t1.com_id = t4.com_id and t1.customer_id = t4.customer_id	
+  		<include refid="productionPlanWhere"/>
+  	</select>
+  	<select id="getProductionPlanInfo" parameterType="hashMap" resultType="hashMap">
+  		select * from YieM02011 t1
+  		left outer join YieM02010 t2 on t1.com_id = t2.com_id and t1.ivt_oper_listing = t2.ivt_oper_listing
+		left outer join Ctl03001 t3 on t1.com_id = t3.com_id and (t1.item_id = t3.item_id or t1.item_id = t3.peijian_id)
+		left outer join sdf00504 t4 on t1.com_id = t4.com_id and t1.customer_id = t4.customer_id	
+  		<include refid="productionPlanWhere"/>
+  	</select>
+  	<select id="getProductionPlanInfoList" parameterType="hashMap" resultType="hashMap">
+  		declare @maxId int,@maxId2 int;
+		set @maxId=(select max(t.idh) from (
+			select top ${page} ROW_NUMBER()
+			OVER
+			(
+				ORDER BY
+				t1.seeds_id asc
+			) as idh from YieM02011 t1
+			left outer join YieM02010 t2 on t1.com_id = t2.com_id and t1.ivt_oper_listing = t2.ivt_oper_listing
+			left outer join Ctl03001 t3 on t1.com_id = t3.com_id and (t1.item_id = t3.item_id or t1.item_id = t3.peijian_id)
+			left outer join sdf00504 t4 on t1.com_id = t4.com_id and t1.customer_id = t4.customer_id
+ 			<include refid="productionPlanWhere"/> 
+ 		) as t);
+		<if test="page==1">
+			set @maxId=@maxId-1;
+		</if>
+ 		select top ${rows} t.*
+		from 
+		(
+			select
+			ROW_NUMBER()
+			OVER
+			(
+				ORDER BY
+				t1.seeds_id asc
+			) as idh, 
+			t1.seeds_id,
+			t1.ivt_oper_listing,
+			t1.JHSL,
+			t1.send_qty,
+			t1.allsend_oq,
+			t1.c_memo,
+			t1.memo_color,
+			t1.memo_other,
+			t1.PH,
+			t1.CusName,
+			t1.customer_id,
+			t1.status,
+			case t1.status when '0' then '已下计划' 
+  			   			   when '1' then '生产中' 
+  			   			   when '2' then '已完工' 
+  			   			   when '-1' then '已作废' 
+  			   			   else t1.status 
+  			end as status_trans,
+			convert(varchar(23),t2.send_date,23) as send_date,
+			convert(varchar(23),t2.plan_end_date,23) as plan_end_date,
+			t2.ivt_oper_cfm_time,
+			t2.batch_mark,
+			t3.*,
+			t4.corp_name,
+			t4.corp_sim_name
+			from YieM02011 t1
+			left outer join YieM02010 t2 on t1.com_id = t2.com_id and t1.ivt_oper_listing = t2.ivt_oper_listing
+			left outer join Ctl03001 t3 on t1.com_id = t3.com_id and (t1.item_id = t3.item_id or t1.item_id = t3.peijian_id)
+			left outer join sdf00504 t4 on t1.com_id = t4.com_id and t1.customer_id = t4.customer_id
+			<include refid="productionPlanWhere"/>
+		) t where t.idh>@maxId
+		order by t.ivt_oper_cfm_time desc;
+  	</select>
+  	<select id="getProductionPlanTailorInfoCount" parameterType="hashMap" resultType="Integer">
+  		select count(*) from YieM02011 t1
+  		left outer join YieM02010 t2 on t1.com_id = t2.com_id and t1.ivt_oper_listing = t2.ivt_oper_listing
+		left outer join Ctl00701 t3 on t1.com_id = t3.com_id and t2.dept_id = t3.sort_id
+		left outer join sdf00504 t4 on t1.com_id = t4.com_id and t1.customer_id = t4.customer_id	
+  		<include refid="productionPlanWhere"/>
+  	</select>
+  	<select id="getProductionPlanTailorInfo" parameterType="hashMap" resultType="hashMap">
+  		declare @maxId int,@maxId2 int;
+		set @maxId=(select max(t.idh) from (
+			select top ${page} ROW_NUMBER()
+			OVER
+			(
+				ORDER BY
+				t1.seeds_id asc
+			) as idh from YieM02011 t1
+			left outer join YieM02010 t2 on t1.com_id = t2.com_id and t1.ivt_oper_listing = t2.ivt_oper_listing
+			left outer join Ctl00701 t3 on t1.com_id = t3.com_id and t2.dept_id = t3.sort_id
+			left outer join sdf00504 t4 on t1.com_id = t4.com_id and t1.customer_id = t4.customer_id
+ 			<include refid="productionPlanWhere"/> 
+ 		) as t);
+		<if test="page==1">
+			set @maxId=@maxId-1;
+		</if>
+ 		select top ${rows} t.*
+		from 
+		(
+			select
+			ROW_NUMBER()
+			OVER
+			(
+				ORDER BY
+				t1.seeds_id asc
+			) as idh, 
+			t1.seeds_id,t1.ivt_oper_listing,t1.auto_mps_id,t1.item_id,t3.dept_name,
+			t1.JHSL,t1.send_qty,
+			t1.allsend_oq,t1.c_memo,
+			t1.memo_color,t1.memo_other,
+			t1.PH,t1.CusName,t1.customer_id,
+			t1.status,
+			case t1.status when '0' then '已下计划'
+  			   			   when '1' then '生产中'
+  			   			   when '2' then '已完工'
+  			   			   when '-1' then '已作废'
+  			   			   else t1.status 
+  			end as status_trans,
+			convert(varchar(23),t2.send_date,23) as send_date,
+			convert(varchar(23),t2.plan_end_date,23) as plan_end_date,
+			t2.ivt_oper_cfm_time,
+			t2.batch_mark,
+			t4.corp_name,
+			t4.corp_sim_name
+			from YieM02011 t1
+			left outer join YieM02010 t2 on t1.com_id = t2.com_id and t1.ivt_oper_listing = t2.ivt_oper_listing
+			left outer join Ctl00701 t3 on t2.com_id = t3.com_id and t2.dept_id = t3.sort_id
+			left outer join sdf00504 t4 on t1.com_id = t4.com_id and t1.customer_id = t4.customer_id
+			<include refid="productionPlanWhere"/>
+		) t where t.idh>@maxId
+		order by t.ivt_oper_cfm_time desc;
+  	</select>
+  	
+  	<!-- 删除已下生产计划 -->
+  	<delete id="delProductionPlan" parameterType="hashMap">
+		delete from YieM02011 
+		where com_id=#{com_id}
+			and seeds_id=#{seeds_id}
+			and status in ('0','-1')
+			and ivt_oper_listing not in (select ivt_oper_listing from YieM02030);
+		delete from YieM02010 
+		where com_id=#{com_id}
+			and ivt_oper_listing not in (select ivt_oper_listing from YieM02011);
+	</delete>
+	
+	<!-- 作废已下生产计划 -->
+  	<update id="unuseProductionPlan" parameterType="hashMap">
+		update YieM02011 set status = '-1' where com_id = #{com_id} and seeds_id = #{seeds_id} and status not in ('2');
+	</update>
+	
+	<!-- 查询所有工序 -->
+	<select id="getProductionProcessInfo" parameterType="hashMap" resultType="hashMap">
+		select * from B_001 
+		where com_id = #{com_id} 
+		<if test="work_type!=null">
+			and work_type = #{work_type}
+		</if>
+		<if test="working_procedure_section!=null">
+			and working_procedure_section = #{working_procedure_section}
+		</if>
+		<!-- 通过模态框获取所有工序的查询条件 -->
+		<if test="searchKey!=null">
+			and 
+			(
+				sort_id like #{searchKey} or
+				work_id like #{searchKey} or
+				work_name like #{searchKey} or
+				working_procedure_section like #{searchKey}
+			)
+		</if>
+		order by work_type asc, No_serial asc;
+	</select>
+	
+	<!-- 通过序号查询工序 -->
+	<select id="getProductionProcessByNoSerial" parameterType="hashMap" resultType="hashMap">
+		select * from B_001 
+		where com_id = #{com_id}
+		and work_type = #{work_type}
+		and No_serial = #{No_serial};
+	</select>
+	
+	<!-- 通过序号查询工序 -->
+	<select id="getProductionProcessByWorkID" parameterType="hashMap" resultType="hashMap">
+		select * from B_001 
+		where com_id = #{com_id}
+		and work_type = #{work_type}
+		and work_id = #{work_id};
+	</select>
+	
+	<!-- 查询工序中最大id -->
+	<select id="getProductionProcessMaxID" parameterType="hashMap" resultType="Integer">
+		select max(id) from B_001 
+		where com_id = #{com_id};
+	</select>
+	
+	<!-- 查询工序表最大序号 -->
+	<select id="getMaxNoSerial" parameterType="hashMap" resultType="Double">
+		select max(No_serial) from B_001 
+		where com_id = #{com_id}
+<!-- 		and work_type = #{work_type}; -->
+	</select>
+	
+	<!-- 修改工序 -->
+	<update id="updateProductionProcessInfo" parameterType="hashMap">
+		update B_001 
+		set work_name = #{work_name}
+		where com_id = #{com_id} 
+			  and No_serial = #{No_serial}
+			  and work_type = #{work_type};
+	</update>
+	
+	<!-- 删除工序 -->
+	<delete id="delProductionProcessInfo" parameterType="hashMap">
+		delete from B_001 
+		where com_id = #{com_id} 
+			  and work_id = #{work_id}
+<!-- 			  and No_serial = #{No_serial} -->
+<!-- 			  and work_type = #{work_type}; -->
+		update B_001 set No_serial = No_serial-1
+		where No_serial > #{No_serial}
+		and work_type = #{work_type};
+	</delete>
+	
+	<!-- 移动工序 -->
+	<update id="moveProductionProcessInfo" parameterType="hashMap">
+		update B_001
+		set  work_name = #{work_name_2}
+		where ltrim(rtrim(isnull(com_id,''))) = #{com_id} 
+		and No_serial = #{No_serial_1}
+		and work_type = #{work_type_1}
+		and ltrim(rtrim(isnull(working_procedure_section,''))) = #{working_procedure_section}
+		update B_001
+		set  work_name = #{work_name_1}
+		where ltrim(rtrim(isnull(com_id,''))) = #{com_id} 
+		and  No_serial = #{No_serial_2}
+		and work_type = #{work_type_2}
+		and ltrim(rtrim(isnull(working_procedure_section,''))) = #{working_procedure_section}
+	</update>
+	
+	<!-- 查询已派工信息by排产编号-->
+  	<select id="getDispatchingWork" parameterType="hashmap" resultType="hashMap">
+  		select t1.*,
+  			   convert(varchar(10),t1.WGSJ,23) as WGSJ_10,
+  			   case t1.status when '0' then '已派工' 
+  			   				  when '1' then '生产中' 
+  			   				  when '2' then '已完工' 
+  			   				  when '-1' then '已作废' 
+  			   				  else t1.status 
+  			   end as status_trans,
+			   convert(varchar(10),t2.send_date,23) as send_date,
+			   convert(varchar(10),t2.plan_end_date,23) as plan_end_date,
+			   t2.auto_paigong_id,
+			   t2.paigong_id,
+			   t2.batch_mark,
+			   t3.No_serial,
+			   t3.work_name as JCGXNAME,
+			   t3.working_procedure_section,
+			   t4.item_name,
+			   t4.item_spec,
+			   t4.item_type,
+			   t4.item_color,
+			   t4.vendor_id,
+			   t4.class_card,
+			   t4.work_type,
+			   t5.clerk_name as JHGRNAME
+		from YieM02031 t1 
+		left outer join YieM02030 t2 on t1.mainTable_seeds_id = t2.seeds_id
+		left outer join B_001 t3 on t1.com_id = t3.com_id and t1.JCGXID = t3.work_id
+		left outer join Ctl03001 t4 on t1.com_id = t4.com_id and t1.Item_ID = t4.item_id
+		left outer join Ctl00801 t5 on t1.com_id = t5.com_id and t1.JHGR = t5.clerk_id
+		where t1.com_id = #{com_id}
+		  and t1.PH = #{PH}
+		order by t1.PGSJ desc;
+  	</select>
+  	
+  	<!-- 通过派工单号查询生产流程卡主表信息 -->
+  	<select id="getDispatchingWorkMain" parameterType="hashMap" resultType="hashMap">
+  		select * from YieM02030 where com_id = #{com_id} and auto_paigong_id = #{auto_paigong_id};
+  	</select>
+  	
+  	<!-- 修改派工任务 -->
+  	<update id="editDispatchingWork" parameterType="hashMap">
+  		update YieM02031 set JHGR = #{JHGR}, PGSL = #{PGSL}, WGSJ = #{WGSJ} where seeds_id = #{seeds_id} and status = '0'; 
+  	</update>
+  	
+  	<!-- 删除派工任务 -->
+  	<delete id="delDispatchingWork" parameterType="hashMap">
+  		delete from YieM02031 where seeds_id = #{seeds_id};
+  		delete from YieM02030 where PH not in (select PH from YieM02031);
+  	</delete>
+  	
+  	<!-- 作废派工任务 -->
+  	<update id="unusedDispatchingWork" parameterType="hashMap">
+  		update YieM02031 set status = '-1' where seeds_id = #{seeds_id} and status not in ('2'); 
+  	</update>
+  	
+  	<!-- 修改生产计划从表状态为生产中 -->
+  	<update id="updateYieM02031Status" parameterType="hashMap">
+  		update YieM02011 set status = '1' where com_id = #{com_id} and PH = #{PH}; 
+  	</update>
+  	
+  	<!-- 获取工人树形 -->
+  	<select id="getWorkerTree" parameterType="hashMap" resultType="hashMap">
+  		select ltrim(rtrim(isnull(clerk_id,''))) as clerk_id,
+  		ltrim(rtrim(isnull(clerk_name,''))) as clerk_name from Ctl00801
+		where ltrim(rtrim(isnull(com_id,''))) = #{com_id} 
+		and ltrim(rtrim(isnull(working_status,'0'))) = '1'
+		and ltrim(rtrim(isnull(work_id,''))) like #{work_id}
+		and not ltrim(rtrim(isnull(headship,''))) like '%质检%'
+		<!-- 通过模态框获取所有工人的查询条件 -->
+		<if test="modal_searchKey!=null and modal_searchKey!=''">
+			and 
+			(
+				ltrim(rtrim(isnull(clerk_id,''))) like #{modal_searchKey} or
+				ltrim(rtrim(isnull(self_id,''))) like #{modal_searchKey} or
+				ltrim(rtrim(isnull(clerk_name,''))) like #{modal_searchKey} or
+				ltrim(rtrim(isnull(easy_id,''))) like #{modal_searchKey} or
+				ltrim(rtrim(isnull(movtel,''))) like #{modal_searchKey} or
+				ltrim(rtrim(isnull(headship,''))) like #{modal_searchKey} or
+				ltrim(rtrim(isnull(dept_id,''))) like #{modal_searchKey}
+			)
+		</if>
+		order by clerk_id asc;
+  	</select>
+  	
+  	<!-- 待通知质检项查询 -->
+  	<select id="getInformQC" parameterType="hashMap" resultType="hashMap">
+  		select t1.*,
+  			   case t1.status when '0' then '已派工' 
+  			   				  when '1' then '生产中' 
+  			   				  when '2' then '已完工' 
+  			   				  when '-1' then '已作废' 
+  			   				  else t1.status 
+  			   end as status_trans,
+  			   convert(varchar(10),t1.WGSJ,23) as WGSJ_10,
+  			   t2.item_id,
+			   t2.item_name,
+			   t2.item_spec,
+			   t2.item_type,
+			   t2.class_card,
+			   t2.item_color,
+			   t2.vendor_id,
+			   t3.clerk_name,
+			   t4.work_id,
+			   t4.work_name,
+			   t4.work_type,
+			   t4.No_serial,
+			   t5.paigong_id,
+			   t5.auto_paigong_id
+		from YieM02031 t1
+		left outer join Ctl03001 t2 on t1.com_id = t2.com_id and t1.Item_ID = t2.item_id
+		left outer join Ctl00801 t3 on t1.com_id = t3.com_id and t1.JHGR = t3.clerk_id
+		left outer join B_001 t4 on t1.com_id = t4.com_id and t1.JCGXID = t4.work_id
+		left outer join YieM02030 t5 on t1.mainTable_seeds_id = t5.seeds_id
+		where t1.com_id = #{com_id}
+			  and t1.JHGR = #{clerk_id}
+			  and t1.status not in ('2','-1')
+		order by t1.seeds_id asc;
+  	</select>
+  	
+  	<!-- 开始生产 -->
+  	<update id="beginWork" parameterType="hashMap">
+  		update YieM02031 set status = '1' where com_id = #{com_id} and seeds_id = #{seeds_id};
+  	</update>
+	
+	<!-- 通过com_id、PH获取生产计划信息 -->
+	<select id="getProductionPlanning" parameterType="hashMap" resultType="hashMap">
+		select t.*,
+			convert(varchar(10),t1.send_date,23) as send_date,
+			convert(varchar(10),t1.plan_end_date,23) as plan_end_date,
+	   		t1.dept_id,
+	   		t1.clerk_id,
+	   		t1.comfirm_flag,
+	   		t1.demand_type,
+	   		t2.item_name,
+		    t2.item_spec,
+		    t2.item_type,
+		    t2.class_card,
+		    t2.item_color,
+		    t2.vendor_id,
+		    t2.work_type
+		from YieM02011 t
+		inner join YieM02010 t1 on t.com_id = t1.com_id and t.ivt_oper_listing = t1.ivt_oper_listing
+		left outer join Ctl03001 t2 on t.com_id = t2.com_id and t.item_id = t2.item_id
+		where t.com_id = #{com_id}
+			and t.PH = #{PH};
+	</select>
+	
+	<!-- 通过com_id、seeds_id获取派工信息 -->
+	<select id="getDispatchingWorkBySeedsID" parameterType="hashMap" resultType="hashMap">
+		select t.*,
+			   convert(varchar(10),t.WGSJ,23) as WGSJ_10,
+	   		   convert(varchar(10),t1.send_date,23) as send_date,
+	   		   convert(varchar(10),t1.plan_end_date,23) as plan_end_date,
+	   		   t1.dept_id,
+	   		   t1.comfirm_flag,
+	   		   t1.demand_type,
+	   		   t1.batch_mark,
+	   		   t1.paigong_id,
+	   		   t1.auto_paigong_id,
+	  		   t1.PH,
+		   	   t2.item_id,
+			   t2.item_name,
+		   	   t2.item_spec,
+	   		   t2.item_type,
+	   		   t2.item_color,
+	   		   t2.class_card,
+	   		   t2.vendor_id,
+	   		   t3.work_id,
+	   		   t3.work_name,
+	   		   t3.work_type,
+	   		   t3.No_serial,
+	   		   t4.clerk_id,
+	   		   t4.clerk_name
+		from YieM02031 t
+		inner join YieM02030 t1 on t.mainTable_seeds_id = t1.seeds_id
+		left outer join Ctl03001 t2 on t.com_id = t2.com_id and t.Item_ID = t2.item_id
+		left outer join B_001 t3 on t.com_id = t3.com_id and t.JCGXID = t3.work_id
+		left outer join Ctl00801 t4 on t.com_id = t4.com_id and t.JHGR = t4.clerk_id
+		where t.com_id = #{com_id}
+			   and t.seeds_id = #{seeds_id};
+	</select>
+	
+	<!-- 质检查询 -->
+  	<select id="getQualityTesting" parameterType="hashMap" resultType="hashMap">
+  		select t1.*,
+  			   case t1.status when '0' then '已派工' 
+  			   				  when '1' then '生产中' 
+  			   				  when '2' then '已完工' 
+  			   				  when '-1' then '已作废' 
+  			   				  else t1.status 
+  			   end as status_trans,
+  			   convert(varchar(10),t1.WGSJ,23) as WGSJ_10,
+  			   t2.item_id,
+			   t2.item_name,
+			   t2.item_spec,
+			   t2.item_type,
+			   t2.class_card,
+			   t2.item_color,
+			   t2.vendor_id,
+			   t3.clerk_name,
+			   t4.work_id,
+			   t4.work_name,
+			   t4.work_type,
+			   t4.No_serial,
+			   t5.paigong_id,
+			   t5.auto_paigong_id,
+			   convert(varchar(10),t5.send_date,23) as send_date,
+			   convert(varchar(10),t5.plan_end_date,23) as plan_end_date
+		from YieM02031 t1
+		left outer join Ctl03001 t2 on t1.com_id = t2.com_id and t1.Item_ID = t2.item_id
+		left outer join Ctl00801 t3 on t1.com_id = t3.com_id and t1.JHGR = t3.clerk_id
+		left outer join B_001 t4 on t1.com_id = t4.com_id and t1.JCGXID = t4.work_id
+		left outer join YieM02030 t5 on t1.mainTable_seeds_id = t5.seeds_id
+		where t1.com_id = #{com_id}
+			  and t1.status not in ('2','-1')
+		<if test="send_date!=null">
+			  and convert(varchar(10),t5.send_date,23) >= #{send_date}
+		</if>
+		<if test="plan_end_date!=null">
+			  <![CDATA[
+			  and convert(varchar(10),t5.plan_end_date,23) <= #{plan_end_date}
+			  ]]>
+		</if>
+		<if test="searchKey!=null">
+			and 
+			(
+				t1.ivt_oper_listing like #{searchKey} or
+				t1.PH like #{searchKey} or
+				t5.paigong_id like #{searchKey} or
+				t5.auto_paigong_id like #{searchKey} or
+				t5.batch_mark like #{searchKey} or
+				t2.item_id like #{searchKey} or
+				t2.item_name like #{searchKey} or
+				t4.work_id like #{searchKey} or
+				t4.work_name like #{searchKey} or
+				t3.clerk_id like #{searchKey} or
+				t3.clerk_name like #{searchKey}
+			)
+		</if>
+		order by t1.seeds_id asc;
+  	</select>
+	
+	<!-- 质检 -->
+	<update id="qualityTest" parameterType="hashMap">
+		update YieM02031 set JJSL = JJSL + #{JJSL}, JJSJ = #{JJSJ} 
+		where com_id = #{com_id}
+		      and seeds_id = #{seeds_id};
+		update YieM02031 set status = '2'
+		where com_id = #{com_id}
+		      and seeds_id = #{seeds_id}
+		      and PGSL = JJSL;
+	</update>
+	
+	<!-- 计算该工序完工数量 -->
+	<select id="getJJSLALL" parameterType="hashMap" resultType="Double">
+	select SUM(JJSL) from YieM02031 
+	where com_id = #{com_id} 
+		  and PH = #{PH}
+		  and JCGXID = #{work_id}
+		  group by com_id,PH,JCGXID
+	</select>
+	
+	<!-- 计算各工序完工数量  -->
+	<select id="getEachProcessJJSLALL" parameterType="hashMap" resultType="hashMap">
+	select t1.work_id, 
+	       case when t2.JJSL_All is null then 0 else t2.JJSL_All end as JJSL_All 
+	from B_001 t1
+	left outer join
+	(
+		select a1.com_id, a1.PH, a2.item_id, a1.JCGXID as work_id, a2.work_type, SUM(JJSL) as  JJSL_All
+		from YieM02031 a1, Ctl03001 a2
+		where a1.com_id = a2.com_id and a1.Item_ID = a2.item_id
+		      and a1.com_id = #{com_id}
+		      and a1.PH = #{PH}
+		group by a1.com_id,a1.PH,a2.item_id,a1.JCGXID,a2.work_type
+	) t2 on t1.com_id = t2.com_id and t1.work_id = t2.work_id and t1.work_type = t2.work_type
+	where t1.com_id = #{com_id}
+		  and t1.work_type = #{work_type}
+	order by t1.No_serial asc;
+	</select>
+	
+	<!-- 更新生产计划已完工数量为计划数量  -->
+	<select id="updateAllsendOQ" parameterType="hashMap">
+		update YieM02011 set allsend_oq = #{allsend_oq}, status = '2' where com_id = #{com_id} and PH = #{PH};
+	</select>
+	
+	<!-- 通过store_struct_id、item_id、auto_mps_id、mps_id获取库存信息 -->
+	<select id="getStoreInfo" parameterType="hashMap" resultType="hashMap">
+		select * from ivtd01302 where com_id = #{com_id}
+			and store_struct_id = #{store_struct_id}
+			and item_id = #{item_id}
+			and mps_seeds_id = #{sid_id}
+			and mps_id = #{auto_mps_id};
+	</select>
+	
+	<!-- 通过store_struct_id、item_id、auto_mps_id、mps_id更新库存信息 -->
+	<update id="updateStoreInfo" parameterType="hashMap">
+		update ivtd01302
+		set accn_ivt = accn_ivt + #{JHSL}
+		where ltrim(rtrim(isnull(com_id,''))) = #{com_id}
+			and store_struct_id = #{store_struct_id}
+			and item_id = #{item_id}
+			and mps_seeds_id = #{sid_id}
+			and mps_id = #{auto_mps_id};
+	</update>
+	
+	<!-- 通过com_id、item_id获取产品信息 -->
+	<select id="getProdInfoByItemId" parameterType="String" resultType="hashMap">
+		select * from ctl03001 where ltrim(rtrim(isnull(com_id,''))) = #{com_id} and ltrim(rtrim(isnull(item_id,''))) = #{item_id};
+	</select>
+	
+	<sql id="wareWhere">
+	where
+	ltrim(rtrim(isnull(t1.com_id,''))) = #{com_id}
+		and ltrim(rtrim(isnull(t3.item_status,'使用')))='使用'
+	<if test="type_id!=null">
+		and ltrim(rtrim(isnull(t3.type_id,''))) like #{type_id}
+	</if>
+	<if test="quality_class!=null">
+		and ltrim(rtrim(isnull(t3.quality_class,''))) = #{quality_class}
+	</if>
+	<if test="item_style!=null">
+		and ltrim(rtrim(isnull(t3.item_style,''))) = #{item_style}
+	</if>
+	<if test="class_card!=null">
+		and ltrim(rtrim(isnull(t3.class_card,''))) = #{class_card}
+	</if>
+	<if test="item_spec!=null">
+		and ltrim(rtrim(isnull(t3.item_spec,''))) like #{item_spec}
+	</if>
+	<if test="item_struct!=null">
+		and ltrim(rtrim(isnull(t3.item_struct,''))) = #{item_struct}
+	</if>
+	<if test="item_type!=null">
+		and ltrim(rtrim(isnull(t3.item_type,''))) = #{item_type}
+	</if>
+	<if test="item_color!=null">
+		and ltrim(rtrim(isnull(t3.item_color,''))) = #{item_color}
+	</if>
+	<if test="searchKey!=null">
+				and ( ltrim(rtrim(isnull(t2.store_struct_name,''))) like #{searchKey} or
+			 	 ltrim(rtrim(isnull(t3.item_name,''))) like #{searchKey} or
+				ltrim(rtrim(isnull(t3.item_sim_name,''))) like #{searchKey} or
+				ltrim(rtrim(isnull(t3.peijian_id,''))) like #{searchKey} or
+				ltrim(rtrim(isnull(t3.item_id,''))) like #{searchKey} or
+				ltrim(rtrim(isnull(t3.easy_id,''))) like #{searchKey} or
+				ltrim(rtrim(isnull(t3.item_type,''))) like #{searchKey} or
+				ltrim(rtrim(isnull(t3.type_id,''))) like #{searchKey} or
+<!-- 				ltrim(rtrim(isnull(t2.sort_name,''))) like #{searchKey} or -->
+				ltrim(rtrim(isnull(t2.sort_id,''))) like #{searchKey} or
+				ltrim(rtrim(isnull(t3.class_card,''))) like #{searchKey} or
+				ltrim(rtrim(isnull(t3.item_color,''))) like #{searchKey} or
+				ltrim(rtrim(isnull(t3.item_spec,''))) like #{searchKey} or
+				ltrim(rtrim(isnull(t3.quality_class,''))) like #{searchKey} or
+				ltrim(rtrim(isnull(t3.item_style,''))) like #{searchKey} or
+				ltrim(rtrim(isnull(t3.goods_origin,''))) like #{searchKey} or
+				ltrim(rtrim(isnull(t3.item_status,''))) like #{searchKey} or
+				isnull(t3.qz_days,0) like #{searchKey} )
+			</if>
+	</sql>
+	<select id="getWarePageCount" parameterType="hashMap" resultType="Integer">
+	select count(*) from IVTd01302 t1
+	left join Ivt01001 t2 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t2.com_id,''))) and t1.store_struct_id=t2.sort_id
+	left join Ctl03001 t3 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t3.com_id,''))) and t1.item_id=t3.item_id 
+	<include refid="wareWhere"/>
+	</select>
+	<select id="getWarePageList" parameterType="hashMap" resultType="hashMap">
+	declare @maxId int;
+		set @maxId=( select max(idh) from
+		(
+		select top
+		${page} ROW_NUMBER()
+		OVER
+		(
+		ORDER BY
+		ltrim(rtrim(isnull(t3.class_card,''))) desc,
+		ltrim(rtrim(isnull(t3.type_id,''))) desc,
+		ltrim(rtrim(isnull(t3.item_name,''))) desc,
+		ltrim(rtrim(isnull(t3.item_type,''))) desc,
+		ltrim(rtrim(isnull(t3.item_spec,''))) desc
+		) as idh
+		from IVTd01302 t1
+		left join Ivt01001 t2 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t2.com_id,''))) and t1.store_struct_id=t2.sort_id
+		left join Ctl03001 t3 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t3.com_id,''))) and t1.item_id=t3.item_id
+		<include refid="wareWhere"/>
+		) as t);
+		<if test="page==1">
+			set @maxId=@maxId-1;
+		</if>
+		select top ${rows} t.*
+		from (
+		select
+		ROW_NUMBER()
+		OVER
+		(
+		ORDER BY
+		ltrim(rtrim(isnull(t3.class_card,''))) desc,
+		ltrim(rtrim(isnull(t3.type_id,''))) desc,
+		ltrim(rtrim(isnull(t3.item_name,''))) desc,
+		ltrim(rtrim(isnull(t3.item_type,''))) desc,
+		ltrim(rtrim(isnull(t3.item_spec,''))) desc
+		) as idh, isnull(t1.accn_ivt,0) as accn_ivt,
+		isnull(t1.use_oq,0) as use_oq,
+		ltrim(rtrim(isnull(t1.store_struct_id,''))) as store_struct_id,
+		ltrim(rtrim(isnull(t2.store_struct_name,''))) as store_structName,
+		ltrim(rtrim(isnull(t3.item_sim_name,''))) as item_sim_name,
+		ltrim(rtrim(isnull(t3.item_spec,''))) as item_spec, 
+		ltrim(rtrim(isnull(t3.item_unit,''))) as item_unit,
+		ltrim(rtrim(isnull(t3.item_id,''))) as item_id,
+		ltrim(rtrim(isnull(t1.item_color,ltrim(rtrim(isnull(t3.item_color,'')))))) as item_color,
+		ltrim(rtrim(isnull(t1.item_type,ltrim(rtrim(isnull(t3.item_type,'')))))) as item_type
+		from IVTd01302 t1
+		left join Ivt01001 t2 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t2.com_id,''))) and t1.store_struct_id=t2.sort_id
+		left join Ctl03001 t3 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t3.com_id,''))) and t1.item_id=t3.item_id
+		<include refid="wareWhere"/>
+		) t where t.idh>@maxId
+	</select>
+	  	<select id="getWareList" parameterType="hashMap" resultType="hashMap">
+ 	select t1.*,  
+		ltrim(rtrim(isnull(t2.store_struct_name,''))) as store_structName,
+		ltrim(rtrim(isnull(t3.item_sim_name,''))) as item_sim_name,
+		ltrim(rtrim(isnull(t3.item_spec,''))) as item_spec, 
+		ltrim(rtrim(isnull(t3.item_unit,''))) as item_unit,
+		ltrim(rtrim(isnull(t1.item_color,ltrim(rtrim(isnull(t3.item_color,'')))))) as item_color_1302,
+		ltrim(rtrim(isnull(t1.item_type,ltrim(rtrim(isnull(t3.item_type,'')))))) as item_type_1302
+	 from IVTd01302 t1
+	left join Ivt01001 t2 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t2.com_id,''))) and t1.store_struct_id=t2.sort_id
+	left join Ctl03001 t3 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t3.com_id,''))) and t1.item_id=t3.item_id 
+	<include refid="wareWhere"/>
+			ORDER BY
+		ltrim(rtrim(isnull(t3.class_card,''))) desc,
+		ltrim(rtrim(isnull(t3.type_id,''))) desc,
+		ltrim(rtrim(isnull(t3.item_name,''))) desc,
+		ltrim(rtrim(isnull(t3.item_type,''))) desc,
+		ltrim(rtrim(isnull(t3.item_spec,''))) desc
+  	</select>
+<!-- 	///////定制需求生产计划数据分页//////////////// -->
+		
+		<update id="updateYieM02011" parameterType="hashMap">
+		update yiem02011 set working_procedure_section=#{working_procedure_section} where ltrim(rtrim(isnull(com_id,'')))=#{com_id}
+		 and ltrim(rtrim(isnull(ivt_oper_listing,'')))=#{ivt_oper_listing} 
+		 and ltrim(rtrim(isnull(item_id,'')))=#{item_id}
+		 and ltrim(rtrim(isnull(PH,'')))=#{PH}
+		</update>
+</mapper>

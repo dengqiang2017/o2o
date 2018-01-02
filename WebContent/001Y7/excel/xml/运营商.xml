@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<REQUEST>  
+<itembegin index="3" sheetName="运营商-勿改此页名"/>
+<item mainfiledName="com_name"                index="0"  excelChineseName="运营商全称" />
+<item mainfiledName="com_sim_name"            index="1"  excelChineseName="运营商简称"/>
+<item mainfiledName="corp_reps"               index="2"  excelChineseName="联系人"/>
+<item mainfiledName="tel_no"                  index="3"  excelChineseName="公司联系电话"/>
+<item mainfiledName="com_addr"                index="4"  excelChineseName="公司邮政地址"/>
+<item mainfiledName="ceo"                     index="5"  excelChineseName="总经理"/>
+<item mainfiledName="regionalism_name"        index="6" excelChineseName="所属行政区域"/>
+<item mainfiledName="trade_type"              index="7" excelChineseName="行业类型"/>
+<item mainfiledName="working_status"          index="8" excelChineseName="使用状态"/>
+<item mainfiledName="working_range"           index="9" excelChineseName="经营范围"/>
+<item mainfiledName="upper_com_id"            index="10" excelChineseName="上级运营商编码"/>
+</REQUEST>

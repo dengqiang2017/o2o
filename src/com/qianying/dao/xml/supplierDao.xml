@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- xml文件 -->
+<mapper namespace="com.qianying.dao.interfaces.ISupplierDao">
+	<!-- <cache/> -->
+  
+	<select id="checkLogin" parameterType="hashMap"  resultType="hashMap"> 
+	select top 1 seeds_id,
+	ltrim(rtrim(isnull(corp_name,ltrim(rtrim(isnull(corp_sim_name,'')))))) as clerk_name,
+	ltrim(rtrim(isnull(com_id,''))) as com_id,
+	user_id,ditch_type,weixinID,weixin,
+	user_password,corp_id ,direct_upper_corp_id,working_status
+	from Ctl00504 
+	where ltrim(rtrim(isnull(com_id,'')))=#{com_id} 
+	and ltrim(rtrim(isnull(user_id,'')))=#{name}
+	and ltrim(rtrim(isnull(working_status,'是')))='是'
+	</select>
+ 	<select id="checkPhone" parameterType="String" resultType="Integer">
+ 	select count(user_id) from Ctl00504 where  ltrim(rtrim(isnull(user_id,'')))=#{phone}
+ 	</select>
+ 	<select id="getGysInfoByOpenid" parameterType="hashMap" resultType="hashMap">
+		select top 1 seeds_id,
+	ltrim(rtrim(isnull(corp_name,ltrim(rtrim(isnull(corp_sim_name,'')))))) as clerk_name,
+	ltrim(rtrim(isnull(com_id,''))) as com_id,
+	ltrim(rtrim(isnull(user_id,''))) as user_id,
+	ltrim(rtrim(isnull(ditch_type,''))) as ditch_type,
+	ltrim(rtrim(isnull(weixinID,''))) as weixinID,
+	ltrim(rtrim(isnull(corp_id,''))) as corp_id,
+	ltrim(rtrim(isnull(openid,''))) as openid,
+	ltrim(rtrim(isnull(direct_upper_corp_id,''))) as direct_upper_corp_id
+	from Ctl00504 
+	where ltrim(rtrim(isnull(com_id,'')))=#{com_id}
+		<if test="openid!=null">
+	and ltrim(rtrim(isnull(t1.openid,'')))=#{openid}
+	</if>
+	<if test="weixinID!=null">
+	and ltrim(rtrim(isnull(t1.weixinID,'')))=#{weixinID}
+	</if>
+	and ltrim(rtrim(isnull(working_status,'是')))='是'
+</select>
+ 	<select id="getMaxSupplier" resultType="String">
+ 	select top 1 seeds_id from Ctl00504 order by seeds_id desc;
+ 	</select>
+ 	
+    <sql id="vendorOrderWhere">
+ 	left join sdf00504 t2 on t1.com_id=t2.com_id and t1.adress_id=t2.customer_id
+	where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id} 
+	and not isnull(t1.m_flag,'0')='6'
+	and ltrim(rtrim(isnull(t1.vendor_id,'')))=#{vendor_id}
+	<if test="beginTime!=null">
+	and convert(varchar(23),t1.at_term_datetime,121)>=#{beginTime}
+	</if>
+	<if test="endTime!=null">
+	<![CDATA[
+	and convert(varchar(23),t1.at_term_datetime,121)<=#{endTime}
+	]]>
+	</if>
+	<if test="type!=null">
+	and isnull(t1.m_flag,'0')=#{type}
+	</if>
+	<if test="type==null">
+	and not isnull(t1.m_flag,'0')='1'
+	</if>
+	<if test="adress_id!=null">
+	and ltrim(rtrim(isnull(t1.adress_id,'')))=#{adress_id}
+	</if>
+	<if test="item_id!=null">
+	and ltrim(rtrim(isnull(t1.item_id,'')))=#{item_id}
+	</if>
+	<if test="searchKey!=null">
+	and (
+	    t1.item_id like #{searchKey} or
+	    t1.item_name like #{searchKey} or
+	    t1.item_type like #{searchKey} or
+	    t1.item_sim_name like #{searchKey} or
+	    t1.easy_id like #{searchKey} or
+	    t1.st_hw_no like #{searchKey} or
+	    t1.st_auto_no like #{searchKey}
+	)
+	</if>
+	</sql>
+   <select id="getGysOrderCount" parameterType="hashMap" resultType="Integer">
+	select count(*) from VIEW_STDM02001_ctl03001 t1
+	<include refid="vendorOrderWhere"/>
+	</select>
+<select id="getGysOrderList" parameterType="hashMap" resultType="hashMap">
+	declare @maxId int,@maxId2 int;
+	set @maxid=(
+	select max(idh) from (
+	select top ${page}
+	ROW_NUMBER() OVER (
+		ORDER BY
+		ltrim(rtrim(isnull(t1.st_auto_no,''))) desc 
+		<if test="desc!=null and desc=='adress_id'">
+		,ltrim(rtrim(isnull(t1.adress_id,''))) 
+		</if>
+		<if test="desc!=null and desc=='item_id'">
+		,ltrim(rtrim(isnull(t1.item_id,''))) 
+		</if>
+		) as idh 
+  	from VIEW_STDM02001_ctl03001 t1 
+  	<include refid="vendorOrderWhere"/>
+  	) as t);
+       set @maxId2=@maxId;
+  	 <if test="page==1">
+			set @maxId=@maxId-1;
+		</if>
+	select top ${rows} t.* from (
+	select ROW_NUMBER() OVER (
+		ORDER BY
+		ltrim(rtrim(isnull(t1.st_auto_no,''))) desc
+		<if test="desc!=null and desc=='adress_id'">
+		,ltrim(rtrim(isnull(t1.adress_id,''))) 
+		</if>
+		<if test="desc!=null and desc=='item_id'">
+		,ltrim(rtrim(isnull(t1.item_id,''))) 
+		</if>
+		) as idh,
+  	  t1.c_memo,t1.m_flag,t1.seeds_id,
+  	  convert(varchar(16),t1.finacial_d,121) as finacial_d,
+  	  convert(varchar(16),t1.at_term_datetime,121) as at_term_datetime,
+  	  ltrim(rtrim(isnull(t1.item_name,''))) as item_name,
+  	  ltrim(rtrim(isnull(t1.mps_id,''))) as mps_id,
+  	  ltrim(rtrim(isnull(t1.st_auto_no,''))) as st_auto_no,
+  	  ltrim(rtrim(isnull(t1.item_id,''))) as item_id,
+  	  ltrim(rtrim(isnull(t1.wuliudx,''))) as wuliudx,
+  	  isnull(t1.hav_rcv,0) as hav_rcv,
+  	  isnull(t1.rep_qty,0) as rep_qty,
+  	  isnull(t1.pack_unit,1) as pack_unit,
+  	  Convert(decimal(18,2),isnull(t1.price,0)) as price,
+  	  ltrim(rtrim(isnull(t1.casing_unit,''))) as casing_unit,
+  	  ltrim(rtrim(isnull(t1.item_type,''))) as item_type,
+  	  t1.item_unit,ltrim(rtrim(isnull(t2.corp_sim_name,''))) as customer_name
+  	from VIEW_STDM02001_ctl03001 t1 
+  	<include refid="vendorOrderWhere"/>
+  	) as t where  t.idh>@maxid
+</select>
+	
+	<select id="gysOrderInfo" parameterType="hashMap" resultType="hashMap">
+	select *,convert(varchar(16),t1.at_term_datetime,121) as at_termDatetime  from VIEW_STDM02001_ctl03001 t1 
+	left join ctl00801 t2 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t2.com_id,''))) 
+	and ltrim(rtrim(isnull(t1.clerk_id,'')))=ltrim(rtrim(isnull(t2.clerk_id,'')))
+	where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id}
+	and ltrim(rtrim(isnull(t1.st_auto_no,'')))=#{st_auto_no}
+	</select>
+ 	<select id="orderReceipt" parameterType="hashMap" resultType="String">
+ 	update std02001 set m_flag=#{type} where ltrim(rtrim(isnull(com_id,'')))=#{com_id} and seeds_id=#{seeds_id}
+	and ltrim(rtrim(isnull(st_auto_no,'')))=#{st_auto_no} and ltrim(rtrim(isnull(item_id,'')))=#{item_id}
+	select wuliudx from std02001 where ltrim(rtrim(isnull(com_id,'')))=#{com_id} and seeds_id=#{seeds_id}
+	and ltrim(rtrim(isnull(st_auto_no,'')))=#{st_auto_no} and ltrim(rtrim(isnull(item_id,'')))=#{item_id}
+	group by wuliudx
+ 	</select>
+ 	 	<update id="updateOrderFahuo" parameterType="hashMap">
+ 	update sdd02021 set Status_OutStore=#{Status_OutStore} 
+ 	where st_hw_no=#{st_hw_no}
+ 	</update>
+ 	<select id="updateGysWuliu" parameterType="hashMap" resultType="hashMap">
+	update std02001 set c_memo=#{wuliufs},wuliudx=#{wuliudx}
+	<if test="m_flag!=null">
+	,m_flag=#{m_flag}
+	</if>
+	 where ltrim(rtrim(isnull(com_id,'')))=#{com_id}
+	and ltrim(rtrim(isnull(st_auto_no,'')))=#{st_auto_no} 
+	and ltrim(rtrim(isnull(item_id,'')))=#{item_id};
+	
+	select ltrim(rtrim(isnull(weixinID,''))) as weixinID,ltrim(rtrim(isnull(user_id,''))) as phone 
+	from  ctl00504 t1 left join stdm02001 t2 on ltrim(rtrim(isnull(t1.com_id,'')))=ltrim(rtrim(isnull(t2.com_id,'')))
+	and ltrim(rtrim(isnull(t1.corp_id,'')))=ltrim(rtrim(isnull(t2.vendor_id,'')))
+	where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id}
+	and ltrim(rtrim(isnull(t2.st_auto_no,'')))=#{st_auto_no}
+</select>
+
+<select id="getCustomerOrderList" parameterType="hashMap" resultType="hashMap">
+	select 
+	ltrim(rtrim(isnull(t2.corp_name,''))) as customer_name,
+	ltrim(rtrim(isnull(t1.adress_id,''))) as adress_id,
+	sum(t1.price*t1.hav_rcv) as je 
+	from VIEW_STDM02001 t1 
+	left join Sdf00504 t2 on t1.com_id=t2.com_id and t1.adress_id=t2.customer_id
+	where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id} and isnull(t1.m_flag,'0')!='1'
+	and ltrim(rtrim(isnull(t1.vendor_id,'')))=#{vendor_id}
+	<if test="beginTime!=null">
+	and convert(varchar(23),t1.at_term_datetime,121)>=#{beginTime}
+	</if>
+	<if test="endTime!=null">
+	<![CDATA[
+	and convert(varchar(23),t1.at_term_datetime,121)<=#{endTime}
+	]]>
+	</if>
+	<if test="searchKey!=null">
+	and (
+	    t1.item_id like #{searchKey} or
+	    t1.st_hw_no like #{searchKey} or
+	    t2.corp_name like #{searchKey} or
+	    t2.corp_sim_name like #{searchKey} or
+	    t1.adress_id like #{searchKey} or
+	    t1.st_auto_no like #{searchKey}
+	)
+	</if>
+ 	group by t2.corp_name,t1.adress_id
+</select>
+
+
+<select id="getItemOrderList" parameterType="hashMap" resultType="hashMap">
+	 	select 
+	ltrim(rtrim(isnull(t2.item_name,''))) as item_name,
+	ltrim(rtrim(isnull(t1.item_id,''))) as item_id,
+	ltrim(rtrim(isnull(t2.item_unit,''))) as item_unit,
+	SUM(t1.hav_rcv) as num,
+	sum(t1.price*t1.hav_rcv) as je 
+	from VIEW_STDM02001 t1 
+	left join Ctl03001 t2 on t1.com_id=t2.com_id and t1.item_id=t2.item_id
+	where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id} and isnull(t1.m_flag,'0')!='1'
+	and ltrim(rtrim(isnull(t1.vendor_id,'')))=#{vendor_id}
+	and ltrim(rtrim(isnull(t2.item_status,'停用')))='使用'
+	<if test="beginTime!=null">
+	and convert(varchar(23),t1.at_term_datetime,121)>=#{beginTime}
+	</if>
+	<if test="endTime!=null">
+	<![CDATA[
+	and convert(varchar(23),t1.at_term_datetime,121)<=#{endTime}
+	]]>
+	</if>
+	<if test="searchKey!=null">
+	and (
+	    t1.item_id like #{searchKey} or
+	    t1.st_hw_no like #{searchKey} or
+	    t2.item_name like #{searchKey} or
+	    t2.item_sim_name like #{searchKey} or
+	    t1.st_auto_no like #{searchKey}
+	)
+	</if>
+	group by t2.item_name,t1.item_id,t2.item_unit
+</select>
+
+<select id="getSupplierItemList" parameterType="hashMap" resultType="hashMap">
+	select t1.item_name,t1.item_id,t1.item_unit,t3.num,isnull(t2.m_flag,3)as m_flag,t2.price,t2.ware_num from ( 
+select ltrim(rtrim(isnull(t2.item_name,''))) as item_name, ltrim(rtrim(isnull(t1.com_id,''))) as com_id, 
+ltrim(rtrim(isnull(t1.item_id,''))) as item_id, ltrim(rtrim(isnull(t2.item_unit,''))) as item_unit
+from VIEW_STDM02001 t1 left join Ctl03001 t2 on t1.com_id=t2.com_id and t1.item_id=t2.item_id 
+where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id} 
+	and ltrim(rtrim(isnull(t1.vendor_id,'')))=#{vendor_id} 
+	and ltrim(rtrim(isnull(t2.item_status,'停用')))='使用'
+group by t1.com_id,t2.item_name,t1.item_id,t2.item_unit
+ ) as t1 left join ( 
+select t1.m_flag,t1.price,t1.ware_num, ltrim(rtrim(isnull(t1.com_id,''))) as com_id, 
+ltrim(rtrim(isnull(t1.item_id,''))) as item_id from stdM02010 t1 where 
+ ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id} 
+	  and ltrim(rtrim(isnull(t1.vendor_id,'')))=#{vendor_id}
+	 <if test="beginTime!=null">
+		and convert(varchar(23),t1.up_datetime,121)>=#{beginTime}
+	</if>
+	<if test="endTime!=null">
+	<![CDATA[
+		and convert(varchar(23),t1.up_datetime,121)<=#{endTime}
+	]]>
+	</if>
+) as t2 on t1.com_id=t2.com_id and t1.item_id=t2.item_id  
+left join (
+select t1.com_id,t1.item_id, sum(t1.hav_rcv) as num  from VIEW_STDM02001 t1 
+where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id} 
+	and ltrim(rtrim(isnull(t1.vendor_id,'')))=#{vendor_id}
+	 and isnull(t1.m_flag,'0')!='1'
+	<if test="beginDate!=null">
+	and convert(varchar(10),t1.at_term_datetime,121)>=#{beginDate}
+	</if>
+	<if test="endDate!=null">
+	<![CDATA[
+	and convert(varchar(10),t1.at_term_datetime,121)<=#{endDate}
+	]]>
+	</if>
+group by t1.com_id,t1.item_id
+) as t3 on t1.com_id=t3.com_id and t1.item_id=t3.item_id
+</select>
+
+  <sql id="receiptWhere">
+  from ARd02051 t1 
+  left join ctl00801 t2 on t1.com_id=t2.com_id and  t1.clerk_id=t2.clerk_id
+  where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id}  and ltrim(rtrim(isnull(t1.customer_id,'')))=#{corp_id}
+   and isnull(t1.comfirm_flag,'N')='Y'
+   	 <if test="type=='0'">
+	 ltrim(rtrim(isnull(t1.qianming,'')))==''
+	 </if>
+	 <if test="type=='1'">
+	 ltrim(rtrim(isnull(t1.qianming,'')))!=''
+	 </if>
+  	<if test="beginDate!=null">
+	and convert(varchar(10),t1.finacial_d,121)>=#{beginDate}
+	</if>
+	<if test="endDate!=null">
+	<![CDATA[
+	and convert(varchar(10),t1.finacial_d,121)<=#{endDate}
+	]]>
+	</if>
+  </sql>
+  <select id="getReceiptCount" parameterType="hashMap" resultType="Integer">
+	select count(*) <include refid="receiptWhere"/>
+	</select>
+	<select id="getReceiptList" parameterType="hashMap" resultType="hashMap">
+	declare @maxId int,@maxId2 int;
+	set @maxid=(
+	select max(idh) from (
+	select top ${page}
+	ROW_NUMBER() OVER (
+		ORDER BY
+		ltrim(rtrim(isnull(t1.recieved_auto_id,''))) desc 
+		) as idh 
+  	<include refid="receiptWhere"/>
+  	) as t);
+       set @maxId2=@maxId;
+  	 <if test="page==1">
+			set @maxId=@maxId-1;
+		</if>
+	select top ${rows} t.* from (
+	select ROW_NUMBER() OVER (
+		ORDER BY
+		ltrim(rtrim(isnull(t1.recieved_auto_id,''))) desc
+		) as idh,t1.sum_si as je,t1.seeds_id,
+  	  convert(varchar(16),t1.finacial_d,121) as time,
+  	  convert(varchar(16),t1.qianmingTime,121) as qianmingTime,
+  	  ltrim(rtrim(isnull(t1.recieved_auto_id,''))) as no,
+  	  ltrim(rtrim(isnull(t1.sum_si_origin,''))) as sum_si_origin,
+  	  ltrim(rtrim(isnull(t1.qianming,''))) as qianming,
+  	  ltrim(rtrim(isnull(t2.clerk_name,''))) as clerk_name,
+  	  ltrim(rtrim(isnull(t1.c_memo,''))) as c_memo
+  	<include refid="receiptWhere"/>
+  	) as t where  t.idh>@maxid
+	</select>
+
+</mapper>

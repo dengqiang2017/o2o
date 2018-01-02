@@ -1,0 +1,54 @@
+
+.image-zhezhao{
+	   position:fixed;
+	   left:0;
+	   top:0;
+	   right:0;
+	   bottom: 0;
+	   background-color:#333333;
+	   z-index:999;
+	}
+	.img-left{
+	background-image: url(../pc/images/arrow-left.png);
+	background-repeat: no-repeat;
+	background-position: left;
+	float: left;
+	width: 23px;
+	height: 98px;
+	color: white;
+	position: relative;
+	top: 400px;
+	cursor: pointer;
+	}
+	.img-right{
+	background-image: url(../pc/images/arrow-right.png);
+	background-repeat: no-repeat;
+	background-position: right;
+	float: right;
+	width: 23px;
+	height: 98px;
+	color: white;
+	position: relative;
+	top: 400px;
+	cursor: pointer;
+	}
+	@media screen and (min-width:770px){
+		.img-ku img{
+			width: 300px;
+			height: 300px;
+		}
+    }
+    .gb{
+	opacity: 0.7;
+	cursor: pointer;
+	position: absolute;
+	top: 25px;
+	right: 25px;
+	background: url(../pc/images/close.png) no-repeat center center;
+	width: 35px;
+	height: 35px;
+	z-index: 999;
+	}
+	.gb:hover{
+	opacity: 1;
+	}

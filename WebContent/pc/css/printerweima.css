@@ -1,0 +1,75 @@
+#mymodal ul>li{
+    list-style: none;
+}
+#mymodal ul{
+    padding-left: 0;
+}
+#erweima>ul>li{
+    padding: 10px;
+}
+.modal-style{
+    margin: 37px auto;width: 35%;
+}
+.pro-num-K{
+    display: inline-block;
+    height: 40px;
+    border: 1px solid #dddddd;
+    border-radius: 2px;
+    box-shadow: 0 0 2px rgba(0,0,0,0.1) inset;
+    padding: 5px;
+    position: relative;
+    margin-left: 10px;
+}
+.add{
+    width: 38px;
+    height: 100%;
+    right: 0;
+    top: 0;
+    text-align: center;
+    line-height: 38px;
+    border-left: 1px solid #dddddd;
+    position: absolute;
+    cursor: pointer;
+    font-size: 18px;
+}
+.sub{
+    width: 38px;
+    height: 100%;
+    left: 0;
+    top: 0;
+    text-align: center;
+    line-height: 38px;
+    border-right: 1px solid #dddddd;
+    position: absolute;
+    cursor: pointer;
+    font-size: 18px;
+}
+.pro-num-K>input {
+    padding: 0 30px;
+    outline: none;
+    width: 100%;
+    height: 100%;
+    border: none;
+    text-align: center;
+}
+
+@media (max-width: 770px) {
+    .modal-style{
+        width: 100%;
+        height: 100%;
+        margin: 0;
+    }
+    #mymodal{
+        padding-right: 0 !important;
+    }
+    .pro-num-K {
+        height: 40px;
+        border: 1px solid #dddddd;
+        border-radius: 2px;
+        box-shadow: 0 0 2px rgba(0,0,0,0.1) inset;
+        padding: 5px;
+        position: relative;
+        margin-top: 15px;
+        margin-left: 0;
+    }
+}

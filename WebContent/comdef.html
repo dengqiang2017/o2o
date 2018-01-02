@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="U-XA-Compatible" content="IE-edge">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+<title>客户体验细分行业选择</title>
+<link rel="stylesheet" href="pcxy/css/bootstrap.css">
+<style type="text/css">
+#list{
+font-size: 16px;
+margin-left: 5px;
+margin-top: 10px;
+}
+.radio{
+border: 1px solid aqua;
+height: 50px;
+padding-top: 15px;
+padding-left: 10px;
+}
+</style>
+</head>
+<body>
+
+<div id="list">
+
+</div>
+<div id="item" style="display: none;">
+<div class="radio">
+  <label>
+    <input type="radio" name="com_id" id="com_id" value="com_id">
+    <span id="com_sim_name">运营商名称</span>
+  </label>
+</div>
+</div>
+
+<script src="js_lib/jquery.11.js"></script>
+<script type="text/javascript">
+<!--
+function getQueryString(key) {
+	var search= window.location.search;
+    var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)", "i");
+    var r = search.substr(1).match(reg);
+    if (r != null) {///decodeURIComponent
+    	return unescape(r[2]); 
+    }
+    return null;
+}
+
+$.get("login/getNextComs.do",function(data){
+	if(data){
+		$.each(data,function(i,n){
+			var item=$($("#item").html());
+			$("#list").append(item);
+			item.find("#com_id").val(n.com_id);
+			item.find("#com_sim_name").html(n.com_sim_name);
+			item.click({"com_id":n.com_id},function(event){
+				if(getQueryString("url").indexOf("?")<0){
+				window.location.href=getQueryString("url")+"?com_id="+event.data.com_id;
+				}else{
+				window.location.href=getQueryString("url")+"&com_id="+event.data.com_id;
+				}
+			});
+		});
+	}
+});
+
+
+// $.get("comdef.txt?ver="+Math.random(),function(com_id){
+// 	window.location.href=getQueryString("url")+"?com_id="+com_id;
+// });
+//-->
+</script>
+</body>
+</html>

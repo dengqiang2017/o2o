@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>交易完成</title>
+    <meta http-equiv="U-XA-Compatible" content="IE-edge">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" href="../pcxy/css/bootstrap.css">
+    <script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+    <link rel="stylesheet" href="css/deal_success.css">
+</head>
+<body>
+     <div class="container" style="padding-right: 0;padding-left: 0">
+         <!------- header-------------->
+         <div class="header">
+             <a class="header_a" onclick="javascript:history.go(-1);">返回</a>
+             交易完成
+         </div>
+         <!-------------body---------------->
+         <div class="body">
+             <div class="body_tick">
+                 <img class="center-block" src="images/05tick_logo.png">
+             </div>
+             <div class="body_hint01">
+                 <span>订单交易完成</span>
+             </div>
+             <div class="body_hint02">
+                 <span>感谢你对淮安通威的信任，您的支持是我们前进的动力</span>
+             </div>
+             <div style="height: 50px"></div>
+         </div>
+         <div style="text-align: center;color: #AB1F26;margin-top: 50px;">(分享有好礼)</div>
+         <a href="evaluate.html">
+             <div class="share_footer">评价并分享</div>
+         </a>
+     </div>
+     <script type="text/javascript">
+     $("a").attr("href","evaluate.html?"+window.location.href.split("?")[1]);
+     </script>
+</body>
+</html>

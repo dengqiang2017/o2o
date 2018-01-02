@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>淮安通威</title>
+    <meta http-equiv="U-XA-Compatible" content="IE-edge">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" href="../pcxy/css/bootstrap.css">
+    <link rel="stylesheet" href="../pcxy/css/autowhole.css?ver=001">
+    <link rel="stylesheet" href="../css/popUpBox.css">
+    <link rel="stylesheet" href="css/home_page.css">
+	<link rel="stylesheet" href="css/kefutc.css"> 
+    <script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+    <script type="text/javascript" src="../js_lib/jquery.cookie.js"></script>
+    <script src="../pcxy/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/common.js?ver=0013"></script>
+    <script type="text/javascript" src="../js/popUpBox.js?ver=0013"></script>
+    <script src="../js/o2od.js"></script>
+    <script src="../pc/js/employee/findparms.js"></script>
+    <script type="text/javascript" src="../pc/js/autoComplete.js"></script>
+<!--     <script type="text/javascript" src="../datepicker/WdatePicker.js"></script> -->
+    <script type="text/javascript">
+    <!-- 
+    document.write("<script src='../pc/js/employee/productpage.js'><\/script>");
+    document.write("<script src='../pc/js/employee/ordercompro.js'><\/script>");
+    document.write("<script src='../pc/huaianjs/huaian.js'><\/script>");
+    //-->
+	</script>
+    <script type="text/javascript" src="../pc/js/customer/order.js"></script>
+</head>
+<body style="padding-right: 0">
+  <div class="container" id="hide_index" style="padding-left: 0;padding-right: 0">
+      <!------- header-------------->
+      <div class="header">
+          <a href="personal_center.html" class="personal_center">
+              <img src="images/01_user.png">
+          </a>
+          首页
+      </div>
+    <!-- body-->
+     <div class="body">
+         <div class="body_showimg1" style="position: relative">
+             <img class="img-responsive" src="images/banner3.jpg">
+         </div>
+         <div class="body_search">
+         <input type="hidden" id="customer_id" value="CS1_ZEROM">
+               <div class="body_search_left center-block" style="display: none;">
+                   <input class="input_style" type="text" maxlength="20" placeholder="" id="searchKey">
+                   <div class="auto_hidden" id="auto"></div>
+                   <span class="find_span"></span>
+                   <span class="find">搜索</span>
+               </div>
+               <div class="body_search_rigth" style="display:none;">
+                   <img src="images/shaixuan_butten.png">
+               </div>
+          <div id="item01"></div>
+         <div style="display: none;" id="item">
+                 <div class="product">
+                     <a href="product_details.html" class="pro-img">
+                         <img class="img-responsive" src="images/banner2.png">
+                     </a>
+                     <div class="pro-msg">
+                         <ul>
+                             <li>
+                                 <div class="li_check">
+                                     <div class="pro-check" style="margin: auto;cursor: pointer"></div>
+                                     <span>勾选</span>
+                                 </div>
+                                 <div style="white-space: nowrap;text-overflow:ellipsis;overflow: hidden;width: 270px;display: inline-block;text-align: center;margin-top: 5px">
+                                     <a href="product_details.html" id="item_name" class="name" style="font-size: 20px">813池塘养鱼配合饲料</a>
+                                 </div>
+                             </li>
+                             <li style="color: #F40936;text-align: center;margin-top: 20px">
+                         <span class="price" id="sd_unit_price_UP">
+                         <span style="font-size: 30px">¥</span><strong style="font-size: 30px">100.11</strong>/<span id="item_unit"></span>
+                             </span>
+                             </li>
+                             <li class="li_margin" style="display: none;">
+                                 <div class="col-xs-3" style="margin-top: 5px"><span>单位：</span></div>
+                                 <div class="col-xs-8">
+                                     <div class="xs_btn">
+                                         <div class="left">
+                                             <button class="" type="button" id="casing_unit">件/12袋</button>
+                                         </div>
+                                         <div class="right btn_style" style="">
+                                             <button type="button" >吨/t</button>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <div class="clear"></div>
+                             </li>
+                             <li class="li_margin">
+                                 <div class="col-xs-3" style="margin-top: 15px"><span class="pro-num-L">数量：</span></div>
+                                 <div class="col-xs-8 p-middle">
+                                     <div class="pro-num-I">
+                                         <span class="add">+</span>
+                                         <span class="sub">-</span>
+                                         <input type="tel" class="num" id="pronum" data-number="n" style="text-align:center;height:100%;outline: none;border: none">
+                                     </div>
+                                     <span id="com_id" style="display: none;"></span>
+                                     <span id="ivt_oper_listing" style="display: none;"></span>
+                                     <span id="sum_si" style="display: none;"></span>
+                                     <span id="pack_unit" style="display: none;"></span>
+                                     <span id="sd_unit_price" style="display: none;"></span>
+                                     <input class="zsum" type="hidden">
+                                     <input id="item_id" type="hidden">
+                                 </div>
+                                 <div class="clear"></div>
+                             </li>
+                         </ul>
+                     </div>
+                     <div style="height: 30px;background-color: #eaeaea"></div>
+                 </div>
+             </div>
+             </div>
+     </div>
+      <div class="modal fade" id="mymodal">
+          <div class="modal-dialog" style="margin: 150px auto;width: 85%">
+              <div class="modal-content" style="border-radius: 0">
+                  <div class="modal-header" style="display: none">
+                      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                      <h4 class="modal-title">模态弹出窗标题</h4>
+                  </div>
+                  <div class="modal-body" style="padding: 0">
+                      <div class="kefu" id="kefulist" style="opacity:1;">
+                          <input type="hidden" id="platformsHeadship" value="客服">
+                          <ul>
+                          </ul>
+                      </div>
+                  </div>
+                  <div class="modal-footer" style="display: none">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                      <button type="button" class="btn btn-primary">保存</button>
+                  </div>
+              </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+
+  </div>
+  <div style="text-align: center;margin-top: 10px">
+  <a href="login-yuangong.html">员工登录</a>
+  <a href="registerDrive.html">司机注册</a>
+  <a href="about.html">关于</a>
+  <a href="contact.html">联系</a>
+  </div>
+  <div id="copy_bottom"></div>
+  <!-- footer-->
+  <div class="home_footer">
+      <a class="home_footer_left">
+          <div class="footer_left_img">
+              <img src="images/01_phone.png">
+          </div>
+          <span>客服</span>
+      </a>
+      <div class="home_footer_center">
+          <span>合计：</span>
+          <br>
+          <span style="color: #8F0624;">¥</span><span style="color: #8F0624;" id="orderzje">0</span>
+      </div>
+      <a class="home_footer_right" id="orderpay" >立即支付</a>
+      <div class="clear"></div>
+  </div>
+  <script type="text/javascript">
+  <!--
+  var math=Math.random();
+  var url=window.location.href;
+  if(url.indexOf("?")<0){
+  	window.location.href=url+"?ver="+math;
+  }
+  document.write("<script src='huaianjs/index.js?ver="+math+"'><\/script>");
+  //-->
+      </script>
+  <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":["qzone","tsina","weixin","sqq"],"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"2","bdPos":"right","bdTop":"163"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+</body>
+</html>

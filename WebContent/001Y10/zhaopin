@@ -1,0 +1,35 @@
+
+				<div class="secition_box_bottom_x02">
+					<div class="x-1 x-active">APP开发工程师</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="secition_box_bottomtop_y4" style="display: block;">
+					<div class="y-box">
+						<div class="y-box-center">
+							<h3 style="color: #0094DC; margin-bottom: 25px; text-align: center;">APP开发工程师</h3>
+							<div class="bq_box">
+								<div class="bq" contenteditable="true">带薪年假</div>
+								<div class="bq" contenteditable="true">团队聚餐</div>
+								<div class="bq">交通补助</div>
+								<div class="bq">午餐补助</div>
+								<div class="bq">五险一金</div>
+								<div class="bq">技能培训</div>
+								<div class="bq">节日礼物</div>
+								<div class="bq">通讯津贴</div>
+								<div class="bq selectColor">定期体检</div>
+							</div>
+							<button type="button" class="btn btn-primary addDaiyu" style="display: none;">增加</button>
+							<div class="clearfix"></div>
+							<p style="margin-bottom: 25px; margin-top: 25px; font-size: 19px">岗位职责：</p>
+							<p>1.负责android手机端客户端软件的开发和维护</p>
+							<p>2.参与客户端产品的需求分析以及架构设计</p>
+							<p>3.从事核心架构部分代码的开发，并保证代码内部和外部质量</p>
+							<p>4.紧跟移动互联网技术发展方向，做好技术积累，对产品升级进行规划并推进实施;</p>
+							<p style="margin-bottom: 25px; margin-top: 25px; font-size: 19px">任职要求：</p>
+							<p>1.计算机或相关专业本科以上学历，三年以上Android开发经验;</p>
+							<p>2.熟悉面对对象思想，精通编程，调试和相关技术，良好的JAVA基础;</p>
+							<p>3.熟悉Android SDK,并且开发过1~2款成熟的产品;熟悉Android平台网络数据传输，以及UI框架部分。</p>
+						</div>
+					</div>
+				</div>
+			

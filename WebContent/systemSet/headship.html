@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="U-XA-Compatible" content="IE-edge">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <title>系统职务设置</title>
+    <link rel="stylesheet" href="../pcxy/css/bootstrap.css">
+    <link rel="stylesheet" href="../css/popUpBox.css">
+</head>
+   <style>
+       /*-----conmment-----*/
+       *{font-family:'Microsoft YaHei',Arial,Helvetica,sans-serif;font-size: 18px;color: #000000;padding: 0;margin: 0}
+       a{text-decoration: none}
+       a:hover{text-decoration: none}
+       ul{margin-bottom: 0}
+       ul>li{list-style: none}
+
+       /*-----header-----*/
+       .header{padding: 10px;background-color: #f4faff;}
+
+       /*-----section-----*/
+       .box{padding: 10px;border-radius: 5px;background-color: #f4faff;box-shadow: 0 0 5px rgba(0,0,0,0.3);margin-top: 15px}
+       .box>ul>li{margin: 10px;}
+       .ui-box{display: inline-block;margin: 10px;border: 1px solid #dddddd;padding: 10px}
+       .btn-box>button{margin-right: 10px;margin-top: 3px}
+       .footer {position: fixed;left: 0;right: 0;bottom: 0;height: 50px;line-height: 50px;background-color: #fff;border-top: 1px solid #ccc;box-shadow: 0 0 5px rgba(0,0,0,0.3);font-weight: bold;z-index: 999;}
+       .btn-gp{width: 134px}
+       .modal-body>ul>li{float: left;margin-right: 10px}
+       .checkbox>label>input{margin-top: 6px}
+       .active{border: 2px solid #0000ff}
+       .bg{position: fixed;left: 0;right: 0;top: 0;bottom: 0;background-image: url("../images/bg.jpg");background-repeat: no-repeat;background-size: cover;z-index: -1}
+       .text{float: left}
+       .xc{margin-right: 0;margin-left: 10px;margin-top: 3px}
+       .ui-btn{width: 179px}
+   </style>
+<body>
+<div class="bg"></div>
+     <div class="section">
+         <div class="container">
+            <div class="box">
+                <h3>系统职务设置</h3>
+                <ul>
+                    <li>
+                    </li>
+                </ul>
+                <div class="ui-btn center-block">
+                    <button type="button" class="btn btn-primary btn-sm" id="addItem">增加</button>
+                    <button type="button" class="btn btn-info btn-sm" id="save">保存</button>
+                    <a onclick="javascript:history.go(-1);" class="btn btn-primary btn-sm">返回</a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+         </div>
+     </div>
+     <div id="item" style="display: none">
+         <div class="ui-box">
+             <div class="text">
+                 <input type="text" class="form-control" name="headship" maxlength="40">
+             </div>
+             <button type="button" class="btn btn-danger btn-sm xc" onclick="$(this).parents('.ui-box').remove();">删除</button>
+         </div>
+     </div>
+<script src="../js_lib/jquery.11.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js_lib/jquery-ui.js"></script>
+<script src="../js/popUpBox.js"></script>
+<script type="text/javascript">
+   <!--
+   $('.box>ul>li').html("");
+       $(".box>ul>li").sortable();
+       $.get('../manager/getJSONArrayByFile.do',{
+    	   "path":"headship.json"
+       },function(data){
+    	   if(data&&data.length>0){
+	           $.each(data,function(i,n){
+	               var item = $($('#item').html());
+	               $('.box>ul>li').append(item);
+	               item.find("input[name='headship']").val(n.name);
+	           });
+    	   }else{
+	           $('.box>ul>li').append($('#item').html());
+    	   }
+       });
+       $("#addItem").click(function(){
+    	   $('.box>ul>li').append($('#item').html());
+       });
+       $("#save").click(function(){
+    	   var heads=$('.box>ul>li').find("input[name='headship']");
+    	   if(heads&&heads.length>0){
+    	   var jsons=[];
+    	   for (var i = 0; i < heads.length; i++) {
+			var headship=$(heads[i]).val();
+			jsons.push(JSON.stringify({"name":headship}));
+		   }
+    	   pop_up_box.postWait();
+    	   $.post("../manager/saveJSONArrayFile.do",{
+    		   "path":"headship.json",
+    		   "jsons":"["+jsons.join(",")+"]"
+    	   },function(data){
+    		   pop_up_box.loadWaitClose();
+    		   if (data.success) {
+				pop_up_box.showMsg("保存成功!");
+			} else {
+				if (data.msg) {
+					pop_up_box.showMsg("保存错误!" + data.msg);
+				} else {
+					pop_up_box.showMsg("保存错误!");
+				}
+			}
+    	   });
+    	   }else{
+    		   pop_up_box.showMsg("请先增加职务!");
+    	   }
+       });
+   //-->
+</script>
+</body>
+</html>

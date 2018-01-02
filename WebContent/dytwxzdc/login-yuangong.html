@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="U-XA-Compatible" content="IE-edge">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <title>德阳通威小猪动车-撮合方登录</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/loginmanage.css">
+    <link rel="stylesheet" href="../css/popUpBox.css">
+</head>
+<body>
+<div style="width: 1px;height: 1px;">
+    <img class="img-responsive center" src="images/logo.jpg?ver=001">
+</div>
+<div class="logo center-block">
+    <img class="img-responsive center" src="images/3.png">
+</div>
+       <div class="center margin">
+           <div class="dl_box">
+               <div class="input-group" style="border-bottom: 1px solid #ffffff">
+                   <label>账号：</label>
+                   <input type="tel" class="form-control" name="user_id" id="username" placeholder="请输入用户名" maxlength="11" data-number="num">
+               </div>
+               <div class="input-group">
+                   <label>密码：</label>
+                   <input type="password" class="form-control" placeholder="请输入密码" name="user_password" id="pwd" maxlength="20">
+               </div>
+           </div>
+           <a id="loginEmployee" type="button" class="btn btn-default btn-block btn01">登录</a>
+       </div>
+<div class="footer">
+     <a href="../login/forgetpsw.do?type=Empl" class="left">忘记密码？</a>
+     <div><div class="center-block box">|</div></div>
+     <a href="../login/register.do?type=Empl" class="right">注册新用户</a>
+</div>
+<script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+<script type="text/javascript" src="../js_lib/jquery.cookie.js"></script>
+<script type="text/javascript" src="../js_lib/jquery.md5.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../datepicker/WdatePicker.js"></script>
+<script type="text/javascript" src="../js/popUpBox.js"></script>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="../pc/js/weixin/zepto.min.js"></script>
+<script type="text/javascript" src="../pc/js/weixin/weixinShare.js"></script>
+<script type="text/javascript" src="../js/weixinAutoLogin.js?ver=00133"></script>
+<script type="text/javascript">
+<!--
+var math=Math.random();
+document.write("<script src='../js/common.js?ver="+math+"'><\/script>");
+document.write("<script src='js/login.js?ver="+math+"'><\/script>");
+// $(function(){
+// weixinShare.init(sharePrex+'撮合方登录',sharePrex+'撮合方登录');
+// 	login.init("loginEmployee","../employee/login.do","../pc/operatemanage.html","employee");
+// });
+$(function(){
+	
+	if(is_weixin()&&weixinAutoLogin){
+		var url=replaceAll(window.location.search,"\\|_", "&");
+		url=replaceAll(url,"\\|", "&");
+		var com_id=getQueryString("com_id",url);
+		weixinAutoLogin.init("员工",com_id,function(id){
+			if(id){
+				window.location.href="../pc/operatemanage.html";
+			}else{
+				logininit();
+			}
+		});
+	}else{
+		logininit();
+	}
+	function logininit(){
+		var imgsrc=document.getElementsByTagName("img")[0].src;
+		weixinShare.init(sharePrex,sharePrex+'-撮合方登录',imgsrc);
+		login.init("loginEmployee","../employee/login.do","../pc/operatemanage.html","employee");
+	}
+});
+//-->
+</script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no"> 
+<meta http-equiv="expires" content="0">
+<title>历史文章列表</title>
+<link  rel="stylesheet" href="../pcxy/css/bootstrap.css"> 
+<script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="../pc/js/weixin/zepto.min.js"></script>
+<script type="text/javascript" src="../pc/js/weixin/weixinShare.js"></script>
+<script type="text/javascript">
+<!--
+weixinShare.init("牵引互联多图文消息文章/素材创建选择页面(框架页面)","可用于业务员或者内勤创建新文章,选择待发送文章,文章历史查询"); 
+//-->
+</script>
+<style type="text/css">
+.ui_item{
+border: 2px solid gray; 
+padding-bottom:10px;
+padding-left:3px;
+width: 400px;
+}
+</style>
+</head>
+<body>
+<div>
+<img alt="" src="../pc/image/logo.png">
+<h3>历史文章/素材列表</h3>
+</div>
+<div>
+<!-- <input type="text" placeholder="员工姓名关键字" id="searchKey"> -->
+<input type="date" placeholder="发布时间">
+<input type="text" placeholder="员工名称"><button type="button" class="btn">浏览</button>
+<button type="button" class="btn btn-success">搜索</button>
+</div>
+<a class="btn btn-success" href="articleDialog.html">增加新文章</a>
+<a class="btn btn-success" href="cms.html">确认选择</a>
+<div class="ui_list">
+<div class="ui_item">
+<div>
+<label>
+<input type="checkbox">
+<span>创建时间:2016-10-20</span>
+<span>创建人:梁彬</span>
+</label>
+<div style="float: right;">
+<button type="button">修改</button>
+<button type="button">删除</button>
+</div>
+</div>
+<img alt="" src="../pc/images/logo.png" >
+<div class="ui_title">牵引互联电商平台</div>
+<!-- <div class="ui_content">牵引互联一致致力于帮助中小型企业多元化发展</div> -->
+</div>
+<div class="ui_item">
+<div>
+<label>
+<input type="checkbox">
+<span>创建时间:2016-10-20</span>
+<span>创建人:梁彬</span>
+</label>
+<div style="float: right;">
+<button type="button">修改</button>
+<button type="button">删除</button>
+</div>
+</div>
+<img alt="" src="../pc/images/logo.png">
+<div class="ui_title">牵引互联电商平台</div>
+</div>
+<div class="ui_item">
+<div>
+<label>
+<input type="checkbox">
+<span>创建时间:2016-10-20</span>
+<span>创建人:梁彬</span>
+</label>
+<div style="float: right;">
+<button type="button">修改</button>
+<button type="button">删除</button>
+</div>
+</div>
+<img alt="" src="../pc/images/logo.png" >
+<div class="ui_title">牵引互联电商平台</div>
+</div>
+</div>
+<script type="text/javascript">
+<!--
+$(".ui_item").click(function(){
+	var b=$(this).find("input").prop("checkred");
+	$(this).find("input").prop("checkred",!b);
+}); 
+//-->
+</script>
+</body>
+</html>

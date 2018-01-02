@@ -1,0 +1,58 @@
+.word_product{padding: 10px;position: relative;padding-bottom: 0;}
+.iphone-bg{background-color: #ffffff !important;}
+.word_product:not(:last-child){border-bottom: 1px solid #dddddd}
+.word_product .col-xs-4 {padding-left: 5px;padding-right: 5px;}
+.word_product .col-xs-8 {padding-left: 5px;padding-right: 5px;}
+.product {display: block;}
+.product_title {font-size: 13px; }
+.product_color {font-size: 13px;margin-top: 0;}
+.product_color span{font-size: 13px;}
+.product_bottom {margin-top: 0;}
+.cost {font-size: 13px;color: #C60505;font-weight: bold;}
+.number {font-size: 13px;}
+body{height: auto !important;}
+.word_title div{font-size: 15px}
+.word_product img{width: 100%;height: 110px}
+.btn-center button {outline: none;background-color: #ffffff;border-radius: 5px;border-color:#277C7C;color: #277C7C;padding: 4px;font-size: 14px;}
+.btn-center a {border:2px solid ;outline: none;background-color: #ffffff;border-radius: 5px;border-color:#277C7C;color: #277C7C;padding: 5px;font-size: 14px;}
+.product_evaluation {background-color: #FFFFFF;padding: 10px;border-bottom: 1px solid #dddddd;font-size: 16px;}
+/*------PC------*/
+@media (max-width: 759px) {.showPC{display: none} .showPhone{display: block} .all_order{height: auto;margin-bottom: 49px;} .side-cover{position: fixed;top: 0;left: 0;z-index: 10000;background: rgba(0,0,0,0.6);width: 100%;height: 100%;display:-moz-box;display:-webkit-box;display:box;-moz-box-align:center;-webkit-box-align:center;-o-box-align:center;box-align:center;-moz-box-pack:justify;-webkit-box-pack:justify;-o-box-pack:justify;box-pack:justify;} .search {padding: 7px 0;width: 100%;border-bottom: 1px solid #ddd;background-color: #ffffff;position: fixed;left: 0;top: 45px;right: 0;z-index: 999;} .all_order{margin-top: 93px} #wuliupage{margin-top: 45px} .historylist{height: auto;overflow-y: scroll;}}
+@media (min-width: 760px) {.showPC{display: box;display:-moz-box;display:-webkit-box;} .showPhone{display: none} .all_order{height: 415px;overflow-y: scroll} .side-cover{position: absolute;top: 0;left: 0;z-index: 10000;background: rgba(0,0,0,0.6);width: 100%;height: 100%;display:-moz-box;display:-webkit-box;display:box;-moz-box-align:center;-webkit-box-align:center;-o-box-align:center;box-align:center;-moz-box-pack:justify;-webkit-box-pack:justify;-o-box-pack:justify;box-pack:justify;} .search {padding: 7px 0;width: 100%;position: relative;margin-top: 0;border-bottom: 1px solid #ddd;background-color: #ffffff} #wuliupage{margin-top: 0} .historylist{height: 373px;overflow-y: scroll;}}
+.all_order::-webkit-scrollbar{width:5px;}
+.all_order::-webkit-scrollbar-track{background-color:#bee1eb;}
+.all_order::-webkit-scrollbar-thumb{background-color:#999999;}
+.all_order::-webkit-scrollbar-thumb:hover {background-color:#9c3}
+.all_order::-webkit-scrollbar-thumb:active {background-color:#00aff0}
+.input-group {width: 70%;background-color: #FFFFFF;border-radius: 10px;padding: 3px 0;border: 1px solid #dddddd}
+.input-group label {width: 15%;float: left;margin-bottom: 0;text-align: center;color: #fff;}
+.input-group input {width: 75%;float: left;background-color: #FFFFFF !important;border: none;outline: none;}
+body{background-color: #EAEAEA}
+.all_order li{background-color: #ffffff;}
+.word_title{padding: 10px;border-bottom:1px solid #dddddd}
+.word_title .pull-right{color: #F60908}
+.word_product .col-xs-12:not(:last-child) {border-top: 1px solid #dddddd;border-bottom: 1px solid #dddddd;}
+.btn-center {float: right;margin: 5px auto;}
+.check {color: #333 !important;border-color: #333 !important;}
+.word_product .col-xs-4 {margin-bottom: 10px;}
+.word_product .col-xs-8 {margin-bottom: 10px;}
+.state_img{width: 20px;height: 20px;background: #5DA04B;border-radius: 100%;margin-top: 5px;}
+.historylist>ul>li{padding: 10px 0}
+ 
+.amend_sex{border-radius: 3px;box-shadow: 0 5px 5px rgba(0,0,0,0.3);width: 90%;background-color: #ffffff;display: none;z-index: 10001;margin: auto}
+.amend_sex li{padding: 10px;}
+.amend_sex li:not(:last-child){border-bottom: 1px solid #dddddd;font-size: 16px}
+.cancel {float: left;margin-right: 10px;}
+.cancel button {background-color: #ffffff;color: #FF4401;border-radius: 0;border: none;padding: 3px 6px;}
+.cancel button:hover{background-color: #a5a5a5}
+.del-btn{float: left}
+.del-btn button{background-color: #ffffff;color:#FF4401;border-radius:0;border: none;padding: 3px 6px}
+.del-btn button:hover{background-color: #a5a5a5}
+.text-overflow {
+display:inline-block;/* 内联对象需加 */
+width:13em;
+word-break:keep-all;/* 不换行 */
+white-space:nowrap;/* 不换行 */
+overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+}

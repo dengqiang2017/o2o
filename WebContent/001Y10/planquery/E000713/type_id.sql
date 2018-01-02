@@ -1,0 +1,1 @@
+ and ( ltrim(rtrim(isnull(type_id,''))) like 'TY380%' or  ltrim(rtrim(isnull(type_id,''))) like 'TY388%')

@@ -1,0 +1,22 @@
+.secition{border-radius: 5px;background-color: #ffffff;box-shadow: 0 5px 5px rgba(0,0,0,0.3);margin-top: 20px;padding: 20px}
+.margin-a{margin-bottom: 20px;width: 100px;background-color: #009899}
+.affirm{margin-bottom: 10px;width: 100px;background-color: #009899;color: #ffffff;margin-top: 20px}
+.affirm:hover{background-color: #009899;}
+.margin-a:hover{background-color: #009899}
+.secition_title{text-align: center;font-size: 21px}
+.secition_list{margin-top: 50px}
+.secition_list li{margin-bottom: 32px;padding: 10px 0}
+.secition_list span{margin-top: 7px}
+.new i{color: #009899}
+.col-md-5{position: relative}
+.remark{margin-top: 10px}
+#cop{text-align: center;color: #CCCCCC}
+.remark textarea{margin-top: 10px}
+.active{background-color: #CCCCCC}
+.secition_list i{color: #DE5347;display: none;margin-top: 8px;cursor: pointer}
+.md_position{position: absolute;top:-38px}
+.new i{cursor: pointer}
+.modal-body input{margin-top: 10px}
+.modal-body li{margin-bottom: 10px}
+@media (max-width: 759px){.secition_list .col-md-5{padding-left: 0;padding-right: 0;width: 100% !important;margin-bottom: 37px;} .secition_list .col-md-2{text-align:center;width: 10% !important;display: none}  .md_positionT{position: absolute;top:-42px;right: 0} .secition_list li:not(:last-child){margin-bottom: 32px}}
+@media (min-width: 760px){.secition_list .col-md-5{width: 45% !important;} .secition_list .col-md-2{text-align:center;width: 10% !important;}  .md_positionT{position: absolute;top:-31px;right: 0;display: none}}

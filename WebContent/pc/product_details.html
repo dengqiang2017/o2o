@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>产品详情</title>
+    <meta http-equiv="U-XA-Compatible" content="IE-edge">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" href="../pcxy/css/global.css?ver=172447">
+    <link rel="stylesheet" href="../pcxy/css/bootstrap.css">
+    <link rel="stylesheet" href="../pcxy/css/autowhole.css?ver=001">
+    <link rel="stylesheet" href="../css/popUpBox.css">
+    <script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+    <script type="text/javascript" src="../js_lib/jquery.cookie.js"></script>
+    <script src="../pcxy/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/common.js?ver=0013"></script>
+    <script type="text/javascript" src="../js/popUpBox.js?ver=0013"></script>
+    <script src="../js/o2od.js?ver=001"></script>
+    <script src="../pc/js/employee/findparms.js"></script>
+    <script type="text/javascript" src="../pc/js/autoComplete.js"></script>
+    <script type="text/javascript" src="../datepicker/WdatePicker.js"></script>
+    <script type="text/javascript" src="../pc/js/employee/productpage.js?ver=0013"></script>
+    <script type="text/javascript" src="../pc/js/employee/ordercompro.js?ver=0015"></script>
+    <script type="text/javascript" src="../pc/js/customer/order.js?ver=0013"></script>
+    <link rel="stylesheet" href="css/product_details.css">
+</head>
+<body>
+<!-- header-->
+   <div class="header">淮安通威
+    <a href="personal_center.html" class="personal_center">
+        <img src="images/01_user.png">
+    </a>
+       <a class="glyphicon glyphicon-chevron-left header_a" onclick="javascript:history.go(-1);"></a>
+    </div>
+<div class="product">
+    <a class="pro-img">
+        <img class="img-responsive" src="images/banner2.png">
+    </a>
+    <div class="pro-msg">
+        <ul>
+            <li>
+                <div class="li_check">
+                    <div class="pro-check" style="margin: auto;cursor: pointer"></div>
+                    <span>勾选</span>
+                </div>
+                <div style="display: inline-block;">
+                    <a id="item_name" class="name">813池塘养鱼配合饲料</a>
+                </div>
+                <div class="li_share">
+                    <div class="share_img">
+                        <img class="center-block" src="images/Share.png">
+                    </div>
+                    <span style="color: #F5093A;font-size: 14px">分享有好礼</span>
+                    <div id="fenxiang" style="position: absolute;left: 0;top:0;display: none">
+                        <div class="bdsharebuttonbox bdshare-button-style0-32" data-bd-bind="1460516264325">
+                            <a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+                        </div>
+
+                    </div>
+                </div>
+            </li>
+            <li style="color: #F40936;text-align: center;margin-top: 20px">
+                         <span class="price" id="sd_unit_price_UP">
+                         <span style="font-size: 30px">¥</span><strong style="font-size: 30px">100.11</strong>
+                             </span>
+            </li>
+            <li class="li_margin">
+                <div class="col-xs-3" style="margin-top: 5px"><span>单位：</span></div>
+                <div class="col-xs-8">
+                    <div class="xs_btn">
+                        <div class="left">
+                            <button class="btn btn-default">件/12袋</button>
+                        </div>
+                        <div class="right" style="">
+                            <button class="btn btn-default">吨/t</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </li>
+            <li class="li_margin">
+                <div class="col-xs-3" style="margin-top: 5px"><span class="pro-num-L">数量：</span></div>
+                <div class="col-xs-8">
+                    <div class="pro-num-I">
+                        <span class="add">+</span>
+                        <span class="sub">-</span>
+                        <input type="text" class="num" id="pronum" data-number="n" style="text-align:center;height:100%;outline: none;border: none">
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </li>
+        </ul>
+    </div>
+</div>
+   <div class="details">
+       <h4>产品特点：</h4>
+       <p>1.经通威精心研制而成，富含鱼体健康快速生长所需的各种营养物质</p>
+       <p>粉碎细度高。60目过筛率65%以上。</p>
+       <p>塑料调质温度高，耐水性好，浪费少。</p>
+       <p>适口性好。</p>
+       <h4>产品功效：</h4>
+       <p>1.配方平衡、抗营养因子少，鱼体健康，抗病力强。</p>
+       <p>2.高温季节抗应激能力强。</p>
+       <p>3.鱼体条形好，体色亮</p>
+   </div>
+<div style="height: 80px;"></div>
+<!-- footer-->
+<div class="home_footer">
+    <a class="home_footer_left">
+        <div class="footer_left_img">
+            <img src="images/01_phone.png">
+        </div>
+        <span>客服</span>
+    </a>
+    <div class="home_footer_center">
+        <span>合计：</span>
+        <br>
+        <span style="color: #8F0624;">¥</span><span style="color: #8F0624;" id="orderzje">1000000.11</span>
+    </div>
+    <a class="home_footer_right" id="orderpay" href="pay.html">立即支付</a>
+    <div class="clear"></div>
+</div>
+<script>
+    $(".pro-check").click(function(){//注册图片选择框 选择或者取消功能
+        var b=$(this).hasClass("pro-checked");
+        if (b) {
+            $(this).removeClass("pro-checked");
+        }else{
+            $(this).addClass("pro-checked");
+        }
+    });
+    $('.xs_btn button').click(function(){
+        var c=$(this).hasClass('btn-danger');
+        if (c) {
+            $(this).removeClass("btn-danger");
+        }else{
+            $(this).addClass("btn-danger");
+        }
+    });
+</script>
+</body>
+</html>

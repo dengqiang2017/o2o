@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<REQUEST>  
+<itembegin index="3" sheetName="产地品牌-勿改此页名"/>
+<item mainfiledName="producarea_id"                   index="0"  excelChineseName="产地品牌编码" />
+<item mainfiledName="producarea_name"                 index="1"  excelChineseName="产地品牌名称" />
+</REQUEST>                                            

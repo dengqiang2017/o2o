@@ -1,0 +1,46 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: Microsoft YaHei;
+    color: #000000;
+}
+ul>li{
+    list-style: none;
+}
+ul{
+    margin-bottom: 0;
+}
+.header{
+    background-color: #3ABB92;
+    text-align: center;
+    color: #ffffff;
+    padding: 10px;
+    font-size: 20px;
+    position: relative;
+}
+.header>a{
+    color: #ffffff;
+    cursor: pointer;
+}
+.pull-right>img{
+    width: 24px;
+}
+.body>ul>li{
+    background-color: #ffffff;
+    padding: 10px;
+    text-align: center;
+    font-size: 20px;
+    border-bottom: 1px solid #dddddd;
+}
+.col01>span{
+    color: #000000;
+    font-size: 15px;
+}
+.col01{
+    color: #000000;
+    font-size: 15px;
+}
+.col02>span{
+    color: #C6C6C6;
+    font-size: 15px;
+}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>订单跟踪</title>
+    <meta http-equiv="U-XA-Compatible" content="IE-edge">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" href="../pcxy/css/bootstrap.css">
+    <link rel="stylesheet" href="../css/popUpBox.css">
+    <script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+    <script src="../pcxy/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/common.js"></script>
+    <script type="text/javascript" src="../js/popUpBox.js"></script>
+    <link rel="stylesheet" href="css/order_tracking.css">
+    <script type="text/javascript" src="huaianjs/tracking.js"></script>
+</head>
+<body>
+        <div class="container" style="padding-right: 0;padding-left: 0">
+            <!-------------- header------------------->
+            <div class="header">订单跟踪
+                <a href="personal_center.html" class="personal_center">
+                    <img src="images/01_user.png">
+                </a>
+            </div>
+            <!-------------- body------------------->
+            <div class="body_row01">
+                 <div class="body_row_left">
+                     <span></span>
+                 </div>
+                <div class="body_row_right">
+                    订单编号：<br><span id="orderNo"></span>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="body_row02">
+                <ul id="orderlist">
+                    
+                </ul>
+                <div id="orderitem" style="display: none;"> 
+                <li>
+                        <div class="col-xs-4">
+                            <div class="li_img">
+                                <img src="images/jpg.jpg">
+                            </div>
+                        </div>
+                        <div class="col-xs-8">
+                            <span class="msg" id="item_name"></span>
+                            <div class="row_num">
+                                <div class="row_num01" style="float: left">
+                                    	数量：<span id="sd_oq"></span>
+                                </div>
+                                <div class="row_num02" style="float: right">
+                                   	 金额:<span>¥</span><span id="sum_si"></span>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </li>
+                </div>
+            </div>
+            <div class="body_row03">
+                <ul id="historylist">
+                </ul>
+                <div id="historyitem" style="display: none;">
+                <li>
+                        <div class="col-xs-2">
+                            <div class="state_img02">
+                                <img src="images/07yuan.png">
+                            </div>
+                        </div>
+                        <div class="col-xs-10 li_margin02">
+                             <ul>
+                                 <li style="margin-top: 0;" id="content">【淮安通威】货物已发出</li>
+<!--                                  <li style="white-space:nowrap">【货运司机:梁二(14780007226)】</li> -->
+                                 <li id="time">2016-3-22 11:05</li>
+                             </ul>
+                        </div>
+                        <div class="clear"></div>
+                    </li>
+                </div>
+            </div>
+            <div style="height: 20px;"></div>
+        </div>
+</body>
+</html>

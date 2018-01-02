@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+<meta charset="UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="viewport"
+      content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+<link rel="stylesheet" href="../css/popUpBox.css">
+<script src="../js_lib/jquery.11.js"></script>
+<script src="../js/common.js"></script>
+<script type="text/javascript" src="../js/popUpBox.js"></script>
+<script src="../pc/saiyu/personalCenter.js"></script>
+<title>赛宇电器</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            list-style: none;
+            text-decoration: none;
+            box-sizing: border-box;
+        }
+        html,body{
+            width: 100%;
+            background-color: #357bb1;
+        }
+        .container{
+            width: 100%;
+            overflow: hidden;
+            margin-top: 100px;
+        }
+        .left,.right{
+            float: left;
+            width: 26%;
+        }
+        .right{
+            width: 74%;
+        }
+        .left>ul{
+            width: 100%;
+            margin-bottom: 30px;
+        }
+        .left>ul>li{
+            height: 190px;
+            width: 100%;
+            border-bottom: 1px solid #ffffff;
+            font-family: '微软雅黑';
+            font-size: 36px;
+            color: #ffffff;
+            text-align: center;
+            line-height: 190px;
+        }
+        .left>ul>li:hover{
+            background-color: #429dc7;
+            cursor: pointer;
+        }
+        .left>ul>li:first-child{
+            line-height: 200px;
+        }
+        .active{
+            background-color: #429dc7;
+        }
+        .bottom{
+            box-sizing: content-box;
+            width: 67.3%;
+            /*942*/
+            background-color: #ffffff;
+            margin:0 auto;
+            padding-left: 16.35%;
+            padding-right: 16.35%;
+            padding-bottom: 375px;
+        }
+        .bottom_1{
+            padding-top: 60px;
+            width: 100%;
+        }
+        .bottom_2{
+            margin-top: 70px;
+            width: 100%;
+        }
+        .bottom_center,.bottom_left,.bottom_right{
+            display: inline-block;
+            font-size: 24px;
+            font-family: '微软雅黑';
+        }
+        .bottom_left{
+            vertical-align: middle;
+            width: 14.5%;
+        }
+        .bottom_center{
+            line-height: 141px;
+            height: 141px;
+            margin-left: 3.2%;
+        }
+        .bottom_right{
+            margin-left: 10%;
+            height: 40px;
+            border: none;
+            width: 55.14%;
+            background-color: #cccccc;
+            text-align: center;
+        }
+        .bottom_2>.more{
+            width: 6%;
+            margin-left: 47%;
+        }
+        .bottom_2>.submit{
+            width: 100%;
+            background-color: #357bb1;
+            height: 85px;
+            font-size: 36px;
+            font-family: '微软雅黑';
+            color: #ffffff;
+        }
+        .header{
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            height: 100px;
+            width: 100%;
+            background-color: #357bb1;
+        }
+        .logo{
+            width: 26%;
+            height: 100px;
+            float: left;
+            position: relative;
+            vertical-align: middle;
+        }
+        .logo>img{
+            position: absolute;
+            left: 30px;
+            top: 10%;
+            height: 80%
+        }
+        .logo>p{
+            position: absolute;
+            left: 30%;
+            line-height: 100px;
+            font-size: 36px;
+            color: #ffffff;
+            font-weight: bold;
+            font-family: '幼圆','微软雅黑';
+        }
+        .top{
+            float: left;
+            width: 74%;
+            font-family: '微软雅黑';
+            font-size: 36px;
+            color: #ffffff;
+            text-align: center;
+            height: 100px;
+            line-height: 100px;
+            z-index: 1001;
+        }
+        .copyright{
+            text-align: center;
+            height: 100px;
+            line-height: 100px;
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: normal;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <div class="logo">
+        <img src="image/logo.png" />
+        <p class="name">赛宇电器</p>
+    </div>
+    <div class="top">个人中心</div>
+</div>
+    <div class="container">
+        <div class="left">
+            <ul>
+                <li class="active" data-url="repair">照明报修</li>
+                <li data-url="repairHistory">维修历史</li>
+                <li data-url="historicalPurchase">历史采购</li>
+                <li data-url="accountStatement">出纳对账</li>
+                <li data-url="purchaseApproval">采购审批</li>
+                <li data-url="financialApproval">财务审批</li>
+                <li data-url="cashierPayment">出纳支付</li>
+                <li onclick="window.location.href='index.html'">返回首页</li>
+            </ul>
+        </div>
+        <div class="right">
+<!--              菜单对应页面 加载区   -->
+        </div>
+    </div>
+</body>
+</html>

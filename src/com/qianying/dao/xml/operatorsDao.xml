@@ -1,0 +1,887 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- xml文件 -->
+<mapper namespace="com.qianying.dao.interfaces.IOperatorsDAO">
+	<cache/>
+	<select id="getAll" resultType="hashMap">
+	 select ltrim(rtrim(isnull(o.com_id,''))) as com_id,
+	 ltrim(rtrim(isnull(o.com_sim_name,''))) as com_sim_name from ctl00501 o
+	  where ltrim(rtrim(isnull(o.working_status,'否')))='是' or ltrim(rtrim(isnull(o.com_id,'')))='001'	
+	</select>
+	<select id="getNextComs" parameterType="hashMap" resultType="hashMap">
+	 select ltrim(rtrim(isnull(o.com_id,''))) as com_id,
+	 ltrim(rtrim(isnull(o.com_sim_name,''))) as com_sim_name from ctl00501 o	
+	 where ltrim(rtrim(isnull(o.working_status,'否')))='是'
+	</select>
+	<insert id="initData" parameterType="String">
+	declare @client int;
+ 	set @client=(select count(customer_id) from sdf00504 where ltrim(rtrim(isnull(com_id,'')))=#{com_id} and ltrim(rtrim(isnull(customer_id,'')))='CS1');
+ 	if @client=0 
+ 	  insert into sdf00504 (com_id,customer_id,self_id,easy_id,corp_sim_name,corp_name,license_type)
+ 	  values('${com_id}','CS1','CS1','WGSXN','我公司(虚拟)','我公司(虚拟)','手机号');
+ 	
+ 	set @client=(select count(customer_id) from sdf00504 where ltrim(rtrim(isnull(com_id,'')))=#{com_id} and ltrim(rtrim(isnull(customer_id,'')))='CS1_ERROR');
+ 	 	if @client=0 
+ 	  insert into sdf00504 (com_id,customer_id,self_id,upper_customer_id,easy_id,corp_sim_name,corp_name,license_type)
+ 	values('${com_id}','CS1_ERROR','CS1_ERROR','CS1','XNWXKH','虚拟无效客户','虚拟无效客户','手机号');
+ 	
+ 	set @client=(select count(customer_id) from sdf00504 where ltrim(rtrim(isnull(com_id,'')))=#{com_id} and ltrim(rtrim(isnull(customer_id,'')))='CS1_ZEROM');
+ 	 	if @client=0 
+ 	  insert into sdf00504 (com_id,customer_id,self_id,upper_customer_id,easy_id,corp_sim_name,corp_name,license_type)
+ 	values('${com_id}','CS1_ZEROM','CS1_ZEROM','CS1','LS','零售','零售','手机号');
+ 	
+ 	set @client=(select count(com_id) from ctl09003 where ltrim(rtrim(isnull(com_id,'')))=#{com_id} and ltrim(rtrim(isnull(user_id,'')))='001');
+ 	 	if @client=0 
+ 	  insert into ctl09003 (com_id,user_id,clerk_id,user_password,i_browse,if_O2O,usr_grp_id)
+ 	values('${com_id}','001','001','123qwe','Y','2','0');
+<!--  	//////////结算方式初始化/////////////// -->
+ 	set @client=(select count(sort_id) from ctl02107 where ltrim(rtrim(isnull(com_id,'')))=#{com_id} and ltrim(rtrim(isnull(sort_id,'')))='JS001');
+      if @client=0 
+ 	  insert into ctl02107 (com_id,sort_id,settlement_type_id,upper_settlement_id,settlement_sim_name,cheque_flag,mainten_clerk_id,maintenance_datetime)
+ 	values('${com_id}','JS001','JS001','','账上款','账上款','001','1900-01-01 00:00:00.000');
+ 	
+ 	 	set @client=(select count(sort_id) from ctl02107 where ltrim(rtrim(isnull(com_id,'')))=#{com_id} and ltrim(rtrim(isnull(sort_id,'')))='JS001JS003');
+      if @client=0 
+ 	  insert into ctl02107 (com_id,sort_id,settlement_type_id,upper_settlement_id,settlement_sim_name,cheque_flag,mainten_clerk_id,maintenance_datetime)
+ 	values('${com_id}','JS001JS003','JS001JS003','JS001','账上款-预存款转入','账上款','001','1900-01-01 00:00:00.000');
+ 	
+ 	 	set @client=(select count(sort_id) from ctl02107 where ltrim(rtrim(isnull(com_id,'')))=#{com_id} and ltrim(rtrim(isnull(sort_id,'')))='JS001JS004');
+      if @client=0 
+ 	  insert into ctl02107 (com_id,sort_id,settlement_type_id,upper_settlement_id,settlement_sim_name,cheque_flag,mainten_clerk_id,maintenance_datetime)
+ 	values('${com_id}','JS001JS004','JS001JS004','JS001','账上款-订单发生','账上款','001','1900-01-01 00:00:00.000');
+ 	<!--  	set @client=(select count(sort_id) from ctl02107 where ltrim(rtrim(isnull(com_id,'')))=#{com_id} and ltrim(rtrim(isnull(sort_id,'')))='JS002'); -->
+<!--       if @client=0  -->
+<!--  	  insert into ctl02107 (com_id,sort_id,settlement_type_id,upper_settlement_id,settlement_sim_name,cheque_flag,mainten_clerk_id,maintenance_datetime) -->
+<!--  	values('${com_id}','JS002','JS002','','预存款','预存款','001','1900-01-01 00:00:00.000'); -->
+ 	
+<!--   	set @client=(select count(sort_id) from Ctl00701 where ltrim(rtrim(isnull(com_id,'')))=#{com_id} and ltrim(rtrim(isnull(sort_id,'')))='DEWXQYH'); -->
+<!--       if @client=0 -->
+<!--  	insert into Ctl00701(com_id,dept_name,working_status,m_flag,dept_id,dept_sim_name,easy_id,sort_id) -->
+<!--  	values('001','微信企业号中的合并部门','01','0','DEWXQYH','微信企业号部门','WXQYH','DEWXQYH'); -->
+	</insert>
+ 	<insert id="initTable" parameterType="String">
+<!--    微信消息 -->
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE id = OBJECT_ID(N'[dbo].[weixinmessage]') AND type in (N'U'))
+CREATE TABLE [dbo].[weixinmessage](
+	[seeds_id] [int] IDENTITY(1,1) NOT NULL,
+	[com_id] [char](10) NOT NULL,
+	[touser] [varchar](30) NOT NULL, <!-- 接收人 -->
+	[title] [varchar](300) NOT NULL, <!-- 标题 -->
+	[description] [varchar](300) NOT NULL, <!-- 描述 -->
+	[url] [varchar](300) NOT NULL, <!-- 链接地址 -->
+	[sendRen] [varchar](30) NULL, <!-- 发送人 -->
+	[errcode] [int] NOT NULL DEFAULT 0, <!--  发送状态编码 -->
+	[errmsg] [char](40) NULL, <!-- 发送状态返回值 -->
+	[sendtime] [datetime] NULL,<!-- 发送时间 -->
+	[state] [int] NOT NULL DEFAULT 0, <!-- 0-未读,1-已读 -->
+	CONSTRAINT [PK_weixinmessage] PRIMARY KEY CLUSTERED 
+([seeds_id] ASC)
+<!-- WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) --> 
+ON [PRIMARY]) ON [PRIMARY];
+<!-- 员工签到表 -->
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE id = OBJECT_ID(N'[dbo].[Ctl00801_sign]') AND type in (N'U'))
+CREATE TABLE [dbo].[Ctl00801_sign](
+	[seeds_id] [int] IDENTITY(1,1) NOT NULL,
+	[com_id] [char](10) NOT NULL,
+	[clerk_id] [varchar](30) NOT NULL,<!-- 员工id -->
+	[latitude] [varchar](30) NULL,<!-- 纬度 -->
+	[longitude] [varchar](30) NULL,<!-- 经度 -->
+	[accuracy] [varchar](30) NULL,<!-- 位置精度 -->
+	[signDate] [datetime] NULL,<!-- 签到日期 -->
+	[signTime] [datetime] NULL,<!-- 签到时间 -->
+	[address] [varchar](100) NULL,<!-- 地址 -->
+	[type] [char](1) NULL, <!-- 签到类型 0-上报签到,1-业务员签到 -->
+	[c_memo] [varchar](100) NULL <!-- 备注 -->
+	CONSTRAINT [PK_Ctl00801_sign] PRIMARY KEY CLUSTERED 
+([seeds_id] ASC)
+<!-- WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON)  -->
+ON [PRIMARY]) ON [PRIMARY];
+<!--   系统参数存放表 -->
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE id = OBJECT_ID(N'[dbo].[CTLf01001]') AND type in (N'U'))
+CREATE TABLE [dbo].[CTLf01001](
+	[seeds_id] [int] IDENTITY(1,1) NOT NULL,
+	[com_id] [char](10) NOT NULL,
+	[param_name] [varchar](50) NOT NULL,<!-- 参数名称 -->
+	[param_val] [varchar](200) NULL,<!-- 参数值 -->
+	[param_describe] [varchar](100) NULL,<!-- 参数描述 -->
+	[mainten_clerk_id] [varchar](35) NULL,
+	[mainten_datetime] [datetime] NULL
+	CONSTRAINT [PK_systemParams] PRIMARY KEY CLUSTERED 
+([seeds_id] ASC)
+<!-- WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON)  -->
+ON [PRIMARY]) ON [PRIMARY];
+
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE id = OBJECT_ID(N'[dbo].[t_notice_info]') AND type in (N'U'))
+CREATE TABLE [dbo].[t_notice_info](
+	[seeds_id] [int] IDENTITY(1,1) NOT NULL,
+	[com_id] [char](10) NOT NULL,
+	[clerk_id] [varchar](30) NOT NULL,
+	[clerk_name] [varchar](30) NOT NULL,
+	[notice_title] [varchar](100) NULL,
+	[notice_content] [varchar](500) NULL,
+	[m_flag] [char](1) NULL, <!-- -1已删除,0-删除 -->
+	[notice_time] [datetime] NULL
+	CONSTRAINT [PK_t_notice_info] PRIMARY KEY CLUSTERED
+([seeds_id] ASC)
+<!-- WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) -->
+ON [PRIMARY]) ON [PRIMARY];
+<!-- 产品浏览记录表 -->
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE id = OBJECT_ID(N'[dbo].[Ctl03101]') AND type in (N'U'))
+CREATE TABLE [dbo].[Ctl03101](
+[seeds_id] [int] IDENTITY(1,1) NOT NULL,
+[com_id] [char](10) NOT NULL,
+[item_id] [varchar](30) NOT NULL, <!-- 产品内码 -->
+[view_time] [datetime] NOT NULL, <!-- 浏览时间 -->
+[customer_id] [varchar](100) NOT NULL, <!-- 浏览客户 -->
+[view_address] [varchar](100) NULL, <!-- IP地址所属物理地址 -->
+[view_ip] [varchar](20) NOT NULL <!-- 浏览器产品时的IP地址 -->
+CONSTRAINT [PK_Ctl03101] PRIMARY KEY CLUSTERED
+([seeds_id] ASC)
+<!-- WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON)  -->
+ON [PRIMARY]) ON [PRIMARY];
+<!--   微信服务号模板 -->
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE id = OBJECT_ID(N'[dbo].[t_weixin_template]') AND type in (N'U'))
+CREATE TABLE [dbo].[t_weixin_template](
+[seeds_id] [int] IDENTITY(1,1) NOT NULL,
+[com_id] [char](10) NOT NULL,
+[template_id] [varchar](50) NOT NULL, <!-- 模板id -->
+[title] [varchar](100) NOT NULL, <!-- 模板标题 -->
+[content] [varchar](300) NULL <!-- 模板内容 -->
+CONSTRAINT [PK_t_weixin_template] PRIMARY KEY CLUSTERED
+([seeds_id] ASC)
+<!-- WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON)  -->
+ON [PRIMARY]) ON [PRIMARY];
+<!--  客户拜访记录 -->
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE id = OBJECT_ID(N'[dbo].[sdf00504_visit]') AND type in (N'U'))
+CREATE TABLE [dbo].[sdf00504_visit](
+[seeds_id] [int] IDENTITY(1,1) NOT NULL,
+[com_id] [char](10) NOT NULL,
+[customer_id] [varchar](100) NOT NULL, <!-- 客户编码 -->
+[clerk_id] [varchar](30) NOT NULL, <!-- 员工编码 -->
+[visitContent] [varchar](300) NOT NULL, <!-- 拜访描述 -->
+[visitResult] [varchar](30) NULL, <!-- 拜访结果 -->
+[ivt_oper_listing] [varchar](20) not NULL, <!-- 记录编号  -->
+[visitTime] [datetime] not NULL, <!-- 拜访时间 -->
+[mainten_clerk_id] [varchar](30) NOT NULL, <!-- 维护人员 -->
+[maintenance_datetime] [datetime] not NULL <!-- 维护时间 -->
+CONSTRAINT [PK_sdf00504_visit] PRIMARY KEY CLUSTERED
+([seeds_id] ASC)
+<!-- WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF,ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON)  -->
+ON [PRIMARY]) ON [PRIMARY];
+<!-- 员工工作计划表 -->
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE id = OBJECT_ID(N'[dbo].[ctl00801_plan]') AND type in (N'U'))
+CREATE TABLE [dbo].[ctl00801_plan](
+[seeds_id] [int] IDENTITY(1,1) NOT NULL,
+[com_id] [char](10) NOT NULL,
+[clerk_id] [varchar](30) NOT NULL, <!-- 员工编码 -->
+[planContent] [varchar](300) NOT NULL, <!-- 计划内容 -->
+[planResult] [varchar](30) NULL, <!-- 计划结果 -->
+[planDescribe] [varchar](300) NULL, <!-- 计划结果描述 -->
+[ivt_oper_listing] [varchar](20) NULL, <!-- 记录编号 --> 
+[planTime] [datetime] not NULL, <!-- 拜访时间 -->
+[mainten_clerk_id] [varchar](30) NOT NULL, <!-- 维护人员 -->
+[maintenance_datetime] [datetime] not NULL-- <!-- 维护时间 -->
+CONSTRAINT [PK_ctl00801_plan] PRIMARY KEY CLUSTERED
+([seeds_id] ASC)
+<!-- WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF,ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) -->
+ON [PRIMARY]) ON [PRIMARY];
+<!-- 首页文章信息存放表 -->
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE id = OBJECT_ID(N'[dbo].[t_article]') AND type in (N'U'))
+CREATE TABLE [dbo].[t_article](
+[id] [int] IDENTITY(1,1) NOT NULL,
+[com_id] [char](10) NOT NULL,
+[projectName] [varchar](30) NOT NULL, <!-- 项目名称p1,p2... -->
+[publisher] [varchar](30) NULL, <!-- 发布人 -->
+[clerk_id] [varchar](30) NULL, <!-- 所属员工 -->
+[htmlname] [varchar](100) NULL,  <!-- 文件名 -->
+[zhiding] [char](1) NULL DEFAULT 0, <!--  置顶 0-不置顶,1-置顶 -->
+[filetype] [char](1) NULL DEFAULT 0, <!-- 图文或者视频 0-图文,1-视频 -->
+[projectType] [char](2) NULL DEFAULT 0, <!-- 图文或者视频 2-案例,1-口碑,3-服务 -->
+[title] [varchar](200) NOT NULL, <!-- 标题 -->
+[gjc] [varchar](200) NULL, <!-- 关键词 -->
+[img] [varchar](100) NULL, <!-- 封面图 -->
+[poster] [varchar](30) NULL, <!-- 视频封面图 -->
+[releaseTime] [datetime] NULL, <!-- 发布时间 -->
+[mainten_clerk_id] [varchar](30) NULL, <!-- 维护人员 -->
+[maintenance_datetime] [datetime] not NULL <!-- 维护时间 -->
+CONSTRAINT [PK_t_article] PRIMARY KEY CLUSTERED
+([id] ASC)
+<!-- WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON)  -->
+ON [PRIMARY]) ON [PRIMARY];
+<!-- 文章阅读记录 -->
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE id = OBJECT_ID(N'[dbo].[t_ganzhi]') AND type in (N'U'))
+CREATE TABLE [dbo].[t_ganzhi](
+[id] [varchar] (17) NOT NULL,
+[com_id] [char](10) NOT NULL,
+[corp_name] [varchar](30) NULL, 
+[article_name] [varchar](100) NULL, 
+[article_id] [varchar](100) NULL, 
+[read_time] [datetime] not NULL, 
+[end_time] [datetime] NULL, 
+[clerk_id] [varchar](30) NULL, <!-- 所属员工 -->
+[ip] [varchar](30) NULL,
+[userid] [varchar](32) NULL
+CONSTRAINT [PK_t_ganzhi] PRIMARY KEY CLUSTERED
+([com_id] ASC,[id] ASC)
+<!-- WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF,ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) --> 
+ON [PRIMARY]) ON [PRIMARY];
+<!--  微信服务号消息模板 -->
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE id = OBJECT_ID(N'[dbo].[t_weixin_template]') AND type in (N'U'))
+CREATE TABLE [dbo].[t_weixin_template](
+[com_id] [char](10) NOT NULL,
+[title] [varchar](30) NOT NULL, 
+[template_id] [varchar](100) NOT NULL, 
+[content] [varchar](30) NOT NULL
+CONSTRAINT [PK_t_weixin_template] PRIMARY KEY CLUSTERED
+([com_id] ASC,[template_id] ASC)
+<!-- WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF,ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON)  -->
+ON [PRIMARY]) ON [PRIMARY];
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE id = OBJECT_ID(N'[dbo].[Sdf00504_saiyu]') AND type in (N'U'))
+CREATE TABLE [dbo].[Sdf00504_saiyu](
+	[seeds_id] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
+	[com_id] [char](50) NOT NULL,
+	[customer_id] [varchar](30) NOT NULL,
+	[self_id] [varchar](30) NULL,
+	[easy_id] [varchar](40) NULL,
+	[corp_sim_name] [varchar](40) NULL,
+	[corp_name] [varchar](40) NULL,
+	[regionalism_id] [varchar](30) NULL,
+	[dept_id] [varchar](60) NULL,
+	[tel_no] [varchar](40) NULL,
+	[e_mail] [varchar](50) NULL,
+	[working_status] [varchar](2) NULL,
+	[corp_reps] [varchar](40) NULL,
+	[working_range] [varchar](500) NULL,
+	[bank_id] [varchar](50) NULL,
+	[bank_accounts] [varchar](50) NULL,
+	[clerk_id] [varchar](35) NULL,
+	[corp_working_lisence] [varchar](30) NULL,
+	[if_whole_lisence] [char](1) NULL,
+	[pay_style] [varchar](20) NULL,
+	[isclient] [char](1) NULL,
+	[practice_date] [datetime] NULL,
+	[star_cooperate_date] [datetime] NULL,
+	[end_cooperate_date] [datetime] NULL,
+	[shutout_date] [datetime] NULL,
+	[memo] [varchar](50) NULL,
+	[mainten_clerk_id] [varchar](35) NULL,
+	[mainten_datetime] [datetime] NULL,
+	[user_id] [varchar](30) NULL,
+	[user_password] [varchar](32) NULL,
+	[license_type] [varchar](10) NULL,
+	[clerk_name] [varchar](40) NULL,
+	[addr1] [varchar](80) NULL,
+	[movtel] [varchar](30) NULL,
+	[weixin] [varchar](30) NULL,
+	[qq] [varchar](30) NULL,
+	[accountSum] [decimal](28, 6) NULL,
+	[weixinID] [varchar](30) NULL,
+	[weixinStatus] [varchar](1) NULL,
+	[idcard] [varchar](20) NULL,
+	[openid] [varchar](40) NULL
+ CONSTRAINT [PK_Sdf00504_saiyu] PRIMARY KEY CLUSTERED 
+([com_id] ASC,[customer_id] ASC)
+<!-- WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON)  -->
+ON [PRIMARY]) ON [PRIMARY]
+<!-- comment 客户签到获取或者消费金币记录表 -->
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE id = OBJECT_ID(N'[dbo].[sdf00504_jinbi]') AND type in (N'U'))
+CREATE TABLE [dbo].[sdf00504_jinbi](
+	[seeds_id] [int] IDENTITY(1,1) NOT NULL,
+	[com_id] [char](10) NOT NULL,
+	[customer_id] [varchar](100) NOT NULL, <!-- 客户内编码 -->
+	[f_num] [int] NOT NULL DEFAULT 0, <!-- 获取或者消费数量 -->
+	[f_time] [datetime] NOT NULL,<!-- 消费或者获取时间 -->
+	[f_source] [varchar](10) NOT NULL, <!-- 金币来源:签到,分享,评价 -->
+	[orderNo] [varchar](100) NULL, <!-- 存储消费时的订单编号 -->
+	[c_memo] [varchar](100) NULL, <!-- 链接地址 -->
+	[flag] [int] NOT NULL DEFAULT 0 <!-- 消费时暂存标志,0-等于正式,1-等于暂存  -->	
+	CONSTRAINT [PK_sdf00504_jinbi] PRIMARY KEY CLUSTERED
+([seeds_id] ASC)
+<!-- WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) --> 
+ON [PRIMARY]) ON [PRIMARY];
+<!-- 优惠券 -->
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE id = OBJECT_ID(N'[dbo].[t_coupon]') AND type in (N'U'))
+CREATE TABLE [dbo].[t_coupon](
+	[seeds_id] [int] IDENTITY(1,1) NOT NULL,
+	[com_id] [char](10) NOT NULL,
+	[ivt_oper_listing] [varchar](100) NOT NULL, <!-- 优惠券编码 -->
+	[type_id] [varchar](100) NULL, <!-- 限制购买对应产品类别编码  为空为全品类-->
+	[f_amount] [int] NOT NULL DEFAULT 0, <!-- 优惠券金额-->
+	[up_amount] [int] NOT NULL DEFAULT 0, <!-- 优惠券使用金额 -->
+	[create_time] [datetime] NOT NULL,<!-- 优惠券创建-->
+	[begin_use_date] [datetime] NOT NULL,<!-- 优惠券开始使用时间 -->
+	[end_use_date] [datetime] NOT NULL<!-- 优惠券结束使用时间 -->
+	CONSTRAINT [PK_t_coupon] PRIMARY KEY CLUSTERED 
+([seeds_id] ASC)
+<!-- WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) --> 
+ON [PRIMARY]) ON [PRIMARY];
+<!--   客户优惠券记录 -->
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE id = OBJECT_ID(N'[dbo].[sdf00504_coupon]') AND type in (N'U'))
+CREATE TABLE [dbo].[sdf00504_coupon](
+	[seeds_id] [int] IDENTITY(1,1) NOT NULL,
+	[com_id] [char](10) NOT NULL,
+	[customer_id] [varchar](100) NOT NULL, <!-- 客户编码 -->
+	[ivt_oper_listing] [varchar](30) NOT NULL, <!-- 优惠券编码 -->
+	[orderNo] [varchar](100) NULL, <!-- 对应订单编码 -->
+	[get_time] [datetime] NOT NULL,<!-- 优惠券获取时间 -->
+	[use_time] [datetime] NULL,<!-- 优惠券使用时间 -->
+	[f_type] [int] NOT NULL DEFAULT 0 <!-- 是否使用 0-未使用,1-已使用,2-已过期,3-锁定 -->
+	CONSTRAINT [PK_sdf00504_coupon] PRIMARY KEY CLUSTERED 
+([seeds_id] ASC)
+<!-- WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) --> 
+ON [PRIMARY]) ON [PRIMARY];
+<!--   设置数据库的兼容级别 -->
+<!--   ALTER DATABASE ${dataname}  SET COMPATIBILITY_LEVEL=100 -->
+ 	</insert>
+<insert id="alterField">
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'STD02001' AND a.type = 'u' and a.id=b.id and b.name='mps_id')
+  alter table STD02001 add mps_id varchar(30) NULL;
+  
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl00801' AND a.type = 'u' and a.id=b.id and b.name='type_id')
+  alter table ctl00801 add type_id varchar(30) NULL;
+  
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl09003' AND a.type = 'u' and a.id=b.id and b.name='if_O2O')
+  alter table ctl09003 add if_O2O char(1) NULL;
+  
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl03001' AND a.type = 'u' and a.id=b.id and b.name='price_display')
+  alter table ctl03001 add price_display decimal(18,2) NULL;
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'sdd02011' AND a.type = 'u' and a.id=b.id and b.name='price_display')
+  alter table sdd02011 add price_display decimal(18,2) NULL;
+  
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'sdd02011' AND a.type = 'u' and a.id=b.id and b.name='price_prefer')
+  alter table sdd02011 add price_prefer decimal(18,2) NULL;
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl03001' AND a.type = 'u' and a.id=b.id and b.name='price_prefer')
+  alter table ctl03001 add price_prefer decimal(18,2) NULL;
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl03001' AND a.type = 'u' and a.id=b.id and b.name='all_sum')
+  alter table ctl03001 add all_sum decimal(18,2) NULL;
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl03001' AND a.type = 'u' and a.id=b.id and b.name='initi_oq')
+  alter table ctl03001 add initi_oq decimal(18,2) NULL;
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl03001' AND a.type = 'u' and a.id=b.id and b.name='initi_price')
+  alter table ctl03001 add initi_price decimal(18,2) NULL;
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl03001' AND a.type = 'u' and a.id=b.id and b.name='initi_useStoq')
+  alter table ctl03001 add initi_useStoq decimal(18,2) NULL;
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl03001' AND a.type = 'u' and a.id=b.id and b.name='Month_dgcost')
+  alter table ctl03001 add Month_dgcost decimal(18,2) NULL;
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl03001' AND a.type = 'u' and a.id=b.id and b.name='Month_cycost')
+  alter table ctl03001 add Month_cycost decimal(18,2) NULL;
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl03001' AND a.type = 'u' and a.id=b.id and b.name='Month_kczcost')
+  alter table ctl03001 add Month_kczcost decimal(18,2) NULL;
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl03001' AND a.type = 'u' and a.id=b.id and b.name='yield_oq')
+  alter table ctl03001 add yield_oq decimal(18,2) NULL;
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl03001' AND a.type = 'u' and a.id=b.id and b.name='make_fee')
+  alter table ctl03001 add make_fee decimal(18,2) NULL;
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl03001' AND a.type = 'u' and a.id=b.id and b.name='fuel_fee')
+  alter table ctl03001 add fuel_fee decimal(18,2) NULL;
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl03001' AND a.type = 'u' and a.id=b.id and b.name='packdaturm_fee')
+  alter table ctl03001 add packdaturm_fee decimal(18,2) NULL;
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl03001' AND a.type = 'u' and a.id=b.id and b.name='origdaturm_fee')
+  alter table ctl03001 add origdaturm_fee decimal(18,2) NULL;
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl03001' AND a.type = 'u' and a.id=b.id and b.name='manpower_fee')
+  alter table ctl03001 add manpower_fee decimal(18,2) NULL;
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl03001' AND a.type = 'u' and a.id=b.id and b.name='leavemach_fee')
+  alter table ctl03001 add leavemach_fee decimal(18,2) NULL;
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl03001' AND a.type = 'u' and a.id=b.id and b.name='reorder_point')
+  alter table ctl03001 add reorder_point decimal(18,2) NULL;
+  
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl03001' AND a.type = 'u' and a.id=b.id and b.name='yield_unit')
+  alter table ctl03001 add yield_unit varchar(20) NULL;
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl03001' AND a.type = 'u' and a.id=b.id and b.name='if_O2O')
+  alter table ctl03001 add if_O2O varchar(20) NULL;
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl03001' AND a.type = 'u' and a.id=b.id and b.name='serve_id')
+  alter table ctl03001 add serve_id varchar(30) NULL;
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl03001' AND a.type = 'u' and a.id=b.id and b.name='store_struct_idOrder')
+  alter table ctl03001 add store_struct_idOrder varchar(30) NULL;
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl03001' AND a.type = 'u' and a.id=b.id and b.name='vendor_idMy')
+  alter table ctl03001 add vendor_idMy varchar(30) NULL;
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl03001' AND a.type = 'u' and a.id=b.id and b.name='item_struct')
+  alter table ctl03001 add item_struct varchar(30) NULL;
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl03001' AND a.type = 'u' and a.id=b.id and b.name='dept_id')
+  alter table ctl03001 add dept_id varchar(30) NULL;
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl03001' AND a.type = 'u' and a.id=b.id and b.name='stock_game')
+  alter table ctl03001 add stock_game varchar(30) NULL;
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl03001' AND a.type = 'u' and a.id=b.id and b.name='dummy_flag')
+  alter table ctl03001 add dummy_flag varchar(10) NULL;
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl03001' AND a.type = 'u' and a.id=b.id and b.name='dummycount_stock_flag')
+  alter table ctl03001 add dummycount_stock_flag char(1) NULL;
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl03001' AND a.type = 'u' and a.id=b.id and b.name='overlead_flag')
+  alter table ctl03001 add overlead_flag char(1) NULL;
+  
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl03001' AND a.type = 'u' and a.id=b.id and b.name='d_usefullife')
+  alter table ctl03001 add d_usefullife int NULL;
+  
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'sdd02011' AND a.type = 'u' and a.id=b.id and b.name='price_otherDiscount')
+  alter table sdd02011 add price_otherDiscount decimal(18,2) NULL;
+  
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'sdd02011' AND a.type = 'u' and a.id=b.id and b.name='sd_unit_price_UP')
+  alter table sdd02011 add sd_unit_price_UP decimal(18,2) NULL;
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'sdd02011' AND a.type = 'u' and a.id=b.id and b.name='sd_unit_price_DOWN')
+  alter table sdd02011 add sd_unit_price_DOWN decimal(18,2) NULL;
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'sdd02011' AND a.type = 'u' and a.id=b.id and b.name='discount_ornot')
+  alter table sdd02011 add discount_ornot varchar(2) NULL;
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'sdd02011' AND a.type = 'u' and a.id=b.id and b.name='discount_time_begin')
+  alter table sdd02011 add discount_time_begin datetime NULL;
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'sdd02011' AND a.type = 'u' and a.id=b.id and b.name='discount_time')
+  alter table sdd02011 add discount_time datetime NULL;
+  <!-- 客户登录时间 -->
+IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+ WHERE a.name = 'sdf00504' AND a.type = 'u'  and a.id=b.id  and b.name='loginTime')
+ alter  table  sdf00504   add  loginTime datetime NULL;
+   <!-- 订单跟踪流程中每一步客户对应消息接收人 -->
+IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'sdf00504' AND a.type = 'u'  and a.id=b.id  and b.name='orderStepRecipient')
+  alter  table  sdf00504   add  orderStepRecipient varchar(100) NULL;
+  
+IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'sdf00504' AND a.type = 'u'  and a.id=b.id  and b.name='license_type')
+  alter  table  sdf00504   add  license_type varchar(10) NULL;
+  
+IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'sdf00504' AND a.type = 'u'  and a.id=b.id  and b.name='user_id')
+  alter  table  sdf00504   add  user_id varchar(30) NULL;
+  
+IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'sdf00504' AND a.type = 'u'  and a.id=b.id  and b.name='movtel')
+  alter  table  sdf00504   add  movtel varchar(30) NULL;
+  
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'sdf00504' AND a.type = 'u'  and a.id=b.id  and b.name='user_password')
+  alter  table  sdf00504   add  user_password varchar(32) NULL;
+  
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'sdf00504' AND a.type = 'u'  and a.id=b.id  and b.name='clerk_idAccountApprover')
+  alter  table  sdf00504   add  clerk_idAccountApprover varchar(30) NULL;
+  
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'sdf00504' AND a.type = 'u'  and a.id=b.id  and b.name='weixin')
+  alter  table  sdf00504   add  weixin varchar(30) NULL;
+  
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'sdf00504' AND a.type = 'u'  and a.id=b.id  and b.name='weixinID')
+  alter  table  sdf00504   add  weixinID varchar(30) NULL;
+  
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'sdf00504' AND a.type = 'u'  and a.id=b.id  and b.name='headship')
+  alter  table  sdf00504   add  headship varchar(40) NULL;
+  
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'sdf00504' AND a.type = 'u'  and a.id=b.id  and b.name='openid')
+  alter  table  sdf00504   add  openid varchar(40) NULL;
+  
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'sdf00504' AND a.type = 'u'  and a.id=b.id  and b.name='weixinStatus')
+  alter  table  sdf00504   add  weixinStatus char(1) NULL;
+  
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'sdf00504' AND a.type = 'u'  and a.id=b.id  and b.name='ifUseCredit')
+  alter  table  sdf00504   add  ifUseCredit varchar(2) NULL;
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'sdf00504' AND a.type = 'u'  and a.id=b.id  and b.name='ifUseDeposit')
+  alter  table  sdf00504   add  ifUseDeposit varchar(2) NULL;
+  
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'sdf00504' AND a.type = 'u'  and a.id=b.id  and b.name='driveId')
+  alter  table  sdf00504   add  driveId varchar(100) NULL;
+  
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'sdf00504' AND a.type = 'u'  and a.id=b.id  and b.name='openid')
+  alter  table  sdf00504   add  openid varchar(40) NULL;
+  
+IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+WHERE a.name = 'sdf00504' AND a.type = 'u'  and a.id=b.id  and b.name='c_memo')
+alter  table  sdf00504   add  c_memo varchar(100) NULL;
+   <!-- 性别 2016-04-19 -->
+IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'sdf00504' AND a.type = 'u'  and a.id=b.id  and b.name='sex')
+  alter  table  sdf00504   add  sex char(2) NULL;
+     <!-- 客户支付订单百分比 -->
+IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'sdf00504' AND a.type = 'u'  and a.id=b.id  and b.name='payPercentage')
+  alter  table  sdf00504   add  payPercentage int NULL DEFAULT 100;
+<!--     客户来源 -->
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'sdf00504' AND a.type = 'u'  and a.id=b.id  and b.name='c_source')
+  alter  table  sdf00504   add  c_source varchar(100) NULL
+  else alter  table  sdf00504 alter COLUMN c_source varchar(100) NULL;
+<!--     客户来源 -->
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'sdf00504' AND a.type = 'u'  and a.id=b.id  and b.name='upper_customer_id')
+  alter  table  sdf00504   add  upper_customer_id varchar(100) NULL
+  else alter  table  sdf00504 alter COLUMN upper_customer_id varchar(100) NULL;
+   <!-- 物流送货对象 -->
+IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+ WHERE a.name = 'std02001' AND a.type = 'u'  and a.id=b.id  and b.name='wuliudx')
+ alter  table  std02001   add  wuliudx varchar(30) NULL
+ else alter  table  std02001 alter COLUMN wuliudx varchar(30) NULL;
+ 
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+ WHERE a.name = 'stfM0201' AND a.type = 'u'  and a.id=b.id  and b.name='mainten_datetime')
+ alter  table  stfM0201   add  mainten_datetime datetime NULL
+ else alter  table  stfM0201 alter COLUMN mainten_datetime datetime NULL;
+  
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'Sdf00504_saiyu' AND a.type = 'u'  and a.id=b.id  and b.name='openid')
+  alter  table  Sdf00504_saiyu   add  openid varchar(40) NULL
+  else alter  table  Sdf00504_saiyu alter COLUMN openid varchar(40) NULL;
+  
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'Ctl00504' AND a.type = 'u'  and a.id=b.id  and b.name='openid')
+  alter  table  Ctl00504   add  openid varchar(40) NULL 
+  else alter  table  Ctl00504 alter COLUMN openid varchar(40) NULL;
+  
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl00801' AND a.type = 'u'  and a.id=b.id  and b.name='openid')
+  alter  table  ctl00801   add  openid varchar(40) NULL 
+  else alter  table  ctl00801 alter COLUMN openid varchar(40) NULL;
+ <!-- 订单跟踪流程中每一步员工对应消息接收人 -->
+IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl00801' AND a.type = 'u'  and a.id=b.id  and b.name='orderStepRecipient')
+  alter  table  ctl00801   add  orderStepRecipient varchar(100) NULL
+  else alter  table  ctl00801 alter COLUMN orderStepRecipient varchar(100) NULL;
+  <!-- 报价单标识 -->
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'sdd02011' AND a.type = 'u'  and a.id=b.id  and b.name='m_flag')
+  alter  table  sdd02011   add  m_flag char(1) NULL DEFAULT 0   <!--  默认为0-使用,1-删除 -->
+  else alter  table  sdd02011 alter COLUMN m_flag char(1) NULL;   <!-- 报价单标识 -->
+<!--  报价单客户对应产品名称 -->
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'sdd02011' AND a.type = 'u'  and a.id=b.id  and b.name='client_item_name')
+  alter  table  sdd02011   add  client_item_name varchar(50) NULL
+  else alter  table  sdd02011 alter COLUMN client_item_name varchar(50) NULL
+<!--   qianming begin -->
+ <!-- 客户对账单签收确认时间 -->
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ARd02051' AND a.type = 'u'  and a.id=b.id  and b.name='qianmingTime')
+  alter  table  ARd02051   add  qianmingTime datetime NULL   
+  else alter  table  ARd02051 alter COLUMN qianmingTime datetime NULL; 
+ <!-- 客户对账单签收确认-期初应收 -->
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ARf02030' AND a.type = 'u'  and a.id=b.id  and b.name='qianming')
+  alter  table  ARf02030   add  qianming varchar(100) NULL  <!--  默认为0未签字确认,为1签字确认  -->
+  else alter  table  ARf02030 alter COLUMN qianming varchar(100) NULL;
+<!--   客户对账单签收确认时间-期初应收 -->
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ARf02030' AND a.type = 'u'  and a.id=b.id  and b.name='qianmingTime')
+  alter  table  ARf02030   add  qianmingTime datetime NULL   
+  else alter  table  ARf02030 alter COLUMN qianmingTime datetime NULL;  
+<!--   客户对账单签收确认-呆坏帐处理 -->
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ARfM02010' AND a.type = 'u'  and a.id=b.id  and b.name='qianming')
+  alter  table  ARfM02010   add  qianming varchar(100) NULL  <!--  默认为0未签字确认,为1签字确认  -->
+  else alter  table  ARfM02010 alter COLUMN qianming varchar(100) NULL;
+<!--   客户对账单签收确认时间-呆坏帐处理 -->
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ARfM02010' AND a.type = 'u'  and a.id=b.id  and b.name='qianmingTime')
+  alter  table  ARfM02010   add  qianmingTime datetime NULL   
+  else alter  table  ARfM02010 alter COLUMN qianmingTime datetime NULL;  
+<!--   订单从表签收确认时间 -->
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'sdd02021' AND a.type = 'u'  and a.id=b.id  and b.name='qianmingTime')
+  alter  table  sdd02021   add  qianmingTime datetime NULL   
+  else alter  table  sdd02021 alter COLUMN qianmingTime datetime NULL;  
+<!--   订单从表签收确认 -->
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'sdd02020' AND a.type = 'u'  and a.id=b.id  and b.name='qianming')
+  alter  table  sdd02020   add  qianming varchar(100) NULL   <!--  默认为0未签字确认,为1签字确认  -->
+  else alter  table  sdd02020 alter COLUMN qianming varchar(100) NULL; 
+<!--   订单从表签收确认时间 -->
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'sdd02020' AND a.type = 'u'  and a.id=b.id  and b.name='qianmingTime')
+  alter  table  sdd02020   add  qianmingTime datetime NULL   
+  else alter  table  sdd02020 alter COLUMN qianmingTime datetime NULL; 
+<!--   qianming end -->
+<!--    销售订单-已发货 -->
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'sdd02021' AND a.type = 'u'  and a.id=b.id  and b.name='shipped')
+  alter  table  sdd02021   add  shipped varchar(6) NULL   <!--  标识已发货 -->
+  else alter  table  sdd02021 alter COLUMN shipped varchar(6) NULL   <!--  标识已发货 -->
+  
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'sdd02021' AND a.type = 'u'  and a.id=b.id  and b.name='Status_OutStore')
+  alter  table  sdd02021   add  Status_OutStore  varchar(30) NULL   <!--  标识已发货 -->
+  <!-- else alter  table  sdd02021 alter COLUMN Status_OutStore varchar(30) NULL  -->  <!--  标识已发货 -->
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'sdd02011' AND a.type = 'u'  and a.id=b.id  and b.name='Status_OutStore')
+  alter  table  sdd02011   add  Status_OutStore  varchar(30) NULL   <!--  标识已发货 -->
+  
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'sdd02021' AND a.type = 'u'  and a.id=b.id  and b.name='transport_AgentClerk_Reciever')
+  alter  table  sdd02021   add  transport_AgentClerk_Reciever varchar(6) NULL   <!--   物流方式 -->
+<!--   else alter  table  sdd02021 alter COLUMN transport_AgentClerk_Reciever varchar(6) NULL   物流方式  -->
+  
+<!--    安装费 -->
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl03001' AND a.type = 'u'  and a.id=b.id  and b.name='AZTS_free')
+  alter  table  ctl03001   add  AZTS_free decimal(17, 6) NULL   
+  else alter  table  ctl03001 alter COLUMN AZTS_free decimal(17, 6) NULL; 
+  
+   IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl03001' AND a.type = 'u'  and a.id=b.id  and b.name='cover_img')
+  alter  table  ctl03001   add  cover_img char(1) NULL   
+  else alter  table  ctl03001 alter COLUMN cover_img char(1) NULL;
+  
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl03001' AND a.type = 'u'  and a.id=b.id  and b.name='main_img')
+  alter  table  ctl03001   add  main_img char(1) NULL   
+  else alter  table  ctl03001 alter COLUMN main_img char(1) NULL;
+  
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl03001' AND a.type = 'u'  and a.id=b.id  and b.name='detail_cms')
+  alter  table  ctl03001   add  detail_cms char(1) NULL;
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl03001' AND a.type = 'u'  and a.id=b.id  and b.name='class_card')
+  alter  table  ctl03001   add  class_card varchar(30) NULL;
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl03001' AND a.type = 'u'  and a.id=b.id  and b.name='item_code')
+  alter  table  ctl03001   add  item_code varchar(30) NULL;
+  
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl03001' AND a.type = 'u'  and a.id=b.id  and b.name='item_color')
+  alter  table  ctl03001   add  item_color varchar(30) NULL;
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'sdd02011' AND a.type = 'u'  and a.id=b.id  and b.name='item_color')
+  alter  table  sdd02011   add  item_color varchar(30) NULL;
+  
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl03001' AND a.type = 'u'  and a.id=b.id  and b.name='quality_class')
+  alter  table  ctl03001   add  quality_class varchar(30) NULL;
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl03001' AND a.type = 'u'  and a.id=b.id  and b.name='item_style')
+  alter  table  ctl03001   add  item_style varchar(30) NULL;
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl03001' AND a.type = 'u'  and a.id=b.id  and b.name='work_id')
+  alter  table  ctl03001   add  work_id varchar(30) NULL;
+  
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl03001' AND a.type = 'u'  and a.id=b.id  and b.name='price_otherDiscount')
+  alter  table  ctl03001   add  price_otherDiscount decimal(18,2) NULL;
+  
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl03001' AND a.type = 'u'  and a.id=b.id  and b.name='item_unit_weight')
+  alter  table  ctl03001   add  item_unit_weight decimal(18,2) NULL   
+  else alter  table  ctl03001 alter COLUMN item_unit_weight decimal(18,2) NULL;
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl03001' AND a.type = 'u'  and a.id=b.id  and b.name='qz_days')
+  alter  table  ctl03001   add  qz_days int NULL   
+  else alter  table  ctl03001 alter COLUMN qz_days int NULL;
+  
+  
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'SDd02021' AND a.type = 'u'  and a.id=b.id  and b.name='item_color')
+  alter  table  SDd02021   add  item_color varchar(30) NULL   
+  else alter  table  SDd02021 alter COLUMN item_color varchar(30) NULL;
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'SDd02021' AND a.type = 'u'  and a.id=b.id  and b.name='st_hw_no')
+  alter  table  SDd02021   add  st_hw_no varchar(30) NULL   
+  else alter  table  SDd02021 alter COLUMN st_hw_no varchar(30) NULL;
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'SDd02021' AND a.type = 'u'  and a.id=b.id  and b.name='qianming')
+  alter  table  SDd02021   add  qianming varchar(30) NULL   
+<!--   else alter  table  SDd02021 alter COLUMN qianming varchar(30) NULL; -->
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'SDd02021' AND a.type = 'u'  and a.id=b.id  and b.name='at_term_datetime_Act')
+  alter  table  SDd02021   add  at_term_datetime_Act datetime NULL   
+  else alter  table  SDd02021 alter COLUMN at_term_datetime_Act datetime NULL;
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'SDd02021' AND a.type = 'u'  and a.id=b.id  and b.name='HYS')
+  alter  table  SDd02021   add  HYS varchar(100) NULL   
+  else alter  table  SDd02021 alter COLUMN HYS varchar(100) NULL;
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'SDd02021' AND a.type = 'u'  and a.id=b.id  and b.name='Kar_paizhao')
+  alter  table  SDd02021   add  Kar_paizhao varchar(100) NULL   
+  else alter  table  SDd02021 alter COLUMN Kar_paizhao varchar(100) NULL;
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'SDd02021' AND a.type = 'u'  and a.id=b.id  and b.name='c_memo')
+  alter  table  SDd02021   add  c_memo varchar(100) NULL   
+  else alter  table  SDd02021 alter COLUMN c_memo varchar(100) NULL;
+  
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'SDd02021' AND a.type = 'u'  and a.id=b.id  and b.name='memo_color')
+  alter  table  SDd02021   add  memo_color varchar(100) NULL;
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'SDd02021' AND a.type = 'u'  and a.id=b.id  and b.name='memo_other')
+  alter  table  SDd02021   add  memo_other varchar(100) NULL;
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'SDd02021' AND a.type = 'u'  and a.id=b.id  and b.name='memo_other')
+  alter  table  SDd02021   add  memo_other varchar(100) NULL;
+  
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'SDd02011' AND a.type = 'u'  and a.id=b.id  and b.name='memo_color')
+  alter  table  SDd02011   add  memo_color varchar(100) NULL;
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'SDd02011' AND a.type = 'u'  and a.id=b.id  and b.name='memo_other')
+  alter  table  SDd02011   add  memo_other varchar(100) NULL;
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'SDd02011' AND a.type = 'u'  and a.id=b.id  and b.name='memo_other')
+  alter  table  SDd02011   add  memo_other varchar(100) NULL;
+  
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'SDd02021' AND a.type = 'u'  and a.id=b.id  and b.name='FHDZ')
+  alter  table  SDd02021   add  FHDZ varchar(100) NULL   
+  else alter  table  SDd02021 alter COLUMN FHDZ varchar(100) NULL;
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'SDF00504' AND a.type = 'u'  and a.id=b.id  and b.name='FHDZ')
+  alter  table  SDF00504   add  FHDZ varchar(100) NULL   
+  else alter  table  SDF00504 alter COLUMN FHDZ varchar(100) NULL;
+  
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'Ctl00501' AND a.type = 'u'  and a.id=b.id  and b.name='recharge_amount')
+  alter  table  Ctl00501   add  recharge_amount int NULL   
+  else alter  table  Ctl00501 alter COLUMN recharge_amount int NULL;
+  
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'Ctl00501' AND a.type = 'u'  and a.id=b.id  and b.name='recharge_time')
+  alter  table  Ctl00501   add  recharge_time datetime NULL   
+  else alter  table  Ctl00501 alter COLUMN recharge_time datetime NULL
+   
+IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl00801' AND a.type = 'u'  and a.id=b.id  and b.name='work_id')
+  alter  table  ctl00801   add  work_id varchar(100) NULL
+  else alter  table  ctl00801 alter COLUMN work_id varchar(100) NULL;
+<!--    家装案例关联设计师 -->
+IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl03001' AND a.type = 'u'  and a.id=b.id  and b.name='clerk_id')
+  alter  table  ctl03001   add  clerk_id varchar(30) NULL
+  else alter  table  ctl03001 alter COLUMN clerk_id varchar(30) NULL;
+<!-- 身份证号  -->
+    IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'Sdf00504_saiyu' AND a.type = 'u'  and a.id=b.id  and b.name='idcard')
+  alter  table  Sdf00504_saiyu   add  idcard varchar(20) NULL
+  else alter  table  Sdf00504_saiyu alter COLUMN idcard varchar(20) NULL;
+  
+  IF  EXISTS (SELECT * FROM sysobjects WHERE id = OBJECT_ID(N'[dbo].[YieM02011]') AND type in (N'U'))
+  begin
+	  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+	  WHERE a.name = 'YieM02011' AND a.type = 'u'  and a.id=b.id  and b.name='working_procedure_section')
+	  alter  table  YieM02011   add  working_procedure_section varchar(50)  NULL
+	  else alter  table  YieM02011 alter COLUMN working_procedure_section varchar(50) NULL  <!--  生产计划所属生产工序 -->
+  end;
+<!--    产品入库从表颜色字段 -->
+ IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'STD03001' AND a.type = 'u'  and a.id=b.id  and b.name='item_color')
+  alter  table  STD03001   add  item_color varchar(30) NULL
+  else alter  table  STD03001 alter COLUMN item_color varchar(30) NULL;
+  <!--   业务员拜访的客户 -->
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl00801_sign' AND a.type = 'u'  and a.id=b.id  and b.name='customer_id')
+  alter  table  ctl00801_sign   add  customer_id varchar(100) NULL
+  else alter  table  ctl00801_sign alter COLUMN customer_id varchar(100) NULL;
+<!--   日志评分 -->
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl00801_sign' AND a.type = 'u'  and a.id=b.id  and b.name='pingfen')
+  alter  table  ctl00801_sign   add  pingfen char(2) NULL
+  else alter  table  ctl00801_sign alter COLUMN pingfen char(2) NULL;
+<!--   签到类型 -->
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl00801_sign' AND a.type = 'u'  and a.id=b.id  and b.name='type')
+  alter  table  ctl00801_sign   add  type char(1) NULL
+  else alter  table  ctl00801_sign alter COLUMN type char(1) NULL;
+<!--   签到日期 -->
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl00801_sign' AND a.type = 'u'  and a.id=b.id  and b.name='signDate')
+  alter  table  ctl00801_sign   add  signDate datetime NULL
+  else alter  table  ctl00801_sign alter COLUMN signDate datetime NULL;
+<!--   签到坐标 -->
+IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'ctl00801_sign' AND a.type = 'u'  and a.id=b.id  and b.name='latitude')
+  alter  table  ctl00801_sign   add  latitude [varchar](100) NULL
+  else alter  table  ctl00801_sign alter COLUMN latitude [varchar](100) NULL;
+  
+   IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'CTLf01001' AND a.type = 'u'  and a.id=b.id  and b.name='param_val')
+  alter  table  CTLf01001   add  param_val varchar(200) NULL
+  else alter  table  CTLf01001 alter COLUMN param_val varchar(200) NULL;
+  
+    IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 't_notice_info' AND a.type = 'u'  and a.id=b.id  and b.name='m_flag')
+  alter  table  t_notice_info   add  m_flag char(1) NULL
+  else alter  table  t_notice_info alter COLUMN m_flag char(1) NULL;
+  
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'Ctl02107' AND a.type = 'u'  and a.id=b.id  and b.name='mainten_clerk_id')
+  alter  table  Ctl02107   add  mainten_clerk_id varchar(30) NULL
+  else alter  table  Ctl02107 alter COLUMN mainten_clerk_id varchar(30) NULL;
+  
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'Ctl02107' AND a.type = 'u'  and a.id=b.id  and b.name='cheque_flag')
+  alter  table  Ctl02107   add  cheque_flag varchar(30) NULL
+  else alter  table  Ctl02107 alter COLUMN cheque_flag varchar(30) NULL;
+  
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 'Ctl02107' AND a.type = 'u'  and a.id=b.id  and b.name='maintenance_datetime')
+  alter  table  Ctl02107   add  maintenance_datetime datetime NULL
+  else alter  table  Ctl02107 alter COLUMN maintenance_datetime datetime NULL;
+  
+    IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 't_article' AND a.type = 'u' and a.id=b.id and b.name='show')
+  alter table t_article add show varchar(5) NULL
+  else alter  table  t_article alter COLUMN show varchar(5) NULL;
+  
+    IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 't_article' AND a.type = 'u' and a.id=b.id and b.name='publisher')
+  alter table t_article add publisher varchar(40) NULL
+  else alter  table  t_article alter COLUMN publisher varchar(40) NULL
+  
+    IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 't_article' AND a.type = 'u' and a.id=b.id and b.name='projectName')
+  alter table t_article add projectName varchar(30) NULL
+  else alter  table  t_article alter COLUMN projectName varchar(30) NULL;  
+  IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b
+  WHERE a.name = 't_article' AND a.type = 'u' and a.id=b.id and b.name='img')
+  alter table t_article add img varchar(100) NULL
+  else alter  table  t_article alter COLUMN img varchar(100) NULL;
+  <!-- 	 IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b -->
+<!-- 	  WHERE a.name = 'Ctl00501' AND a.type = 'u'  and a.id=b.id  and b.name='com_cost_id') -->
+<!-- 	  alter  table  Ctl00501   add  com_cost_id varchar(30) NULL -->
+<!-- 	  else alter  table  Ctl00501 alter COLUMN com_cost_id varchar(30) NULL   -->
+<!-- 	 IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b -->
+<!-- 	  WHERE a.name = 'Ctl00501' AND a.type = 'u'  and a.id=b.id  and b.name='com_id') -->
+<!-- 	  alter  table  Ctl00501   add  com_id varchar(30) NULL -->
+<!-- 	  else alter  table  Ctl00501 alter COLUMN com_id varchar(30) NULL   -->
+<!-- 	 IF not EXISTS (SELECT b.name FROM sysobjects a ,syscolumns b -->
+<!-- 	  WHERE a.name = 'Ctl00501' AND a.type = 'u'  and a.id=b.id  and b.name='upper_com_id') -->
+<!-- 	  alter  table  Ctl00501   add  upper_com_id varchar(30) NULL -->
+<!-- 	  else alter  table  Ctl00501 alter COLUMN upper_com_id varchar(30) NULL   -->
+ 	</insert>
+</mapper>

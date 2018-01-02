@@ -1,0 +1,128 @@
+@media screen and (max-width: 768px){
+    body{
+        font-size: 16px;
+        font-family: "Î¢ÈíÑÅºÚ";
+    }
+    *{
+        font-size: 20px;
+        font-family: "Î¢ÈíÑÅºÚ";
+    }
+    .btn{
+        font-size: 20px;
+        font-family: "Î¢ÈíÑÅºÚ";
+    }
+    .bg{
+        background-image: none;
+        background-color: #C9D8DF;
+    }
+    .header-title{
+        height: 44px;
+    }
+    .container{
+        margin-top: 10px;
+    }
+    .sp-label{
+        line-height: 25px;
+    }
+    .ctn-fff{
+        box-shadow: none;
+        background-color: #C9D8DF;
+    }
+    .client{
+        font-size: 23px;
+        font-family: 'Î¢ÈíÑÅºÚ';
+        color: #FFFFFF;
+        background-color: #007cc2;
+        border-radius: 3px;
+        font-weight: normal;
+        padding-left: 15px;
+    }
+    .client_tel{
+        position: relative;
+        width: 80%;
+    }
+    .ImmediatelyContact{
+        background-color: #1e347b;
+        border-radius: 8px;
+        position: absolute;
+        right: 2px;
+        bottom: 3px;
+        font-size: 15px;
+        padding: 4px;
+        text-align: center;
+    }
+    .panel-footer>button{
+        padding: 3px 8px;
+    }
+    .glyphicon-menu-left{
+        color: #FFFFFF;
+        font-size: 24px;
+    }
+}
+@media screen and (min-width: 769px){
+    body{
+        font-size: 16px;
+        font-family: "Î¢ÈíÑÅºÚ";
+        font-weight: bold;
+    }
+    .bg{
+        background-image: none;
+        background-color: #C9D8DF;
+    }
+    /*.header-title{*/
+        /*background-color: #296ddd;*/
+        /*color: #FFFFFF;*/
+        /*font-size: 24px;*/
+        /*height: 60px;*/
+        /*line-height: 60px;*/
+    /*}*/
+    .ctn>button{
+        font-size: 18px;
+    }
+    .ctn-fff{
+        box-shadow: none;
+    }
+    .sp-label{
+        font-size: 16px;
+        line-height: 30px;
+        font-family: 'Î¢ÈíÑÅºÚ';
+    }
+    .client{
+        font-size: 23px;
+        font-family: 'Î¢ÈíÑÅºÚ';
+        color: #FFFFFF;
+        background-color: #007cc2;
+        border-radius: 5px;
+        font-weight: normal;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 15px;
+        margin: 15px 0 15px;
+    }
+    .client_tel{
+        position: relative;
+        width: 50%;
+    }
+    .ImmediatelyContact{
+        background-color: #1e347b;
+        border-radius: 8px;
+        position: absolute;
+        right: 199px;
+        font-size: 15px;
+        padding: 4px;
+        text-align: center;
+    }
+    .panel-footer>button{
+        padding: 3px 8px;
+        font-size: 18px;
+        font-family: "Î¢ÈíÑÅºÚ";
+
+    }
+    .input-sm{
+        padding: 0;
+        font-size: 16px;
+        line-height: 30px;
+        height: 32px;
+    }
+
+}

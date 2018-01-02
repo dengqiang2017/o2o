@@ -1,0 +1,140 @@
+/*-----conmment-----*/
+*{font-family:'Microsoft YaHei',Arial,Helvetica,sans-serif;font-size: 18px;color: #000000;padding: 0;margin: 0}
+a{text-decoration: none}
+a:hover{text-decoration: none}
+ul{margin-bottom: 0}
+ul>li{list-style: none}
+body{padding-top: 0 !important;padding-bottom: 0 !important;height: auto !important;}
+@media (max-width: 759px) {.showPC{display: none} .showPhone{display: block} .product_evaluation_list {padding: 10px;background-color: #FFFFFF;padding-top: 0;} .body_top{
+                                                                                                                                                                    border-bottom: 1px solid #5CA04B;
+    
+                                                                                                                                                                }}
+@media (min-width: 760px) {.showPC{display: box;display:-moz-box;display:-webkit-box;} .showPhone{display: none} .product_evaluation_list {padding: 10px;background-color: #FFFFFF;padding-top: 0;max-height: 510px;overflow-y: scroll;} .body_top{
+                                                                                                                                                                                                                                             border-bottom: 1px solid #5CA04B;
+                                                                                                                                                                                                                                             margin-top: 0;
+                                                                                                                                                                                                                                         }}
+.header{
+    background-color: #006766;
+    padding: 10px;
+    text-align: center;
+    color: #FFFFFF;
+}
+.pro-check{
+    height: 30px;
+    width: 30px;
+    background: url(../../pc/images/06_unchecked_l.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.pro-checked{
+    height: 30px;
+    width: 30px;
+    background: url(../../pc/images/06_checked_l.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.header_a{
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    cursor: pointer;
+    color: #FFFFFF;
+}
+.header_a:hover{
+    color: #FFFFFF;
+    text-decoration:none
+}
+
+.body_top_textarea{
+    position: relative;
+    border-radius: 3px;
+}
+.body_top_textarea>textarea{
+    border: none;
+    width: 100%;
+    height: 100%;
+    outline: none;
+    font-size: 16px;
+    color: #999;
+    padding: 10px;
+}
+.body_top_position{
+    padding: 10px;
+}
+.position_left{
+    width: 75px;
+    float: left;
+    height: 75px;
+    background-color: #CCCCCC;
+    background-image: url("../images/camera.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    border-radius: 5px;
+    position: relative;
+    margin-right: 10px;
+}
+#showpingjia>img {
+    width: 75px;
+    height: 75px;
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+.position_right{
+    width: 65%;
+    float: right;
+    font-weight: bold;
+    margin-left: 10px;
+    display: none;
+}
+.clear{
+    clear: both;
+}
+.body_bottom{
+    padding: 10px;
+}
+.share_img01k{
+    text-align: center;
+    position: relative;
+}
+.share_img01>img{
+    width: 40px;
+    height: 40px;
+}
+.share_footer{
+    text-align: center;
+    padding: 10px 0;
+    background-color: #1A7576;
+    color: #FFFFFF;
+    font-weight: bold;
+    width: 200px;
+    margin-top: 50px;
+}
+.copyright{
+    text-align: center;
+    margin-top: 10px;
+}
+.share_footer:hover{
+    color: #FFFFFF;
+    text-decoration:none;
+}
+.star>img{
+    width: 30px;
+    height: 30px;
+}
+.evaluate li{
+    padding: 10px;
+}
+.a_style>a{
+    color: #9D9D9D;
+}
+.a_style>a:hover{
+    color: #9D9D9D;
+    text-decoration:none;
+}
+.a_style>span{
+    color: #9D9D9D;
+}
+.iphone-bg{
+    background-color: #FFFFFF !important;
+}

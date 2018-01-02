@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>订单中心</title>
+    <meta http-equiv="U-XA-Compatible" content="IE-edge">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" href="../pcxy/css/bootstrap.css">
+    <link rel="stylesheet" href="../css/popUpBox.css">
+    <link rel="stylesheet" href="css/order_center.css">
+    <script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+    <script type="text/javascript" src="../js_lib/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../datepicker/WdatePicker.js"></script>
+    <script type="text/javascript" src="../pcxy/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/popUpBox.js"></script>
+    <script type="text/javascript" src="../js/o2od.js"></script>
+     <script type="text/javascript">
+	 <!--
+    var math=Math.random();
+    document.write("<script src='../js/common.js?ver="+math+"'><\/script>");
+    document.write("<script src='huaianjs/order_center.js?ver="+math+"'><\/script>");
+    document.write("<script src='huaianjs/driveselect.js?ver="+math+"'><\/script>");
+    document.write("<script src='huaianjs/tracking.js?ver="+math+"'><\/script>");
+    
+    //-->
+    </script>
+</head>
+<body>
+<div class="container" style="padding-right: 0;padding-left: 0" id="orderList">
+   <!---------------header-------------->
+    <div class="header">
+        <a class="glyphicon glyphicon-chevron-left header_a" href="personal_center.html"></a>
+        订单中心
+        <div class="pull-right search" style="display: none;">
+            <img src="images/Search.png">
+        </div>
+    </div>
+   <!---------------cut-page-------------->
+    <div class="cut-page">
+        <ul>
+            <li>
+                <div class="title1 center-block"></div>
+                <span class="span_color">全部订单</span>
+            </li>
+            <li>
+                <div class="title2_2 center-block"></div>
+                <span>待发货</span>
+            </li>
+            <li>
+                <div class="title3_3 center-block"></div>
+                <span>待收货</span>
+            </li>
+<!--             <li> -->
+<!--                 <div class="title4_4 center-block"></div> -->
+<!--                 <span>待评价</span> -->
+<!--             </li> -->
+        </ul>
+        <div class="clear"></div>
+    </div>
+   <!-- 全部订单-->
+   <div class="all_orderk orderlist">
+<!--     <div class="all_order"> -->
+<!--         <div class="check"> -->
+<!--             <div class="check_left"> -->
+<!--             <div class="indent-check center-block"  style="float: left;margin-right: 5px;margin-left: 5px"></div> -->
+<!--                 <div style="float: left;margin-top: 3px"> <span>全选</span></div> -->
+<!--             </div> -->
+<!--             <div class="check_right"> -->
+<!--                 <a class="btn_css" id="zcgmall" style="margin-top: 0">再次购买</a> -->
+<!--             </div> -->
+<!--             <div class="clear"></div> -->
+<!--         </div> -->
+<!--     </div> -->
+   <div class="order_box01 orderitemlist">
+       </div>
+       <div id="orderitem" style="display: none;">
+           <div class="all_order_list">
+               <div class="list_a">
+                   <div class="col-xs-2">
+                       <div class="pro-check" style="float: left"></div>
+                   </div>
+                   <div class="col-xs-4">
+                       <div class="list_a_img" style="float: left">
+                           <img src="images/jpg.jpg">
+                       </div>
+                   </div>
+                   <div class="col-xs-6">
+                       <div class="list_a_details" style="float: left">
+                           <ul>
+                               <li id="item_name"><span>813池塘养鱼配合饲料</span></li>
+                               <li id="sum_si">金额：<span>100.11元</span></li>
+                               <li id="sd_oq">数量：<span>1吨/t</span></li>
+                               <li id="Status_OutStore"></li>
+                               <li id="item_id" style="display: none;"></li>
+                               <li id="com_id" style="display: none;"></li>
+                               <li id="seeds_id" style="display: none;"></li>
+                           </ul>
+                       </div>
+                   </div>
+                   <div class="clear"></div>
+               </div>
+               <div class="list_b">订单编号：<span id="orderNo">NO.2016031700001XSSK</span></div>
+               <div class="list_c">
+                   <a class="btn_css pull-right" id="zcgm" style="display: none;">再次购买</a>
+                   <a class="btn_css pull-right" id="xzsj" style="display: none;">选择司机</a>
+                   <a class="btn_css pull-right" style="margin-left: 15px;display: none;" id="qrsh">确认收货</a>
+                   <a class="btn_css2 pull-right" style="display: none;" id="showWuliu">查看物流</a>
+                   <a class="btn_css pull-right" id="pjdd" style="display: none;">评价</a>
+                   <div class="clear"></div>
+               </div>
+           </div>
+       </div>
+   </div>
+    <div class="allorderk_zz">
+        <div class="zz_header">
+            <a class="glyphicon glyphicon-chevron-left header_a" onclick="javascript:history.go(-1);"></a>
+            订单中心
+            <div class="pull-right search02" style="cursor: pointer">
+                <span>取消</span>
+            </div>
+        </div>
+        <div class="zz_center">
+            <div class="body_search_left center-block">
+                <input class="input_style" type="text" maxlength="20" placeholder="请输入关键词" id="searchKey"><div class="auto_hidden" id="auto"></div>
+                <div class="auto_hidden" id="auto"></div>
+                <span class="find">搜索</span>
+            </div>
+            <div class="zz_center02">
+                <span>设定搜索时间范围</span>
+            </div>
+            <div class="zz_search">
+                <div class="col-xs-5" style="height: 35px">
+                    <input type="date" id="tihuoDate" class="Wdate" onfocus="WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM-dd'})">
+                </div>
+                <div class="col-xs-2" style="text-align: center;line-height: 35px">~</div>
+                <div class="col-xs-5" style="height: 35px">
+                    <input type="date" id="tihuoDate" class="Wdate" onfocus="WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM-dd'})">
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="zz_center02" style="display: none;">
+                <span>搜索热词</span>
+            </div>
+            <div class="zz_word" style="display: none;">
+                <div class="col-xs-4">
+                    <div class="word pull-left">常规饲料</div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="word" style="margin-left: 8px">膨化饲料</div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="word pull-right">动保产品</div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="word pull-left">渔需设施</div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+<!------------------待发货----------------->
+    <div class="deliverk orderlist">
+        <div class="all_order">
+            <div class="check">
+                <div class="check_left">
+                    <div class="pro-check center-block" style="float: left;margin-right: 5px;margin-left: 5px"></div>
+                    <div style="float: left;margin-top: 3px"> <span>全选</span></div>
+                </div>
+                <div class="check_right">
+                    <a class="btn_style" id="xzsjall">选择司机</a>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="order_box02 orderitemlist"></div>
+    </div>
+   <!------------------待收货----------------->
+    <div class="deliveryk orderlist">
+        <div class="all_order">
+            <div class="check">
+                <div class="check_left">
+                    <div class="pro-check center-block" style="float: left;margin-right: 5px;margin-left: 5px"></div>
+                    <div style="float: left;margin-top: 3px"> <span>全选</span></div>
+                </div>
+                <div class="check_right">
+                    <a class="btn_style" id="qrshall">确认收货</a>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="order_box03 orderitemlist"></div>
+    </div>
+   <!------------------待评价----------------->
+    <div class="evaluatek orderlist">
+        <div class="all_order" style="display: none;">
+            <div class="check">
+                <div class="check_left">
+                    <div class="pro-check center-block" style="float: left;margin-right: 5px;margin-left: 5px"></div>
+                    <div style="float: left;margin-top: 3px"> <span>全选</span></div>
+                </div>
+                <div class="check_right">
+                    <a class="btn_style" id="pjddall">评价</a>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="order_box04 orderitemlist"></div>
+    </div>
+</div>
+<div id="copy_bottom"></div>
+<div id="orderinfo"></div>
+<script>
+    $('.search').click(function(){
+        $('.allorderk_zz').toggle();
+    });
+    $('.search02').click(function(){
+        $('.allorderk_zz').hide();
+    })
+</script>
+</body>
+</html>

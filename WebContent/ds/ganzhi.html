@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">  
+<meta http-equiv="expires" content="0">
+<title></title>
+<link href="../css/popUpBox.css">
+</head>
+<body>
+<script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+<script type="text/javascript" src="../js_lib/jquery.cookie.js"></script>
+<script type="text/javascript" src="../js/common.js?ver=0310"></script>
+<script type="text/javascript" src="../js/public.js?ver=0310"></script>
+<script type="text/javascript" src="../js/popUpBox.js?ver=0310"></script>
+<script type="text/javascript" src="../js/weixinAutoLogin.js?ver=0310"></script>
+<script type="text/javascript" src="js/loaderweimaimg.js?ver=0310"></script> 
+<script type="text/javascript" src=""></script>
+<script type="text/javascript">
+<!--
+var id=getQueryString("id");
+var userid=$.cookie("customer");
+if(!userid){
+	userid="";
+}
+if(is_weixin()){
+var code=getQueryString("code");
+if(!code){
+	window.location.href="../login/getCodeUrl.do?url="+window.location.href+"&com_id="+com_id;
+}else{
+	$.get("../login/getuserinfo.do",{
+		"com_id":com_id,
+		"code":code
+	},function(data){
+		console.debug(data);
+	});
+}
+}
+$.get("stjMuenu.json",function(data){
+	$.each(data,function(i,n){
+	 if(n.id==id){
+		 $.post("../login/ganzhi.do",{
+			 "id":id,
+			 "name":n.name,
+			 "com_id":n.com_id,
+			 "headship":"客服",
+			 "userid":userid,
+			 "url":"ganzhiRecord.html",
+			 "title":"客户浏览访问通知",
+			 "desc":userid+"客户浏览了【"+n.name+"】,请注意后续跟进!"
+		 },function(data){
+// 		 window.location.href=n.url;
+		 });
+	 }
+	});
+});
+//-->
+</script>
+</body>
+</html>

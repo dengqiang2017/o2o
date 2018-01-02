@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="U-XA-Compatible" content="IE-edge">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <title>客户感知关联</title>
+    <link rel="stylesheet" href="../pcxy/css/bootstrap.css">
+    <link rel="stylesheet" href="css/contant.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/popUpBox.css">
+    <link rel="stylesheet" href="../pcxy/css/global.css">
+    <script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+    <script type="text/javascript" src="../js_lib/jquery-ui.js"></script>
+    <script type="text/javascript" src="../pcxy/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../js_lib/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../js/popUpBox.js"></script>
+    <script type="text/javascript" src="../js/common.js"></script>
+    <style type="text/css">
+        .header {text-align: center;padding: 20px 0;font-size: 25px;border-bottom: 1px solid #dddddd;z-index: 999;background-color: #FFFFFF}
+        .container_title{background-color: #00A0EA;height: 50px;line-height: 50px;}
+        .container_title i{color: #FFFFFF;cursor: pointer}
+        .container_title li{float: left;width:14.28%;text-align: center;color: #FFFFFF}
+        .container_list li{float: left;width:14.28%;text-align: center;height: 50px;line-height: 50px;}
+        .container_list li:not(:last-child){border-right: 1px solid #dddddd;}
+        .container_list i{text-align: center;cursor: pointer}
+        .container_list{height: 600px;overflow-y: scroll;border-bottom: 1px solid #ddd;}
+        .container_list input{width: 95%;margin: auto;margin-top: 9px}
+        .list_td{ border: 1px solid #dddddd}
+        .fa-pencil-square-o{color: #0AC457}
+        .fa-times-circle{color: #FE0000}
+        .left{margin-bottom: 10px}
+        .modal-body li{margin-bottom: 10px}
+        .container{margin-top: 107px}
+        .container_list::-webkit-scrollbar{width:1px;}
+        .container_list::-webkit-scrollbar-track{background-color:#bee1eb;}
+        .container_list::-webkit-scrollbar-thumb{background-color:#999999;}
+        .container_list::-webkit-scrollbar-thumb:hover {background-color:#9c3}
+        .container_list::-webkit-scrollbar-thumb:active {background-color:#00aff0}
+        thead{background-color: #00A0EA;text-align: center;}
+        thead th{color: #FFFFFF;text-align: center}
+        thead i{color: #FFFFFF;cursor: pointer}
+        tbody td{text-align: center}
+        tbody i{cursor: pointer}
+    </style>
+</head>
+<body>
+<div class="header">
+    <img src="images/logo.png" style="width: 50px;margin-right: 100px">客户感知关联
+    <a href="ganzhiRecord.html" class="btn btn-primary" style="margin-left: 100px">客户访问记录</a>
+    <a class="btn btn-primary" style="margin-left: 100px" onclick="javascript:saveJson();">保存设置</a>
+</div>
+    <div class="container">
+            <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>关联ID</th>
+                    <th>关联菜单名称</th>
+                    <th>运营商编码</th>
+                    <th>关联地址</th>
+                    <th>菜单地址</th>
+                    <th>操作</th>
+                    <th><i class="fa fa-plus" aria-hidden="true"></i></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>01</td>
+                    <td>斯特佳-企业介绍</td>
+                    <td><span></span><input type="hidden"></td>
+                    <td><input class="form-control" ></td>
+                    <td><input class="form-control" readonly="readonly"></td>
+                    <td><i class="fa fa-pencil-square-o" aria-hidden="true"></i></td>
+                    <td><i class="fa fa-times-circle" aria-hidden="true"></i></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+            </div>
+    <div class="modal fade" id="mymodal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">新建关联</h4>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        <li>
+                            <div class="left">运营商编码：</div>
+                            <div class="right">
+                                    <select class="form-control" name="com_id">
+                                        <option value="001">斯特佳水产</option>
+                                        <option value="0011">斯特佳-益家益户</option>
+                                        <option value="0012">斯特佳-美家美户</option>
+                                    </select>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="left">关联菜单名称：</div>
+                            <div class="right">
+                                <input class="form-control" name="name" maxlength="50">
+                            </div>
+                        </li>
+                        <li>
+                            <div class="left">关联地址：</div>
+                            <div class="right">
+                                <input class="form-control" name="url" data-num="zimu">
+                            </div>
+                        </li>
+                        <li>
+                            <div class="left">关联ID：</div>
+                            <div class="right">
+                                <input class="form-control" name="id" data-num="fu" maxlength="10">
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-danger">重置</button>
+                    <button type="button" class="btn btn-primary" id="save">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+    <script type="text/javascript">
+    <!--
+    var edit=false;
+    var edititem;
+    $("tbody").html("");
+    var urlprex=window.location.href.split("pc")[0];
+    $.get("../menu.json",function(data){
+    	if(data&&data.length>0){
+    		$.each(data,function(i,n){
+    			var tr=getTr(7);
+    			$("tbody").append(tr);
+    			tr.find("td:eq(0)").html(n.id);
+    			tr.find("td:eq(1)").html(n.name);
+    			$("select[name='com_id']").val($.trim(n.com_id));
+    			var comName=$("select[name='com_id']").find("option:selected").text();
+    			tr.find("td:eq(2)").html('<span>'+comName+'</span><input type="hidden" value="'+n.com_id+'">');
+    			tr.find("td:eq(3)").html('<input class="form-control" value="'+n.url+'" readonly="readonly" onMouseMove="this.title=this.value">');
+    			var glurl=urlprex+"ganzhi.html?id="+n.id+"&com_id="+n.com_id;
+    			tr.find("td:eq(4)").html('<input class="form-control" value="'+glurl+'" readonly="readonly" onMouseMove="this.title=this.value">');
+    			btnclick(tr);
+    		});
+    	}
+    });
+    function btnclick(tr){
+    	tr.find("input").click(function(){
+    		$(this).focus(0).select();
+    	});
+    	tr.find("td:eq(5)").html('<i class="fa fa-pencil-square-o" aria-hidden="true"></i>');
+		tr.find("td:eq(5)>i").click(function(){
+			var item=$(this).parents("tr");
+			$("#mymodal").modal("toggle");
+			edit=true;
+			edititem=item;
+			$("#mymodal").find("input[name='id']").val(item.find("td:eq(0)").html());
+			$("#mymodal").find("input[name='name']").val(item.find("td:eq(1)").html());
+			var com_id=$.trim(item.find("td:eq(2)>input").val());
+			$("#mymodal").find("select[name='com_id']").val(com_id);
+			var url=item.find("td:eq(3)>input").val();
+			$("#mymodal").find("input[name='url']").val(url);
+			if(!url){
+				$("#mymodal").find("input[name='url']").val("http://");
+			}
+		});
+		tr.find("td:eq(6)").html('<i class="fa fa-times-circle" aria-hidden="true"></i>');
+		tr.find("td:eq(6)>i").click(function(){
+			$(this).parents("tr").remove();
+			saveJson();
+		});
+    }
+    $("#save").click(function(){
+    	var id=$.trim($("#mymodal").find("input[name='id']").val());
+    	var name=$.trim($("#mymodal").find("input[name='name']").val());
+    	var url=$.trim($("#mymodal").find("input[name='url']").val());
+    	if(id==""){
+    		pop_up_box.showMsg("请输入关联id值",function(){
+    			$("#mymodal").find("input[name='id']").focus();
+    		});
+    	}else if(name==""){
+    		pop_up_box.showMsg("请输入关联菜单名称值",function(){
+    			$("#mymodal").find("input[name='id']").focus();
+    		});
+    	}else if(url==""){
+    		pop_up_box.showMsg("请输入关联地址",function(){
+    			$("#mymodal").find("input[name='id']").focus();
+    		});
+    	}else{
+    		if(edit){//编辑
+    			edit=false;
+    		}else{//新增
+    			edititem=getTr(7);
+    			$("tbody").append(edititem);
+    			btnclick(edititem);
+    		}
+   			var id=$("#mymodal").find("input[name='id']").val();
+   			var com_id=$("#mymodal").find("select[name='com_id']").val();
+   			var comName=$("#mymodal").find("select[name='com_id']").find("option:selected").text();
+   			edititem.find("td:eq(0)").html(id);
+   			edititem.find("td:eq(1)").html($("#mymodal").find("input[name='name']").val());
+   			edititem.find("td:eq(2)>input").val(com_id);
+   			edititem.find("td:eq(2)>span").val(comName);
+   			edititem.find("td:eq(3)>input").val($("#mymodal").find("input[name='url']").val());
+   			edititem.find("td:eq(3)>input").prop("readonly",true);
+   			edititem.find("td:eq(3)>input").attr("title",$("#mymodal").find("input[name='url']").val());
+   			var glurl=urlprex+"ganzhi.html?id="+id+"&com_id="+com_id;
+   			edititem.find("td:eq(4)>input").val(glurl);
+   			edititem.find("td:eq(4)>input").prop("readonly",true);
+   			edititem.find("td:eq(4)>input").attr("title",glurl);
+   			saveJson();
+   			$("#mymodal").modal("toggle");
+    	}
+    });
+    //保存数据
+    function saveJson(){
+    	var trs=$("tbody tr");
+    	if(trs&&trs.length>0){
+    		var list=[];
+    		for (var i = 0; i < trs.length; i++) {
+    			var tr=$(trs[i]);
+				var id=tr.find("td:eq(0)").html();
+    			var name=tr.find("td:eq(1)").html();
+    			var com_id=tr.find("td:eq(2)>input").val();
+    			var url=tr.find("td:eq(3)>input").val();
+    			var json={};
+    			json.id=id;
+    			json.name=name;
+    			json.com_id=com_id;
+    			json.url=url;
+    			list.push(JSON.stringify(json));
+			}
+    		pop_up_box.postWait();
+    		$.post("../client/saveMenu.do",{
+    			"list":"["+list.join(",")+"]"
+    		},function(data){
+    			pop_up_box.loadWaitClose();
+    			if (data.success) {
+					pop_up_box.toast("提交成功!");
+				} else {
+					if (data.msg) {
+						pop_up_box.showMsg("提交错误!" + data.msg);
+					} else {
+						pop_up_box.showMsg("提交错误!");
+					}
+				}
+    		});
+    	}
+    }
+        $('.fa-plus').click(function(){
+        	edit=false;
+            $("#mymodal").modal("toggle");
+            $("#mymodal").find("input").val("");
+            $("#mymodal").find("input[name='url']").val("http://");
+        });
+        $("tbody").sortable();
+    //-->
+    </script>
+</html>

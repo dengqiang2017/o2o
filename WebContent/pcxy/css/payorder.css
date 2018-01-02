@@ -1,0 +1,255 @@
+ul,li{
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.payorderctn{
+	padding: 5px;
+}
+
+.leavemsg{
+	overflow: hidden;
+	width: 100%;
+	height: 60px;
+	border: 1px solid #999;
+	border-radius: 3px;
+	margin-top: 5px;
+}
+.leavemsg>textarea{
+	width: 100%;
+	height: 100%;
+	border: none;
+	outline: none;
+	resize:none;
+}
+
+.proprice{
+	width: 100%;
+}
+
+.proprice>ul>li{
+	height: 40px;
+	line-height: 40px;
+	position: relative;
+}
+
+.proprice>ul>li>.left{
+	display: block;
+	width: 100%;
+	text-indent: 5px;
+}
+
+.proprice>ul>li>.right{
+	display: block;
+	position: absolute;
+	right: 10px;
+	top: 0;
+	height: 40px;
+	line-height: 40px;
+	color: #f40;
+}
+@media screen and (min-width: 1200px){
+	.payorderctn{
+		width: 500px;
+		margin: auto;
+		background: #fff;
+		border: 1px solid #ccc;
+		margin-bottom: 10px;
+	}
+	.pro-list{
+		position: relative;
+		overflow: hidden;
+	}
+	.pro-list>ul{
+		width: 100%;
+		overflow: hidden;
+	}
+
+	.pro-list>ul>li{
+		width: 100%;
+		height: 80px;
+		overflow: hidden;
+		position: relative;
+	}
+
+	.pro-list>.prototal{
+		vertical-align: middle;
+		text-align: center;
+		width: 60px;
+		height: 60px;
+		line-height: 60px;
+		position: absolute;
+		right: 0;
+		top: 50%;
+		margin-top: -30px;
+	}
+
+	
+}
+
+@media screen and (max-width: 1199px) and (min-width: 769px){
+	.payorderctn{
+		width: 500px;
+		margin: auto;
+		background: #fff;
+		border: 1px solid #ccc;
+		margin-bottom: 10px;
+	}
+
+	.pro-list{
+		position: relative;
+		overflow: hidden;
+	}
+	.pro-list>ul{
+		width: 100%;
+		overflow: hidden;
+	}
+
+	.pro-list>ul>li{
+		width: 100%;
+		height: 80px;
+		overflow: hidden;
+		position: relative;
+	}
+
+	
+	.pro-list>.prototal{
+		vertical-align: middle;
+		text-align: center;
+		width: 60px;
+		height: 60px;
+		line-height: 60px;
+		position: absolute;
+		right: 0;
+		top: 50%;
+		margin-top: -30px;
+	}
+}
+
+@media screen and (max-width: 768px){
+	.payorderctn{
+		width: 100%;
+		margin: auto;
+		background: #fff;
+		border: 1px solid #ccc;
+		margin-bottom: 10px;
+	}
+	.pro-list{
+		position: relative;
+		overflow: hidden;
+	}
+	.pro-list>ul{
+		width: 100%;
+		overflow: hidden;
+	}
+
+	.pro-list>ul>li{
+		width: 100%;
+		height: 60px;
+		overflow: hidden;
+		position: relative;
+	}
+
+	
+	.pro-list>.prototal{
+		vertical-align: middle;
+		text-align: center;
+		width: 60px;
+		height: 60px;
+		line-height: 60px;
+		position: absolute;
+		right: 0;
+		top: 50%;
+		margin-top: -30px;
+	}
+}
+
+@media screen and (min-width: 1200px){
+	.pro-list>ul>li>.img{
+		width: 80px;
+		height: 80px;
+		position: absolute;
+		left: 0;
+		top: 0;
+	}
+
+	.pro-list>ul>li>.msg{
+		position: absolute;
+		left: 90px;
+		right: 80px;
+		height: 40px;
+		top: 10px;
+		line-height: 16px;
+	}
+	.pro-list>ul>li>.num{
+		position: absolute;
+		left: 90px;
+		right: 80px;
+		height: 30px;
+		bottom: 0;
+	}
+}
+
+@media screen and (max-width: 1199px) and (min-width: 769px){
+	.pro-list>ul>li>.img{
+		width: 80px;
+		height: 80px;
+		position: absolute;
+		left: 0;
+		top: 0;
+	}
+	.pro-list>ul>li>.msg{
+		position: absolute;
+		left: 90px;
+		right: 80px;
+		height: 40px;
+		top: 10px;
+		line-height: 16px;
+	}
+	.pro-list>ul>li>.num{
+		position: absolute;
+		left: 90px;
+		right: 80px;
+		height: 30px;
+		bottom: 0;
+	}
+}
+
+@media screen and (max-width: 768px){
+	.pro-list>ul>li>.img{
+		width: 60px;
+		height: 60px;
+		position: absolute;
+		left: 0;
+		top: 0;
+	}
+	.pro-list>ul>li>.msg{
+		position: absolute;
+		left: 70px;
+		right: 80px;
+		height: 40px;
+		top: 10px;
+		line-height: 16px;
+	}
+	.pro-list>ul>li>.num{
+		position: absolute;
+		left: 70px;
+		right: 80px;
+		height: 20px;
+		bottom: 0;
+	}
+}
+
+.pro-list>ul>li>.img>img{
+	width: 100%;
+	height: 100%;
+}
+
+.pro-list>ul>li>.num{
+	color: #777;
+}
+
+.pro-list>ul>li>.msg{
+	overflow: hidden;
+}

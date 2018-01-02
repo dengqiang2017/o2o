@@ -1,0 +1,316 @@
+.iphone-bg{
+    background-color: #FFFFFF !important;
+}
+.pic img{
+    width: 100%;
+    height: 150px;
+}
+.col-xs-6{
+    margin-top: 10px;
+}
+body{
+    width: auto !important;
+    height: auto !important;
+}
+.word_top .pull-left{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 68px;
+}
+.word_top .pull-right{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 60px;
+}
+.col-md-6{
+    margin-top: 10px;
+}
+.word_bottom{
+    color: #696969;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 14px;
+}
+.word_top div{
+    font-size: 14px;
+}
+.word_top span{
+    font-size: 13px;
+}
+.spruce_box .box{
+    border: 1px solid #dddddd;
+}
+.word{
+    padding: 5px;
+}
+/* .spruce_box{ */
+/*     margin-bottom: 51px; */
+/*     margin-top: 86px; */
+/* } */
+.input-group {
+    width: 88%;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    padding: 7px 0;
+    border: 1px solid #ddd;
+}
+.sceen {
+    position: absolute;
+    right: 18px;
+    top: 12px;
+}
+.sceen img {
+    width: 17px;
+}
+label img {
+    width: 17px;
+    margin-bottom: 2px;
+}
+.screen {
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    cursor: pointer;
+}
+.input-group label {
+    width: 15%;
+    float: left;
+    margin-bottom: 0;
+    text-align: center;
+    color: #fff;
+}
+.input-group input {
+    width: 75%;
+    float: left;
+    background-color: #FFFFFF !important;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    line-height: 25px;
+}
+.product-check-phone {
+    background: #fff;
+    width: 70%;
+    -webkit-animation: fadeInLeft 0.5s;
+    display: none;
+    height: 100%;
+    position: relative;
+}
+.p-c-header {
+    position: absolute;
+    width: 100%;
+    height: 40px;
+    top: 0;
+    left: 0;
+    border-bottom: 1px solid #ccc;
+}
+.p-c-header>.title {
+    width: 100%;
+    text-align: center;
+}
+.p-c-header>span {
+    display: block;
+    line-height: 40px;
+    height: 40px;
+}
+.p-c-header>.left-btn {
+    left: 10px;
+    position: absolute;
+    top: 0;
+    font-size: 18px;
+    color: #646464;
+    cursor: pointer;
+}
+.p-c-header>.right-btn {
+    right: 10px;
+    position: absolute;
+    top: 0;
+    font-size: 18px;
+    color: #646464;
+    cursor: pointer;
+}
+.p-c-body {
+    position: absolute;
+    left: 0;
+    top: 40px;
+    bottom: 40px;
+    width: 100%;
+    background-color: #f2f2f2;
+}
+.p-c-title {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #ccc;
+    overflow: hidden;
+    padding-left: 10px;
+    cursor: pointer;
+}
+.active {
+    color: #177475 !important;
+}
+.p-c-group>ul {
+    max-height: 200px;
+}
+.p-c-group>ul {
+    background-color: #e5e5e5;
+    overflow-y: auto;
+}
+.p-c-group>ul>li {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    text-indent: 40px;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+.p-c-group>ul>li>i {
+    position: absolute;
+    right: 10px;
+    top: 0;
+    height: 40px;
+    line-height: 40px;
+    color: #f00;
+    display: none;
+}
+.fadeOutLeft{ -webkit-animation: fadeOutLeft 0.5s;}
+.clear-ctn {
+    position: absolute;
+    left: 0;
+    height: 40px;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid #ccc;
+}
+.clear-ctn>.clear-btn {
+    width: 160px;
+    height: 28px;
+    line-height: 28px;
+    margin: 6px auto;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid #999;
+}
+@media (min-width: 770px){
+/*     .spruce_box{ */
+/*         margin-top: 0 !important; */
+/*         margin-bottom: 0 !important; */
+/*         height: 416px; */
+/*         overflow-y: scroll; */
+/*     } */
+    .search {
+        background-color: #FFFFFF;
+        padding: 5px 0;
+        width: 100%;
+        position: relative;
+        margin-top: 0;
+    }
+    .side-cover-phone {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10000;
+        background: rgba(0,0,0,0.6);
+        display: none;
+        width: 100%;
+        height: 100%;
+    }
+}
+@media (max-width: 769px){
+    .search {
+        background-color: #FFFFFF;
+        padding: 5px 0;
+        width: 100%;
+        position: fixed;
+        top: 45px;
+        z-index: 10;
+    }
+    .side-cover-phone {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 10000;
+        background: rgba(0,0,0,0.6);
+        display: none;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+/* 小屏幕（平板，大于等于 768px） */
+@media ( max-width : 768px) {
+	.spruce_box img {
+		width: 100%;
+		height: 120px
+	}
+		.spruce_box {
+		z-index: -1;
+		margin-top: 100px;
+	}
+	.product-check-phone {
+	background: #fff;
+	width: 70%;
+	-webkit-animation: fadeInLeft 0.5s;
+	display: none;
+	height: 100%;
+	position: relative
+}
+.search>.input-group{
+margin-left: 1px;
+}
+}
+/* 小屏幕（平板，大于等于 768px） */
+@media ( min-width : 768px) {
+	.spruce_box img {
+		width: 100%;
+		height: 120px
+	}
+	.product-check-phone {
+	background: #fff;
+	width: 50%;
+	-webkit-animation: fadeInLeft 0.5s;
+	display: none;
+	height: 100%;
+	position: relative
+}
+}
+/* 中等屏幕（桌面显示器，大于等于 992px） */
+@media ( min-width : 992px) {
+	.spruce_box img {
+		width: 100%;
+		height: 200px
+	}
+	.product-check-phone {
+	background: #fff;
+	width: 50%;
+	-webkit-animation: fadeInLeft 0.5s;
+	display: none;
+	height: 100%;
+	position: relative
+}
+}
+
+/* 大屏幕（大桌面显示器，大于等于 1200px） */
+@media ( min-width : 1200px) {
+	.spruce_box img {
+		width: 100%;
+		height: 200px
+	}
+	.spruce_box {
+		z-index: -1;
+		margin-top: 100px;
+	}
+	.product-check-phone {
+	background: #fff;
+	width: 30%;
+	-webkit-animation: fadeInLeft 0.5s;
+	display: none;
+	height: 100%;
+	position: relative
+}
+}

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>下订单</title>
+    <meta http-equiv="U-XA-Compatible" content="IE-edge">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" href="../pcxy/css/bootstrap.css">
+    <link rel="stylesheet" href="../css/popUpBox.css">
+    <link rel="stylesheet" href="css/place_order.css">
+    <script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+    <script type="text/javascript" src="../js_lib/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../pcxy/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/popUpBox.js"></script>
+    <script type="text/javascript" src="../js/o2od.js"></script>
+    <script type="text/javascript">
+        var math=Math.random();
+        document.write("<script src='../js/common.js?ver="+math+"'><\/script>");
+        document.write("<script src='../pc/js/employee/productpage.js'><\/script>");
+        document.write("<script src='../pc/js/employee/ordercom.js'><\/script>");
+        document.write("<script src='../pc/huaianjs/huaian.js'><\/script>");
+    </script>
+</head>
+<body>
+     <div class="container">
+         <!---------------header-------------->
+         <div class="header">
+             <a class="glyphicon glyphicon-chevron-left header_a" onclick="javascript:history.go(-1);"></a>
+             下订单
+         </div>
+         <!-- --------------body------------>
+         <div class="body" id="item01">
+             <div class="body01">
+                 <div class="pro-check" style="margin-bottom: 20px"></div>
+                 <div class="col-xs-4">
+                     <div class="order_img">
+                         <img src="images/jpg.jpg">
+                     </div>
+                 </div>
+                 <div class="col-xs-8">
+                     <ul>
+                         <li id="item_name"><span>813池塘养鱼配合饲料</span></li>
+                         <li id="sum_si">金额：<span>100.11元</span></li>
+                         <li id="sd_oq">
+                             <div style="float:left;width:35%;margin-top: 7px ">数量：</div>
+                             <div style="float:left;width:65%;">
+                                 <div class="pro-num-I">
+                                     <span class="add">+</span>
+                                     <span class="sub">-</span>
+                                     <input type="tel" class="num" id="pronum" data-number="n" style="text-align:center;height:100%;outline: none;border: none">
+                                 </div>
+                             </div>
+                         </li>
+                         <li id="Status_OutStore"></li>
+                         <li id="item_id" style="display: none;"></li>
+                         <li id="com_id" style="display: none;"></li>
+                         <li id="seeds_id" style="display: none;"></li>
+                     </ul>
+                 </div>
+                 <div class="clear"></div>
+             </div>
+             <div class="body01">
+                 <div class="pro-check" style="margin-bottom: 20px"></div>
+                 <div class="col-xs-4">
+                     <div class="order_img">
+                         <img src="images/jpg.jpg">
+                     </div>
+                 </div>
+                 <div class="col-xs-8">
+                     <ul>
+                         <li id="item_name"><span>813池塘养鱼配合饲料</span></li>
+                         <li id="sum_si">金额：<span>100.11元</span></li>
+                         <li id="sd_oq">
+                             <div style="float:left;width:35%;margin-top: 7px ">数量：</div>
+                             <div style="float:left;width:65%;">
+                                 <div class="pro-num-I">
+                                     <span class="add">+</span>
+                                     <span class="sub">-</span>
+                                     <input type="tel" class="num" id="pronum" data-number="n" style="text-align:center;height:100%;outline: none;border: none">
+                                 </div>
+                             </div>
+                         </li>
+                         <li id="Status_OutStore"></li>
+                         <li id="item_id" style="display: none;"></li>
+                         <li id="com_id" style="display: none;"></li>
+                         <li id="seeds_id" style="display: none;"></li>
+                     </ul>
+                 </div>
+                 <div class="clear"></div>
+             </div>
+         </div>
+         <div id="item" style="display: none">
+             <div class="body01">
+                 <div class="pro-check" style="margin-bottom: 20px"></div>
+                 <div class="col-xs-4">
+                     <div class="order_img">
+                         <img src="images/jpg.jpg">
+                     </div>
+                 </div>
+                 <div class="col-xs-8">
+                     <ul>
+                         <li id="item_name"><span>813池塘养鱼配合饲料</span></li>
+                         <li id="sum_si">金额：<span>100.11元</span></li>
+                         <li id="sd_oq">
+                             <div style="float:left;width:35%;margin-top: 7px ">数量：</div>
+                             <div style="float:left;width:65%;">
+                                 <div class="pro-num-I">
+                                     <span class="add">+</span>
+                                     <span class="sub">-</span>
+                                     <input type="tel" class="num" id="pronum" data-number="n" style="text-align:center;height:100%;outline: none;border: none">
+                                 </div>
+                             </div>
+                         </li>
+                         <li id="Status_OutStore"></li>
+                         <li id="item_id" style="display: none;"></li>
+                         <li id="com_id" style="display: none;"></li>
+                         <li id="seeds_id" style="display: none;"></li>
+                     </ul>
+                 </div>
+                 <div class="clear"></div>
+             </div>
+         </div>
+         <!-----------footer----------------->
+         <div class="home_footer">
+             <a class="home_footer_left">
+                 <div class="footer_left_img">
+                     <img src="images/01_phone.png">
+                 </div>
+                 <span>客服</span>
+             </a>
+             <div class="home_footer_center">
+                 <span>合计：</span>
+                 <br>
+                 <span style="color: #8F0624;">¥</span><span style="color: #8F0624;" id="orderzje">0</span>
+             </div>
+             <a class="home_footer_right" id="orderpay" >立即支付</a>
+             <div class="clear"></div>
+         </div>
+     </div>
+     <div class="kefu" id="kefulist">
+         <input type="hidden" id="platformsHeadship" value="客服">
+         <ul></ul>
+     </div>
+     <div class="closed" style="width: 100%;height: 100%;position: fixed;left: 0;top: 0;display: none"></div>
+   <script>
+       $(".pro-check").click(function(){//注册图片选择框 选择或者取消功能
+           var b=$(this).hasClass("pro-checked");
+           if (b) {
+               $(this).removeClass("pro-checked");
+           }else{
+               $(this).addClass("pro-checked");
+           }
+       });
+       $('.home_footer_left').click(function(){
+           $('.kefu').slideToggle();
+           $('.closed').show();
+       });
+       $('.closed').click(function(){
+           $('.kefu').hide();
+           $('.closed').hide();
+       });
+   </script>
+</body>
+</html>

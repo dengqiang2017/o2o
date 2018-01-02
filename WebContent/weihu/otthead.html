@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"> 
+<meta http-equiv="expires" content="0">
+<title>客户订单跟踪表头设置</title>
+<link rel="stylesheet" href="../pcxy/css/bootstrap.css">
+<link rel="stylesheet" href="../css/popUpBox.css">
+<script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+<script type="text/javascript" src="../js_lib/jquery.cookie.js"></script>
+<script type="text/javascript" src="../pcxy/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js_lib/jquery-ui.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../js/popUpBox.js"></script>
+<style type="text/css">
+.del{
+display: none;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header"><h1>客户订单跟踪表头设置</h1></div>
+<div class="panel panel-default">
+	  <div class="panel-body">
+	     <ul class="list-group">
+		  <li class="list-group-item form-inline">
+		  <div class="form-group" style="border: 1px solid #ddd;">
+		  	<div  class="form-group">
+				<label ><input type="checkbox" id="show">显示/隐藏</label>
+		  	</div>
+			<div class="form-group">
+				<label for="exampleInputName2" style="color: red;">字段id显示值</label>
+				<input type="text" maxlength="40" name="id" class="form-control">
+			</div>
+		  </div>
+			<div class="form-group" style="border: 1px solid #ddd;">
+		  	<div class="form-group">
+				<label ><input type="checkbox" id="find">查询</label>
+		  	</div>
+			<div class="form-group">
+				<label for="exampleInputName2" >字段id查询值</label>
+				<input type="text" maxlength="40" name="findid" class="form-control">
+			</div>
+			<div class="form-group">
+				<label for="exampleInputName2" >字段id查询值</label>
+				<select name="type" class="form-control">
+				<option value="txt">文本</option>
+				<option value="num">数字</option>
+				<option value="date">日期</option>
+				<option value="datetime">日期时间</option>
+				</select>
+			</div>
+			</div>
+			<div class="form-group">
+				<label for="exampleInputName2"  style="color: red;">对应文字</label>
+				<input type="text" maxlength="20" name="name" class="form-control">
+			</div>
+			<button type="button" class="btn btn-primary" onclick="addItem(this);">增加</button>
+			<button type="button" class="btn btn-danger del" onclick="$(this).parents('li').remove();">删除</button>
+		  </li>
+		</ul>
+		 
+	  </div>
+</div>
+<div>
+</div>
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container">
+  	<div class="center-block" style="width: 140px;">
+	  <button type="button" class="btn btn-success">保存</button>
+	  <a href="../employee.do" class="btn btn-default">返回</a>
+  	</div>
+  </div>
+</nav>
+</div>
+<script type="text/javascript" src="otthead.js"></script>
+</body>
+</html>

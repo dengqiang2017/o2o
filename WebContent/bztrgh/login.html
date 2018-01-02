@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <meta http-equiv="U-XA-Compatible" content="IE-edge">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" href="css/login.css?ver=001">
+    <link rel="stylesheet" href="../css/popUpBox.css">
+    <script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+    <script src="../pcxy/js/bootstrap.min.js"></script>
+    <script src="cms/js/head.js"></script>
+    <script type="text/javascript" src="../js_lib/jquery.md5.js"></script>
+    <script type="text/javascript" src="../js_lib/jquery.cookie.js"></script> 
+    <script type="text/javascript" src="../js/popUpBox.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            巴中天仁钢化
+        </div>
+        <div class="main">
+            <div class="input-group">
+                <div class="label"><img src="images/注册界面_03.jpg" alt=""></div>
+                <div class="input">
+                    <input type="text" name="user_id" id="username" placeholder="请输入手机号" maxlength="11" data-number="num">                </div>
+            </div>
+            <div class="input-group">
+                <div class="label"><img src="images/注册界面_11.jpg" alt=""></div>
+                <div class="input">
+                    <input type="password" placeholder="输入密码" name="user_password" id="pwd" maxlength="20">
+                </div>
+            </div>
+            <a href="forgetpsw.html?type=2" style="display: block; font-size:17px; margin-top:10px; color:#646464;">忘记密码</a>
+            <span class="tips"></span>
+            <div class="signup-btn01" id="loginKefu">登录</div>
+            <div class="signup-btn02" onclick="window.location.href='register.html';">注册</div>
+        </div>
+        <div class="logo_container"></div>
+        <div style="height: 70px"></div>
+    </div> 
+    <script type="text/javascript">
+    <!-- 
+	var math=Math.random();
+		document.write("<script src='../../js/common.js?ver="+math+"'><\/script>");
+		document.write("<script src='../pc/js/login.js?ver="+math+"'><\/script>");
+        $(function(){
+            if(window.location.href.indexOf("cdsydq")>0){
+                login.init("loginKefu","../customer/login.do","../saiyu/personalCenter.do","customer");
+            }else{
+                login.init("loginKefu","../customer/login.do","../customer.do","customer");
+            }
+        });
+    //-->
+    $('input').bind('focus',function(){
+        $('.logo_container').css('position','static');
+    }).bind('blur',function(){
+        $('.logo_container').css({'position':'fixed','bottom':'0'});
+    });
+    </script>
+</body>
+</html>

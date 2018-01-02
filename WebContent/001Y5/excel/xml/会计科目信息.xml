@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<REQUEST>  
+<itembegin index="3" sheetName="会计科目-勿改此页名"/>
+<item mainfiledName="sort_id"                   index="0"  excelChineseName="会计科目内码" />
+<item mainfiledName="expenses_id"               index="1"  excelChineseName="会计科目外码" />
+<item mainfiledName="expenses_name"             index="2"  excelChineseName="会计科目名称" />
+<item mainfiledName="subject_type_id"           index="3"  excelChineseName="会计科目类别" />
+<!-- <item mainfiledName="producarea_id"        index="4"  excelChineseName="会计科目方向" /> -->
+<item mainfiledName="upper_expenses_id"         index="5"  excelChineseName="上级会计科目编码" />
+<!-- <item mainfiledName="producarea_id"        index="6"  excelChineseName="上级会计科目名称" /> -->
+<item mainfiledName="expenses_unitprice"        index="7"  excelChineseName="期初金额" />
+<!-- <item mainfiledName="producarea_id"        index="8"  excelChineseName="核算项目" /> -->
+<!-- <item mainfiledName="producarea_id"        index="9"  excelChineseName="核算数量或金额？" /> -->
+<!-- <item mainfiledName="producarea_id"        index="10" excelChineseName="计量单位" /> -->
+</REQUEST>                                            

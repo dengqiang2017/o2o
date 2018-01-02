@@ -1,0 +1,89 @@
+/* 小屏幕（平板，大于等于 768px） */
+@media (max-width: 768px) {
+.cimg img{
+width: 100%;
+height: 150px;
+}
+.cimg{
+margin-top: 50px;
+}
+.txt{
+line-height: 30px;
+font-size: 16px;
+}
+.col-xs-12 img{
+margin-left: -1px;
+width: 100%;
+height: 180px;
+}
+.col-md-2 p{
+color: #666666;padding-left: 5px;
+}
+.date{
+margin-top: 10px;
+margin-left: -10px;
+background-color: #f2f2f2;
+width: 80px;
+height: 90px;
+text-align: center;
+padding-top: 10px;
+}
+.text-overflow {
+display:block;/*内联对象需加*/
+width:31em;
+word-break:keep-all;/* 不换行 */
+white-space:nowrap;/* 不换行 */
+overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+}
+.item .col-xs-9{
+	margin-top: 15px;
+}
+.text-overflow {
+display:block;/*内联对象需加*/
+width:15em;
+word-break:keep-all;/* 不换行 */
+white-space:nowrap;/* 不换行 */
+overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+}
+}
+/* 中等屏幕（桌面显示器，大于等于 992px） */
+@media (min-width: 992px) {
+}
+/* 大屏幕（大桌面显示器，大于等于 1200px） */
+@media (min-width: 1200px) {
+.cimg{
+padding-top: 100px;
+}.cimg img{max-height: 400px;}
+.txt{
+line-height: 30px;
+width: 90%;
+}
+.col-md-2 p{
+color: #666666;padding-left: 5px;
+}
+.date{
+margin-top: 10px;
+margin-right: 10px;
+background-color: #f2f2f2;
+width: 80px;
+height: 90px;
+text-align: center;
+padding-top: 10px;
+}
+.item .col-xs-9{
+	margin-top: 10px;
+}
+.text-overflow {
+display:block;/*内联对象需加*/
+width:31em;
+word-break:keep-all;/* 不换行 */
+white-space:nowrap;/* 不换行 */
+overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+}
+}
+#title{
+	font-size: 18px;font-weight: bold;
+}

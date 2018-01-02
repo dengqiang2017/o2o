@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<REQUEST>  
+<itembegin index="1" sheetName="Sheet1"/> 
+<item mainfiledName="item_id" compute="item_id" index="0" tableName="ctl03001" queryName="peijian_id" or="item_id" excelChineseName="订单编号"/>	
+ 
+<item mainfiledName="store_struct_id" compute="sort_id" index="3"  tableName="Ivt01001" queryName="store_struct_id" or="sort_id" excelChineseName="仓位编码"/>	
+<!-- <item mainfiledName="accn_ivt"                  index="6"  excelChineseName="当前的实际 【库存数】" /> -->
+<item mainfiledName="use_oq"                    index="6"  excelChineseName="可用库存数" />
+</REQUEST>                                            

@@ -1,0 +1,108 @@
+body{
+	padding:0;
+    background-color: #EAEAEA;
+    background-image: url(/images/beijing.jpg);
+}
+.case_title_left{
+    width: 50px;
+    height: 1px;
+    background-color: #FC942D;
+    float: left;
+    margin-top: 12px;
+}
+.case_title_center{
+    float: left;
+    color: #FC942D;
+    margin: auto 10px;
+}
+.case_title_right{
+    width: 50px;
+    height: 1px;
+    background-color: #FC942D;
+    float: left;
+    margin-top: 12px;
+}
+.case_title_leftT{
+    width: 50px;
+    height: 1px;
+    background-color: #FB2626;
+    float: left;
+    margin-top: 12px;
+}
+.case_title_centerT{
+    float: left;
+    color: #FB2626;
+    margin: auto 10px;
+}
+.case_title_rightT{
+    width: 50px;
+    height: 1px;
+    background-color: #FB2626;
+    float: left;
+    margin-top: 12px;
+}
+.new_title_left{
+    width: 50px;
+    height: 1px;
+    background-color: #006766;
+    float: left;
+    margin-top: 12px;
+}
+.new_title_center{
+    float: left;
+    color: #006766;
+    margin: auto 10px;
+}
+.new_title_right{
+    width: 50px;
+    height: 1px;
+    background-color: #006766;
+    float: left;
+    margin-top: 12px;
+}
+.case_title_box{
+    width: 193px;
+}
+.case_list .col-xs-4{
+    padding-left: 3px;
+    padding-right: 3px;
+    margin-top: 10px;
+}
+.sales_list .col-xs-4{
+    padding-left: 3px;
+    padding-right: 3px;
+    margin-top: 10px;
+}
+.case_listT img{
+    width: 100%;
+    height: 100px;
+}
+.case_listT .col-xs-4{
+    padding-left: 3px;
+    padding-right: 3px;
+    margin-top: 10px;
+}
+.stylist_title_left{
+    width: 50px;
+    height: 1px;
+    background-color: #43B2CD;
+    float: left;
+    margin-top: 12px;
+}
+.stylist_title_center{
+    float: left;
+    color: #43B2CD;
+    margin: auto 10px;
+}
+.stylist_title_right{
+    width: 50px;
+    height: 1px;
+    background-color: #43B2CD;
+    float: left;
+    margin-top: 12px;
+}
+.stylist .col-xs-4{
+    padding-left: 3px;
+    padding-right: 3px;
+    margin-top: 10px;
+}

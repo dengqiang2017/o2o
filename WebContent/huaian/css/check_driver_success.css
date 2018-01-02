@@ -1,0 +1,65 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: Microsoft YaHei;
+    font-size: 17px;
+}
+.header{
+    background-color: #5CA04B;
+    padding: 10px;
+    text-align: center;
+    color: #FFFFFF;
+    font-weight: 600;
+    position: fixed;
+}
+.header_a{
+    position: absolute;
+    left: 7px;
+    top: 13px;
+    cursor: pointer;
+    color: #FFFFFF;
+}
+.header_a:hover{
+    color: #FFFFFF;
+    text-decoration:none
+}
+.personal_center{
+    position: absolute;
+    right: 7px;
+    top: 7px;
+    cursor: pointer;
+}
+.personal_center>img{
+    width: 30px;
+    height: 30px;
+}
+.body{
+    margin-top: 60px;
+}
+.body_tick>img{
+    width: 200px;
+    height: 200px;
+    margin-top: 20px;
+}
+.body_message{
+    text-align: center;
+    padding: 10px 0;
+}
+.body_hint{
+    text-align: center;
+    color: #5CA04B;
+    margin-top: 30px;
+}
+.btn_style{
+    width: 200px;
+    margin-top: 70px;
+    border-radius: 15px;
+    background-color: #5CA04B;
+    color: #FFFFFF;
+    font-size: 16px;
+}
+.btn_style:hover{
+    color: #FFFFFF;
+    text-decoration:none;
+}
+}

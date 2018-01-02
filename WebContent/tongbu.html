@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width = device-width; initial-scale=1">
+<title>同步项目</title>
+<link href="css/popUpBox.css" rel="stylesheet">
+<link href="pcxy/css/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+ul li{
+line-height: 40px;
+ list-style: none;
+}
+#xiangmulist{
+ width: 60%;
+ margin: auto;
+ padding: 10px;
+}
+#xiangmulist>.col-lg-4{
+ margin-top: 10px;
+}
+#beixuan{
+ width: 60%;
+ margin: auto;
+ padding: 10px;
+}
+#beixuan>.col-lg-4{
+ margin-bottom: 20px;
+}
+#tongbulist{
+ width: 60%;
+ margin: auto;
+}
+.fg{
+ border: 1px solid #dddddd;
+ margin-bottom: 20px;
+ padding: 10px;
+}
+ .copyright{
+  text-align: center;
+  margin-bottom: 20px;
+ }
+ .box{
+  margin-bottom: 20px;
+ }
+.box>h2{
+ background-color: #A2C8F5;
+ color: #fff;
+ padding: 10px;
+ margin-top: 0;
+}
+</style>
+</head>
+<body>
+<div class="box">
+<h2 id="daitongbu">待同步项目</h2>
+<div id="xiangmulist">
+<div class="col-lg-4">
+ <div class="col-lg-12">
+ <input type="text" data-num="zimu" maxlength="15" value="xzdc" class="form-control">
+  </div>
+ <div class="col-lg-12" style="margin-top: 10px">
+ <button type="button" class="add btn btn-primary">添加</button><button type="button" class="btn btn-danger" onclick="$(this).parents('.col-lg-4').remove();">删除</button>
+</div>
+ </div>
+<div class="col-lg-4">
+ <div class="col-lg-12">
+ <input type="text" data-num="zimu" maxlength="15" value="trgh" class="form-control">
+ </div>
+ <div class="col-lg-12" style="margin-top: 10px">
+ <button type="button" class="add btn btn-primary">添加</button><button type="button" class="btn btn-danger" onclick="$(this).parents('.col-lg-4').remove();">删除</button>
+ </div>
+ </div>
+<div class="col-lg-4">
+ <div class="col-lg-12">
+ <input type="text" data-num="zimu" maxlength="15" value="o2ohuaian" class="form-control">
+  </div>
+ <div class="col-lg-12" style="margin-top: 10px">
+ <button type="button" class="add btn btn-primary">添加</button><button type="button" class="btn btn-danger" onclick="$(this).parents('.col-lg-4').remove();">删除</button>
+</div>
+ </div>
+<div class="col-lg-4">
+ <div class="col-lg-12">
+ <input type="text" data-num="zimu" maxlength="15" value="citico" class="form-control">
+  </div>
+ <div class="col-lg-12" style="margin-top: 10px">
+ <button type="button" class="add btn btn-primary">添加</button><button type="button" class="btn btn-danger" onclick="$(this).parents('.col-lg-4').remove();">删除</button>
+</div>
+ </div>
+</div>
+ <div class="clearfix"></div>
+</div>
+<div class="box">
+<h2 id="beixuanh2">备选路径</h2>
+<div id="beixuan">
+<div class="col-lg-4">
+<input type="text" value="pc/" class="form-control">
+</div>
+<div class="col-lg-4">
+<input type="text" value="pc/js" class="form-control">
+</div>
+<div class="col-lg-4">
+<input type="text" value="pc/js/employee" class="form-control">
+</div>
+<div class="col-lg-4">
+<input type="text" value="pc/js/manager" class="form-control">
+</div>
+<div class="col-lg-4">
+<input type="text" value="pc/js/orderTrack" class="form-control">
+</div>
+<div class="col-lg-4">
+<input type="text" value="WEB-INF/pages/pc/employee" class="form-control">
+</div>
+<div class="col-lg-4">
+<input type="text" value="WEB-INF/pages/pc/manager" class="form-control">
+</div>
+<div class="col-lg-4">
+<input type="text" value="WEB-INF/pages/pc/customer" class="form-control">
+</div>
+<div class="col-lg-4">
+<input type="text" value="WEB-INF/pages/pc/orderTrack" class="form-control">
+</div>
+<div class="col-lg-4">
+<input type="text" value="WEB-INF/pages/pc/report" class="form-control">
+</div>
+<div class="col-lg-4">
+<input type="text" value="WEB-INF/classes/com" class="form-control">
+</div>
+<div class="col-lg-4">
+<input type="text" value="" class="form-control" id="piliang">
+</div>
+ <div class="clearfix"></div>
+</div>
+</div>
+<div class="box" style="margin-bottom: 0">
+<h2>待同步文件列表</h2>
+<div id="tongbulist">
+ <div class="col-lg-4">
+  <div class="fg">
+<div class="col-lg-12" style="font-size: 21px;"><span>源文件:</span><span id="srcFile">employee.js</span></div><div class="col-lg-12" style="margin-bottom: 0"><label class="col-sm-1 col-lg-12 control-label" style="margin-bottom:20px">目标路径:</label><div class="col-sm-11 col-lg-12"><input class="form-control" id="destPath" type="text" data-num="zimu" maxlength="50"></div></div>
+  <div class="clearfix"></div>
+  </div>
+ </div>
+</div>
+ <div class="clearfix"></div>
+</div>
+<div>
+<button type="button" id="save" class="btn btn-primary center-block" style="width: 100px;margin:20px auto">提交</button>
+</div>
+<script type="text/javascript" src="js_lib/jquery.11.js"></script>
+<script type="text/javascript" src="js_lib/jquery.cookie.js"></script>
+<script type="text/javascript" src="js/popUpBox.js"></script>
+<script type="text/javascript">
+ <!--
+var math=Math.random();
+document.write("<script src='js/common.js?ver="+math+"'><\/script>");
+document.write("<script src='js/tongbu.js?ver="+math+"'><\/script>");
+//-->
+</script>
+</body>
+</html>

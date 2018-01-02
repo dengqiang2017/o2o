@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- xml文件 -->
+<mapper namespace="com.qianying.dao.interfaces.ITailorMadeDao">
+	<!-- <cache/> -->
+	<sql id="tailorWhere">
+	 select  
+   	  ltrim(rtrim(isnull(t1.ivt_oper_listing,''))) as ivt_oper_listing,
+  	  ltrim(rtrim(isnull(t1.item_id,''))) as item_id,
+  	  ltrim(rtrim(isnull(t1.customer_id,''))) as customer_id,
+  	  ltrim(rtrim(isnull(t2.corp_name,''))) as corp_name,
+  	  ltrim(rtrim(isnull(t1.com_id,''))) as com_id, 
+  	  isnull(t1.sd_unit_price,0) as sd_unit_price,
+  	  isnull(t1.sd_unit_price,0) as sum_si,
+  	  ltrim(rtrim(isnull(t2.corp_sim_name,''))) as corp_sim_name,
+  	 ltrim(rtrim(isnull( t2.user_id,''))) as user_id,
+  	  ltrim(rtrim(isnull(t3.Status_OutStore,''))) as status
+ from view_sdd02010 t1
+ left join sdf00504 t2 on t1.customer_id=t2.customer_id and t1.com_id=t2.com_id
+	left join view_sdd02020 t3 on t1.ivt_oper_listing=t3.item_id and t1.com_id=t2.com_id
+		where 
+	ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id}
+	and t1.m_flag=0 
+	<if test="customer_id!=null">
+	and ltrim(rtrim(isnull(t1.customer_id,'')))=#{customer_id}
+	</if>
+	<if test="beginTime!=null">
+	<![CDATA[
+	and convert(varchar(23),t1.so_effect_datetime,121)>=#{beginTime}
+	]]>
+	</if>
+	<if test="endTime!=null">
+	<![CDATA[
+	and convert(varchar(23),t1.so_effect_datetime,121)<=#{endTime}
+	]]>
+	</if>
+	<if test="searchKey!=null">
+	and (
+		ltrim(rtrim(isnull(t1.ivt_oper_listing,''))) like #{searchKey} or
+		ltrim(rtrim(isnull(t1.item_id,''))) like #{searchKey} or
+		ltrim(rtrim(isnull(t1.c_memo,''))) like #{searchKey} or
+		ltrim(rtrim(isnull(t1.customer_id,''))) like #{searchKey} or
+		ltrim(rtrim(isnull(t2.corp_name,''))) like #{searchKey} or
+		isnull(t1.sd_unit_price,0) like #{searchKey}
+	)
+	</if>
+	group by t1.ivt_oper_listing,t1.item_id,t1.customer_id,t2.corp_name,t1.com_id,t1.sd_unit_price,t2.corp_sim_name,t2.user_id,t3.Status_OutStore
+	</sql>
+ <select id="getTailorMadeInfoPageCount" parameterType="hashMap" resultType="Integer">
+	select count(*) from (
+	<include refid="tailorWhere"/>
+	) as t1
+ </select>
+ <select id="getTailorMadeInfoPage" parameterType="hashMap" resultType="hashMap">
+		declare @maxId int,@maxId2 int;
+	set @maxid=(
+	select max(idh) from (
+	select top 1
+	ROW_NUMBER() OVER (
+		ORDER BY
+		ltrim(rtrim(isnull(t1.ivt_oper_listing,''))) desc 
+		<if test="sum_si!=null"> 
+		,isnull(t1.sd_unit_price,0)
+		</if>
+		<if test="sum_si==null"> 
+		,isnull(t1.sd_unit_price,0) desc
+		</if>
+		) as idh 
+  	from  (
+	<include refid="tailorWhere"/>
+	) as t1
+  	) as t);
+       set @maxId2=@maxId;
+  	 <if test="page==1">
+			set @maxId=@maxId-1;
+		</if>
+	select top 10 t.* from (
+	select ROW_NUMBER() OVER (
+		ORDER BY
+		ltrim(rtrim(isnull(t1.ivt_oper_listing,''))) desc 
+		<if test="sum_si!=null"> 
+		,isnull(t1.sd_unit_price,0)
+		</if>
+		<if test="sum_si==null"> 
+		,isnull(t1.sd_unit_price,0) desc
+		</if>
+		) as idh, t1.*
+  	from  (
+	<include refid="tailorWhere"/>
+	) as t1
+  	) as t where  t.idh>@maxid
+</select>
+
+<select id="delTailorMade" parameterType="String" resultType="Integer">
+-- 判断报价单是否已经下过订单
+declare @order int;
+set @order=(select count(*) from sdd02021 where ltrim(rtrim(isnull(item_id,'')))=#{orderNo});
+if @order>0
+begin
+update sdd02011 set m_flag=1 where ltrim(rtrim(isnull(ivt_oper_listing,'')))=#{orderNo};
+end else
+begin
+delete from sdd02010 where  ltrim(rtrim(isnull(ivt_oper_listing,'')))=#{orderNo};
+delete from sdd02011 where  ltrim(rtrim(isnull(ivt_oper_listing,'')))=#{orderNo};
+end;
+select @order;
+</select>
+<update id="saveSum_si" parameterType="hashMap">
+<foreach collection="jsons" item="tag">
+update sdd02011 set sum_si=#{tag.sum_si},sd_unit_price=#{tag.sum_si},mainten_clerk_id=#{mainten_clerk_id},mainten_datetime=#{mainten_datetime} where 
+ltrim(rtrim(isnull(com_id,'')))=#{com_id} and 
+ltrim(rtrim(isnull(ivt_oper_listing,'')))=#{tag.orderNo};
+update sdd02010 set comfirm_flag='Y',mainten_clerk_id=#{mainten_clerk_id},mainten_datetime=#{mainten_datetime} where 
+ltrim(rtrim(isnull(com_id,'')))=#{com_id} and 
+ltrim(rtrim(isnull(ivt_oper_listing,'')))=#{tag.orderNo};
+</foreach>
+</update>
+<select id="getPayPercentage" parameterType="hashMap" resultType="hashMap">
+select top 1 
+ltrim(rtrim(isnull(payPercentage,'100'))) as payPercentage,
+ltrim(rtrim(isnull(corp_name,''))) as corp_name,
+ltrim(rtrim(isnull(ifUseCredit,'否'))) as ifUseCredit 
+from sdf00504 
+where ltrim(rtrim(isnull(customer_id,'')))=#{customer_id}
+</select>
+<sql id="orderWhere">
+left outer join sdf00504 t4 on t1.com_id = t4.com_id and t1.customer_id = t4.customer_id
+	left outer join view_sdd02010 t2 on t1.com_id = t2.com_id and t1.item_id = t2.ivt_oper_listing
+	where ltrim(rtrim(isnull(t1.com_id,'')))=#{com_id} 
+	<if test="customer_id!=null">
+	and ltrim(rtrim(isnull(t1.customer_id,'')))=#{customer_id}
+	</if>
+	<if test="st!=null">
+	and t1.Status_OutStore=#{st}
+	</if>
+	<if test="pm!=null">
+	and ltrim(rtrim(isnull(t1.st_hw_no,'')))=''
+	</if>
+	<if test="beginTime!=null">
+	<![CDATA[
+	and convert(varchar(23),t1.so_consign_date,121)>=#{beginTime}
+	]]>
+	</if>
+	<if test="endTime!=null">
+	<![CDATA[
+	and convert(varchar(23),t1.so_consign_date,121)<=#{endTime}
+	]]>
+	</if>
+		<if test="searchKey!=null">
+	and (
+		ltrim(rtrim(isnull(t1.ivt_oper_listing,''))) like #{searchKey} or
+		ltrim(rtrim(isnull(t1.item_id,''))) like #{searchKey} or
+		ltrim(rtrim(isnull(t2.c_memo,''))) like #{searchKey} or
+		ltrim(rtrim(isnull(t1.customer_id,''))) like #{searchKey} or
+		ltrim(rtrim(isnull(t1.Status_OutStore,''))) like #{searchKey} or
+		ltrim(rtrim(isnull(t4.corp_name like,''))) #{searchKey} or
+		isnull(t1.sd_unit_price,0) like #{searchKey}
+	)
+	</if>
+</sql>
+<select id="getTailorMadeOrderPageCount" parameterType="hashMap" resultType="Integer">
+	select count(*) from View_sdd02020 t1
+	<include refid="orderWhere"/>
+</select>
+<select id="getTailorMadeOrderPage" parameterType="hashMap" resultType="hashMap">
+	declare @maxId int,@maxId2 int;
+	set @maxid=(
+	select max(idh) from (
+	select top 1
+	ROW_NUMBER() OVER (
+		ORDER BY
+		ltrim(rtrim(isnull(t1.ivt_oper_listing,''))) desc 
+		) as idh 
+  	from View_sdd02020 t1 
+  	<include refid="orderWhere"/>
+  	) as t);
+       set @maxId2=@maxId;
+  	 <if test="page==1">
+			set @maxId=@maxId-1;
+		</if>
+	select top 10 t.* from (
+	select ROW_NUMBER() OVER (
+		ORDER BY
+		ltrim(rtrim(isnull(t1.ivt_oper_listing,''))) desc 
+		) as idh, 
+  	  ltrim(rtrim(isnull(t1.ivt_oper_listing,''))) as ivt_oper_listing,
+  	  ltrim(rtrim(isnull(t1.item_id,''))) as item_id,
+  	  ltrim(rtrim(isnull(t1.com_id,''))) as com_id,
+  	  ltrim(rtrim(isnull(t1.customer_id,''))) as customer_id,
+  	  ltrim(rtrim(isnull(t1.Status_OutStore,''))) as Status_OutStore,
+  	  ltrim(rtrim(isnull(t4.corp_name,''))) as corp_name,
+  	  ltrim(rtrim(isnull(t2.c_memo,''))) as item_name,
+  	    convert(varchar(19),t1.so_consign_date,121) as so_consign_date,
+  	  isnull(t1.sd_unit_price,0) as sum_si 
+  	from View_sdd02020 t1 
+  	<include refid="orderWhere"/>
+  	) as t where  t.idh>@maxid
+</select>
+
+
+</mapper>

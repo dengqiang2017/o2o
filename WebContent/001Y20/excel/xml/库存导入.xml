@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<REQUEST>  
+<itembegin index="4" sheetName="期初库存-勿改此页名"/>
+<item mainfiledName="store_struct_id" compute="store_struct_id" tableName="ivt01001" queryName="store_struct_id" or="sort_id" index="0"  excelChineseName="库房编码" />
+<item mainfiledName="item_id" compute="item_id" tableName="ctl03001" queryName="peijian_id" or="item_id" index="2"  excelChineseName="产品编号" />
+
+<item mainfiledName="if_lotnum_mng" index="4"  excelChineseName="库存数量"/>
+<item mainfiledName="single_piece_id" index="5"  excelChineseName="该产品单位件数"/>
+<item mainfiledName="lot_number" index="6"  excelChineseName="区分批号时的批号"/>
+<item mainfiledName="oh" index="7"  excelChineseName="库存初始化"/>
+<item mainfiledName="i_price" index="8"  excelChineseName="结余的成本单价"/>
+<item mainfiledName="accn_ivt" index="9"  excelChineseName="库存数"/>
+<item mainfiledName="item_source" index="10"  excelChineseName="产品来源"/>
+<item mainfiledName="use_oq" index="11"  excelChineseName="可用库存数"/>
+<item mainfiledName="i_Amount" index="12"  excelChineseName="结存金额"/>
+
+<item mainfiledName="item_code" index="13"  excelChineseName="BOM设计项目编码"/>
+
+<item mainfiledName="customer_id" filedName="customer_id" compute="customer_id" tableName="Sdf00504"
+queryName="self_id" datatype="txt" isnullval="CS1_ERROR" or="customer_id" index="14"  excelChineseName="客户编码" />
+
+<item mainfiledName="PH" index="16"  excelChineseName="排产编号"/>
+<item mainfiledName="ivt_oper_listing" index="17"  excelChineseName="生产入库单号"/>
+<item mainfiledName="sid_id" index="18"  excelChineseName="生产计划单的行种子"/>
+<item mainfiledName="mps_id" index="19"  excelChineseName="销售订单单号"/>
+<item mainfiledName="mps_seeds_id" index="20"  excelChineseName="销售订单的行种子"/>
+<item mainfiledName="auto_paigong_id" index="21"  excelChineseName="生产计划单的单号"/>
+<item mainfiledName="S_N" index="22"  excelChineseName="批次号"/>
+<item mainfiledName="item_type" index="23"  excelChineseName="型号"/>
+<item mainfiledName="item_color" index="24"  excelChineseName="个性化录入的颜色"/>
+<item mainfiledName="class_card" index="25"  excelChineseName="个性化录入的产地品牌"/>
+<item mainfiledName="if_anomaly" index="26"  excelChineseName="是否异型？"/>
+<item mainfiledName="c_memo" index="27"  excelChineseName="个性化录入的特殊制造要求"/>
+<item mainfiledName="memo_color" index="28"  excelChineseName="个性化录入的特殊配色或面料要求"/>
+<item mainfiledName="memo_other" index="29"  excelChineseName="个性化录入的其它制造要求"/>
+<item mainfiledName="item_struct" index="30"  excelChineseName="个性化录入的产品的内部结构"/>
+ 
+</REQUEST>

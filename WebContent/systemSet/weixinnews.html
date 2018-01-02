@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="U-XA-Compatible" content="IE-edge">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <title>微信企业号消息模板设置</title>
+    <link rel="stylesheet" href="../pcxy/css/bootstrap.css">
+    <link rel="stylesheet" href="../css/popUpBox.css">
+</head>
+<style type="text/css">
+    /*-----conmment-----*/
+    *{font-family:'Microsoft YaHei',Arial,Helvetica,sans-serif;font-size: 18px;color: #000000;padding: 0;margin: 0}
+    a{text-decoration: none}
+    a:hover{text-decoration: none}
+    ul{margin-bottom: 0}
+    ul>li{list-style: none}
+
+    /*-----header-----*/
+    .header{padding: 10px;background-color: #f4faff;}
+
+    /*-----section-----*/
+    .box{padding: 10px;border-radius: 5px;background-color: #f4faff;box-shadow: 0 0 5px rgba(0,0,0,0.3);margin-top: 15px}
+    .img-box{width: 100px;margin: 10px;display: inline-block}
+    .img-box>img{width: 100%}
+    .box>ul>li>button{position: relative}
+    .box>ul>li>button>input{position: absolute;left: 0;top: 0;right: 0;bottom: 0;opacity: 0}
+    .footer {position: fixed;left: 0;right: 0;bottom: 0;height: 50px;line-height: 50px;background-color: #fff;border-top: 1px solid #ccc;box-shadow: 0 0 5px rgba(0,0,0,0.3);font-weight: bold;z-index: 999;}
+    .btn-gp{width: 134px}
+    .modal-body>ul>li{float: left;margin-right: 10px}
+    .checkbox>label>input{margin-top: 6px}
+    .active{border: 2px solid #0000ff}
+    .bg{position: fixed;left: 0;right: 0;top: 0;bottom: 0;background-image: url("../images/bg.jpg");background-repeat: no-repeat;background-size: cover;z-index: -1}
+    .ui-btn{width: 179px}
+    .content{min-height: 50px}
+    .title{margin-bottom: 10px}
+    .site{padding: 10px 0;}
+    .site-left{margin-top: 4px}
+    .site>div{float: left}
+    .secition-body{margin-top: 10px}
+    .secition-body-yy{margin-bottom: 10px}
+    .secition-body-yg{margin-bottom: 10px}
+    .secition-body-kh{margin-bottom: 10px}
+    .secition-body-dd{margin-bottom: 10px}
+    .secition-body-yy>div{float: left}
+    .secition-body-yg>div{float: left}
+    .secition-body-kh>div{float: left}
+    .secition-body-dd>div{float: left}
+    .img{padding: 10px 0}
+    .left{width: 322px}
+    .list-group-item{margin-bottom:10px;position:relative}
+</style>
+<body>
+<div class="bg"></div>
+<div class="section">
+    <div class="container">
+        <div class="box">
+            <h3>微信企业号消息模版列表</h3>
+            <ul class="list-group">
+            </ul>
+            <div class="ui-btn center-block">
+                <button type="button" class="btn btn-success btn-sm"  id="addItem">增加</button>
+                <button type="button" class="btn btn-info btn-sm" id="save">保存</button>
+                <a href="../manager/orderProcessSetup.do" class="btn btn-primary btn-sm">返回</a>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="mymodal">
+        <div class="modal-dialog">
+            <div class="modal-content" style="width: 795px">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">修改模版</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="left" style="float: left">
+                    <div class="title">
+                        <h4>标题</h4>
+                        <input type="text" class="form-control ui_title">
+                    </div>
+                    <div class="metter">
+                        <h4>内容</h4>
+                        <textarea class="form-control ui_content" rows="4"></textarea>
+                    </div>
+					<div class="site">
+                        <div class="site-left">
+                            跳转地址：
+                        </div>
+                        <div class="site-right">
+                            <select class="form-control ui_url">
+                                <option value=""></option>
+                                <option value="/employee/collectionConfirm.do">客户收款确认界面</option>
+                                <option value="/employee/orderTracking.do">员工订单跟踪界面</option>
+                                <option value="/orderTrack/driverWaybillDetail.do?type=beihuo">库管备货界面</option>
+                                <option value="/orderTrack/driverWaybillDetail.do">库管装货界面</option>
+                                <option value="/saiyu/decompose.do">物流员打包界面</option>
+                            </select>
+                        </div>
+                        <div class="clearfix" style="float: none"></div>
+                        </div>
+					 <div class="img">
+					 <img src="../weixinimg/msg.png" style="width: 50px;height: 50px;" onclick="imgClick(this);">
+					 </div>
+                    </div>
+<div class="one marbot type" style="float: right">
+      <div class="secition-header">
+          <div class="secition-header-left">
+               人员选择 ：<span>（消息中运营商,客户相关替代标准）</span>
+          </div>
+          <div class="secition-right">
+
+          </div>
+      </div>
+      <div class="secition-body">
+         <div class="yy-box">
+           <div class="secition-body-yy">
+                <div class="word">运营商 ：</div>
+                <div class="input"><input value="@comName" readonly="readonly" type="text" class="form-control"></div>
+                <div class="clearfix" style="float:none;"></div>
+           </div>
+         </div>
+         <div class="yg-box">
+           <div class="secition-body-yg">
+                 <div class="word">员工职务 ：</div>
+                 <div class="input"><input value="@Eheadship" readonly="readonly" type="text" class="form-control"></div>
+                 <div class="clearfix" style="float:none;"></div>
+           </div>
+           <div class="secition-body-yg">
+                 <div class="word">员工名称 ：</div>
+                 <div class="input"><input value="@clerkName" readonly="readonly" type="text" class="form-control"></div>
+           <div class="clearfix" style="float:none;"></div>
+           </div>
+            <div class="clearfix"></div>
+        </div>
+           <div class="kh-box">
+                 <div class="secition-body-kh">
+                      <div class="word">客户职务 ：</div>
+                      <div class="input"><input value="@headship" readonly="readonly" type="text" class="form-control"></div>
+                      <div class="clearfix" style="float:none;"></div>
+                 </div>
+                 <div class="secition-body-kh">
+                      <div class="word">客户名称 ：</div>
+                      <div class="input"><input value="@customerName" readonly="readonly" type="text" class="form-control"></div>
+                      <div class="clearfix" style="float:none;"></div>
+                 </div>
+           <div class="clearfix"></div>
+         </div>
+           <div class="dd-box">
+                <div class="secition-body-dd">
+                     <div class="word">司机信息 ：</div>
+                         <div class="input"><input value="@driver" readonly="readonly" type="text" class="form-control"></div>
+                     <div class="clearfix" style="float:none;"></div>
+                </div>
+                <div class="secition-body-dd">
+                     <div class="word">订单编号 ：</div>
+                     <div class="input"><input value="@orderNo" readonly="readonly" type="text" class="form-control"></div>
+                     <div class="clearfix" style="float:none;"></div>
+                </div>
+                <div class="secition-body-dd">
+                     <div class="word">产品名称 ：</div>
+                     <div class="input"><input value="@productName" readonly="readonly" type="text" class="form-control"></div>
+                <div class="clearfix" style="float:none;"></div>
+                </div>
+                <div class="secition-body-dd">
+                     <div class="input"><input value="点击进入查看详情" readonly="readonly" type="text" class="form-control"></div>
+                <div class="clearfix" style="float:none;"></div>
+                </div>
+               <div class="clearfix"></div>
+           </div>
+      </div>
+</div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary save">保存</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+<!--     微信图片选择 -->
+    <div id="modal_imgSelect" style="display: none">
+<div class="modal-cover-first"></div>
+<div class="modal-first" style="display:block;">
+ <div class="modal-dialog" id="zhiwuselectdialog">
+     <div class="modal-content">
+         <div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true" class="guanbizhiwu">&times;</span>
+	<span class="sr-only">Close</span></button>
+	<h4 class="modal-title">请选择订单跟踪中微信消息对应的图片</h4>
+</div>
+<div class="modal-body" style="max-height:260px; overflow-y:scroll; padding: 10px;">
+	<ul class="modal_ul">
+	<li>
+	<label>
+	<input type="radio" name="img">
+	<span class="ui_modal_img_title">图片标题</span>
+	<img src="" style="max-height: 100px;max-width: 100px;">
+	</label>
+	</li>
+	</ul>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default guanbizhiwu" id="imgClose">取消</button>
+				<button type="button" class="btn btn-primary guanbizhiwu" id="imgSelect">确定</button>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+    
+    <div id="item" style="display: none">
+        <li class="list-group-item">
+            <h4 style="border-bottom:1px solid #dddddd;padding-bottom: 10px" class="ui_title"></h4>
+            <div class="content"></div>
+			<img src="../weixinimg/msg.png" style="width: 50px;height: 50px;">
+					<div>
+					消息进入路径:<span class="urlName"></span><span style="display: none;" class="url"></span>
+					</div>
+            <button type="button" class="btn btn-primary btn-sm xg ui_edit">修改</button>
+            <button type="button" class="btn btn-danger btn-sm xc" onclick="$(this).parents('.list-group-item').remove();">删除</button>
+        </li>
+    </div>
+</div>
+<script src="../js_lib/jquery.11.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js_lib/jquery-ui.js"></script>
+<script src="../js/popUpBox.js"></script>
+<script src="weixinNewsAdd.js"></script>
+</body>
+</html>

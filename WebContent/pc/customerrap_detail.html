@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta http-equiv="U-XA-Compatible" content="IE-edge">
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+<link rel="stylesheet" href="cms/css/global.css">
+<link rel="stylesheet" href="cms/css/font-awesome.min.css">
+<link rel="stylesheet" href="cms/css/information_detail.css">
+<script src="cms/js/jquery.js"></script>
+<script src="cms/js/head.js"></script>
+<script src="cms/js/pulledup.js"></script>
+<script src="/cms/pc/js/edit.js"></script>
+<script src="cms/js/article.js?ver=001"></script>
+<script type="text/javascript">
+	try{
+		edithtml.init();
+	}catch (e) {
+	//	window.location.href=window.location.href.replace("html","jsp");
+	}
+</script>
+</head>
+<body>
+<div class="main_title_container">
+	<div class="main_title_ctn">
+    	<div class="main_title textonly"></div>
+    	<input id="type" value="3" type="hidden">
+    </div>
+</div>    
+<div class="divider"></div>
+
+<div class="main_content_container">
+	<div class="main_content_ctn articledetail">
+    	<div class="information_detail_title articleedit_title"></div>
+        <span class="information_detail_date articleedit_time"></span>
+        <span class="information_detail_date articleedit_author"></span>
+<!--         <button type="button" id="fenxingbtn">分享给朋友</button> -->
+         <div id="fenxiang"></div>
+         <video style="display: none;" controls="controls" src="" height="400" width="480"></video>
+        <div class="information_detail articleedit_content">
+            <img src="http://www.my-tw.com/o2o/logo.png">
+             
+        </div>
+	</div>
+</div>
+
+<footer class="footer"></footer>
+<div id="back-to-top"></div>
+<div class="side_tools logo_container"></div>
+<script type="text/javascript">
+$.get("word/anli.html",function(data){
+	$(".articleedit_content").html(data);
+});
+</script>
+</body>
+</html>

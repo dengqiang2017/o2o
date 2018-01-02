@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="U-XA-Compatible" content="IE-edge">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,maximum-scale=1.0,user-scalable=no">
+    <title>德阳通威小猪动车-我的交易</title>
+    <link rel="stylesheet" href="../pc/css/bootstrap.css">
+    <link rel="stylesheet" href="../pc/css/dealsell.css">
+    <link rel="stylesheet" href="../pc/css/query.css">
+    <link rel="stylesheet" href="../css/popUpBox.css">
+</head>
+<body>
+<div style="width: 1px;height: 1px;">
+    <img class="img-responsive center" src="images/logo.jpg?ver=001">
+</div>
+<div id="listpage">
+     <div class="header navbar-fixed-top">
+         <a  href="../pre/operate.do" class="pull-left">返回</a>我的交易
+         <div class="pull-right phone">
+             <img class="img-responsive center-block" src="../pc/images/phone2.png" style="width:20px;margin-top:3px">
+         </div>
+     </div>
+     <div class="body01">
+         <button type="button" class="btn btn-default btn-block"><img src="images/ser.png">搜索</button>
+     </div>
+     <div class="body02">
+         <ul>
+
+         </ul>
+     </div>
+    <div id="item" style="display: none">
+        <li>
+            <a>
+                <div class="box_body01">
+                    <div class="a_box">
+                        <div class="jy_li">
+                            <div class="pull-left"><span id="item_name" style="font-size: 20px">内杂猪</span></div>
+                            <div class="pull-right"><span id="proceed" style="color: #3BC299">销售中...</span></div>
+                        </div>
+                        <div class="jy_li" style="margin-top: 15px">
+                            <div class="pull-left">数量：<span id="num">50</span>头</div>
+                            <div class="pull-right">单价：<span id="price">50</span>元</div>
+                        </div>
+                        <div class="jy_li" style="margin-top: 10px">
+                            <div class="pull-left">挂价时间:<span id="data">2016-07-15</span></div>
+                            <div class="pull-right">金额：<span id="range">65500~70000</span>元</div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </a>
+        </li>
+    </div>
+     <div class="footer">
+         <div class="pull-left">
+             总计：<span>83</span>头
+         </div>
+         <div class="pull-right">
+             收入范围：<span>114560~135222</span>元
+         </div>
+     </div>
+    <div class="modal fade" id="mymodal">
+        <div class="modal-dialog" style="margin: 150px auto;width: 85%">
+            <div class="modal-content">
+                <div class="modal-header" style="display: none">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">模态弹出窗标题</h4>
+                </div>
+                <div class="modal-body" style="padding: 0">
+                    <div class="kefu" id="kefulist" style="opacity:1;">
+                        <input type="hidden" id="platformsHeadship" value="业务员">
+                        <h3>联系业务员</h3>
+                        <ul>
+                            <li><a href="tel:18224052021"></a><div class="clear"></div></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer" style="display: none">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary">保存</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</div>
+<div id="findlistpage" style="display: none;">
+    <div class="header2">
+        搜索 <a class="pull-left closed"
+              style="color: #FFFFFF; font-size: 18px; margin-top: 3px; cursor: pointer"
+            >取消</a> <a class="pull-right find"
+                       style="color: #FFFFFF; font-size: 18px; margin-top: 3px; cursor: pointer">确认</a>
+    </div>
+    <div class="body">
+        <ul>
+            <li>
+                <div class="col-xs-4 margin">起始日期</div>
+                <div class="col-xs-8">
+                    <input type="date" id="d4311"
+                           class="form-control Wdate"
+                           onfocus="WdatePicker({dateFmt:'yyyy-MM-dd',maxDate:'#F{$dp.$D(\'d4312\')||\'2020-10-01\'}'})" name="beginDate">
+                </div>
+                <div class="clearfix"></div>
+            </li>
+            <li>
+                <div class="col-xs-4 margin">结束日期</div>
+                <div class="col-xs-8">
+                    <input type="date" id="d4312" class="form-control Wdate"
+                           onfocus="WdatePicker({dateFmt:'yyyy-MM-dd',minDate:'#F{$dp.$D(\'d4311\')}',maxDate:'2020-10-01'})" name="endDate">
+                </div>
+                <div class="clearfix"></div>
+            </li>
+            <li style="padding: 0">
+                <div class="col-xs-3" style="text-indent: 24px; margin-top: 6px;padding: 10px 0;">类别</div>
+                <div class="col-xs-9 tbd1" style="padding: 3px 0">
+                    <ul>
+                        <li class="active3"><label>全部</label><span style="display: none;"></span></li>
+                        <li><label>仔猪</label><span style="display: none;">TY001</span></li>
+                        <li><label>商品猪</label><span style="display: none;">TY002</span></li>
+                    </ul>
+                    <!--<input type="text" id="searchKey" maxlength="20" class="form-control" placeholder="如:仔猪">-->
+                </div>
+                <div class="clearfix"></div>
+            </li>
+            <li style="padding: 0">
+                <div class="col-xs-3" style="text-indent: 24px; margin-top: 6px;padding: 10px 0;">猪种</div>
+                <div class="col-xs-9  tbd2" style="padding: 3px 0">
+                    <ul>
+                    	<li class="active3"><label>全部</label><span style="display: none;"></span></li>
+                        <li><label>内杂猪</label><span style="display: none;">TY001</span></li>
+                        <li><label>外杂猪</label><span style="display: none;">TY002</span></li>
+                        <li><label>土猪</label><span style="display: none;">TY003</span></li>
+                    </ul>
+                    <!--<input type="text" id="searchKey" maxlength="20" class="form-control" placeholder="如:内杂猪">-->
+                </div>
+                <div class="clearfix"></div>
+            </li>
+        </ul>
+    </div>
+</div>
+<script type="text/javascript" src="../js_lib/jquery.11.js"></script>
+<script type="text/javascript" src="../js_lib/jquery.cookie.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../datepicker/WdatePicker.js"></script>
+<script type="text/javascript" src="../js/o2od.js"></script>
+<script type="text/javascript" src="../js/popUpBox.js"></script>
+<script>
+<!--
+var math=Math.random();
+document.write("<script src='../js/common.js?ver="+math+"'><\/script>");
+document.write("<script src='../pc/twysjs/dealbuy.js?ver="+math+"'><\/script>");
+//-->
+</script>
+</body>
+</html>

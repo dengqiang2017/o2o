@@ -1,0 +1,25 @@
+*{margin: 0;padding: 0; font-family:'Microsoft YaHei',Arial,Helvetica,sans-serif;font-size: 14px;}
+ul{list-style: none;}
+body{ background:#f0f0f0;}
+
+.cssBox{ display: -moz-box; display: -webkit-box; display:box; display: -ms-flexbox; }
+.boxAlign{ box-align:center; -webkit-box-align:center; -moz-box-align:center;  -moz-box-pack:center;  -webkit-box-pack:center; -o-box-pack:center; box-pack:center; -ms-flex-pack:center; -ms-flex-align:center;}
+.boxAligna{ box-align:center; -webkit-box-align:center; -moz-box-align:center;}
+.vertical {  -moz-box-orient: vertical;  -webkit-box-orient: vertical; -o-box-orient: vertical; box-orient: vertical; }
+.horizontal{ -moz-box-orient: horizontal;  -webkit-box-orient: horizontal;  -o-box-orient: horizontal; box-orient: horizontal;}
+.flex{ -moz-box-flex:1; -webkit-box-flex:1; box-flex:1; -ms-flex:1;}
+.justify{ -moz-box-pack:justify; -webkit-box-pack:justify; -o-box-pack:justify; box-pack:justify;}
+.stretch{ -moz-box-align:stretch; -webkit-box-align:stretch; -o-box-align:stretch; box-align:stretch;}
+
+
+.mui-bar .mui-icon {font-size: 20px;}
+.mui-bar-tab .mui-tab-item.mui-active, .text-color { color: #0397F9;}
+.mui-bar-tab .mui-tab-item{color: #343434;}
+/*-------------tab菜单css------------*/
+.tabMenuBox{width: 100%;background: #fff;border-bottom: 1px solid #B8B8B8;}
+.tabMenu{text-align: center;}
+.tabMenu li{background: #fff;padding:10px 0;cursor: pointer}
+.tabMenu li.active{ color: #0397F9;border-bottom: 2px solid #0397F9;}
+.tabMenuT{text-align: center;}
+.tabMenuT li{background: #fff;padding:10px 0;}
+.tabMenuT li.active{ color: #0397F9;border-bottom: 2px solid #0397F9;}
